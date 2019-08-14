@@ -157,8 +157,8 @@ function positionOnScreen(x, y, z) {
     };
 }
 
-function renderFloor(z) {
-    const maxDistance = BLOCK_SIZE * 4;
+function renderFloor(z, maxDistance, texture) {
+    // const maxDistance = BLOCK_SIZE * 4;
     const size = BLOCK_SIZE / 4;
 
     const sizeRatio = (size / BLOCK_SIZE);
@@ -179,16 +179,16 @@ function renderFloor(z) {
                     G.floorTiles++;
                 }
 
-                R.globalAlpha = 1 - limit(0, distP(P.x, P.y, x, y) / (BLOCK_SIZE * 4), 1);
+                R.globalAlpha = 1 - limit(0, distP(P.x, P.y, x, y) / maxDistance, 1);
                 drawTriangle(
-                    FLOOR_SPRITE,
+                    texture,
                     topLeft.x, topLeft.y,
                     topRight.x, topRight.y,
                     bottomLeft.x, bottomLeft.y,
 
-                    FLOOR_SPRITE.width * offsetXRatio, FLOOR_SPRITE.height * offsetYRatio,
-                    FLOOR_SPRITE.width * (offsetXRatio + sizeRatio), FLOOR_SPRITE.height * offsetYRatio,
-                    FLOOR_SPRITE.height * offsetXRatio, FLOOR_SPRITE.height * (offsetYRatio + sizeRatio)
+                    texture.width * offsetXRatio, texture.height * offsetYRatio,
+                    texture.width * (offsetXRatio + sizeRatio), texture.height * offsetYRatio,
+                    texture.height * offsetXRatio, texture.height * (offsetYRatio + sizeRatio)
                 );
             }
 
@@ -197,16 +197,16 @@ function renderFloor(z) {
                     G.floorTiles++;
                 }
 
-                R.globalAlpha = 1 - limit(0, distP(P.x, P.y, x, y) / (BLOCK_SIZE * 4), 1);
+                R.globalAlpha = 1 - limit(0, distP(P.x, P.y, x, y) / maxDistance, 1);
                 drawTriangle(
-                    FLOOR_SPRITE,
+                    texture,
                     bottomRight.x, bottomRight.y,
                     topRight.x, topRight.y,
                     bottomLeft.x, bottomLeft.y,
 
-                    FLOOR_SPRITE.width * (offsetXRatio + sizeRatio), FLOOR_SPRITE.height * (offsetYRatio + sizeRatio),
-                    FLOOR_SPRITE.width * (offsetXRatio + sizeRatio), FLOOR_SPRITE.height * offsetYRatio,
-                    FLOOR_SPRITE.height * offsetXRatio, FLOOR_SPRITE.height * (offsetYRatio + sizeRatio)
+                    texture.width * (offsetXRatio + sizeRatio), texture.height * (offsetYRatio + sizeRatio),
+                    texture.width * (offsetXRatio + sizeRatio), texture.height * offsetYRatio,
+                    texture.height * offsetXRatio, texture.height * (offsetYRatio + sizeRatio)
                 );
             }
         }
@@ -227,10 +227,16 @@ function renderWorld() {
     rotate(P.headTilt);
     translate(-CANVAS_WIDTH / 2, -CANVAS_HEIGHT / 2);
 
+    wrap(() => {
+        const offset = -(P.angle / FIELD_OF_VIEW * CANVAS_WIDTH);
+        R.fillStyle = STARRY_BACKGROUND;
+        translate(offset, lookupOffset());
+        fillRect(-offset, -lookupOffset(), CANVAS_WIDTH, lookupOffset() + CANVAS_HEIGHT / 2);
+    });
+
     translate(0, lookupOffset());
 
     R.fillStyle = '#000';
-    fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     // fillRect(0, -lookupOffset(), CANVAS_WIDTH, CANVAS_HEIGHT / 2 + lookupOffset());
     //
     // R.fillStyle = BACKGROUND_SPRITE;
@@ -248,8 +254,8 @@ function renderWorld() {
     G.castIterations = 0;
     G.castTime = measure(() => castWindow(-1, SLICE_COUNT + 1));
 
-    G.renderFloor = measure(() => renderFloor(-BLOCK_SIZE / 2));
-    G.renderCeiling = measure(() => renderFloor(BLOCK_SIZE / 2));
+    G.renderFloor = measure(() => renderFloor(-BLOCK_SIZE / 2, BLOCK_SIZE * 4, FLOOR_SPRITE));
+    // G.renderCeiling = measure(() => renderFloor(BLOCK_SIZE / 2, BLOCK_SIZE * 2, FLOOR_SPRITE));
     G.renderWalls = measure(() => renderWalls());
 
     // One bubble sort pass so we get linear time

@@ -78,3 +78,30 @@ const BACKGROUND_SPRITE = createCanvasPattern(1, CANVAS_HEIGHT / 2, (ctx, can) =
     ctx.fillRect(0, 0, 1, can.height);
 
 });
+
+const STARRY_BACKGROUND = createCanvasPattern(400, 400, (ctx, can) => {
+    ctx.fillStyle = '#0e0409';
+    ctx.fillRect(0, 0, 400, 400);
+
+    const starGradient = ctx.createRadialGradient(0, 0, 0, 0, 0, 1);
+    starGradient.addColorStop(0, 'rgba(255,255,200,1)');
+    starGradient.addColorStop(0.3, 'rgba(255,255,200,0.1)');
+    starGradient.addColorStop(1, 'rgba(255,255,200,0)');
+
+    ctx.fillStyle = starGradient;
+
+    for (let i = 0 ; i < 0 ; i++) {
+        ctx.beginPath();
+        ctx.arc(
+            random() * 400,
+            random() * 400,
+            1,
+            0,
+            TWO_PI
+        );
+        ctx.fill();
+
+        ctx.fillStyle = '#fff';
+        // ctx.fillRect(random() * 200, random() * 200, 1, 1);
+    }
+});

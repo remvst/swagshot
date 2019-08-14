@@ -22,7 +22,7 @@ class Bullet {
         this.y += Math.sin(this.angle) * BULLET_SPEED * e;
         this.z -= Math.sin(this.verticalAngle) * BULLET_SPEED * e;
 
-        if (hasBlock(this.x, this.y, 0) || abs(this.z) > BLOCK_SIZE / 2) {
+        if (hasBlock(this.x, this.y, 0) || abs(this.z) > BLOCK_SIZE * 2 || this.z < -BLOCK_SIZE / 2) {
             remove(BULLETS, this);
             remove(SPRITES, this.particle);
 
