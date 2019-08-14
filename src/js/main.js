@@ -55,7 +55,7 @@ onmousemove = e => {
 };
 
 onmousedown = () => {
-    new Bullet(P.x, P.y, P.z - 10, P.angle, P.verticalAngle);
+    P.shoot();
 };
 
 onclick = () => document.body.requestPointerLock();

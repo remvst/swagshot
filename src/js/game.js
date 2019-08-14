@@ -22,17 +22,10 @@ class Game {
 
         INTERPOLATIONS.slice().forEach(i => i.cycle(e));
 
-        wrap(() => {
-            renderWorld();
-        });
+        wrap(renderWorld);
 
         // Crosshair
-        R.strokeStyle = '#fff';
         R.fillStyle = '#fff';
-        R.lineWidth = 2;
-        // beginPath();
-        // arc(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, 5, 0, PI * 2);
-        // stroke();
         fillRect(
             CANVAS_WIDTH / 2 - 5,
             CANVAS_HEIGHT / 2 - 1,
@@ -46,11 +39,10 @@ class Game {
             10
         );
 
-        // wrap(() => {
-        //     scale(0.2, 0.2);
-        //
-        //     renderDebug();
-        // });
+        wrap(() => {
+            translate(0, max(0, 1 - (G.clock - P.lastShot) / 0.15) * 30);
+            drawImage(SHOTGUN, (CANVAS_WIDTH - SHOTGUN.width) / 2, CANVAS_HEIGHT - SHOTGUN.height);
+        });
 
         if (DEBUG) {
             wrap(() => {

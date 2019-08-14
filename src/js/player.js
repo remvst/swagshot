@@ -8,6 +8,9 @@ class Player {
 
         this.angle = Math.PI / 3;
 
+        this.vX = 0;
+        this.vY = 0;
+
         this.verticalAngle = 0;
 
         this.moving = false;
@@ -15,6 +18,8 @@ class Player {
         this.movingClock = 0;
 
         this.headTilt = 0;
+
+        this.lastShot = 0;
     }
 
     cycle(e) {
@@ -29,26 +34,42 @@ class Player {
             y = !!w.down[KEYBOARD_D] - !!w.down[KEYBOARD_A];
 
         if (x || y) {
-            const angle = Math.atan2(y, x) + this.angle;
-            this.x += Math.cos(angle) * PLAYER_SPEED / BLOCK_SIZE;
-            if (hasBlock(this.x, this.y, BLOCK_SIZE * 0.1)) {
-                this.x = beforeX;
-            }
+            const targetAngle = atan2(y, x) + this.angle;
 
-            this.y += Math.sin(angle) * PLAYER_SPEED / BLOCK_SIZE;
-            if (hasBlock(this.x, this.y, BLOCK_SIZE * 0.1)) {
-                this.y = beforeY;
-            }
+            const targetVX = PLAYER_SPEED * cos(targetAngle);
+            const targetVY = PLAYER_SPEED * sin(targetAngle);
 
-            this.movingClock += e;
+            const newVX = this.vX + limit(-e * PLAYER_ACCELERATION, targetVX - this.vX, e * PLAYER_ACCELERATION) * abs(cos(targetAngle));
+            const newVY = this.vY + limit(-e * PLAYER_ACCELERATION, targetVY - this.vY, e * PLAYER_ACCELERATION) * abs(sin(targetAngle));
+
+            const newSpeed = min(PLAYER_SPEED, distP(0, 0, newVX, newVY));
+            const newMovementAngle = atan2(newVY, newVX);
+
+            this.vX = cos(newMovementAngle) * newSpeed;
+            this.vY = sin(newMovementAngle) * newSpeed;
+        } else {
+            const movementAngle = atan2(this.vY, this.vX);
+            const currentSpeed = distP(0, 0, this.vX, this.vY);
+            const newSpeed = max(0, currentSpeed - e * PLAYER_ACCELERATION);
+
+            this.vX = cos(movementAngle) * newSpeed;
+            this.vY = sin(movementAngle) * newSpeed;
         }
 
-        if (!x && !y || this.z != 0) {
-            this.movingClock = 0;
+        this.x += this.vX * e;
+        if (hasBlock(this.x, this.y, BLOCK_SIZE * 0.1)) {
+            this.x = beforeX;
         }
+
+        this.y += this.vY * e;
+        if (hasBlock(this.x, this.y, BLOCK_SIZE * 0.1)) {
+            this.y = beforeY;
+        }
+
+        this.movingClock += (distP(0, 0, this.vX, this.vY) / PLAYER_SPEED) * e;
 
         this.zSpeed -= e * JUMP_FORCE / JUMP_DURATION / 0.9;
-        this.z = limit(0, this.z + this.zSpeed * e, BLOCK_SIZE * 0.45);
+        this.z = limit(0, this.z + this.zSpeed * e, BLOCK_SIZE / 2);
 
         if (w.down[KEYBOARD_SPACE]) {
             this.jump();
@@ -70,5 +91,10 @@ class Player {
 
     headTilt() {
         return (!!w.down[KEYBOARD_A] - !!w.down[KEYBOARD_D]) * PI / 128;
+    }
+
+    shoot() {
+        new Bullet(this.x, this.y, this.z - 10, this.angle, this.verticalAngle);
+        this.lastShot = G.clock;
     }
 }
