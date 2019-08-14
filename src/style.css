@@ -1,0 +1,29 @@
+#t{
+    display: table;
+}
+
+#c{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#cc{
+    margin: auto;
+    outline: 1px solid white;
+}
+
+body, html, #t, canvas{
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    margin: 0;
+
+    -webkit-touch-callout: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+canvas{
+    display: block;
+    cursor: none;
+}

@@ -1,0 +1,43 @@
+{
+    "true": 1,
+    "false": 0,
+    "const": "let",
+
+    "CANVAS_WIDTH": 800,
+    "CANVAS_HEIGHT": 600,
+
+    "SLICE_WIDTH": 2,
+    "FIELD_OF_VIEW": 1,
+    "BLOCK_SIZE": 100,
+    "DRAW_DISTANCE": 1200,
+
+    "PLAYER_SPEED": 800,
+    "JUMP_DURATION": 0.25,
+    "JUMP_FORCE": 400,
+
+    "BULLET_SPEED": 1600,
+
+    "KEYBOARD_TAB": 9,
+    "KEYBOARD_ENTER": 13,
+    "KEYBOARD_ESC": 27,
+    "KEYBOARD_SPACE": 32,
+    "KEYBOARD_LEFT": 37,
+    "KEYBOARD_UP": 38,
+    "KEYBOARD_RIGHT": 39,
+    "KEYBOARD_DOWN": 40,
+    "KEYBOARD_RIGHT_SHIFT": 13,
+    "KEYBOARD_LEFT_SHIFT": 16,
+    "KEYBOARD_A": 65,
+    "KEYBOARD_B": 66,
+    "KEYBOARD_C": 67,
+    "KEYBOARD_D": 68,
+    "KEYBOARD_E": 69,
+    "KEYBOARD_F": 70,
+    "KEYBOARD_G": 71,
+    "KEYBOARD_N": 78,
+    "KEYBOARD_P": 80,
+    "KEYBOARD_S": 83,
+    "KEYBOARD_W": 87,
+    "KEYBOARD_X": 88,
+    "KEYBOARD_Y": 89
+}
