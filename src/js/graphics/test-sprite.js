@@ -128,3 +128,19 @@ const SHOTGUN = pixelate(createCanvas(165, 150, (ctx, can) => {
     ctx.scale(-1, 1);
     barrel();
 }), 5);
+
+const MUZZLEFLASH = pixelate(createCanvas(200, 200, (ctx, can) => {
+    const grad = ctx.createRadialGradient(can.width / 2, can.width / 2, 0, can.width / 2, can.width / 2, can.width / 2);
+    grad.addColorStop(0, '#fff');
+    grad.addColorStop(0.4, '#fff');
+    grad.addColorStop(0.6, '#ff0');
+    grad.addColorStop(1, '#ff0');
+
+    ctx.fillStyle = grad;
+    for (let i = 0 ; i < 3 ; i++) {
+        // ctx.rotate(PI / 3);
+        ctx.beginPath();
+        ctx.ellipse(can.width / 2, can.width / 2, can.width / 2, 20, i * PI / 3, 0, PI * 2);
+        ctx.fill();
+    }
+}), 5);

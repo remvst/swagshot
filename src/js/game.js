@@ -39,6 +39,15 @@ class Game {
             10
         );
 
+        if (G.clock - P.lastShot < 0.1) {
+            wrap(() => {
+                // R.globalAlpha = 1 - (G.clock - P.lastShot) / 0.1;
+                translate(CANVAS_WIDTH / 2, CANVAS_HEIGHT - SHOTGUN.height + 10);
+                rotate(PI * P.lastShot * 99);
+                drawImage(MUZZLEFLASH, -MUZZLEFLASH.width / 2, -MUZZLEFLASH.height / 2);
+            });
+        }
+
         wrap(() => {
             translate(0, max(0, 1 - (G.clock - P.lastShot) / 0.15) * 30);
             drawImage(SHOTGUN, (CANVAS_WIDTH - SHOTGUN.width) / 2, CANVAS_HEIGHT - SHOTGUN.height);
