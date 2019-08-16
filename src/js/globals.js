@@ -7,3 +7,4 @@ let R, // canvas context
     mobile = navigator.userAgent.match(nomangle(/andro|ipho|ipa|ipo|windows ph/i));
 
 const CYCLABLES = [];
+const ENEMIES = [];

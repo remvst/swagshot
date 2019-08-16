@@ -2,6 +2,8 @@ class Enemy extends Character {
     constructor() {
         super();
 
+        this.bloodColor = [0, 0xf, 0];
+
         const matrix = pick([
             [
                 [0, 0, 1, 1, 0],
@@ -69,6 +71,7 @@ class Enemy extends Character {
             'sprite': spriteCanvas
         });
         CYCLABLES.push(this);
+        ENEMIES.push(this);
     }
 
     cycle(e) {
@@ -77,10 +80,17 @@ class Enemy extends Character {
         this.sprite.x = this.x;
         this.sprite.y = this.y;
         this.sprite.z = this.z;
+
+        if (dist(this, P) < this.width * 1.2 && this.z - P.z < this.height / 2) {
+            const angle = angleBetween(this, P);
+            P.x = this.x + cos(angle) * this.width * 1.2;
+            P.y = this.y + sin(angle) * this.width * 1.2;
+        }
     }
 
     remove() {
         remove(CYCLABLES, this);
         remove(SPRITES, this.sprite);
+        remove(ENEMIES);
     }
 }

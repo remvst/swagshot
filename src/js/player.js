@@ -100,7 +100,8 @@ class Player {
                 this.y,
                 this.z - 10,
                 this.angle + rnd(-1, 1) * PI / 128,
-                this.verticalAngle + rnd(-1, 1) * PI / 128
+                this.verticalAngle + rnd(-1, 1) * PI / 128,
+                ENEMIES
             );
         }
         this.lastShot = G.clock;
