@@ -6,4 +6,4 @@ let R, // canvas context
     isTouch,
     mobile = navigator.userAgent.match(nomangle(/andro|ipho|ipa|ipo|windows ph/i));
 
-const BULLETS = [];
+const CYCLABLES = [];

@@ -3,6 +3,7 @@
     "src/js/math.js",
     "src/js/canvas-additions.js",
 
+    "src/js/graphics/colors.js",
     "src/js/graphics/create-canvas.js",
     "src/js/graphics/create-pattern.js",
     "src/js/graphics/assets.js",
@@ -13,6 +14,9 @@
     "src/js/world/world.js",
 
     "src/js/projectiles/bullet.js",
+
+    "src/js/characters/character.js",
+    "src/js/characters/enemy.js",
 
     "src/js/util/resizer.js",
     "src/js/util/interp.js",

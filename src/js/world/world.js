@@ -18,11 +18,21 @@ class World {
             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
         ];
+
+        CYCLABLES = [];
+        SPRITES = [];
+
+        for (let i = 0 ; i < 10 ; i++) {
+            const enemy = new Enemy();
+            enemy.x = 150;
+            enemy.y = 150 + i * BLOCK_SIZE;
+            CYCLABLES.push(enemy);
+        }
     }
 
     cycle(e) {
         P.cycle(e);
 
-        BULLETS.forEach(b => b.cycle(e));
+        CYCLABLES.forEach(b => b.cycle(e));
     }
 }

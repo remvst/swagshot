@@ -14,7 +14,7 @@ class Bullet {
             'height': BLOCK_SIZE / 10,
             'color': '#ff0'
         });
-        BULLETS.push(this);
+        CYCLABLES.push(this);
     }
 
     cycle(e) {
@@ -23,7 +23,7 @@ class Bullet {
         this.z -= Math.sin(this.verticalAngle) * BULLET_SPEED * e;
 
         if (hasBlock(this.x, this.y, 0) || abs(this.z) > BLOCK_SIZE * 2 || this.z < -BLOCK_SIZE / 2) {
-            remove(BULLETS, this);
+            remove(CYCLABLES, this);
             remove(SPRITES, this.particle);
 
             for (let i = 0 ; i < 10 ; i++) {

@@ -1,17 +1,9 @@
-const CASTED_RAYS = [];
-
 const PROJECTION_PLANE_DISTANCE = (CANVAS_WIDTH / 2) / tan(FIELD_OF_VIEW / 2);
 const SLICE_COUNT = CANVAS_WIDTH / SLICE_WIDTH;
 
-const SPRITES = [{
-    'x': 200,
-    'y': 300,
-    'z': 0,
-    'sprite': TEST_SPRITE,
-    'width': BLOCK_SIZE / 2,
-    'height': BLOCK_SIZE
-}];
+const SPRITES = [];
 
+const CASTED_RAYS = [];
 for (let i = -1 ; i <= SLICE_COUNT ; i++) {
     CASTED_RAYS[i] = {};
 }
