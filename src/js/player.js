@@ -29,27 +29,29 @@ class Player {
         const beforeZ = this.z;
 
         this.angle = normalize(this.angle);
-
         this.verticalAngle = limit(-Math.PI / 4, this.verticalAngle, Math.PI / 4);
 
         const x = !!w.down[KEYBOARD_W] - !!w.down[KEYBOARD_S],
             y = !!w.down[KEYBOARD_D] - !!w.down[KEYBOARD_A];
 
         if (x || y) {
+            const maxSpeed = PLAYER_SPEED * (!!this.z * JUMP_SPEED_BOOST + 1);
             const targetAngle = atan2(y, x) + this.angle;
 
-            const targetVX = PLAYER_SPEED * cos(targetAngle);
-            const targetVY = PLAYER_SPEED * sin(targetAngle);
+            const targetVX = maxSpeed * cos(targetAngle);
+            const targetVY = maxSpeed * sin(targetAngle);
 
-            const newVX = this.vX + limit(-e * PLAYER_ACCELERATION, targetVX - this.vX, e * PLAYER_ACCELERATION) * abs(cos(targetAngle));
-            const newVY = this.vY + limit(-e * PLAYER_ACCELERATION, targetVY - this.vY, e * PLAYER_ACCELERATION) * abs(sin(targetAngle));
+            const factor = 1 - abs(!!this.z * 0.7);
 
-            const newSpeed = min(PLAYER_SPEED, distP(0, 0, newVX, newVY));
+            const newVX = this.vX + factor * limit(-e * PLAYER_ACCELERATION, (targetVX - this.vX), e * PLAYER_ACCELERATION) * abs(cos(targetAngle));
+            const newVY = this.vY + factor * limit(-e * PLAYER_ACCELERATION, (targetVY - this.vY), e * PLAYER_ACCELERATION) * abs(sin(targetAngle));
+
+            const newSpeed = min(maxSpeed, distP(0, 0, newVX, newVY));
             const newMovementAngle = atan2(newVY, newVX);
 
             this.vX = cos(newMovementAngle) * newSpeed;
             this.vY = sin(newMovementAngle) * newSpeed;
-        } else {
+        } else if (!this.z) {
             const movementAngle = atan2(this.vY, this.vX);
             const currentSpeed = distP(0, 0, this.vX, this.vY);
             const newSpeed = max(0, currentSpeed - e * PLAYER_ACCELERATION);
@@ -58,15 +60,12 @@ class Player {
             this.vY = sin(movementAngle) * newSpeed;
         }
 
+        // Ugly collision handling
         this.x += this.vX * e;
-        if (hasBlock(this.x, this.y, BLOCK_SIZE * 0.1)) {
-            this.x = beforeX;
-        }
+        if (hasBlock(this.x, this.y, BLOCK_SIZE * 0.1)) this.x = beforeX;
 
         this.y += this.vY * e;
-        if (hasBlock(this.x, this.y, BLOCK_SIZE * 0.1)) {
-            this.y = beforeY;
-        }
+        if (hasBlock(this.x, this.y, BLOCK_SIZE * 0.1)) this.y = beforeY;
 
         this.movingClock += (distP(0, 0, this.vX, this.vY) / PLAYER_SPEED) * e;
 
@@ -88,19 +87,21 @@ class Player {
     jump() {
         if (this.z == 0) {
             this.zSpeed = JUMP_FORCE;
+            this.vX *= evaluate(1 + JUMP_SPEED_BOOST);
+            this.vY *= evaluate(1 + JUMP_SPEED_BOOST);
         }
     }
 
     eyeZ() {
-        let res = this.z;
-        if (!this.z) {
-            res += ~~(sin(this.movingClock * PI * 2 * 2) * 5);
-        }
+        return this.z +
+            // Landing animation
+            this.landingProgress() * 10 +
+            // Bobbing animation
+            !this.z * ~~(sin(this.movingClock * PI * 2 * 2) * 5);
+    }
 
-        const landingProgress = min(1, (G.clock - this.lastLanding) / 0.3);
-        res -= sin(landingProgress * PI) * 10;
-
-        return res;
+    landingProgress() {
+        return -sin(min(1, (G.clock - this.lastLanding) / 0.3) * PI);
     }
 
     headTilt() {
