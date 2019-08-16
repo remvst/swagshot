@@ -20,11 +20,13 @@ class Player {
         this.headTilt = 0;
 
         this.lastShot = 0;
+        this.lastLanding = 0;
     }
 
     cycle(e) {
         const beforeX = this.x;
         const beforeY = this.y;
+        const beforeZ = this.z;
 
         this.angle = normalize(this.angle);
 
@@ -71,6 +73,10 @@ class Player {
         this.zSpeed -= e * JUMP_FORCE / JUMP_DURATION / 0.9;
         this.z = limit(0, this.z + this.zSpeed * e, BLOCK_SIZE / 2);
 
+        if (!this.z && beforeZ) {
+            this.lastLanding = G.clock;
+        }
+
         if (w.down[KEYBOARD_SPACE]) {
             this.jump();
         }
@@ -86,7 +92,15 @@ class Player {
     }
 
     eyeZ() {
-        return this.z + ~~(sin(this.movingClock * PI * 2 * 2) * 5);
+        let res = this.z;
+        if (!this.z) {
+            res += ~~(sin(this.movingClock * PI * 2 * 2) * 5);
+        }
+
+        const landingProgress = min(1, (G.clock - this.lastLanding) / 0.3);
+        res -= sin(landingProgress * PI) * 10;
+
+        return res;
     }
 
     headTilt() {
@@ -98,7 +112,7 @@ class Player {
             new Bullet(
                 this.x,
                 this.y,
-                this.z - 10,
+                this.eyeZ() - 10,
                 this.angle + rnd(-1, 1) * PI / 128,
                 this.verticalAngle + rnd(-1, 1) * PI / 128,
                 ENEMIES
