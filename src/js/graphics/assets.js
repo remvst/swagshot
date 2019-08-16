@@ -1,5 +1,10 @@
-renderResourcesIcon = () => {
-    beginPath(); arc(0, -12, 15, 0, TWO_PI); fill();
-    beginPath(); arc(12, 12, 15, 0, TWO_PI); fill();
-    beginPath(); arc(-12, 12, 15, 0, TWO_PI); fill();
-};
+function renderMatrix(matrix, ctx, colorGetter) {
+    for (let row = 0 ; row < matrix.length ; row++) {
+        for (let col = 0 ; col < matrix[0].length ; col++) {
+            if (matrix[row][col]) {
+                ctx.fillStyle = toColor(colorGetter(matrix[row][col]));
+                ctx.fillRect(col, row, 1, 1);
+            }
+        }
+    }
+}

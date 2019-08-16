@@ -24,8 +24,9 @@ class World {
 
         for (let i = 0 ; i < 10 ; i++) {
             const enemy = new Enemy();
-            enemy.x = 150;
+            enemy.x = 150 + rnd(0, 1.5) * BLOCK_SIZE;
             enemy.y = 150 + i * BLOCK_SIZE;
+            enemy.z = rnd(-0.5, 0.5) * BLOCK_SIZE;
             CYCLABLES.push(enemy);
         }
     }

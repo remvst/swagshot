@@ -1,5 +1,5 @@
 randomizeColor = components => {
-    return components.map(x => limit(0, x + ~~rnd(-2, 2), 0xf));
+    return components.map(x => x + rnd(-2, 2));
 };
 
 randomBrightColor = () => {
@@ -13,5 +13,9 @@ invertColor = components => {
 };
 
 toColor = components => {
-    return '#' + components.map(x => x.toString(16)).join('');
+    return '#' + components.map(x => limit(0, ~~x, 0xf).toString(16)).join('');
+};
+
+multiply = (components, factor) => {
+    return components.map(x => x * factor);
 };

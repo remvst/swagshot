@@ -2,42 +2,50 @@ class Enemy extends Character {
     constructor() {
         super();
 
-        const cols = ~~rnd(4, 8) * 2 + 1;
-        const diagonalRows = ~~rnd(1, 4);
-        const headRows = diagonalRows * 2 + ~~rnd(3, 6);
-        const eyeRows = ~~rnd(1, headRows / 4);
+        const matrix = pick([
+            [
+                [0, 0, 1, 1, 0],
+                [0, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1],
+                [1, 2, 2, 1, 1],
+                [1, 1, 1, 1, 1],
+                [0, 1, 1, 1, 1],
+                [0, 1, 0, 0, 0],
+                [0, 1, 1, 0, 0]
+            ],
+            [
+                [0, 0, 0, 0, 1],
+                [0, 0, 0, 1, 1],
+                [0, 0, 1, 1, 1],
+                [0, 1, 1, 2, 1],
+                [0, 1, 1, 1, 1],
+                [0, 0, 1, 0, 1],
+                [0, 1, 0, 0, 0],
+                [0, 0, 1, 0, 0]
+            ]
+        ]);
 
-        const spriteCanvas = createCanvas(cols, headRows, (ctx, can) => {
-            const components = randomBrightColor();
+        const spriteCanvas = createCanvas(9, 8, (ctx, can) => {
+            const mainColor = multiply(randomBrightColor(), 0.5);
 
-            for (let row = 0 ; row < headRows ; row++) {
-                for (let col = 0 ; col < cols ; col++) {
-
-                    const consideredRow = min(row, headRows - row);
-                    const consideredCol = min(col, cols - col - 1);
-
-                    if (consideredRow < diagonalRows && consideredCol + consideredRow < diagonalRows) {
-                        continue;
+            const half = () => {
+                renderMatrix(matrix, ctx, x => {
+                    if (x == 1) {
+                        return randomizeColor(mainColor);
+                    } else {
+                        return randomizeColor(invertColor(mainColor));
                     }
+                });
+            };
 
-                    ctx.fillStyle = toColor(randomizeColor(components));
-                    ctx.fillRect(col, row, 1, 1);
-                }
-            }
-
-            ctx.fillStyle = toColor(invertColor(components));
-
-            const eyeStartRow = ~~rnd(diagonalRows, headRows - eyeRows * 2);
-            for (let row = 0 ; row < eyeRows * 2 ; row += 2) {
-                const eyeCount = ~~rnd(1, cols * 0.6);
-                for (let i = 0 ; i < eyeCount ; i++) {
-                    ctx.fillRect(~~(cols / 2 - eyeCount + i * 2) + 1, row + eyeStartRow, 1, 1);
-                }
-            }
+            half();
+            ctx.translate(can.width, 0);
+            ctx.scale(-1, 1);
+            half();
         });
 
-        this.width = spriteCanvas.width * 4;
-        this.height = spriteCanvas.height * 4;
+        this.width = spriteCanvas.width * 6;
+        this.height = spriteCanvas.height * 6;
 
         SPRITES.push(this.sprite = {
             'x': this.x,
