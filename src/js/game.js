@@ -69,7 +69,6 @@ class Game {
                     'castTime: ' + G.castTime,
                     'renderWalls: ' + G.renderWalls,
                     'renderFloor: ' + G.renderFloor,
-                    'renderCeiling: ' + G.renderCeiling,
                     'castIterations: ' + G.castIterations,
                     'floorTiles: ' + G.floorTiles,
                 ];
