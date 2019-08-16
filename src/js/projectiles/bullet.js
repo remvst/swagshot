@@ -10,9 +10,9 @@ class Bullet {
             'x': this.x,
             'y': this.y,
             'z': this.z,
-            'width': BLOCK_SIZE / 10,
-            'height': BLOCK_SIZE / 10,
-            'color': '#ff0'
+            'width': BLOCK_SIZE / 40,
+            'height': BLOCK_SIZE / 40,
+            'color': '#fff'
         });
         CYCLABLES.push(this);
     }

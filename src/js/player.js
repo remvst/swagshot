@@ -94,7 +94,15 @@ class Player {
     }
 
     shoot() {
-        new Bullet(this.x, this.y, this.z - 10, this.angle, this.verticalAngle);
+        for (let i = 0 ; i < 3 ; i++) {
+            new Bullet(
+                this.x,
+                this.y,
+                this.z - 10,
+                this.angle + rnd(-1, 1) * PI / 128,
+                this.verticalAngle + rnd(-1, 1) * PI / 128
+            );
+        }
         this.lastShot = G.clock;
     }
 }

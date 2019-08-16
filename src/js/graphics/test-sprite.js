@@ -106,7 +106,7 @@ const STARRY_BACKGROUND = createCanvasPattern(400, 400, (ctx, can) => {
     }
 });
 
-const SHOTGUN = createCanvas(165, 150, (ctx, can) => {
+const SHOTGUN = pixelate(createCanvas(165, 150, (ctx, can) => {
     const grad = ctx.createLinearGradient(0, 0, can.width / 2, 10);
     grad.addColorStop(0, '#765');
     grad.addColorStop(0.7, '#ddd');
@@ -127,4 +127,4 @@ const SHOTGUN = createCanvas(165, 150, (ctx, can) => {
     ctx.translate(can.width, 0);
     ctx.scale(-1, 1);
     barrel();
-});
+}), 5);
