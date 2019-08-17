@@ -40,7 +40,7 @@ class Enemy extends Character {
             ]
         ]);
 
-        const spriteCanvas = createCanvas(9, 8, (ctx, can) => {
+        const spriteCanvas = createCanvas((matrix[0].length * 2), matrix.length, (ctx, can) => {
             const mainColor = multiply(randomBrightColor(), 0.5);
 
             const half = () => {
