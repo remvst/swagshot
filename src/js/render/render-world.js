@@ -319,11 +319,7 @@ function renderPoint(point, realWidth, realHeight, fadeStartDistance, fadeEndDis
     const angle = angleBetween(P, point);
     const angleDiff = normalize(angle - P.angle);
 
-    if (distanceToPoint > fadeEndDistance) {
-        return;
-    }
-
-    if (abs(angleDiff) > FIELD_OF_VIEW / 2) {
+    if (distanceToPoint > fadeEndDistance || abs(angleDiff) > FIELD_OF_VIEW / 2) {
         return;
     }
 

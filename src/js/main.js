@@ -50,8 +50,10 @@ onload = () => {
 
 onmousemove = e => {
     // TODO check caniuse
-    P.angle += e.movementX / document.body.clientWidth * 2 * Math.PI;
-    P.verticalAngle += e.movementY / document.body.clientHeight * 2 * Math.PI;
+    if (P.health) {
+        P.angle += e.movementX / document.body.clientWidth * 2 * Math.PI;
+        P.verticalAngle += e.movementY / document.body.clientHeight * 2 * Math.PI;
+    }
 };
 
 onmousedown = () => {

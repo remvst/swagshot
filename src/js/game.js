@@ -31,36 +31,29 @@ class Game {
             wrap(renderWorld);
             wrap(renderHud);
 
-            // Crosshair
-            R.fillStyle = '#fff';
-            fillRect(
-                CANVAS_WIDTH / 2 - 5,
-                CANVAS_HEIGHT / 2 - 1,
-                10,
-                2
-            );
-            fillRect(
-                CANVAS_WIDTH / 2 - 1,
-                CANVAS_HEIGHT / 2 - 5,
-                2,
-                10
-            );
+            if (P.health) {
+                // Crosshair
+                R.fillStyle = '#fff';
+                fillRect(CANVAS_WIDTH / 2 - 5, CANVAS_HEIGHT / 2 - 1, 10, 2);
+                fillRect(CANVAS_WIDTH / 2 - 1, CANVAS_HEIGHT / 2 - 5, 2, 10);
 
-            if (G.clock - P.lastShot < 0.1) {
+                // Muzzelflash
+                if (G.clock - P.lastShot < 0.1) {
+                    wrap(() => {
+                        translate(CANVAS_WIDTH / 2 + sin(P.movingClock * PI * 2) * 10, CANVAS_HEIGHT - ROCKET_LAUNCHER.height + 40);
+                        rotate(PI * P.lastShot * 99);
+                        drawImage(MUZZLEFLASH, -MUZZLEFLASH.width / 2, -MUZZLEFLASH.height / 2);
+                    });
+                }
+
+                // Weapon
                 wrap(() => {
-                    // R.globalAlpha = 1 - (G.clock - P.lastShot) / 0.1;
-                    translate(CANVAS_WIDTH / 2 + sin(P.movingClock * PI * 2) * 10, CANVAS_HEIGHT - ROCKET_LAUNCHER.height + 40);
-                    rotate(PI * P.lastShot * 99);
-                    drawImage(MUZZLEFLASH, -MUZZLEFLASH.width / 2, -MUZZLEFLASH.height / 2);
+                    translate(
+                        sin(P.movingClock * PI * 2) * 10,
+                        cos(P.movingClock * PI * 4) * 10 + max(0, 1 - (G.clock - P.lastShot) / 0.15) * 30 + 30 + P.landingProgress() * 20);
+                    drawImage(ROCKET_LAUNCHER, (CANVAS_WIDTH - ROCKET_LAUNCHER.width) / 2, CANVAS_HEIGHT - ROCKET_LAUNCHER.height);
                 });
             }
-
-            wrap(() => {
-                translate(
-                    sin(P.movingClock * PI * 2) * 10,
-                    cos(P.movingClock * PI * 4) * 10 + max(0, 1 - (G.clock - P.lastShot) / 0.15) * 30 + 30 + P.landingProgress() * 20);
-                drawImage(ROCKET_LAUNCHER, (CANVAS_WIDTH - ROCKET_LAUNCHER.width) / 2, CANVAS_HEIGHT - ROCKET_LAUNCHER.height);
-            });
 
             if (G.clock - P.lastDamage < 0.15) {
                 R.fillStyle = 'rgba(255,0,0,0.25)';

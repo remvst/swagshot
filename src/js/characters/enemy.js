@@ -113,4 +113,9 @@ class Enemy extends Character {
         super.die();
         this.remove();
     }
+
+    hurt(source, amount) {
+        super.hurt(source, amount);
+        P.lastHit = G.clock;
+    }
 }

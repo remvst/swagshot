@@ -17,9 +17,14 @@ class Player extends Character {
 
         this.headTilt = 0;
         this.lastLanding = 0;
+        this.lastHit = 0;
     }
 
     cycle(e) {
+        if (!this.health) {
+            return;
+        }
+
         const beforeX = this.x;
         const beforeY = this.y;
         const beforeZ = this.z;
@@ -95,6 +100,10 @@ class Player extends Character {
     }
 
     eyeZ() {
+        if (!this.health) {
+            return -BLOCK_SIZE / 4;
+        }
+
         return this.z +
             // Landing animation
             this.landingProgress() * 10 +

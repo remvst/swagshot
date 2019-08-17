@@ -27,7 +27,6 @@ class World {
             enemy.x = 1550 + rnd(-1, 1) * BLOCK_SIZE * 2;
             enemy.y = 150 + i * BLOCK_SIZE;
             enemy.z = rnd(-0.35, 0.35) * BLOCK_SIZE;
-            CYCLABLES.push(enemy);
         }
     }
 
