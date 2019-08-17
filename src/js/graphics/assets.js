@@ -20,3 +20,12 @@ pixelate = (can, pixelSize) => {
         ctx.drawImage(smaller, 0, 0, smaller.width, smaller.height, 0, 0, largeCan.width, largeCan.height);
     });
 };
+
+tintCanvas = (can, color) => {
+    return createCanvas(can.width, can.height, (ctx) => {
+        ctx.drawImage(can, 0, 0);
+        ctx.globalCompositeOperation = 'source-atop';
+        ctx.fillStyle = color;
+        ctx.fillRect(0, 0, can.width, can.height);
+    });
+};

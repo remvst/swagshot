@@ -2,6 +2,7 @@ class Character {
     constructor() {
         this.x = this.y = this.z = 0;
         this.baseBloodColor = [0xf, 0, 0];
+        this.lastDamage = 0;
     }
 
     cycle(e) {
@@ -13,6 +14,8 @@ class Character {
     }
 
     hurt(source) {
+        this.lastDamage = G.clock;
+
         for (let i = 0 ; i < 10 ; i++) {
             const duration = max(0.2, (0.5 + this.z / BLOCK_SIZE) / rnd(0.4, 0.7));
 
