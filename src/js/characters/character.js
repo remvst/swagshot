@@ -19,21 +19,31 @@ class Character {
         this.lastDamage = G.clock;
         this.health = max(0, this.health - amount);
 
-        for (let i = 0 ; i < 10 ; i++) {
+        if (!this.health)  {
+            this.die();
+        }
+
+        this.emitBloodParticles(!this.health * 30 + 10);
+    }
+
+    emitBloodParticles(particleCount) {
+        for (let i = 0 ; i < particleCount ; i++) {
             const duration = max(0.2, (0.5 + this.z / BLOCK_SIZE) / rnd(0.4, 0.7));
 
             const size = BLOCK_SIZE * rnd(0.01, 0.05);
 
             const particle = {
+                'x': this.x + rnd(-1, 1) * this.width / 2,
+                'y': this.y + rnd(-1, 1) * this.width / 2,
                 'alpha': 1,
                 'width': size,
                 'height': size,
                 'color': this.bloodParticleColor()
             };
             SPRITES.push(particle);
-            interp(particle, 'x', source.x + rnd(-10, 10), source.x + rnd(-30, 30), duration);
-            interp(particle, 'y', source.y + rnd(-10, 10), source.y + rnd(-30, 30), duration);
-            interp(particle, 'z', source.z + rnd(-10, 10), -BLOCK_SIZE / 2, duration, 0, easeOutBounce);
+            interp(particle, 'x', particle.x, particle.x + rnd(-30, 30), duration);
+            interp(particle, 'y', particle.y, particle.y + rnd(-30, 30), duration);
+            interp(particle, 'z', this.z + rnd(-1, 1) * this.height / 2, -BLOCK_SIZE / 2, duration, 0, easeOutBounce);
             interp(particle, 'f', 0, 0, duration + 0.5, 0, null, () => remove(SPRITES, particle));
         }
     }
@@ -47,11 +57,17 @@ class Character {
                 this.eyeZ() - 10,
                 this.angle + rnd(-1, 1) * PI / 128,
                 this.verticalAngle + rnd(-1, 1) * PI / 128,
-                ENEMIES
+                ENEMIES,
+                10,
+                10
             );
         }
         this.lastShot = G.clock;
 
         // explosion(this.x + cos(this.angle) * BLOCK_SIZE * 4, this.y + sin(this.angle) * BLOCK_SIZE * 4, this.z, BLOCK_SIZE / 2);
+    }
+
+    die() {
+
     }
 }

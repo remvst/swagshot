@@ -106,6 +106,11 @@ class Enemy extends Character {
         remove(CYCLABLES, this);
         remove(SPRITES, this.sprite);
         remove(SPRITES, this.shadowSprite);
-        remove(ENEMIES);
+        remove(ENEMIES, this);
+    }
+
+    die() {
+        super.die();
+        this.remove();
     }
 }

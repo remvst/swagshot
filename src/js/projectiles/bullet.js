@@ -1,19 +1,20 @@
 class Bullet {
-    constructor(x, y, z, angle, verticalAngle, targets) {
+    constructor(x, y, z, angle, verticalAngle, targets, projectileSize, trailSize) {
         this.x = x;
         this.y = y;
         this.z = z;
         this.angle = angle;
         this.verticalAngle = verticalAngle;
         this.targets = targets;
+        this.trailSize = trailSize;
         this.created = G.clock;
 
         SPRITES.push(this.particle = {
             'x': this.x,
             'y': this.y,
             'z': this.z,
-            'width': BLOCK_SIZE / 40,
-            'height': BLOCK_SIZE / 40,
+            'width': projectileSize,
+            'height': projectileSize,
             'color': '#fff'
         });
         CYCLABLES.push(this);
@@ -51,8 +52,8 @@ class Bullet {
             'y': this.y,
             'z': this.z,
             'alpha': 1,
-            'width': 1,
-            'height': 1,
+            'width': this.trailSize,
+            'height': this.trailSize,
             'color': '#fff'
         };
         SPRITES.push(trail);
