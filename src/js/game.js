@@ -84,6 +84,8 @@ class Game {
                     'renderFloor: ' + G.renderFloor,
                     'castIterations: ' + G.castIterations,
                     'floorTiles: ' + G.floorTiles,
+                    'sortIterations: ' + G.sortIterations,
+                    'sortTime: ' + G.sortTime,
                 ];
                 let y = 20;
                 info.forEach(info => {

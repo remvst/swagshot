@@ -254,17 +254,13 @@ function renderWorld() {
     // G.renderCeiling = measure(() => renderFloor(BLOCK_SIZE / 2, BLOCK_SIZE * 2, FLOOR_SPRITE));
     G.renderWalls = measure(() => renderWalls());
 
-    // One bubble sort pass so we get linear time
-    for (let i = 0 ; i < SPRITES.length - 1 ; i++) {
-        const distCurrent = dist(SPRITES[i], P);
-        const distNext = dist(SPRITES[i + 1], P);
-
-        if (distNext > distCurrent) {
-            const tmp = SPRITES[i];
-            SPRITES[i] = SPRITES[i + 1];
-            SPRITES[i + 1] = tmp;
+    G.sortIterations = 0;
+    G.sortTime = measure(() => SPRITES.sort((a, b) => {
+        if (DEBUG) {
+            G.sortIterations++;
         }
-    }
+        return dist(b, P) - dist(a, P);
+    }));
 
     SPRITES.forEach(sprite => renderSprite(sprite));
 

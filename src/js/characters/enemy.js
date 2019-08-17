@@ -72,6 +72,15 @@ class Enemy extends Character {
         });
         CYCLABLES.push(this);
         ENEMIES.push(this);
+
+        SPRITES.push(this.shadowSprite = {
+            'x': this.x,
+            'y': this.y,
+            'z': -BLOCK_SIZE / 2,
+            'width': this.width,
+            'height': this.height / 3,
+            'sprite': SHADOW_CIRCLE
+        });
     }
 
     cycle(e) {
@@ -80,6 +89,9 @@ class Enemy extends Character {
         this.sprite.x = this.x;
         this.sprite.y = this.y;
         this.sprite.z = this.z;
+
+        this.shadowSprite.x = this.x + cos(P.angle);
+        this.shadowSprite.y = this.y + sin(P.angle);
 
         if (dist(this, P) < this.width * 1.2 && this.z - P.z < this.height / 2) {
             const angle = angleBetween(this, P);
@@ -93,6 +105,7 @@ class Enemy extends Character {
     remove() {
         remove(CYCLABLES, this);
         remove(SPRITES, this.sprite);
+        remove(SPRITES, this.shadowSprite);
         remove(ENEMIES);
     }
 }

@@ -176,6 +176,14 @@ const EXPLOSION_CIRCLE = pixelate(createCanvas(200, 200, (ctx, can) => {
     ctx.fill();
 }), 10);
 
+const SHADOW_CIRCLE = pixelate(createCanvas(200, 200, (ctx, can) => {
+    ctx.fillStyle = '#000';
+    ctx.globalAlpha = 0.5;
+    ctx.beginPath();
+    ctx.arc(100, 100, 100, 0, TWO_PI);
+    ctx.fill();
+}), 10);
+
 const ROCKET_LAUNCHER = pixelate(createCanvas(120, 200, (ctx, can) => {
     const grad = ctx.createLinearGradient(0, 0, can.width, 0);
     grad.addColorStop(0.2, '#41403a');
