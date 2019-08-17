@@ -23,6 +23,7 @@ class Game {
         INTERPOLATIONS.slice().forEach(i => i.cycle(e));
 
         wrap(renderWorld);
+        wrap(renderHud);
 
         // Crosshair
         R.fillStyle = '#fff';

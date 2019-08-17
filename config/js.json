@@ -10,6 +10,7 @@
     "src/js/graphics/test-sprite.js",
 
     "src/js/render/render-world.js",
+    "src/js/render/render-hud.js",
 
     "src/js/world/world.js",
 

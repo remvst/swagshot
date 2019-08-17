@@ -62,10 +62,16 @@ class Player {
 
         // Ugly collision handling
         this.x += this.vX * e;
-        if (hasBlock(this.x, this.y, BLOCK_SIZE * 0.1)) this.x = beforeX;
+        if (hasBlock(this.x, this.y, BLOCK_SIZE * 0.1)) {
+            this.x = beforeX;
+            this.vX = 0;
+        }
 
         this.y += this.vY * e;
-        if (hasBlock(this.x, this.y, BLOCK_SIZE * 0.1)) this.y = beforeY;
+        if (hasBlock(this.x, this.y, BLOCK_SIZE * 0.1)) {
+            this.y = beforeY;
+            this.vY = 0;
+        }
 
         this.movingClock += (distP(0, 0, this.vX, this.vY) / PLAYER_SPEED) * e;
 
