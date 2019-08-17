@@ -6,6 +6,7 @@ class Bullet {
         this.angle = angle;
         this.verticalAngle = verticalAngle;
         this.targets = targets;
+        this.created = G.clock;
 
         SPRITES.push(this.particle = {
             'x': this.x,
@@ -26,7 +27,11 @@ class Bullet {
         this.y += Math.sin(this.angle) * BULLET_SPEED * e;
         this.z -= Math.sin(this.verticalAngle) * BULLET_SPEED * e;
 
-        if (hasBlock(this.x, this.y, 0) || abs(this.z) > BLOCK_SIZE * 2 || this.z < -BLOCK_SIZE / 2) {
+        if (
+            hasBlock(this.x, this.y, 0) && this.z < BLOCK_SIZE / 2 ||
+            this.z < -BLOCK_SIZE / 2 ||
+            G.clock - this.created > 3
+        ) {
             this.remove(beforeX, beforeY);
         }
 

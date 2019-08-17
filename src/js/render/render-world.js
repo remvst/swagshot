@@ -106,7 +106,8 @@ function renderWalls() {
         }
 
         if (distance < DRAW_DISTANCE) {
-            const textures = [TEST_SPRITE, TEST_SPRITE_1];
+            const consoleTexture = CONSOLE_SPRITES[~~(G.clock * 3 + CASTED_RAYS[i].blockId * 185.346) % CONSOLE_SPRITES.length];
+            const textures = [consoleTexture, TEST_SPRITE_1];
             const texture = textures[~~((CASTED_RAYS[i].blockId || 0) * 185.346) % textures.length];
             drawImage(
                 texture,
@@ -246,6 +247,9 @@ function renderWorld() {
     G.castIterations = 0;
     G.castTime = measure(() => castWindow(-1, SLICE_COUNT + 1));
 
+
+    SPRITES.forEach(sprite => renderSprite(sprite, true));
+
     G.renderFloor = measure(() => renderFloor(-BLOCK_SIZE / 2, BLOCK_SIZE * 4, FLOOR_SPRITE));
     // G.renderCeiling = measure(() => renderFloor(BLOCK_SIZE / 2, BLOCK_SIZE * 2, FLOOR_SPRITE));
     G.renderWalls = measure(() => renderWalls());
@@ -262,22 +266,7 @@ function renderWorld() {
         }
     }
 
-    SPRITES.forEach(sprite => {
-        renderPoint(sprite, sprite.width, sprite.height, DRAW_DISTANCE - 100, DRAW_DISTANCE, (x, y, width, height, alpha) => {
-            R.globalAlpha = (isNaN(sprite.alpha) ? 1 : sprite.alpha) * alpha;
-
-            if (!sprite.sprite) {
-                R.fillStyle = sprite.color;
-                fillRect(x - width / 2, y - height / 2, width, height);
-            } else {
-                drawImage(
-                    sprite.sprite,
-                    0, 0, sprite.sprite.width, sprite.sprite.height,
-                    x - width / 2, y - height / 2, width, height
-                );
-            }
-        });
-    });
+    SPRITES.forEach(sprite => renderSprite(sprite));
 
     DECORATION_PARTICLES.forEach(particle => {
         particle.x = round((P.x - particle.offsetX()) / REPEAT) * REPEAT + particle.offsetX();
@@ -303,12 +292,33 @@ for (let i = 0 ; i < 40 ; i++) {
     });
 }
 
+function renderSprite(sprite, aboveBlocks) {
+    if (aboveBlocks && sprite.z < BLOCK_SIZE / 2) {
+        return;
+    }
+
+    renderPoint(sprite, sprite.width, sprite.height, DRAW_DISTANCE - 100, DRAW_DISTANCE, (x, y, width, height, alpha) => {
+        R.globalAlpha = (isNaN(sprite.alpha) ? 1 : sprite.alpha) * alpha;
+
+        if (!sprite.sprite) {
+            R.fillStyle = sprite.color;
+            fillRect(x - width / 2, y - height / 2, width, height);
+        } else {
+            drawImage(
+                sprite.sprite,
+                0, 0, sprite.sprite.width, sprite.sprite.height,
+                x - width / 2, y - height / 2, width, height
+            );
+        }
+    }, aboveBlocks);
+}
+
 function randomSin(offset, halfAmplitude, period) {
     const phase = random();
     return () => offset + sin((phase + G.clock * PI * 2) / period) * halfAmplitude;
 }
 
-function renderPoint(point, realWidth, realHeight, fadeStartDistance, fadeEndDistance, render) {
+function renderPoint(point, realWidth, realHeight, fadeStartDistance, fadeEndDistance, render, ignoreWalls) {
     const distanceToPoint = dist(point, P);
     const angle = angleBetween(P, point);
     const angleDiff = normalize(angle - P.angle);
@@ -327,9 +337,11 @@ function renderPoint(point, realWidth, realHeight, fadeStartDistance, fadeEndDis
     const height = heightOnScreen(point, realHeight);
     const wallHeight = heightOnScreen(point, BLOCK_SIZE);
 
-    const cast = CASTED_RAYS[~~(xOnScreen / SLICE_WIDTH)];
-    if (!cast || dist(cast, P) < distanceToPoint) {
-        return;
+    if (!ignoreWalls) {
+        const cast = CASTED_RAYS[~~(xOnScreen / SLICE_WIDTH)];
+        if (!cast || dist(cast, P) < distanceToPoint) {
+            return;
+        }
     }
 
     const yTopWall = CANVAS_HEIGHT / 2 - (1 - P.eyeZ() / (BLOCK_SIZE / 2)) * wallHeight / 2;

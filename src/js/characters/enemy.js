@@ -2,7 +2,7 @@ class Enemy extends Character {
     constructor() {
         super();
 
-        this.baseBloodColor = [0, 0xf, 0];
+        this.baseBloodColor = multiply(randomBrightColor(), 0.5);
 
         const matrix = pick([
             [
@@ -41,14 +41,12 @@ class Enemy extends Character {
         ]);
 
         this.spriteCanvas = createCanvas((matrix[0].length * 2), matrix.length, (ctx, can) => {
-            const mainColor = multiply(randomBrightColor(), 0.5);
-
             const half = () => {
                 renderMatrix(matrix, ctx, x => {
                     if (x == 1) {
-                        return randomizeColor(mainColor);
+                        return randomizeColor(this.baseBloodColor);
                     } else {
-                        return randomizeColor(invertColor(mainColor));
+                        return randomizeColor(invertColor(this.baseBloodColor));
                     }
                 });
             };

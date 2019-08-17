@@ -25,26 +25,50 @@ const TEST_SPRITE_1 = createCanvas(20, 20, ctx => {
     }
 });
 
-const TEST_SPRITE = createCanvas(40, 40, ctx => {
-    ctx.fillStyle = '#01020a';
-    ctx.fillRect(0, 0, 40, 40);
+function consoleSprite() {
+    return createCanvas(40, 40, (ctx, can) => {
+        ctx.fillStyle = '#01020a';
+        ctx.fillRect(0, 0, 40, 40);
 
-    ctx.globalAlpha = 0.05;
-    ctx.fillStyle = '#fff';
-    ctx.fillRect(0, 0, 40, 1);
-    ctx.fillRect(19, 0, 2, 40);
-    ctx.fillRect(0, 39, 40, 1);
-    ctx.fillRect(39, 0, 1, 40);
-    ctx.fillRect(0, 0, 1, 40);
+        ctx.globalAlpha = 0.05;
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, 40, 1);
+        ctx.fillRect(19, 0, 2, 40);
+        ctx.fillRect(0, 19, 40, 2);
+        ctx.fillRect(0, 39, 40, 1);
+        ctx.fillRect(39, 0, 1, 40);
+        ctx.fillRect(0, 0, 1, 40);
 
-    for (let x = 0 ; x < 40 ; x++) {
-        for (let y = 0 ; y < 40 ; y++) {
-            ctx.globalAlpha = rnd(0.02, 0.05);
-            ctx.fillStyle = '#fff';
-            ctx.fillRect(x * 1, y * 1, 1, 1);
+        for (let x = 0 ; x < 40 ; x++) {
+            for (let y = 0 ; y < 40 ; y++) {
+                ctx.globalAlpha = rnd(0.02, 0.05);
+                ctx.fillStyle = '#fff';
+                ctx.fillRect(x * 1, y * 1, 1, 1);
+            }
         }
-    }
-});
+
+        ctx.globalAlpha = 1;
+
+        function buttonPanel() {
+            for (let x = 3 ; x < 20 - 3 ; x += 3) {
+                for (let y = 3 ; y < 20 - 3 ; y += 3) {
+                    ctx.fillStyle = random() < 0.5 ? '#426026' : '#d5f6b2';
+                    ctx.fillRect(x, y, 2, 1);
+                }
+            }
+        }
+
+        buttonPanel();
+        ctx.translate(20, 0);
+        buttonPanel();
+        ctx.translate(-20, 20);
+        buttonPanel();
+        ctx.translate(20, 0);
+        buttonPanel();
+    });
+}
+
+const CONSOLE_SPRITES = [consoleSprite(), consoleSprite(), consoleSprite()];
 
 const FLOOR_SPRITE = createCanvas(40, 40, (ctx, can) => {
     for (let x = 0 ; x < 40 ; x++) {
@@ -62,11 +86,6 @@ const FLOOR_SPRITE = createCanvas(40, 40, (ctx, can) => {
     ctx.fillRect(0, 39, 40, 1);
     ctx.fillRect(39, 0, 1, 40);
     ctx.fillRect(0, 0, 1, 40);
-
-    // ctx.globalAlpha = 0.1;
-    // ctx.strokeStyle = '#fff';
-    // ctx.rect(0.5, 0.5, 9, 9);
-    // ctx.stroke();
 });
 
 const BACKGROUND_SPRITE = createCanvasPattern(1, CANVAS_HEIGHT / 2, (ctx, can) => {
