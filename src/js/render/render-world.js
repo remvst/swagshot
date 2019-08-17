@@ -87,6 +87,8 @@ function castWindow(indexStart, indexEnd) {
 }
 
 function renderWalls() {
+    R.fillStyle = '#661707';
+
     for (let i = 0 ; i < SLICE_COUNT ; i++) {
         const distance = dist(CASTED_RAYS[i], P);
         const x = CANVAS_WIDTH * i / SLICE_COUNT;
@@ -116,11 +118,10 @@ function renderWalls() {
             );
         }
 
-        R.fillStyle = 'rgba(0, 0, 0, ' + (distance / DRAW_DISTANCE) + ')';
-        // if (CASTED_RAYS[i].interpolated) {
-        //     R.fillStyle = 'red';
-        // }
-        fillRect(x, yTop, SLICE_WIDTH, height);
+        wrap(() => {
+            R.globalAlpha = distance / DRAW_DISTANCE;
+            fillRect(x, yTop, SLICE_WIDTH, height);
+        });
     }
 }
 
@@ -213,30 +214,46 @@ function lookupOffset() {
 }
 
 function renderWorld() {
-    R.fillStyle = '#000';
-    fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    // R.fillStyle = '#000';
+    // fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    //
+    // translate(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
+    // rotate(P.headTilt);
+    // translate(-CANVAS_WIDTH / 2, -CANVAS_HEIGHT / 2);
+    //
+    // wrap(() => {
+    //     const offset = -(P.angle / FIELD_OF_VIEW * CANVAS_WIDTH);
+    //     R.fillStyle = STARRY_BACKGROUND;
+    //     translate(offset, lookupOffset());
+    //     fillRect(-offset, -lookupOffset(), CANVAS_WIDTH, lookupOffset() + CANVAS_HEIGHT / 2);
+    // });
 
-    translate(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
-    rotate(P.headTilt);
-    translate(-CANVAS_WIDTH / 2, -CANVAS_HEIGHT / 2);
+    const middleY = lookupOffset() + CANVAS_HEIGHT / 2;
+
+    R.fillStyle = '#c52';
+    fillRect(0, 0, CANVAS_WIDTH, middleY);
+
+    R.fillStyle = '#661707';
+    fillRect(0, middleY, CANVAS_WIDTH, CANVAS_HEIGHT - middleY);
 
     wrap(() => {
+        const patternScale = 10;
         const offset = -(P.angle / FIELD_OF_VIEW * CANVAS_WIDTH);
-        R.fillStyle = STARRY_BACKGROUND;
-        translate(offset, lookupOffset());
-        fillRect(-offset, -lookupOffset(), CANVAS_WIDTH, lookupOffset() + CANVAS_HEIGHT / 2);
+        translate(offset, middleY - 20 * patternScale);
+        scale(patternScale, patternScale);
+
+        R.fillStyle = MOUNTAINS;
+        fillRect(-offset / patternScale, 0, CANVAS_WIDTH / patternScale, 20);
     });
 
-    translate(0, lookupOffset());
+    // wrap(() => {
+    //     const offset = -(P.angle / FIELD_OF_VIEW * CANVAS_WIDTH);
+    //     R.fillStyle = STARRY_BACKGROUND;
+    //     translate(offset, lookupOffset());
+    //     fillRect(-offset, -lookupOffset(), CANVAS_WIDTH, lookupOffset() + CANVAS_HEIGHT / 2);
+    // });
 
-    R.fillStyle = '#000';
-    // fillRect(0, -lookupOffset(), CANVAS_WIDTH, CANVAS_HEIGHT / 2 + lookupOffset());
-    //
-    // R.fillStyle = BACKGROUND_SPRITE;
-    // fillRect(-5, CANVAS_HEIGHT / 2, CANVAS_WIDTH + 10, CANVAS_HEIGHT / 2);
-    //
-    // R.fillStyle = '#1d1c23';
-    // fillRect(0, CANVAS_HEIGHT, CANVAS_WIDTH, CANVAS_HEIGHT - lookupOffset());
+    translate(0, lookupOffset());
 
     if (DEBUG) {
         G.interpolations = 0;
@@ -281,7 +298,7 @@ for (let i = 0 ; i < 40 ; i++) {
         'offsetY': randomSin(random() * REPEAT, rnd(5, 20), rnd(20, 40)),
         'offsetZ': randomSin(rnd(-BLOCK_SIZE / 2, BLOCK_SIZE / 2), rnd(5, 20), rnd(20, 40)),
         'render': (x, y, width, height, alpha) => {
-            R.fillStyle = '#fff';
+            R.fillStyle = '#f00';
             R.globalAlpha = alpha * 0.4;
             fillRect(x - width / 2, y - height / 2, width, height);
         }

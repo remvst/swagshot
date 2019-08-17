@@ -73,6 +73,8 @@ class Game {
             }
         });
 
+        // drawImage(MOUNTAINS, 0, 0);
+
         if (DEBUG) {
             wrap(() => {
                 R.font = '10pt ' + monoFont;

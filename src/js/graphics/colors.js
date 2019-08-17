@@ -1,5 +1,5 @@
-randomizeColor = components => {
-    return components.map(x => x + rnd(-2, 2));
+randomizeColor = (components, factor) => {
+    return components.map(x => x + rnd(-(factor || 2), factor || 2));
 };
 
 randomBrightColor = () => {

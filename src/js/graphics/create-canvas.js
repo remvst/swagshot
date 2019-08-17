@@ -5,7 +5,5 @@ const createCanvas = (w, h, instructions) => {
 
     const ctx = can.getContext('2d');
 
-    instructions(ctx, can);
-
-    return can;
+    return instructions(ctx, can) || can;
 };
