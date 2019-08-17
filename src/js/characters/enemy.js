@@ -59,7 +59,7 @@ class Enemy extends Character {
             half();
         });
 
-        this.hurtSpriteCanvas = tintCanvas(this.spriteCanvas, 'rgba(255,0,0,0.5)');
+        this.hurtSpriteCanvas = tintCanvas(this.spriteCanvas, 'rgba(255,255,255,0.5)');
 
         this.width = this.spriteCanvas.width * 6;
         this.height = this.spriteCanvas.height * 6;
