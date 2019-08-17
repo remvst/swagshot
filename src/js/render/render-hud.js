@@ -3,20 +3,20 @@ function renderGauge(gaugeColor, renderIcon) {
 
     transform(1, -0.15, 0, 1, 0, 0); // shear the context
 
-    R.fillStyle = 'rgba(0, 0, 0, 0.5)';
+    R.globalAlpha = 0.5;
+    R.fillStyle = '#000';
     fillRect(0, 0, HUD_ICON_SIZE * 1.25 + HUD_GAUGE_PADDING * 2 + HUD_GAUGE_LENGTH, HUD_ICON_SIZE + HUD_GAUGE_PADDING * 2);
 
     translate(HUD_GAUGE_PADDING, HUD_GAUGE_PADDING);
 
+    // Track
     R.fillStyle = gaugeColor;
+    fillRect(HUD_ICON_SIZE * 1.25, 0, HUD_GAUGE_LENGTH, HUD_ICON_SIZE);
 
+    R.globalAlpha = 1;
     renderIcon();
 
-    wrap(() => {
-        R.globalAlpha = 0.5;
-        fillRect(HUD_ICON_SIZE * 1.25, 0, HUD_GAUGE_LENGTH, HUD_ICON_SIZE);
-    });
-
+    // Gauge
     fillRect(HUD_ICON_SIZE * 1.25, 0, HUD_GAUGE_LENGTH * 0.5, HUD_ICON_SIZE);
 }
 
