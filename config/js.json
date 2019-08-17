@@ -15,6 +15,7 @@
     "src/js/world/world.js",
 
     "src/js/projectiles/bullet.js",
+    "src/js/projectiles/explosion.js",
 
     "src/js/characters/character.js",
     "src/js/characters/enemy.js",

@@ -115,7 +115,7 @@ class Player {
     }
 
     shoot() {
-        for (let i = 0 ; i < 3 ; i++) {
+        for (let i = 0 ; i < 1 ; i++) {
             new Bullet(
                 this.x,
                 this.y,
@@ -126,5 +126,7 @@ class Player {
             );
         }
         this.lastShot = G.clock;
+
+        // explosion(this.x + cos(this.angle) * BLOCK_SIZE * 4, this.y + sin(this.angle) * BLOCK_SIZE * 4, this.z, BLOCK_SIZE / 2);
     }
 }

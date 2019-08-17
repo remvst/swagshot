@@ -19,17 +19,20 @@ class Bullet {
     }
 
     cycle(e) {
+        const beforeX = this.x;
+        const beforeY = this.y;
+
         this.x += Math.cos(this.angle) * BULLET_SPEED * e;
         this.y += Math.sin(this.angle) * BULLET_SPEED * e;
         this.z -= Math.sin(this.verticalAngle) * BULLET_SPEED * e;
 
         if (hasBlock(this.x, this.y, 0) || abs(this.z) > BLOCK_SIZE * 2 || this.z < -BLOCK_SIZE / 2) {
-            this.remove();
+            this.remove(beforeX, beforeY);
         }
 
         this.targets.forEach(target => {
             if (dist(target, this) < target.width / 2 && abs(target.z - this.z) < target.height / 2) {
-                this.remove(target);
+                this.remove(beforeX, beforeY, target);
                 target.hurt(this);
             }
         });
@@ -54,14 +57,16 @@ class Bullet {
         interp(trail, 'z', trail.z, trail.z + rnd(-5, 5), 0.8);
     }
 
-    remove(hitTarget) {
+    remove(beforeX, beforeY, hitTarget) {
         remove(CYCLABLES, this);
         remove(SPRITES, this.particle);
 
+        explosion(beforeX, beforeY, this.z, BLOCK_SIZE / 2);
+
         // Add some particles
         for (let i = 0 ; i < 5 ; i++) {
-            const x = this.x + -Math.cos(this.angle) * 10;
-            const y = this.y + -Math.sin(this.angle) * 10;
+            const x = beforeX + -Math.cos(this.angle) * 10;
+            const y = beforeY + -Math.sin(this.angle) * 10;
             const duration = rnd(0.1, 0.3);
 
             const particle = {

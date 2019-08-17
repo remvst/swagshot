@@ -144,3 +144,30 @@ const MUZZLEFLASH = pixelate(createCanvas(200, 200, (ctx, can) => {
         ctx.fill();
     }
 }), 5);
+
+const EXPLOSION_CIRCLE = pixelate(createCanvas(200, 200, (ctx, can) => {
+    const grad = ctx.createRadialGradient(can.width / 2, can.width / 2, 0, can.width / 2, can.width / 2, can.width / 2);
+    grad.addColorStop(0, '#fff');
+    grad.addColorStop(0.5, '#ff0');
+    grad.addColorStop(1, '#f80');
+
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(100, 100, 100, 0, TWO_PI);
+    ctx.fill();
+}), 5);
+
+// const EXPLOSION_CIRCLE = pixelate(createCanvas(200, 200, (ctx, can) => {
+//     const grad = ctx.createRadialGradient(can.width / 2, can.width / 2, 0, can.width / 2, can.width / 2, can.width / 2);
+//     grad.addColorStop(0, '#fff');
+//     grad.addColorStop(0.5, '#ff0');
+//     grad.addColorStop(1, '#f80');
+//
+//     ctx.fillStyle = grad;
+//     for (let i = 0 ; i < 3 ; i++) {
+//         // ctx.rotate(PI / 3);
+//         ctx.beginPath();
+//         ctx.ellipse(can.width / 2, can.width / 2, can.width / 2, 50, i * PI / 3 + PI / 4, 0, PI * 2);
+//         ctx.fill();
+//     }
+// }), 5);
