@@ -102,16 +102,24 @@ class Enemy extends Character {
         this.sprite.sprite = G.clock - this.lastDamage < 0.05 ? this.hurtSpriteCanvas : this.spriteCanvas;
     }
 
-    remove() {
-        remove(CYCLABLES, this);
-        remove(SPRITES, this.sprite);
-        remove(SPRITES, this.shadowSprite);
-        remove(ENEMIES, this);
-    }
+    // remove() {
+    //     remove(CYCLABLES, this);
+    //     remove(SPRITES, this.sprite);
+    //     remove(SPRITES, this.shadowSprite);
+    //     remove(ENEMIES, this);
+    // }
 
     die() {
         super.die();
-        this.remove();
+
+        remove(CYCLABLES, this);
+        remove(SPRITES, this.shadowSprite);
+        remove(ENEMIES, this);
+
+        const duration = abs(-BLOCK_SIZE / 4 - this.z) / BLOCK_SIZE;
+        interp(this.sprite, 'z', this.z, -BLOCK_SIZE / 4, duration);
+        interp(this.sprite, 'rotation', 0, pick([-PI, PI]) + rnd(-PI / 32, PI / 32), 0.3);
+        interp(this.sprite, 'f', 0, 0, 0, 1.5, null, () => remove(SPRITES, this.sprite));
     }
 
     hurt(source, amount) {

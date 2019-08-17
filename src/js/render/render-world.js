@@ -296,15 +296,17 @@ function renderSprite(sprite, aboveBlocks) {
     renderPoint(sprite, sprite.width, sprite.height, DRAW_DISTANCE - 100, DRAW_DISTANCE, (x, y, width, height, alpha) => {
         R.globalAlpha = (isNaN(sprite.alpha) ? 1 : sprite.alpha) * alpha;
 
-        if (!sprite.sprite) {
-            R.fillStyle = sprite.color;
-            fillRect(x - width / 2, y - height / 2, width, height);
-        } else {
+        if (sprite.sprite) {
+            translate(x, y);
+            rotate(sprite.rotation || 0);
             drawImage(
                 sprite.sprite,
                 0, 0, sprite.sprite.width, sprite.sprite.height,
-                x - width / 2, y - height / 2, width, height
+                -width / 2, -height / 2, width, height
             );
+        } else {
+            R.fillStyle = sprite.color;
+            fillRect(x - width / 2, y - height / 2, width, height);
         }
     }, aboveBlocks);
 }

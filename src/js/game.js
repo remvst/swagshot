@@ -24,7 +24,6 @@ class Game {
 
         wrap(() => {
             if (G.clock - P.lastDamage < 0.2) {
-                console.log('ahahahah');
                 translate(rnd(-20, 20), rnd(-20, 20));
             }
 
@@ -32,12 +31,25 @@ class Game {
             wrap(renderHud);
 
             if (P.health) {
+                wrap(() => {
+                    translate(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
+                    rotate(PI / 4);
+
+                    R.globalAlpha = 1 - min(1, (G.clock - P.lastHit - 0.1) / 0.15);
+
+                    R.fillStyle = '#f00';
+                    for (let i = 0 ; i < 4 ; i++) {
+                        rotate(PI / 2);
+                        fillRect(5, -1, 5, 2);
+                    }
+                });
+
                 // Crosshair
                 R.fillStyle = '#fff';
                 fillRect(CANVAS_WIDTH / 2 - 5, CANVAS_HEIGHT / 2 - 1, 10, 2);
                 fillRect(CANVAS_WIDTH / 2 - 1, CANVAS_HEIGHT / 2 - 5, 2, 10);
 
-                // Muzzelflash
+                // Muzzleflash
                 if (G.clock - P.lastShot < 0.1) {
                     wrap(() => {
                         translate(CANVAS_WIDTH / 2 + sin(P.movingClock * PI * 2) * 10, CANVAS_HEIGHT - ROCKET_LAUNCHER.height + 40);
