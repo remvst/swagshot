@@ -208,7 +208,7 @@ function renderFloor(z, maxDistance, texture) {
 }
 
 function lookupOffset() {
-    return -~~(P.verticalAngle / (PI * 0.3) * CANVAS_HEIGHT);
+    return -~~(P.verticalAngle / (PI * 0.25) * CANVAS_HEIGHT);
 }
 
 function renderWorld() {

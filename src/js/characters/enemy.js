@@ -2,7 +2,7 @@ class Enemy extends Character {
     constructor() {
         super();
 
-        this.bloodColor = [0, 0xf, 0];
+        this.baseBloodColor = [0, 0xf, 0];
 
         const matrix = pick([
             [

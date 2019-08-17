@@ -1,25 +1,21 @@
-class Player {
+class Player extends Character {
     constructor() {
+        super();
+
+        this.vX = this.vY = 0;
+
         this.x = 150;
         this.y = 150;
-        this.z = 0;
 
         this.zSpeed = 0;
 
         this.angle = Math.PI / 3;
-
-        this.vX = 0;
-        this.vY = 0;
-
         this.verticalAngle = 0;
 
         this.moving = false;
-
         this.movingClock = 0;
 
         this.headTilt = 0;
-
-        this.lastShot = 0;
         this.lastLanding = 0;
     }
 
@@ -112,21 +108,5 @@ class Player {
 
     headTilt() {
         return (!!w.down[KEYBOARD_A] - !!w.down[KEYBOARD_D]) * PI / 128;
-    }
-
-    shoot() {
-        for (let i = 0 ; i < 1 ; i++) {
-            new Bullet(
-                this.x,
-                this.y,
-                this.eyeZ() - 10,
-                this.angle + rnd(-1, 1) * PI / 128,
-                this.verticalAngle + rnd(-1, 1) * PI / 128,
-                ENEMIES
-            );
-        }
-        this.lastShot = G.clock;
-
-        // explosion(this.x + cos(this.angle) * BLOCK_SIZE * 4, this.y + sin(this.angle) * BLOCK_SIZE * 4, this.z, BLOCK_SIZE / 2);
     }
 }

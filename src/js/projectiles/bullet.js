@@ -33,7 +33,7 @@ class Bullet {
         this.targets.forEach(target => {
             if (dist(target, this) < target.width / 2 && abs(target.z - this.z) < target.height / 2) {
                 this.remove(beforeX, beforeY, target);
-                target.hurt(this);
+                target.hurt(this, 0.2);
             }
         });
 

@@ -155,7 +155,7 @@ const EXPLOSION_CIRCLE = pixelate(createCanvas(200, 200, (ctx, can) => {
     ctx.beginPath();
     ctx.arc(100, 100, 100, 0, TWO_PI);
     ctx.fill();
-}), 5);
+}), 10);
 
 // const EXPLOSION_CIRCLE = pixelate(createCanvas(200, 200, (ctx, can) => {
 //     const grad = ctx.createRadialGradient(can.width / 2, can.width / 2, 0, can.width / 2, can.width / 2, can.width / 2);

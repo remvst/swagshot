@@ -1,4 +1,4 @@
-function renderGauge(gaugeColor, renderIcon) {
+function renderGauge(gaugeColor, value, renderIcon) {
     R.imageSmoothingEnabled = true;
 
     transform(1, -0.15, 0, 1, 0, 0); // shear the context
@@ -17,14 +17,14 @@ function renderGauge(gaugeColor, renderIcon) {
     renderIcon();
 
     // Gauge
-    fillRect(HUD_ICON_SIZE * 1.25, 0, HUD_GAUGE_LENGTH * 0.5, HUD_ICON_SIZE);
+    fillRect(HUD_ICON_SIZE * 1.25, 0, HUD_GAUGE_LENGTH * value, HUD_ICON_SIZE);
 }
 
 function renderHud() {
     // Health
     wrap(() => {
         translate(20, CANVAS_HEIGHT - HUD_ICON_SIZE - HUD_GAUGE_PADDING * 2 - 20);
-        renderGauge('#0be', () => {
+        renderGauge('#0be', P.health, () => {
             const thickness = ~~(HUD_ICON_SIZE / 3);
 
             fillRect((HUD_ICON_SIZE - thickness) / 2, 0, thickness, HUD_ICON_SIZE);
@@ -36,7 +36,7 @@ function renderHud() {
     wrap(() => {
         translate(CANVAS_WIDTH - 20, CANVAS_HEIGHT - HUD_ICON_SIZE - HUD_GAUGE_PADDING * 2 - 20);
         scale(-1, 1);
-        renderGauge('#e50', () => {
+        renderGauge('#e50', 0.5, () => {
             fillRect(0, 0, HUD_ICON_SIZE / 5, HUD_ICON_SIZE);
             fillRect(HUD_ICON_SIZE * 2 / 5, 0, HUD_ICON_SIZE / 5, HUD_ICON_SIZE);
             fillRect(HUD_ICON_SIZE * 4 / 5, 0, HUD_ICON_SIZE / 5, HUD_ICON_SIZE);

@@ -1,4 +1,12 @@
 explosion = (x, y, z, radius) => {
+    [P].concat(ENEMIES).forEach(character => {
+        const dist = distP(character.x, character.y, x, y);
+        const damage = 1 - min(1, dist / (BLOCK_SIZE * 2));
+        if (damage > 0 && z < BLOCK_SIZE / 2) {
+            character.hurt({'x': x, 'y': y, 'z': z}, damage);
+        }
+    });
+
     for (let i = 0 ; i < 3 ; i++) {
         const duration = rnd(0.2, 0.4);
 
