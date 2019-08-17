@@ -157,6 +157,38 @@ const EXPLOSION_CIRCLE = pixelate(createCanvas(200, 200, (ctx, can) => {
     ctx.fill();
 }), 10);
 
+const ROCKET_LAUNCHER = pixelate(createCanvas(120, 200, (ctx, can) => {
+    const grad = ctx.createLinearGradient(0, 0, can.width, 0);
+    grad.addColorStop(0.2, '#41403a');
+    grad.addColorStop(0.5, '#6a7163');
+    grad.addColorStop(0.8, '#41403a');
+
+    ctx.fillStyle = grad;
+
+    const bigBarrelRadius = 40;
+    const smallBarrelTopY = bigBarrelRadius + 20;
+    const smallBarrelRadius = 30;
+
+    ctx.beginPath();
+    ctx.arc(can.width / 2, bigBarrelRadius, bigBarrelRadius, PI, 0, false);
+    ctx.arc(can.width / 2, smallBarrelTopY, bigBarrelRadius, 0, PI, false);
+    ctx.fill();
+
+    ctx.fillStyle = '#22241b';
+    ctx.beginPath();
+    ctx.arc(can.width / 2, smallBarrelTopY, bigBarrelRadius, 0, TWO_PI, false);
+    ctx.fill();
+
+    ctx.fillStyle = grad;
+
+    ctx.beginPath();
+    ctx.arc(can.width / 2, smallBarrelTopY, smallBarrelRadius, PI, 0, false);
+    ctx.lineTo(can.width / 2 + smallBarrelRadius, smallBarrelTopY);
+    ctx.lineTo(can.width / 2 + smallBarrelRadius + 20, can.height);
+    ctx.lineTo(can.width / 2 - smallBarrelRadius - 20, can.height);
+    ctx.fill();
+}), 5);
+
 // const EXPLOSION_CIRCLE = pixelate(createCanvas(200, 200, (ctx, can) => {
 //     const grad = ctx.createRadialGradient(can.width / 2, can.width / 2, 0, can.width / 2, can.width / 2, can.width / 2);
 //     grad.addColorStop(0, '#fff');

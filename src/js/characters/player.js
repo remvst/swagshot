@@ -69,7 +69,7 @@ class Player extends Character {
             this.vY = 0;
         }
 
-        this.movingClock += (distP(0, 0, this.vX, this.vY) / PLAYER_SPEED) * e;
+        this.movingClock += (1 - !!this.z * 0.5) * (distP(0, 0, this.vX, this.vY) / PLAYER_SPEED) * e;
 
         this.zSpeed -= e * JUMP_FORCE / JUMP_DURATION / 0.9;
         this.z = limit(0, this.z + this.zSpeed * e, BLOCK_SIZE / 2);
