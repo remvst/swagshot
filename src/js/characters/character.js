@@ -11,6 +11,24 @@ class Character {
     cycle(e) {
     }
 
+    moveBy(x, y) {
+        const beforeX = this.x;
+        const beforeY = this.y;
+
+        // Ugly collision handling
+        this.x += x;
+        if (hasBlock(this.x, this.y, BLOCK_SIZE * 0.1)) {
+            this.x = beforeX;
+            this.vX = 0;
+        }
+
+        this.y += y;
+        if (hasBlock(this.x, this.y, BLOCK_SIZE * 0.1)) {
+            this.y = beforeY;
+            this.vY = 0;
+        }
+    }
+
     bloodParticleColor() {
         return toColor(multiply(this.baseBloodColor, rnd(0.3, 1)));
     }

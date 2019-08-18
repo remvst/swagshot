@@ -25,8 +25,6 @@ class Player extends Character {
             return;
         }
 
-        const beforeX = this.x;
-        const beforeY = this.y;
         const beforeZ = this.z;
 
         this.angle = normalize(this.angle);
@@ -62,17 +60,7 @@ class Player extends Character {
         }
 
         // Ugly collision handling
-        this.x += this.vX * e;
-        if (hasBlock(this.x, this.y, BLOCK_SIZE * 0.1)) {
-            this.x = beforeX;
-            this.vX = 0;
-        }
-
-        this.y += this.vY * e;
-        if (hasBlock(this.x, this.y, BLOCK_SIZE * 0.1)) {
-            this.y = beforeY;
-            this.vY = 0;
-        }
+        this.moveBy(this.vX * e, this.vY * e);
 
         this.movingClock += (1 - !!this.z * 0.5) * (distP(0, 0, this.vX, this.vY) / PLAYER_SPEED) * e;
 
