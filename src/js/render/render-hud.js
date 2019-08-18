@@ -36,7 +36,7 @@ function renderHud() {
     wrap(() => {
         translate(CANVAS_WIDTH - 20, CANVAS_HEIGHT - HUD_ICON_SIZE - HUD_GAUGE_PADDING * 2 - 20);
         scale(-1, 1);
-        renderGauge('#e50', 0.5, () => {
+        renderGauge('#e50', P.weapon.ammo, () => {
             fillRect(0, 0, HUD_ICON_SIZE / 5, HUD_ICON_SIZE);
             fillRect(HUD_ICON_SIZE * 2 / 5, 0, HUD_ICON_SIZE / 5, HUD_ICON_SIZE);
             fillRect(HUD_ICON_SIZE * 4 / 5, 0, HUD_ICON_SIZE / 5, HUD_ICON_SIZE);

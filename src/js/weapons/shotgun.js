@@ -5,6 +5,6 @@ class Shotgun extends Weapon {
         this.angleRandomFactor = PI / 128;
         this.bulletCount = 5;
         this.sprite = SHOTGUN;
-        this.bulletSpeed = BLOCK_SIZE * 8;
+        this.bulletSpeed = BLOCK_SIZE * 30;
     }
 }

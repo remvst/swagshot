@@ -8,6 +8,8 @@ class Weapon {
         this.projectileSize = 1;
         this.trailSize = 1;
         this.bulletSpeed = 1600;
+        this.ammoPerShot = 1 / 30;
+        this.ammo = 1;
     }
 
     cycle(e) {
@@ -31,14 +33,16 @@ class Weapon {
     }
 
     shoot() {
+        this.ammo -= this.ammoPerShot;
+
         for (let i = 0 ; i < this.bulletCount ; i++) {
             new Bullet(
-                this.character.x + cos(this.character.angle) * BLOCK_SIZE * 0.1,
-                this.character.y + sin(this.character.angle) * BLOCK_SIZE * 0.1,
+                this.character.x + cos(this.character.angle) * BLOCK_SIZE * 0.2,
+                this.character.y + sin(this.character.angle) * BLOCK_SIZE * 0.2,
                 this.character.eyeZ() - 10,
                 this.bulletSpeed,
                 this.character.angle + rnd(-1, 1) * this.angleRandomFactor,
-                this.character.verticalAngle,
+                this.character.verticalAngle + rnd(-1, 1) * this.angleRandomFactor,
                 this.character.enemies,
                 this.projectileSize,
                 this.trailSize

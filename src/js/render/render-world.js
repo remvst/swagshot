@@ -286,13 +286,13 @@ function renderWorld() {
 
 const REPEAT = BLOCK_SIZE * 6;
 const DECORATION_PARTICLES = [];
-for (let i = 0 ; i < 40 ; i++) {
+for (let i = 0 ; i < 100 ; i++) {
     DECORATION_PARTICLES.push({
         'offsetX': randomSin(random() * REPEAT, rnd(5, 20), rnd(20, 40)),
         'offsetY': randomSin(random() * REPEAT, rnd(5, 20), rnd(20, 40)),
         'offsetZ': randomSin(rnd(-BLOCK_SIZE / 2, BLOCK_SIZE / 2), rnd(5, 20), rnd(20, 40)),
         'render': (x, y, width, height, alpha) => {
-            R.fillStyle = '#f00';
+            R.fillStyle = '#f80';
             R.globalAlpha = alpha * 0.4;
             fillRect(x - width / 2, y - height / 2, width, height);
         }
