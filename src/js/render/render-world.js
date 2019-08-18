@@ -237,21 +237,16 @@ function renderWorld() {
     fillRect(0, middleY, CANVAS_WIDTH, CANVAS_HEIGHT - middleY);
 
     wrap(() => {
-        const patternScale = 10;
-        const offset = -(P.angle / FIELD_OF_VIEW * CANVAS_WIDTH);
+        const fieldOfViews = TWO_PI / FIELD_OF_VIEW;
+        const patternScale = fieldOfViews * 2;
+
+        const offset = -((normalize(P.angle) + TWO_PI) / FIELD_OF_VIEW * CANVAS_WIDTH);
         translate(offset, middleY - 20 * patternScale);
         scale(patternScale, patternScale);
 
         R.fillStyle = MOUNTAINS;
         fillRect(-offset / patternScale, 0, CANVAS_WIDTH / patternScale, 20);
     });
-
-    // wrap(() => {
-    //     const offset = -(P.angle / FIELD_OF_VIEW * CANVAS_WIDTH);
-    //     R.fillStyle = STARRY_BACKGROUND;
-    //     translate(offset, lookupOffset());
-    //     fillRect(-offset, -lookupOffset(), CANVAS_WIDTH, lookupOffset() + CANVAS_HEIGHT / 2);
-    // });
 
     translate(0, lookupOffset());
 
