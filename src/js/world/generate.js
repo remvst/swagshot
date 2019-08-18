@@ -1,5 +1,5 @@
 generateWorld = () => {
-    const can = createCanvas(100, 100, (ctx, can) => {
+    const can = createCanvas(50, 50, (ctx, can) => {
         const shapes = [
             // Colon
             () => {
