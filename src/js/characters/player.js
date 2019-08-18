@@ -4,8 +4,8 @@ class Player extends Character {
 
         this.vX = this.vY = 0;
 
-        this.x = 150;
-        this.y = 150;
+        this.x = BLOCK_SIZE * 5.5;
+        this.y = BLOCK_SIZE * 5.5;
 
         this.zSpeed = 0;
 

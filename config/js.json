@@ -13,6 +13,7 @@
     "src/js/render/render-hud.js",
 
     "src/js/world/world.js",
+    "src/js/world/generate.js",
 
     "src/js/projectiles/bullet.js",
     "src/js/projectiles/explosion.js",
