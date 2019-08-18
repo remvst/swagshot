@@ -169,7 +169,7 @@ const MACHINE_GUN = pixelate(createCanvas(100, 150, (ctx, can) => {
 
 }), 5);
 
-const MUZZLEFLASH = pixelate(createCanvas(200, 200, (ctx, can) => {
+const MUZZLEFLASH = pixelate(createCanvas(160, 160, (ctx, can) => {
     const grad = ctx.createRadialGradient(can.width / 2, can.width / 2, 0, can.width / 2, can.width / 2, can.width / 2);
     grad.addColorStop(0, '#fff');
     grad.addColorStop(0.4, '#fff');
@@ -180,7 +180,7 @@ const MUZZLEFLASH = pixelate(createCanvas(200, 200, (ctx, can) => {
     for (let i = 0 ; i < 3 ; i++) {
         // ctx.rotate(PI / 3);
         ctx.beginPath();
-        ctx.ellipse(can.width / 2, can.width / 2, can.width / 2, 20, i * PI / 3, 0, PI * 2);
+        ctx.ellipse(can.width / 2, can.width / 2, can.width / 2, 16, i * PI / 3, 0, PI * 2);
         ctx.fill();
     }
 }), 5);
@@ -275,3 +275,40 @@ const MINIMAP_GRID = createCanvasPattern(MINIMAP_SCALE * 10, MINIMAP_SCALE * 10,
         ctx.fillRect(0, i, can.height, 1);
     }
 });
+
+const PISTOL = pixelate(createCanvas(70, 150, (ctx, can) => {
+    const grad = ctx.createLinearGradient(0, 0, can.width, 0);
+    grad.addColorStop(0.2, '#000');
+    grad.addColorStop(0.5, '#222');
+    grad.addColorStop(0.8, '#000');
+
+    const barrelRadius = 20;
+    const bottomBarrelRadius = 35;
+
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(can.width / 2, barrelRadius + 5, barrelRadius, PI, 0);
+    ctx.arc(can.width / 2, 80, bottomBarrelRadius, 0, PI, true);
+    // ctx.lineTo(can.width / 2 + barrelRadius + 20, can.height);
+    // ctx.lineTo(can.width / 2 - barrelRadius - 20, can.height);
+    ctx.fill();
+
+    ctx.fillStyle = '#000';
+
+    ctx.fillRect(can.width / 2 - 3, 40, -10, -5);
+    ctx.fillRect(can.width / 2 + 3, 40, 10, -5);
+    ctx.fillRect(can.width / 2 - 3, 0, 6, 10);
+
+    ctx.beginPath();
+    ctx.arc(can.width / 2, 80, bottomBarrelRadius, PI, 0);
+    ctx.lineTo(can.width / 2 + bottomBarrelRadius, can.height);
+    ctx.lineTo(can.width / 2 - bottomBarrelRadius, can.height);
+    ctx.fill();
+
+    ctx.fillStyle = '#222';
+    ctx.fillRect(can.width / 2 - 5, 60, 10, 16);
+
+    ctx.fillStyle = '#111';
+    ctx.fillRect(0, 80, 5, 100);
+    ctx.fillRect(can.width - 5, 80, 5, 100);
+}), 5);

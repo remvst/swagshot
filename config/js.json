@@ -17,6 +17,7 @@
     "src/js/weapons/rocket-launcher.js",
     "src/js/weapons/shotgun.js",
     "src/js/weapons/machine-gun.js",
+    "src/js/weapons/pistol.js",
 
     "src/js/characters/character.js",
     "src/js/characters/enemy.js",

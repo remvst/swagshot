@@ -2,10 +2,9 @@ class Game {
 
     constructor() {
         G = this;
+        G.clock = 0;
 
         G.setupNewGame();
-
-        G.clock = 0;
 
         G.resourceIconOffsetY = 0;
         G.resourceIconScale = 1;
@@ -50,10 +49,17 @@ class Game {
                 fillRect(CANVAS_WIDTH / 2 - 5, CANVAS_HEIGHT / 2 - 1, 10, 2);
                 fillRect(CANVAS_WIDTH / 2 - 1, CANVAS_HEIGHT / 2 - 5, 2, 10);
 
+                const weaponOffsetX = sin(P.movingClock * PI * 2) * 10;
+                const weaponOffsetY = cos(P.movingClock * PI * 4) * 10 +
+                    max(0, 1 - (G.clock - P.weapon.lastShot) / 0.15) * 30 +
+                    30 +
+                    P.landingProgress() * 20 +
+                    max(0, 1 - (G.clock - P.weapon.created) / 0.5) * P.weapon.sprite.height;
+
                 // Muzzleflash
                 if (G.clock - P.weapon.lastShot < 0.1) {
                     wrap(() => {
-                        translate(CANVAS_WIDTH / 2 + sin(P.movingClock * PI * 2) * 10, CANVAS_HEIGHT - P.weapon.sprite.height + 40);
+                        translate(weaponOffsetX + CANVAS_WIDTH / 2, weaponOffsetY + CANVAS_HEIGHT - P.weapon.sprite.height);
                         rotate(PI * P.weapon.lastShot * 99);
                         drawImage(MUZZLEFLASH, -MUZZLEFLASH.width / 2, -MUZZLEFLASH.height / 2);
                     });
@@ -61,9 +67,7 @@ class Game {
 
                 // Weapon
                 wrap(() => {
-                    translate(
-                        sin(P.movingClock * PI * 2) * 10,
-                        cos(P.movingClock * PI * 4) * 10 + max(0, 1 - (G.clock - P.weapon.lastShot) / 0.15) * 30 + 30 + P.landingProgress() * 20);
+                    translate(weaponOffsetX, weaponOffsetY);
                     drawImage(P.weapon.sprite, (CANVAS_WIDTH - P.weapon.sprite.width) / 2, CANVAS_HEIGHT - P.weapon.sprite.height);
                 });
             }
@@ -109,7 +113,7 @@ class Game {
         W = new World();
 
         P = new Player();
-        P.setWeapon(new Shotgun(P));
+        P.setWeapon(new Pistol(P));
     }
 
 }

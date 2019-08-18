@@ -6,9 +6,5 @@ class Shotgun extends Weapon {
         this.bulletCount = 5;
         this.sprite = SHOTGUN;
         this.bulletSpeed = BLOCK_SIZE * 30;
-
-        this.sprite = createCanvas(100, 100, (ctx, can) => {
-            
-        });
     }
 }
