@@ -1,6 +1,8 @@
 class World {
     constructor() {
-        this.matrix = generateWorld();
+        const generated = generateWorld();
+        this.matrix = generated.matrix;
+        this.can = generated.can;
 
         CYCLABLES = [];
         SPRITES = [];
