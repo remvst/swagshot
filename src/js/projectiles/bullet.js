@@ -28,12 +28,12 @@ class Bullet {
 
         this.x += Math.cos(this.angle) * this.speed * e;
         this.y += Math.sin(this.angle) * this.speed * e;
-        this.z -= Math.sin(this.verticalAngle) * BULLET_SPEED * e;
+        this.z -= Math.sin(this.verticalAngle) * this.speed * e;
 
         if (
             hasBlock(this.x, this.y, 0) && this.z < BLOCK_SIZE / 2 ||
             this.z < -BLOCK_SIZE / 2 ||
-            G.clock - this.created > 3
+            G.clock - this.created > 2
         ) {
             this.remove(beforeX, beforeY);
         }

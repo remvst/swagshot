@@ -33,12 +33,12 @@ class Weapon {
     shoot() {
         for (let i = 0 ; i < this.bulletCount ; i++) {
             new Bullet(
-                this.character.x,
-                this.character.y,
+                this.character.x + cos(this.character.angle) * BLOCK_SIZE * 0.1,
+                this.character.y + sin(this.character.angle) * BLOCK_SIZE * 0.1,
                 this.character.eyeZ() - 10,
                 this.bulletSpeed,
                 this.character.angle + rnd(-1, 1) * this.angleRandomFactor,
-                this.character.verticalAngle + rnd(-1, 1) * this.angleRandomFactor,
+                this.character.verticalAngle,
                 this.character.enemies,
                 this.projectileSize,
                 this.trailSize
