@@ -87,7 +87,7 @@ function castWindow(indexStart, indexEnd) {
 }
 
 function renderWalls() {
-    R.fillStyle = '#661707';
+    R.fillStyle = '#250000';
 
     for (let i = 0 ; i < SLICE_COUNT ; i++) {
         const distance = dist(CASTED_RAYS[i], P);
@@ -230,10 +230,10 @@ function renderWorld() {
 
     const middleY = lookupOffset() + CANVAS_HEIGHT / 2;
 
-    R.fillStyle = '#c52';
+    R.fillStyle = '#a02e00';
     fillRect(0, 0, CANVAS_WIDTH, middleY);
 
-    R.fillStyle = '#661707';
+    R.fillStyle = '#250000';
     fillRect(0, middleY, CANVAS_WIDTH, CANVAS_HEIGHT - middleY);
 
     wrap(() => {

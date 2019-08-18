@@ -77,8 +77,8 @@ class Enemy extends Character {
             'x': this.x,
             'y': this.y,
             'z': -BLOCK_SIZE / 2,
-            'width': this.width,
-            'height': this.height / 3,
+            'width': this.width / 2,
+            'height': this.height / 8,
             'sprite': SHADOW_CIRCLE
         });
     }

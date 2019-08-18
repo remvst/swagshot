@@ -197,7 +197,7 @@ const EXPLOSION_CIRCLE = pixelate(createCanvas(200, 200, (ctx, can) => {
 }), 10);
 
 const SHADOW_CIRCLE = pixelate(createCanvas(200, 200, (ctx, can) => {
-    ctx.fillStyle = '#661707';
+    ctx.fillStyle = '#250000';
     ctx.globalAlpha = 0.5;
     ctx.beginPath();
     ctx.arc(100, 100, 100, 0, TWO_PI);
