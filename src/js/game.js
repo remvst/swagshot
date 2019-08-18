@@ -29,7 +29,7 @@ class Game {
 
             wrap(renderWorld);
             wrap(renderHud);
-            wrap(renderMinimap);
+            G.renderMinimap = measure(() => wrap(renderMinimap));
 
             if (P.health) {
                 wrap(() => {
@@ -51,10 +51,10 @@ class Game {
                 fillRect(CANVAS_WIDTH / 2 - 1, CANVAS_HEIGHT / 2 - 5, 2, 10);
 
                 // Muzzleflash
-                if (G.clock - P.lastShot < 0.1) {
+                if (G.clock - P.weapon.lastShot < 0.1) {
                     wrap(() => {
-                        translate(CANVAS_WIDTH / 2 + sin(P.movingClock * PI * 2) * 10, CANVAS_HEIGHT - MACHINE_GUN.height + 40);
-                        rotate(PI * P.lastShot * 99);
+                        translate(CANVAS_WIDTH / 2 + sin(P.movingClock * PI * 2) * 10, CANVAS_HEIGHT - P.weapon.sprite.height + 40);
+                        rotate(PI * P.weapon.lastShot * 99);
                         drawImage(MUZZLEFLASH, -MUZZLEFLASH.width / 2, -MUZZLEFLASH.height / 2);
                     });
                 }
@@ -63,8 +63,8 @@ class Game {
                 wrap(() => {
                     translate(
                         sin(P.movingClock * PI * 2) * 10,
-                        cos(P.movingClock * PI * 4) * 10 + max(0, 1 - (G.clock - P.lastShot) / 0.15) * 30 + 30 + P.landingProgress() * 20);
-                    drawImage(MACHINE_GUN, (CANVAS_WIDTH - MACHINE_GUN.width) / 2, CANVAS_HEIGHT - MACHINE_GUN.height);
+                        cos(P.movingClock * PI * 4) * 10 + max(0, 1 - (G.clock - P.weapon.lastShot) / 0.15) * 30 + 30 + P.landingProgress() * 20);
+                    drawImage(P.weapon.sprite, (CANVAS_WIDTH - P.weapon.sprite.width) / 2, CANVAS_HEIGHT - P.weapon.sprite.height);
                 });
             }
 
@@ -94,6 +94,7 @@ class Game {
                     'floorTiles: ' + G.floorTiles,
                     'sortIterations: ' + G.sortIterations,
                     'sortTime: ' + G.sortTime,
+                    'renderMinimap: ' + G.renderMinimap,
                 ];
                 let y = 20;
                 info.forEach(info => {
@@ -106,7 +107,9 @@ class Game {
 
     setupNewGame() {
         W = new World();
+
         P = new Player();
+        P.setWeapon(new Shotgun(P));
     }
 
 }

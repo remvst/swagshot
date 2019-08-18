@@ -81,6 +81,8 @@ class Enemy extends Character {
             'height': this.height / 8,
             'sprite': SHADOW_CIRCLE
         });
+
+        this.enemies = [P];
     }
 
     cycle(e) {

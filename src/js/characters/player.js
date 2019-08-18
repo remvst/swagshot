@@ -9,21 +9,22 @@ class Player extends Character {
 
         this.zSpeed = 0;
 
-        this.angle = Math.PI / 3;
-        this.verticalAngle = 0;
-
         this.moving = false;
         this.movingClock = 0;
 
         this.headTilt = 0;
         this.lastLanding = 0;
         this.lastHit = 0;
+
+        this.enemies = ENEMIES;
     }
 
     cycle(e) {
         if (!this.health) {
             return;
         }
+
+        super.cycle(e);
 
         const beforeZ = this.z;
 

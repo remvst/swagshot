@@ -57,7 +57,11 @@ onmousemove = e => {
 };
 
 onmousedown = () => {
-    P.shoot();
+    P.weapon.holdTrigger();
+};
+
+onmouseup = () => {
+    P.weapon.releaseTrigger();
 };
 
 onclick = () => document.body.requestPointerLock();

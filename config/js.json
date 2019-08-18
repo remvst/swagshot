@@ -19,6 +19,11 @@
     "src/js/projectiles/bullet.js",
     "src/js/projectiles/explosion.js",
 
+    "src/js/weapons/weapon.js",
+    "src/js/weapons/rocket-launcher.js",
+    "src/js/weapons/shotgun.js",
+    "src/js/weapons/machine-gun.js",
+
     "src/js/characters/character.js",
     "src/js/characters/enemy.js",
     "src/js/characters/player.js",

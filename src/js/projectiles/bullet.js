@@ -1,12 +1,14 @@
 class Bullet {
-    constructor(x, y, z, angle, verticalAngle, targets, projectileSize, trailSize) {
+    constructor(x, y, z, speed, angle, verticalAngle, targets, projectileSize, trailSize, explodes) {
         this.x = x;
         this.y = y;
         this.z = z;
+        this.speed = speed;
         this.angle = angle;
         this.verticalAngle = verticalAngle;
         this.targets = targets;
         this.trailSize = trailSize;
+        this.explodes = explodes;
         this.created = G.clock;
 
         SPRITES.push(this.particle = {
@@ -24,8 +26,8 @@ class Bullet {
         const beforeX = this.x;
         const beforeY = this.y;
 
-        this.x += Math.cos(this.angle) * BULLET_SPEED * e;
-        this.y += Math.sin(this.angle) * BULLET_SPEED * e;
+        this.x += Math.cos(this.angle) * this.speed * e;
+        this.y += Math.sin(this.angle) * this.speed * e;
         this.z -= Math.sin(this.verticalAngle) * BULLET_SPEED * e;
 
         if (
@@ -67,7 +69,9 @@ class Bullet {
         remove(CYCLABLES, this);
         remove(SPRITES, this.particle);
 
-        explosion(beforeX, beforeY, this.z, BLOCK_SIZE / 2);
+        if (this.explodes) {
+            explosion(beforeX, beforeY, this.z, BLOCK_SIZE / 2);
+        }
 
         // Add some particles
         for (let i = 0 ; i < 5 ; i++) {

@@ -4,11 +4,18 @@ class Character {
 
         this.baseBloodColor = [0xf, 0, 0];
         this.lastDamage = 0;
-        this.lastShot = 0;
         this.health = 1;
+
+        this.angle = Math.PI / 3;
+        this.verticalAngle = 0;
+    }
+
+    setWeapon(weapon) {
+        this.weapon = weapon;
     }
 
     cycle(e) {
+        this.weapon && this.weapon.cycle(e);
     }
 
     moveBy(x, y) {
@@ -66,26 +73,30 @@ class Character {
         }
     }
 
-    shoot() {
-        // TODO use a weapon
-        for (let i = 0 ; i < 1 ; i++) {
-            new Bullet(
-                this.x,
-                this.y,
-                this.eyeZ() - 10,
-                this.angle + rnd(-1, 1) * PI / 128,
-                this.verticalAngle + rnd(-1, 1) * PI / 128,
-                ENEMIES,
-                10,
-                10
-            );
-        }
-        this.lastShot = G.clock;
-
-        // explosion(this.x + cos(this.angle) * BLOCK_SIZE * 4, this.y + sin(this.angle) * BLOCK_SIZE * 4, this.z, BLOCK_SIZE / 2);
-    }
+    // shoot() {
+    //     // TODO use a weapon
+    //     for (let i = 0 ; i < 1 ; i++) {
+    //         new Bullet(
+    //             this.x,
+    //             this.y,
+    //             this.eyeZ() - 10,
+    //             this.angle + rnd(-1, 1) * PI / 128,
+    //             this.verticalAngle + rnd(-1, 1) * PI / 128,
+    //             ENEMIES,
+    //             10,
+    //             10
+    //         );
+    //     }
+    //     this.lastShot = G.clock;
+    //
+    //     // explosion(this.x + cos(this.angle) * BLOCK_SIZE * 4, this.y + sin(this.angle) * BLOCK_SIZE * 4, this.z, BLOCK_SIZE / 2);
+    // }
 
     die() {
 
+    }
+
+    eyeZ() {
+        return this.z;
     }
 }
