@@ -29,6 +29,7 @@ class Game {
 
             wrap(renderWorld);
             wrap(renderHud);
+            wrap(renderMinimap);
 
             if (P.health) {
                 wrap(() => {

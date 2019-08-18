@@ -265,3 +265,12 @@ const MOUNTAINS = createCanvasPattern(160, 40, (ctx, can) => {
 
     return addNoise(can, 1, () => toColor(baseColor));
 });
+
+const MINIMAP_GRID = createCanvasPattern(MINIMAP_SCALE * 10, MINIMAP_SCALE * 10, (ctx, can) => {
+    ctx.fillStyle = '#fff';
+    ctx.globalAlpha = 0.1;
+    for (let i = 0 ; i < can.width ; i+=18) {
+        ctx.fillRect(i, 0, 1, can.height);
+        ctx.fillRect(0, i, can.height, 1);
+    }
+});

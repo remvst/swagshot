@@ -75,18 +75,29 @@ generateWorld = () => {
             clearPath(x, 5, x, can.height - 5);
             clearPath(5, x, can.height - 5, x);
         }
-
-        return ctx.getImageData(0, 0, can.width, can.height);
     });
 
     const grid = [];
 
-    for (let x = 0 ; x < can.width ; x++) {
+    const ctx = can.getContext('2d');
+    const imageData = ctx.getImageData(0, 0, can.width, can.height);
+
+    for (let y = 0 ; y < can.height ; y++) {
         grid.push([]);
-        for (let y = 0 ; y < can.height ; y++) {
-            grid[x][y] = can.data[y * can.width * 4 + x * 4] > 0x80;
+        for (let x = 0 ; x < can.width ; x++) {
+            grid[y][x] = imageData.data[y * can.width * 4 + x * 4] > 0x80;
+            imageData.data[y * can.width * 4 + x * 4] = grid[y][x] * 255;
+            imageData.data[y * can.width * 4 + x * 4 + 1] = grid[y][x] * 255;
+            imageData.data[y * can.width * 4 + x * 4 + 2] = grid[y][x] * 255;
+            imageData.data[y * can.width * 4 + x * 4 + 3] = grid[y][x] * 255;
         }
     }
 
-    return grid;
+    ctx.putImageData(imageData, 0, 0);
+
+    ctx.globalCompositeOperation = 'source-atop';
+    ctx.fillStyle = '#0be';
+    ctx.fillRect(0, 0, can.width, can.height);
+
+    return {'matrix': grid, 'can': can};
 };

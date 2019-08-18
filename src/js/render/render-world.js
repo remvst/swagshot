@@ -259,7 +259,6 @@ function renderWorld() {
     G.castIterations = 0;
     G.castTime = measure(() => castWindow(-1, SLICE_COUNT + 1));
 
-
     SPRITES.forEach(sprite => renderSprite(sprite, true));
 
     G.renderFloor = measure(() => renderFloor(-BLOCK_SIZE / 2, BLOCK_SIZE * 4, FLOOR_SPRITE));
