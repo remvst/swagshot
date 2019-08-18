@@ -286,7 +286,7 @@ function renderWorld() {
 
 const REPEAT = BLOCK_SIZE * 6;
 const DECORATION_PARTICLES = [];
-for (let i = 0 ; i < 100 ; i++) {
+for (let i = 0 ; i < 200 ; i++) {
     DECORATION_PARTICLES.push({
         'offsetX': randomSin(random() * REPEAT, rnd(5, 20), rnd(20, 40)),
         'offsetY': randomSin(random() * REPEAT, rnd(5, 20), rnd(20, 40)),

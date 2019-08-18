@@ -39,9 +39,10 @@ function consoleSprite() {
         ctx.fillRect(39, 0, 1, 40);
         ctx.fillRect(0, 0, 1, 40);
 
+        const generator = createNumberGenerator(1);
         for (let x = 0 ; x < 40 ; x++) {
             for (let y = 0 ; y < 40 ; y++) {
-                ctx.globalAlpha = rnd(0.02, 0.05);
+                ctx.globalAlpha = generator() * 0.03 + 0.05;
                 ctx.fillStyle = '#fff';
                 ctx.fillRect(x * 1, y * 1, 1, 1);
             }
