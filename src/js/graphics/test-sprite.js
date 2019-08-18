@@ -148,6 +148,26 @@ const SHOTGUN = pixelate(createCanvas(165, 150, (ctx, can) => {
     barrel();
 }), 5);
 
+const MACHINE_GUN = pixelate(createCanvas(100, 150, (ctx, can) => {
+    const grad = ctx.createLinearGradient(0, 0, can.width, 0);
+    grad.addColorStop(0.2, '#000');
+    grad.addColorStop(0.5, '#222');
+    grad.addColorStop(0.8, '#000');
+
+    const barrelRadius = 20;
+
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(can.width / 2, barrelRadius + 10, barrelRadius, PI, 0);
+    ctx.lineTo(can.width / 2 + barrelRadius + 20, can.height);
+    ctx.lineTo(can.width / 2 - barrelRadius - 20, can.height);
+    ctx.fill();
+
+    ctx.fillStyle = '#000';
+    ctx.fillRect(can.width / 2 - 4, 0, 8, 20);
+
+}), 5);
+
 const MUZZLEFLASH = pixelate(createCanvas(200, 200, (ctx, can) => {
     const grad = ctx.createRadialGradient(can.width / 2, can.width / 2, 0, can.width / 2, can.width / 2, can.width / 2);
     grad.addColorStop(0, '#fff');

@@ -52,7 +52,7 @@ class Game {
                 // Muzzleflash
                 if (G.clock - P.lastShot < 0.1) {
                     wrap(() => {
-                        translate(CANVAS_WIDTH / 2 + sin(P.movingClock * PI * 2) * 10, CANVAS_HEIGHT - ROCKET_LAUNCHER.height + 40);
+                        translate(CANVAS_WIDTH / 2 + sin(P.movingClock * PI * 2) * 10, CANVAS_HEIGHT - MACHINE_GUN.height + 40);
                         rotate(PI * P.lastShot * 99);
                         drawImage(MUZZLEFLASH, -MUZZLEFLASH.width / 2, -MUZZLEFLASH.height / 2);
                     });
@@ -63,7 +63,7 @@ class Game {
                     translate(
                         sin(P.movingClock * PI * 2) * 10,
                         cos(P.movingClock * PI * 4) * 10 + max(0, 1 - (G.clock - P.lastShot) / 0.15) * 30 + 30 + P.landingProgress() * 20);
-                    drawImage(ROCKET_LAUNCHER, (CANVAS_WIDTH - ROCKET_LAUNCHER.width) / 2, CANVAS_HEIGHT - ROCKET_LAUNCHER.height);
+                    drawImage(MACHINE_GUN, (CANVAS_WIDTH - MACHINE_GUN.width) / 2, CANVAS_HEIGHT - MACHINE_GUN.height);
                 });
             }
 
