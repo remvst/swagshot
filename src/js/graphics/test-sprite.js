@@ -314,7 +314,6 @@ const PISTOL = pixelate(createCanvas(70, 150, (ctx, can) => {
 }), 5);
 
 const WEAPON_BOX = createCanvas(100, 100, (ctx, can) => {
-
     ctx.fillStyle = '#030';
     ctx.beginPath();
     ctx.moveTo(0, can.height / 6);
