@@ -17,6 +17,10 @@ class World {
         const item = new WeaponItem();
         item.x = BLOCK_SIZE * 6.5;
         item.y = BLOCK_SIZE * 6.5;
+
+        const health = new HealthItem();
+        health.x = BLOCK_SIZE * 8.5;
+        health.y = BLOCK_SIZE * 6.5;
     }
 
     cycle(e) {
