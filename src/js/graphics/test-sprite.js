@@ -356,6 +356,4 @@ const HEALTH_ITEM = pixelate(createCanvas(100, 60, (ctx, can) => {
     ctx.fillStyle = '#900';
     ctx.fillRect(can.width / 2 - crossThickness / 2, can.height * 0.2 + (can.height * 0.8 - crossLength) / 2, crossThickness, crossLength);
     ctx.fillRect((can.width - crossLength) / 2, can.height * 0.2 + (can.height * 0.8 - crossThickness) / 2, crossLength, crossThickness);
-
-    document.body.appendChild(can);
 }), 5);

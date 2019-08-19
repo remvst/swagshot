@@ -1,47 +1,6 @@
 generateWorld = () => {
     const can = createCanvas(50, 50, (ctx, can) => {
-        const shapes = [
-            // Colon
-            () => {
-                ctx.beginPath();
-                ctx.arc(0, 0, rnd(1, 3), 0, TWO_PI);
-                ctx.fill();
-            },
-
-            // // Wall
-            () => {
-                if (random() < 0.5) {
-                    ctx.rotate(PI / 2);
-                }
-                ctx.fillRect(0, 0, ~~rnd(2, 5), 1);
-            },
-
-            // Circular room
-            () => {
-                ctx.rotate(rnd(0, PI));
-                ctx.beginPath();
-                ctx.arc(0.5, 0.5, rnd(1, 5), 0, rnd(PI, PI * 3 / 4));
-                ctx.stroke();
-            },
-
-            // Cross
-            () => {
-                const thickness = ~~rnd(1, 3);
-                const radius = thickness + ~~rnd(1, 3);
-                ctx.fillRect(-radius, 0, radius * 2 + thickness, thickness);
-                ctx.fillRect(0, -radius, thickness, radius * 2 + thickness);
-            }
-        ];
-
-        ctx.fillStyle = ctx.strokeStyle = '#fff';
-
-        for (let i = 0 ; i < (can.width * can.height) * 0.04 ; i++) {
-            const shape = pick(shapes);
-            ctx.wrap(() => {
-                ctx.translate(~~rnd(0, can.width), ~~rnd(0, can.height));
-                shape();
-            });
-        }
+        ctx.fillStyle = '#fff';
 
         function clearPath(x1, y1, x2, y2) {
             const distance = distP(x1, y1, x2, y2);
@@ -53,8 +12,8 @@ generateWorld = () => {
                 prevY = y1;
             for (let d = 0 ; d <= distance ; d += 5) {
                 const ratio = d / distance;
-                const x = limit(0, x1 + (x2 - x1) * ratio + rnd(-0.1, 0.1) * distance, 40);
-                const y = limit(0, y1 + (y2 - y1) * ratio + rnd(-0.1, 0.1) * distance, 40);
+                const x = limit(0, x1 + (x2 - x1) * ratio + rnd(-0.1, 0.1) * distance, can.width);
+                const y = limit(0, y1 + (y2 - y1) * ratio + rnd(-0.1, 0.1) * distance, can.height);
                 ctx.beginPath();
                 ctx.moveTo(prevX, prevY);
                 ctx.lineTo(x, y);
@@ -65,16 +24,18 @@ generateWorld = () => {
             }
         }
 
+        ctx.fillRect(0, 0, can.width, can.height);
+
+        for (let x = 5 ; x < can.width ; x += 5) {
+            clearPath(x, 5, x, can.height - 5);
+            clearPath(5, x, can.height - 5, x);
+        }
+
         // Close the arena
         ctx.fillRect(0, 0, can.width, 1);
         ctx.fillRect(0, 0, 1, can.height);
         ctx.fillRect(0, can.height - 1, can.width, 1);
         ctx.fillRect(can.width - 1, 0, 1, can.height);
-
-        for (let x = 5 ; x < 40 ; x += 10) {
-            clearPath(x, 5, x, can.height - 5);
-            clearPath(5, x, can.height - 5, x);
-        }
     });
 
     const grid = [];

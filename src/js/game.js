@@ -72,9 +72,12 @@ class Game {
                 });
             }
 
-            if (G.clock - P.lastDamage < 0.15) {
-                R.fillStyle = 'rgba(255,0,0,0.25)';
-                fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+            if (G.clock - max(P.lastDamage, P.lastPickup) < 0.15) {
+                wrap(() => {
+                    R.globalAlpha = 0.2;
+                    R.fillStyle = P.lastDamage > P.lastPickup ? '#f00' : '#fff';
+                    fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+                });
             }
         });
 

@@ -30,6 +30,7 @@ class Item {
         if (dist(this, P) < ITEM_RADIUS) {
             this.pickup();
             this.remove();
+            P.lastPickup = G.clock;
         }
     }
 
