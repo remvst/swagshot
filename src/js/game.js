@@ -40,7 +40,7 @@ class Game {
                     R.fillStyle = '#f00';
                     for (let i = 0 ; i < 4 ; i++) {
                         rotate(PI / 2);
-                        fillRect(5, -1, 5, 2);
+                        fillRect(5, -1, 6, 2);
                     }
                 });
 
@@ -51,8 +51,8 @@ class Game {
 
                 const weaponOffsetX = sin(P.movingClock * PI * 2) * 10;
                 const weaponOffsetY = cos(P.movingClock * PI * 4) * 10 +
-                    max(0, 1 - (G.clock - P.weapon.lastShot) / 0.15) * 30 +
-                    30 +
+                    max(0, 1 - (G.clock - P.weapon.lastShot) / 0.15) * 50 +
+                    20 +
                     P.landingProgress() * 20 +
                     max(0, 1 - (G.clock - P.weapon.created) / 0.5) * P.weapon.sprite.height;
 
