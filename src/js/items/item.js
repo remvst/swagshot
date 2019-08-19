@@ -1,5 +1,7 @@
 class Item {
     constructor(sprite) {
+        this.width = ITEM_RADIUS;
+
         SPRITES.push(this.sprite = {
             'z': -BLOCK_SIZE / 4,
             'width': ITEM_RADIUS / 2,
@@ -8,6 +10,7 @@ class Item {
         });
         CYCLABLES.push(this);
         ITEMS.push(this);
+        MINIMAP_ELEMENTS.push(this);
 
         SPRITES.push(this.shadowSprite = {
             'x': this.x,
@@ -37,6 +40,7 @@ class Item {
     remove() {
         remove(CYCLABLES, this);
         remove(ITEMS, this);
+        remove(MINIMAP_ELEMENTS, this);
         remove(SPRITES, this.sprite);
         remove(SPRITES, this.shadowSprite);
     }

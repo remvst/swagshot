@@ -72,6 +72,7 @@ class Enemy extends Character {
         });
         CYCLABLES.push(this);
         ENEMIES.push(this);
+        MINIMAP_ELEMENTS.push(this);
 
         SPRITES.push(this.shadowSprite = {
             'x': this.x,
@@ -117,6 +118,7 @@ class Enemy extends Character {
         remove(CYCLABLES, this);
         remove(SPRITES, this.shadowSprite);
         remove(ENEMIES, this);
+        remove(MINIMAP_ELEMENTS, this);
 
         const duration = abs(-BLOCK_SIZE / 4 - this.z) / BLOCK_SIZE;
         interp(this.sprite, 'z', this.z, -BLOCK_SIZE / 4, duration);

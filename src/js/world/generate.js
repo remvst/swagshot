@@ -56,7 +56,7 @@ generateWorld = () => {
 
     ctx.putImageData(imageData, 0, 0);
 
-    ctx.globalCompositeOperation = 'source-atop';
+    ctx.globalCompositeOperation = nomangle('source-atop');
     ctx.fillStyle = '#0be';
     ctx.fillRect(0, 0, can.width, can.height);
 

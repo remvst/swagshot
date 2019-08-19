@@ -21,15 +21,16 @@ renderMinimap = () => {
 
         wrap(() => {
             scale(1 / MINIMAP_SCALE, 1 / MINIMAP_SCALE);
-            ENEMIES.forEach(enemy => wrap(() => {
+            MINIMAP_ELEMENTS.forEach(enemy => wrap(() => {
                 translate(
                     enemy.x / BLOCK_SIZE * MINIMAP_SCALE,
                     enemy.y / BLOCK_SIZE * MINIMAP_SCALE
                 );
                 rotate(P.angle + PI / 2);
-                scale(2, 2);
 
                 const sprite = enemy.sprite.sprite;
+                scale(MINIMAP_SCALE / sprite.width, MINIMAP_SCALE / sprite.width);
+
                 drawImage(sprite, -sprite.width / 2, -sprite.height / 2);
             }));
         });

@@ -6,6 +6,7 @@ class MachineGun extends Weapon {
 
         this.sprite = MACHINE_GUN;
         this.bulletSpeed = BLOCK_SIZE * 30;
+        this.ammoPerShot = 0.02;
     }
 
     cycle(e) {

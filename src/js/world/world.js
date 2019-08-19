@@ -29,7 +29,7 @@ class World {
                     item.y = (row + 0.5) * BLOCK_SIZE;
                 }
 
-                if (random() < 0.02) {
+                if (random() < ENEMY_DENSITY) {
                     const enemy = new Enemy();
                     enemy.x = (col + 0.5) * BLOCK_SIZE;
                     enemy.y = (row + 0.5) * BLOCK_SIZE;

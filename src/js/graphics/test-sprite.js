@@ -239,16 +239,15 @@ const ROCKET_LAUNCHER = pixelate(createCanvas(120, 200, (ctx, can) => {
 
 const MOUNTAINS = createCanvasPattern(160, 40, (ctx, can) => {
     ctx.imageSmoothingEnabled = false;
-    ctx.fillStyle = '#fff';
+    ctx.fillStyle = '#610';
     ctx.beginPath();
     ctx.moveTo(0, can.height);
-    // ctx.lineTo(0, can.height / 2);
 
     const sins = [
-        x => Math.sin(x * TWO_PI / (can.width / 2)) * can.height / 8,
-        x => Math.sin(x * TWO_PI / (can.width / 4)) * can.height / 16,
-        x => Math.sin(x * TWO_PI / (can.width / 8)) * can.height / 32,
-        x => Math.sin(x * TWO_PI / (can.width / 16)) * can.height / 64
+        x => sin(x * TWO_PI / (can.width / 2)) * can.height / 8,
+        x => sin(x * TWO_PI / (can.width / 4)) * can.height / 16,
+        x => sin(x * TWO_PI / (can.width / 8)) * can.height / 32,
+        x => sin(x * TWO_PI / (can.width / 16)) * can.height / 64
     ];
 
     for (let x = 0 ; x <= can.width ; x += 2) {
@@ -258,19 +257,14 @@ const MOUNTAINS = createCanvasPattern(160, 40, (ctx, can) => {
         ctx.lineTo(x, y);
     }
 
-    // ctx.lineTo(can.width, can.height / 2);
     ctx.lineTo(can.width, can.height);
     ctx.fill();
-// 661707
-    const baseColor = [0x6, 0x1, 0x0];
-
-    return addNoise(can, 1, () => toColor(baseColor));
 });
 
 const MINIMAP_GRID = createCanvasPattern(MINIMAP_SCALE * 10, MINIMAP_SCALE * 10, (ctx, can) => {
     ctx.fillStyle = '#fff';
     ctx.globalAlpha = 0.1;
-    for (let i = 0 ; i < can.width ; i+=18) {
+    for (let i = 0 ; i < can.width ; i+=MINIMAP_SCALE) {
         ctx.fillRect(i, 0, 1, can.height);
         ctx.fillRect(0, i, can.height, 1);
     }

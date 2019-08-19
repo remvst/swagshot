@@ -9,3 +9,4 @@ let R, // canvas context
 const CYCLABLES = [];
 const ENEMIES = [];
 const ITEMS = [];
+const MINIMAP_ELEMENTS = [];
