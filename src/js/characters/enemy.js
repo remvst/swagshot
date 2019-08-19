@@ -84,10 +84,31 @@ class Enemy extends Character {
         });
 
         this.enemies = [P];
+
+        this.nextTrajectory = 0;
     }
 
     cycle(e) {
         super.cycle(e);
+
+        if (G.clock >= this.nextTrajectory || dist(this, this.target) < 10) {
+            this.target = {
+                'x': limit(0, this.x + rnd(-1, 1) * BLOCK_SIZE * 4, W.matrix[0].length * BLOCK_SIZE),
+                'y': limit(0, this.y + rnd(-1, 1) * BLOCK_SIZE * 4, W.matrix.length * BLOCK_SIZE),
+            };
+            this.nextTrajectory = G.clock + 2;
+            this.aggressive = dist(P, this) < BLOCK_SIZE * 5;
+        }
+
+        const speed = this.aggressive ? 200 : 100;
+
+        const angleToTarget = angleBetween(this, this.target);
+        const distance = dist(this, this.target);
+
+        this.moveBy(
+            cos(angleToTarget) * min(distance, e * speed),
+            sin(angleToTarget) * min(distance, e * speed)
+        );
 
         this.sprite.x = this.x;
         this.sprite.y = this.y;

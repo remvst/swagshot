@@ -24,13 +24,13 @@ class Character {
 
         // Ugly collision handling
         this.x += x;
-        if (hasBlock(this.x, this.y, BLOCK_SIZE * 0.1)) {
+        if (hasBlock(this.x, this.y, BLOCK_SIZE * 0.1) && this.z < BLOCK_SIZE / 2) {
             this.x = beforeX;
             this.vX = 0;
         }
 
         this.y += y;
-        if (hasBlock(this.x, this.y, BLOCK_SIZE * 0.1)) {
+        if (hasBlock(this.x, this.y, BLOCK_SIZE * 0.1) && this.z < BLOCK_SIZE / 2) {
             this.y = beforeY;
             this.vY = 0;
         }

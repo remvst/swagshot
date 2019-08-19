@@ -9,6 +9,11 @@ class World {
         ITEMS = [];
         ENEMIES = [];
 
+        // const enemy = new Enemy();
+        // enemy.x = 5.5 * BLOCK_SIZE;
+        // enemy.y = 5.5 * BLOCK_SIZE;
+        // enemy.z = rnd(-0.35, 2) * BLOCK_SIZE;
+
         for (let row = 0 ; row < this.matrix.length ; row++) {
             for (let col = 0 ; col < this.matrix[0].length ; col++) {
                 if (this.matrix[row][col]) {

@@ -95,6 +95,6 @@ function internalHasBlock(x, y) {
 }
 
 function isOut(x, y) {
-    return !between(0, x, W.matrix[0].length * BLOCK_SIZE) ||
-        !between(0, y, W.matrix.length * BLOCK_SIZE);
+    return !between(0, x, W.matrix[0].length * BLOCK_SIZE - 1) ||
+        !between(0, y, W.matrix.length * BLOCK_SIZE - 1);
 }
