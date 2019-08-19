@@ -13,6 +13,10 @@ class World {
             enemy.y = 150 + i * BLOCK_SIZE;
             enemy.z = rnd(-0.35, 2) * BLOCK_SIZE;
         }
+
+        const item = new WeaponItem();
+        item.x = BLOCK_SIZE * 6.5;
+        item.y = BLOCK_SIZE * 6.5;
     }
 
     cycle(e) {

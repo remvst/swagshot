@@ -19,6 +19,9 @@
     "src/js/weapons/machine-gun.js",
     "src/js/weapons/pistol.js",
 
+    "src/js/items/item.js",
+    "src/js/items/weapon-item.js",
+
     "src/js/characters/character.js",
     "src/js/characters/enemy.js",
     "src/js/characters/player.js",

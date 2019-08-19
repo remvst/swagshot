@@ -8,3 +8,4 @@ let R, // canvas context
 
 const CYCLABLES = [];
 const ENEMIES = [];
+const ITEMS = [];

@@ -313,8 +313,8 @@ const PISTOL = pixelate(createCanvas(70, 150, (ctx, can) => {
     ctx.fillRect(can.width - 5, 80, 5, 100);
 }), 5);
 
-const WEAPON_BOX = createCanvas(100, 100, (ctx, can) => {
-    ctx.fillStyle = '#030';
+const WEAPON_BOX = pixelate(createCanvas(100, 100, (ctx, can) => {
+    ctx.fillStyle = '#816951';
     ctx.beginPath();
     ctx.moveTo(0, can.height / 6);
     ctx.lineTo(can.width / 2, can.height / 6);
@@ -322,7 +322,7 @@ const WEAPON_BOX = createCanvas(100, 100, (ctx, can) => {
     ctx.lineTo(0, can.height * 5 / 6);
     ctx.fill();
 
-    ctx.fillStyle = '#050';
+    ctx.fillStyle = '#b09370';
     ctx.beginPath();
     ctx.moveTo(can.width / 2, can.height / 3);
     ctx.lineTo(can.width, can.height / 6);
@@ -330,13 +330,11 @@ const WEAPON_BOX = createCanvas(100, 100, (ctx, can) => {
     ctx.lineTo(can.width / 2, can.height);
     ctx.fill();
 
-    ctx.fillStyle = '#080';
+    ctx.fillStyle = '#5e503a';
     ctx.beginPath();
     ctx.moveTo(can.width / 2, 0);
     ctx.lineTo(can.width, can.height / 6);
     ctx.lineTo(can.width / 2, can.height / 3);
     ctx.lineTo(0, can.height / 6);
     ctx.fill();
-
-    document.body.appendChild(can);
-});
+}), 5);
