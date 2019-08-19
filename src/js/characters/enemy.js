@@ -57,7 +57,20 @@ class Enemy extends Character {
             half();
         });
 
-        this.hurtSpriteCanvas = tintCanvas(this.spriteCanvas, 'rgba(255,255,255,0.5)');
+        this.sideCanvas = createCanvas(matrix[0].length * 2, matrix.length, (ctx, can) => {
+            const half = () => {
+                renderMatrix(matrix, ctx, () => {
+                    return randomizeColor(this.baseBloodColor);
+                });
+            };
+
+            half();
+            ctx.translate(can.width, 0);
+            ctx.scale(-1, 1);
+            half();
+        });
+
+        this.hurtSpriteCanvas = tintCanvas(this.sideCanvas, 'rgba(255,255,255,0.5)');
 
         this.width = this.spriteCanvas.width * 6;
         this.height = this.spriteCanvas.height * 6;
@@ -92,22 +105,24 @@ class Enemy extends Character {
         super.cycle(e);
 
         if (G.clock >= this.nextTrajectory || dist(this, this.target) < 10) {
+            this.aggressive = dist(P, this) < BLOCK_SIZE * 5;
+
+            const referencePoint = this.aggressive ? P : this;
             this.target = {
-                'x': limit(0, this.x + rnd(-1, 1) * BLOCK_SIZE * 4, W.matrix[0].length * BLOCK_SIZE),
-                'y': limit(0, this.y + rnd(-1, 1) * BLOCK_SIZE * 4, W.matrix.length * BLOCK_SIZE),
+                'x': limit(0, referencePoint.x + rnd(-1, 1) * BLOCK_SIZE * 4, W.matrix[0].length * BLOCK_SIZE),
+                'y': limit(0, referencePoint.y + rnd(-1, 1) * BLOCK_SIZE * 4, W.matrix.length * BLOCK_SIZE),
             };
             this.nextTrajectory = G.clock + 2;
             this.aggressive = dist(P, this) < BLOCK_SIZE * 5;
         }
 
+        const angleDiff = normalize(angleBetween(this, this.target) - this.angle);
+        this.angle += limit(-e * PI / 4, angleDiff, e * PI / 4);
+
         const speed = this.aggressive ? 200 : 100;
-
-        const angleToTarget = angleBetween(this, this.target);
-        const distance = dist(this, this.target);
-
         this.moveBy(
-            cos(angleToTarget) * min(distance, e * speed),
-            sin(angleToTarget) * min(distance, e * speed)
+            cos(this.angle) * e * speed,
+            sin(this.angle) * e * speed
         );
 
         this.sprite.x = this.x;
@@ -123,7 +138,19 @@ class Enemy extends Character {
             P.y = this.y + sin(angle) * this.width * 1.2;
         }
 
-        this.sprite.sprite = G.clock - this.lastDamage < 0.05 ? this.hurtSpriteCanvas : this.spriteCanvas;
+        const angleDiffToFacing = abs(normalize(this.angle - P.angle));
+        const angleDiffToFull = max(angleDiffToFacing, PI - angleDiffToFacing);
+
+        // this.sprite.width = this.spriteCanvas.width * angleDiffToFull;
+        const angleToPlayer = angleBetween(this, P);
+
+        const differenceToFacingPlayer = abs(normalize(this.angle - angleToPlayer));
+
+        const facingPlayer = differenceToFacingPlayer < PI / 2;
+        this.sprite.sprite = G.clock - this.lastDamage < 0.05 ? this.hurtSpriteCanvas : (facingPlayer ? this.spriteCanvas : this.sideCanvas);
+
+        const scale = 1 - min(differenceToFacingPlayer, PI - differenceToFacingPlayer);
+        this.sprite.width = this.width * (scale * 0.4 + 0.6);
     }
 
     // remove() {
