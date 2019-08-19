@@ -99,6 +99,8 @@ class Enemy extends Character {
         this.enemies = [P];
 
         this.nextTrajectory = 0;
+
+        this.radius = this.width;
     }
 
     cycle(e) {
@@ -149,8 +151,8 @@ class Enemy extends Character {
         const facingPlayer = differenceToFacingPlayer < PI / 2;
         this.sprite.sprite = G.clock - this.lastDamage < 0.05 ? this.hurtSpriteCanvas : (facingPlayer ? this.spriteCanvas : this.sideCanvas);
 
-        const scale = 1 - min(differenceToFacingPlayer, PI - differenceToFacingPlayer);
-        this.sprite.width = this.width * (scale * 0.4 + 0.6);
+        // const scale = 1 - min(differenceToFacingPlayer, PI - differenceToFacingPlayer);
+        // this.sprite.width = this.width * (scale * 0.4 + 0.6);
     }
 
     // remove() {

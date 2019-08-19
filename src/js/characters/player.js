@@ -17,6 +17,8 @@ class Player extends Character {
         this.lastHit = 0;
 
         this.enemies = ENEMIES;
+
+        this.radius = BLOCK_SIZE * 0.1;
     }
 
     cycle(e) {
