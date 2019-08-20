@@ -237,17 +237,17 @@ const ROCKET_LAUNCHER = pixelate(createCanvas(120, 200, (ctx, can) => {
     ctx.fill();
 }), 5);
 
-const MOUNTAINS = createCanvasPattern(160, 40, (ctx, can) => {
+const MOUNTAINS = createCanvasPattern(80, 40, (ctx, can) => {
     ctx.imageSmoothingEnabled = false;
     ctx.fillStyle = '#610';
     ctx.beginPath();
     ctx.moveTo(0, can.height);
 
     const sins = [
-        x => sin(x * TWO_PI / (can.width / 2)) * can.height / 8,
-        x => sin(x * TWO_PI / (can.width / 4)) * can.height / 16,
-        x => sin(x * TWO_PI / (can.width / 8)) * can.height / 32,
-        x => sin(x * TWO_PI / (can.width / 16)) * can.height / 64
+        x => sin(x * TWO_PI / (can.width)) * can.height / 8,
+        x => sin(x * TWO_PI / (can.width / 2)) * can.height / 16,
+        x => sin(x * TWO_PI / (can.width / 4)) * can.height / 32,
+        x => sin(x * TWO_PI / (can.width / 8)) * can.height / 64
     ];
 
     for (let x = 0 ; x <= can.width ; x += 2) {
