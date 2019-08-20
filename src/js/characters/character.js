@@ -6,7 +6,7 @@ class Character {
         this.lastDamage = 0;
         this.health = 1;
 
-        this.angle = Math.PI / 3;
+        this.angle = Math.PI / 4;
         this.verticalAngle = 0;
     }
 

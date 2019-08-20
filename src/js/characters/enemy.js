@@ -160,13 +160,6 @@ class Enemy extends Character {
         // this.sprite.width = this.width * (scale * 0.4 + 0.6);
     }
 
-    // remove() {
-    //     remove(CYCLABLES, this);
-    //     remove(SPRITES, this.sprite);
-    //     remove(SPRITES, this.shadowSprite);
-    //     remove(ENEMIES, this);
-    // }
-
     die() {
         super.die();
 
@@ -177,8 +170,10 @@ class Enemy extends Character {
 
         const duration = abs(-BLOCK_SIZE / 4 - this.z) / BLOCK_SIZE;
         interp(this.sprite, 'z', this.z, -BLOCK_SIZE / 4, duration);
-        interp(this.sprite, 'rotation', 0, pick([-PI, PI]) + rnd(-PI / 32, PI / 32), 0.3);
+
         interp(this.sprite, 'f', 0, 0, 0, 1.5, null, () => remove(SPRITES, this.sprite));
+
+        this.sprite.sprite = tintCanvas(this.spriteCanvas, 'rgba(0,0,0,0.8)');
     }
 
     hurt(source, amount) {

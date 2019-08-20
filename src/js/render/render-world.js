@@ -304,22 +304,37 @@ function renderSprite(sprite, aboveBlocks) {
         return;
     }
 
+    const distanceFromPlayer = dist(P, sprite);
+
     renderPoint(sprite, sprite.width, sprite.height, DRAW_DISTANCE - 100, DRAW_DISTANCE, (x, y, width, height, alpha) => {
         R.globalAlpha = (isNaN(sprite.alpha) ? 1 : sprite.alpha) * alpha;
 
         if (sprite.sprite) {
-            translate(x, y);
-            rotate(sprite.rotation || 0);
-            drawImage(
-                sprite.sprite,
-                0, 0, sprite.sprite.width, sprite.sprite.height,
-                -width / 2, -height / 2, width, height
-            );
+            const xStart = x - width / 2;
+            const xEnd = x + width / 2;
+
+            for (let xSlice = xStart ; xSlice < xEnd ; xSlice += SLICE_WIDTH) {
+                const xRatioOnScreen = (xSlice / CANVAS_WIDTH) * FIELD_OF_VIEW;
+                const castIndex = ~~(xRatioOnScreen * SLICE_COUNT);
+
+                const cast = CASTED_RAYS[castIndex];
+                if (cast && dist(cast, P) > distanceFromPlayer || aboveBlocks) {
+                    const ratio = (xSlice - xStart) / width;
+                    const ratioNext = ratio + SLICE_WIDTH / width;
+
+                    drawImage(
+                        sprite.sprite,
+                        ratio * sprite.sprite.width, 0, (ratioNext - ratio) * sprite.sprite.width, sprite.sprite.height,
+                        xSlice - SLICE_WIDTH / 2, y - height / 2, SLICE_WIDTH, height
+                    );
+                }
+
+            }
         } else {
             R.fillStyle = sprite.color;
             fillRect(x - width / 2, y - height / 2, width, height);
         }
-    }, aboveBlocks);
+    }, true);
 }
 
 function randomSin(offset, halfAmplitude, period) {
@@ -332,7 +347,7 @@ function renderPoint(point, realWidth, realHeight, fadeStartDistance, fadeEndDis
     const angle = angleBetween(P, point);
     const angleDiff = normalize(angle - P.angle);
 
-    if (distanceToPoint > fadeEndDistance || abs(angleDiff) > FIELD_OF_VIEW / 2) {
+    if (distanceToPoint > fadeEndDistance || abs(angleDiff) > 1.1 * FIELD_OF_VIEW / 2) {
         return;
     }
 
