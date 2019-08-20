@@ -12,7 +12,7 @@ class Bullet {
         this.trailColor = trailColor;
         this.created = G.clock;
 
-        SPRITES.push(this.particle = {
+        SPRITES.push(this.sprite = {
             'x': this.x,
             'y': this.y,
             'z': this.z,
@@ -24,6 +24,21 @@ class Bullet {
     }
 
     cycle(e) {
+        let iterations = 0;
+        let remaining = e;
+        while (remaining > 0) {
+            const removed = min(remaining, (BLOCK_SIZE / 2) / this.speed);
+            remaining -= removed;
+            this.actualCycle(removed);
+            iterations++;
+        }
+
+        this.sprite.x = this.x;
+        this.sprite.y = this.y;
+        this.sprite.z = this.z;
+    }
+
+    actualCycle(e) {
         const beforeX = this.x;
         const beforeY = this.y;
 
@@ -46,10 +61,6 @@ class Bullet {
             }
         });
 
-        this.particle.x = this.x;
-        this.particle.y = this.y;
-        this.particle.z = this.z;
-
         const trail = {
             'x': this.x,
             'y': this.y,
@@ -68,7 +79,7 @@ class Bullet {
 
     remove(beforeX, beforeY, hitTarget) {
         remove(CYCLABLES, this);
-        remove(SPRITES, this.particle);
+        remove(SPRITES, this.sprite);
 
         if (this.explodes) {
             explosion(beforeX, beforeY, this.z, BLOCK_SIZE / 2);
