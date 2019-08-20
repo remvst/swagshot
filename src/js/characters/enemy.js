@@ -103,7 +103,7 @@ class Enemy extends Character {
 
         this.radius = this.width * 0.6;
 
-        this.setWeapon(new EnemySpreadWeapon(this));
+        // this.setWeapon(new EnemySpreadWeapon(this));
         // this.setWeapon(new EnemyBurstWeapon(this));
     }
 
@@ -131,10 +131,10 @@ class Enemy extends Character {
         this.angle += limit(-e * PI / 4, angleDiff, e * PI / 4);
 
         const speed = this.aggressive ? 200 : 100;
-        this.moveBy(
-            cos(this.angle) * e * speed,
-            sin(this.angle) * e * speed
-        );
+        // this.moveBy(
+        //     cos(this.angle) * e * speed,
+        //     sin(this.angle) * e * speed
+        // );
 
         this.sprite.x = this.x;
         this.sprite.y = this.y;

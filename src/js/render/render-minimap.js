@@ -26,6 +26,16 @@ renderMinimap = () => {
                     enemy.x / BLOCK_SIZE * MINIMAP_SCALE,
                     enemy.y / BLOCK_SIZE * MINIMAP_SCALE
                 );
+
+                // TODO remove
+                if (DEBUG) {
+                    wrap(() => {
+                        rotate(enemy.angle);
+                        R.fillStyle = '#fff';
+                        fillRect(0, 0, 20, 1);
+                    });
+                }
+
                 rotate(P.angle + PI / 2);
 
                 const sprite = enemy.sprite.sprite;
