@@ -1,16 +1,18 @@
 class Fire {
 
-    constructor() {
+    constructor(frames) {
         this.x = this.y = this.z = 0;
 
         this.created = G.clock + random() * 0.3;
+
+        this.frames = frames;
 
         CYCLABLES.push(this);
         MINIMAP_ELEMENTS.push(this);
         SPRITES.push(this.sprite = {
             'width': 12,
             'height': 20,
-            'sprite': FIRE
+            'sprite': this.frames[0]
         });
     }
 
@@ -19,7 +21,7 @@ class Fire {
         this.sprite.y = this.y;
         this.sprite.z = this.z + 10;
 
-        this.sprite.sprite = G.clock % 0.5 < 0.25 ? FIRE : FIRE_2;
+        this.sprite.sprite = this.frames[~~((G.clock + this.created) % 0.5 / 0.25)];
 
         if (G.clock - this.created > 4) {
             this.remove();

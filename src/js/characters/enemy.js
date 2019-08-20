@@ -180,7 +180,7 @@ class Enemy extends Character {
             remove(SPRITES, this.sprite);
         });
 
-        dropFire(this.x, this.y, this.z);
+        dropFire(this.x, this.y, this.z, GREEN_FIRE_FRAMES);
 
         this.sprite.sprite = createCanvas(this.spriteCanvas.width, this.spriteCanvas.height, (ctx, can) => {
             ctx.translate(0, can.height);

@@ -82,9 +82,11 @@ class Bullet {
         remove(SPRITES, this.sprite);
 
         if (this.explodes) {
-            if (this.targets[0] == P) {
-                dropFire(beforeX, beforeY, this.z);
-            } else {
+            // Drop some fire
+            const isEnemyGenerated = this.targets[0] == P;
+            dropFire(beforeX, beforeY, this.z, isEnemyGenerated ? GREEN_FIRE_FRAMES : FIRE_FRAMES);
+
+            if (!isEnemyGenerated) {
                 explosion(beforeX, beforeY, this.z, BLOCK_SIZE / 2);
             }
         }
