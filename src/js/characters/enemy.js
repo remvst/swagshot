@@ -103,7 +103,11 @@ class Enemy extends Character {
 
         this.radius = this.width * 0.6;
 
-        this.setWeapon(new (pick([EnemySpreadWeapon, EnemyBurstWeapon]))(this));
+        this.setWeapon(new (pick([
+            EnemySpreadWeapon,
+            EnemyBurstWeapon,
+            EnemyFireWeapon
+        ]))(this));
     }
 
     setWeapon(weapon) {
@@ -172,7 +176,11 @@ class Enemy extends Character {
 
         const duration = abs(-BLOCK_SIZE / 4 - this.z) / BLOCK_SIZE;
         interp(this.sprite, 'z', this.z, -BLOCK_SIZE / 4, duration);
-        interp(this.sprite, 'f', 0, 0, 0, 1.5, null, () => remove(SPRITES, this.sprite));
+        interp(this.sprite, 'f', 0, 0, 0, duration + 0.5, null, () => {
+            remove(SPRITES, this.sprite);
+        });
+
+        dropFire(this.x, this.y, this.z);
 
         this.sprite.sprite = createCanvas(this.spriteCanvas.width, this.spriteCanvas.height, (ctx, can) => {
             ctx.translate(0, can.height);

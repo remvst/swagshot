@@ -351,3 +351,37 @@ const HEALTH_ITEM = pixelate(createCanvas(100, 60, (ctx, can) => {
     ctx.fillRect(can.width / 2 - crossThickness / 2, can.height * 0.2 + (can.height * 0.8 - crossLength) / 2, crossThickness, crossLength);
     ctx.fillRect((can.width - crossLength) / 2, can.height * 0.2 + (can.height * 0.8 - crossThickness) / 2, crossLength, crossThickness);
 }), 5);
+
+const FIRE = pixelate(createCanvas(80, 120, (ctx, can) => {
+    const grad = ctx.createRadialGradient(
+        can.width / 2, can.height * 0.7, 0,
+        can.width / 2, can.height * 0.7, can.width / 2
+    );
+    grad.addColorStop(0, '#0f0');
+    grad.addColorStop(1, '#080');
+
+    const points = [];
+
+    for (let ratio = 0 ; ratio <= 1 ; ratio += 0.1) {
+        const waveCenterX = 0.5 + sin(ratio * PI * 3) * 0.2;
+        points.unshift({'x': waveCenterX - ratio / 2, 'y': ratio});
+        points.push({'x': waveCenterX + ratio / 2, 'y': ratio});
+    }
+
+    ctx.fillStyle = grad;
+    ctx.strokeStyle = '#0f0';
+    ctx.lineWidth = 5;
+    ctx.beginPath();
+    points.forEach(pt => {
+        ctx.lineTo(can.width * pt.x, can.height * pt.y);
+    });
+    ctx.stroke();
+    ctx.fill();
+}), 10);
+
+// TODO create a scaleCanvas method (can be used for enemies too)
+const FIRE_2 = createCanvas(FIRE.width, FIRE.height, (ctx, can) => {
+    ctx.translate(can.width, 0);
+    ctx.scale(-1, 1);
+    ctx.drawImage(FIRE, 0, 0);
+});

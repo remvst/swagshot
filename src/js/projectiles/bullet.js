@@ -82,7 +82,11 @@ class Bullet {
         remove(SPRITES, this.sprite);
 
         if (this.explodes) {
-            explosion(beforeX, beforeY, this.z, BLOCK_SIZE / 2);
+            if (this.targets[0] == P) {
+                dropFire(beforeX, beforeY, this.z);
+            } else {
+                explosion(beforeX, beforeY, this.z, BLOCK_SIZE / 2);
+            }
         }
 
         // Add some particles

@@ -12,6 +12,8 @@
 
     "src/js/projectiles/bullet.js",
     "src/js/projectiles/explosion.js",
+    "src/js/projectiles/fire.js",
+    "src/js/projectiles/drop-fire.js",
 
     "src/js/weapons/weapon.js",
     "src/js/weapons/rocket-launcher.js",
@@ -20,6 +22,7 @@
     "src/js/weapons/pistol.js",
     "src/js/weapons/enemy-spread-weapon.js",
     "src/js/weapons/enemy-burst-weapon.js",
+    "src/js/weapons/enemy-fire-weapon.js",
 
     "src/js/items/item.js",
     "src/js/items/weapon-item.js",
