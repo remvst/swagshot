@@ -115,6 +115,7 @@ class Player extends Character {
     die() {
         super.die();
         this.verticalAngle = 0;
+        this.headTilt = 0;
         // TODO trigger game over
     }
 }

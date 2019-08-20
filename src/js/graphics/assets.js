@@ -46,8 +46,6 @@ addNoise = (can, pixelSize, color) => {
 
 scaleCanvas = (can, x, y) => {
     return createCanvas(can.width, can.height, ctx => {
-        console.log(can.width, can.height);
-        console.log(can.width * (0.5 - 0.5 * x), can.height * (0.5 - 0.5 * y));
         ctx.translate(can.width * (0.5 - 0.5 * x), can.height * (0.5 - 0.5 * y));
         ctx.scale(x, y);
         ctx.drawImage(can, 0, 0);
