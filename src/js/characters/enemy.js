@@ -171,7 +171,16 @@ class Enemy extends Character {
         interp(this.sprite, 'z', this.z, -BLOCK_SIZE / 4, duration);
         interp(this.sprite, 'f', 0, 0, 0, 1.5, null, () => remove(SPRITES, this.sprite));
 
-        this.sprite.sprite = tintCanvas(this.spriteCanvas, 'rgba(0,0,0,0.8)');
+        this.sprite.sprite = createCanvas(this.spriteCanvas.width, this.spriteCanvas.height, (ctx, can) => {
+            ctx.translate(0, can.height);
+            ctx.scale(1, -1);
+
+            ctx.drawImage(this.spriteCanvas, 0, 0);
+
+            ctx.globalCompositeOperation = 'source-atop';
+            ctx.fillStyle = 'rgba(0,0,0,0.8)';
+            ctx.fillRect(0, 0, can.width, can.height);
+        });
     }
 
     hurt(source, amount) {
