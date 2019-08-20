@@ -4,7 +4,7 @@ class RocketLauncher extends Weapon {
         this.shotInterval = 0.5;
         this.trailSize = this.projectileSize = 10;
         this.sprite = ROCKET_LAUNCHER;
-        this.bulletSpeed = BLOCK_SIZE * 8;
+        this.bulletSpeed = BLOCK_SIZE * 10;
         this.explodes = true;
     }
 }

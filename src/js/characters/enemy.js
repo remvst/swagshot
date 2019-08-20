@@ -99,15 +99,24 @@ class Enemy extends Character {
         this.enemies = [P];
 
         this.nextTrajectory = 0;
+        this.nextShot = 0;
 
-        this.radius = this.width;
+        this.radius = this.width * 0.6;
+
+        this.setWeapon(new EnemySpreadWeapon(this));
+        // this.setWeapon(new EnemyBurstWeapon(this));
+    }
+
+    setWeapon(weapon) {
+        super.setWeapon(weapon);
+        weapon.ammoPerShot = 0;
     }
 
     cycle(e) {
         super.cycle(e);
 
         if (G.clock >= this.nextTrajectory || dist(this, this.target) < 10) {
-            this.aggressive = dist(P, this) < BLOCK_SIZE * 5;
+            this.aggressive = dist(P, this) < BLOCK_SIZE * 5 && P.health;
 
             const referencePoint = this.aggressive ? P : this;
             this.target = {
@@ -115,7 +124,7 @@ class Enemy extends Character {
                 'y': limit(0, referencePoint.y + rnd(-1, 1) * BLOCK_SIZE * 4, W.matrix.length * BLOCK_SIZE),
             };
             this.nextTrajectory = G.clock + 2;
-            this.aggressive = dist(P, this) < BLOCK_SIZE * 5;
+            this.aggressive = dist(P, this) < BLOCK_SIZE * 8;
         }
 
         const angleDiff = normalize(angleBetween(this, this.target) - this.angle);
@@ -140,17 +149,13 @@ class Enemy extends Character {
             P.y = this.y + sin(angle) * this.width * 1.2;
         }
 
-        const angleDiffToFacing = abs(normalize(this.angle - P.angle));
-        const angleDiffToFull = max(angleDiffToFacing, PI - angleDiffToFacing);
-
-        // this.sprite.width = this.spriteCanvas.width * angleDiffToFull;
         const angleToPlayer = angleBetween(this, P);
-
         const differenceToFacingPlayer = abs(normalize(this.angle - angleToPlayer));
 
-        const facingPlayer = differenceToFacingPlayer < PI / 2;
+        const facingPlayer = differenceToFacingPlayer < PI / 2 || this.aggressive;
         this.sprite.sprite = G.clock - this.lastDamage < 0.05 ? this.hurtSpriteCanvas : (facingPlayer ? this.spriteCanvas : this.sideCanvas);
 
+        // TODO maybe bring back
         // const scale = 1 - min(differenceToFacingPlayer, PI - differenceToFacingPlayer);
         // this.sprite.width = this.width * (scale * 0.4 + 0.6);
     }
@@ -179,5 +184,13 @@ class Enemy extends Character {
     hurt(source, amount) {
         super.hurt(source, amount);
         P.lastHit = G.clock;
+    }
+
+    shootAngle() {
+        return angleBetween(this, P);
+    }
+
+    shootVerticalAngle() {
+        return atan2(-(P.z - this.z), P.x - this.x);
     }
 }

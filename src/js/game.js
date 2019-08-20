@@ -52,7 +52,7 @@ class Game {
                 const weaponOffsetX = sin(P.movingClock * PI * 2) * 10;
                 const weaponOffsetY = cos(P.movingClock * PI * 4) * 10 +
                     max(0, 1 - (G.clock - P.weapon.lastShot) / 0.15) * 50 +
-                    20 +
+                    30 +
                     P.landingProgress() * 20 +
                     max(0, 1 - (G.clock - P.weapon.created) / 0.5) * P.weapon.sprite.height;
 
@@ -72,7 +72,7 @@ class Game {
                 });
             }
 
-            if (G.clock - max(P.lastDamage, P.lastPickup) < 0.15) {
+            if (G.clock - max(P.lastDamage, P.lastPickup) < 0.35 || !P.health) {
                 wrap(() => {
                     R.globalAlpha = 0.2;
                     R.fillStyle = P.lastDamage > P.lastPickup ? '#f00' : '#fff';
@@ -113,10 +113,10 @@ class Game {
     }
 
     setupNewGame() {
-        W = new World();
-
         P = new Player();
         P.setWeapon(new Pistol(P));
+
+        W = new World();
     }
 
 }

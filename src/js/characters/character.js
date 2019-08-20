@@ -24,13 +24,13 @@ class Character {
 
         // Ugly collision handling
         this.x += x;
-        if (hasBlock(this.x, this.y, this.radius) && this.z < BLOCK_SIZE / 2) {
+        if (hasBlock(this.x, this.y, this.collisionRadius || this.radius) && this.z < BLOCK_SIZE / 2) {
             this.x = beforeX;
             this.vX = 0;
         }
 
         this.y += y;
-        if (hasBlock(this.x, this.y, this.radius) && this.z < BLOCK_SIZE / 2) {
+        if (hasBlock(this.x, this.y, this.collisionRadius || this.radius) && this.z < BLOCK_SIZE / 2) {
             this.y = beforeY;
             this.vY = 0;
         }
@@ -98,5 +98,13 @@ class Character {
 
     eyeZ() {
         return this.z;
+    }
+
+    shootAngle() {
+        return this.angle;
+    }
+
+    shootVerticalAngle() {
+        return this.verticalAngle;
     }
 }

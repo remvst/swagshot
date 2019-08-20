@@ -1,5 +1,5 @@
 class Bullet {
-    constructor(x, y, z, speed, angle, verticalAngle, targets, projectileSize, trailSize, explodes) {
+    constructor(x, y, z, speed, angle, verticalAngle, targets, projectileSize, trailSize, explodes, trailColor) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -9,6 +9,7 @@ class Bullet {
         this.targets = targets;
         this.trailSize = trailSize;
         this.explodes = explodes;
+        this.trailColor = trailColor;
         this.created = G.clock;
 
         SPRITES.push(this.particle = {
@@ -39,9 +40,9 @@ class Bullet {
         }
 
         this.targets.forEach(target => {
-            if (dist(target, this) < target.width / 2 && abs(target.z - this.z) < target.height / 2) {
+            if (dist(target, this) < target.radius && abs(target.z - this.z) < target.radius) {
                 this.remove(beforeX, beforeY, target);
-                target.hurt(this, 0.2);
+                target.hurt(this, target === P ? 0.05 : 0.2);
             }
         });
 
@@ -56,7 +57,7 @@ class Bullet {
             'alpha': 1,
             'width': this.trailSize,
             'height': this.trailSize,
-            'color': '#fff'
+            'color': this.trailColor
         };
         SPRITES.push(trail);
         interp(trail, 'alpha', 1, 0, 0.8, 0, null, () => remove(SPRITES, trail));

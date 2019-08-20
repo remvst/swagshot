@@ -12,6 +12,7 @@ class Weapon {
         this.ammo = 1;
         this.created = G.clock;
         this.explodes = false;
+        this.trailColor = '#fff';
     }
 
     cycle(e) {
@@ -19,9 +20,9 @@ class Weapon {
     }
 
     maybeShoot() {
-        if (G.clock - this.lastShot > this.shotInterval) {
-            this.shoot();
+        if (G.clock - this.lastShot > this.shotInterval && this.character.health > 0) {
             this.lastShot = G.clock;
+            this.shoot();
         }
     }
 
@@ -47,13 +48,16 @@ class Weapon {
                 this.character.y + sin(this.character.angle) * BLOCK_SIZE * 0.1,
                 this.character.eyeZ() - 10,
                 this.bulletSpeed,
-                this.character.angle + rnd(-1, 1) * this.angleRandomFactor,
-                this.character.verticalAngle + rnd(-1, 1) * this.angleRandomFactor,
+                this.character.shootAngle() + rnd(-1, 1) * this.angleRandomFactor,
+                this.character.shootVerticalAngle() + rnd(-1, 1) * this.angleRandomFactor,
                 this.character.enemies,
                 this.projectileSize,
                 this.trailSize,
-                this.explodes
+                this.explodes,
+                this.trailColor
             );
+
+
         }
     }
 }

@@ -15,10 +15,12 @@ class Player extends Character {
         this.headTilt = 0;
         this.lastLanding = 0;
         this.lastHit = 0;
+        this.lastPickup = 0;
 
         this.enemies = ENEMIES;
 
-        this.radius = BLOCK_SIZE * 0.1;
+        this.radius = BLOCK_SIZE * 0.5;
+        this.collisionRadius = BLOCK_SIZE * 0.1;
     }
 
     cycle(e) {
