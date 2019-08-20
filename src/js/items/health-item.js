@@ -4,6 +4,6 @@ class HealthItem extends Item {
     }
 
     pickup() {
-        P.health = min(1, P.health + 0.3);
+        P.health = min(1, P.health + 0.5);
     }
 }

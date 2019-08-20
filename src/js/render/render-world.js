@@ -217,9 +217,9 @@ function renderWorld() {
     // R.fillStyle = '#000';
     // fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     //
-    // translate(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
-    // rotate(P.headTilt);
-    // translate(-CANVAS_WIDTH / 2, -CANVAS_HEIGHT / 2);
+    translate(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
+    rotate(P.headTilt);
+    translate(-CANVAS_WIDTH / 2, -CANVAS_HEIGHT / 2);
     //
     // wrap(() => {
     //     const offset = -(P.angle / FIELD_OF_VIEW * CANVAS_WIDTH);

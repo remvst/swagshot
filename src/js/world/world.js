@@ -20,8 +20,8 @@ class World {
         // enemy.z = 0;
         // return;
 
-        for (let row = 0 ; row < this.matrix.length ; row++) {
-            for (let col = 0 ; col < this.matrix[0].length ; col++) {
+        for (let row = 10 ; row < this.matrix.length ; row++) {
+            for (let col = 10 ; col < this.matrix[0].length ; col++) {
                 if (this.matrix[row][col]) {
                     continue;
                 }

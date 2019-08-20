@@ -140,7 +140,7 @@ class Enemy extends Character {
         this.shadowSprite.x = this.x + cos(P.angle);
         this.shadowSprite.y = this.y + sin(P.angle);
 
-        if (dist(this, P) < this.width * 1.2 && this.z - P.z < this.height / 2) {
+        if (dist(this, P) < this.width * 1.2 && this.z - P.z < this.height / 2 && P.health) {
             const angle = angleBetween(this, P);
 
             const newX = this.x + cos(angle) * this.width * 1.2;

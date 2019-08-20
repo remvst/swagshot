@@ -3,7 +3,7 @@ class Character {
         this.x = this.y = this.z = 0;
 
         this.baseBloodColor = [0xf, 0, 0];
-        this.lastDamage = 0;
+        this.lastDamage = -1;
         this.health = 1;
 
         this.angle = Math.PI / 4;

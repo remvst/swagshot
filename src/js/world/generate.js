@@ -26,6 +26,8 @@ generateWorld = () => {
 
         ctx.fillRect(0, 0, can.width, can.height);
 
+        ctx.clearRect(4, 4, 3, 3);
+
         for (let x = 5 ; x < can.width ; x += 5) {
             clearPath(x, 5, x, can.height - 5);
             clearPath(5, x, can.height - 5, x);

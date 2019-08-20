@@ -13,9 +13,9 @@ class Player extends Character {
         this.movingClock = 0;
 
         this.headTilt = 0;
-        this.lastLanding = 0;
-        this.lastHit = 0;
-        this.lastPickup = 0;
+        this.lastLanding = -1;
+        this.lastHit = -1;
+        this.lastPickup = -1;
 
         this.enemies = ENEMIES;
 
