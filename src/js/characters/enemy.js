@@ -103,8 +103,7 @@ class Enemy extends Character {
 
         this.radius = this.width * 0.6;
 
-        // this.setWeapon(new EnemySpreadWeapon(this));
-        // this.setWeapon(new EnemyBurstWeapon(this));
+        this.setWeapon(new (pick([EnemySpreadWeapon, EnemyBurstWeapon]))(this));
     }
 
     setWeapon(weapon) {
@@ -131,10 +130,10 @@ class Enemy extends Character {
         this.angle += limit(-e * PI / 4, angleDiff, e * PI / 4);
 
         const speed = this.aggressive ? 200 : 100;
-        // this.moveBy(
-        //     cos(this.angle) * e * speed,
-        //     sin(this.angle) * e * speed
-        // );
+        this.moveBy(
+            cos(this.angle) * e * speed,
+            sin(this.angle) * e * speed
+        );
 
         this.sprite.x = this.x;
         this.sprite.y = this.y;
@@ -170,7 +169,6 @@ class Enemy extends Character {
 
         const duration = abs(-BLOCK_SIZE / 4 - this.z) / BLOCK_SIZE;
         interp(this.sprite, 'z', this.z, -BLOCK_SIZE / 4, duration);
-
         interp(this.sprite, 'f', 0, 0, 0, 1.5, null, () => remove(SPRITES, this.sprite));
 
         this.sprite.sprite = tintCanvas(this.spriteCanvas, 'rgba(0,0,0,0.8)');

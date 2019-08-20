@@ -111,4 +111,10 @@ class Player extends Character {
     headTilt() {
         return (!!w.down[KEYBOARD_A] - !!w.down[KEYBOARD_D]) * PI / 128;
     }
+
+    die() {
+        super.die();
+        this.verticalAngle = 0;
+        // TODO trigger game over
+    }
 }

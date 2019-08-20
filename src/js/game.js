@@ -101,6 +101,9 @@ class Game {
                     'floorTiles: ' + G.floorTiles,
                     'sortIterations: ' + G.sortIterations,
                     'sortTime: ' + G.sortTime,
+                    'topSprites: ' + G.topSprites,
+                    'bottomSprites: ' + G.bottomSprites,
+                    'decorationParticles: ' + G.decorationParticles,
                     'renderMinimap: ' + G.renderMinimap,
                 ];
                 let y = 20;

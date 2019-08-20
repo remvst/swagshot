@@ -259,7 +259,7 @@ function renderWorld() {
     G.castIterations = 0;
     G.castTime = measure(() => castWindow(-1, SLICE_COUNT + 1));
 
-    SPRITES.forEach(sprite => renderSprite(sprite, true));
+    G.topSprites = measure(() => SPRITES.forEach(sprite => renderSprite(sprite, true)));
 
     G.renderFloor = measure(() => renderFloor(-BLOCK_SIZE / 2, BLOCK_SIZE * 4, FLOOR_SPRITE));
     // G.renderCeiling = measure(() => renderFloor(BLOCK_SIZE / 2, BLOCK_SIZE * 2, FLOOR_SPRITE));
@@ -273,15 +273,15 @@ function renderWorld() {
         return dist(b, P) - dist(a, P);
     }));
 
-    SPRITES.forEach(sprite => renderSprite(sprite));
+    G.bottomSprites = measure(() => SPRITES.forEach(sprite => renderSprite(sprite)));
 
-    DECORATION_PARTICLES.forEach(particle => {
+    G.decorationParticles = measure(() => DECORATION_PARTICLES.forEach(particle => {
         particle.x = round((P.x - particle.offsetX()) / REPEAT) * REPEAT + particle.offsetX();
         particle.y = round((P.y - particle.offsetY()) / REPEAT) * REPEAT + particle.offsetY();
         particle.z = particle.offsetZ();
 
         renderPoint(particle, 1, 1, 0, REPEAT, particle.render);
-    });
+    }));
 }
 
 const REPEAT = BLOCK_SIZE * 6;
@@ -310,8 +310,8 @@ function renderSprite(sprite, aboveBlocks) {
         R.globalAlpha = (isNaN(sprite.alpha) ? 1 : sprite.alpha) * alpha;
 
         if (sprite.sprite) {
-            const xStart = x - width / 2;
-            const xEnd = x + width / 2;
+            const xStart = ~~(x - width / 2);
+            const xEnd = ~~(x + width / 2);
 
             for (let xSlice = xStart ; xSlice < xEnd ; xSlice += SLICE_WIDTH) {
                 const xRatioOnScreen = (xSlice / CANVAS_WIDTH) * FIELD_OF_VIEW;
@@ -324,7 +324,7 @@ function renderSprite(sprite, aboveBlocks) {
 
                     drawImage(
                         sprite.sprite,
-                        ratio * sprite.sprite.width, 0, (ratioNext - ratio) * sprite.sprite.width, sprite.sprite.height,
+                        (ratio * sprite.sprite.width), 0, (ratioNext - ratio) * sprite.sprite.width, sprite.sprite.height,
                         xSlice - SLICE_WIDTH / 2, y - height / 2, SLICE_WIDTH, height
                     );
                 }
@@ -334,7 +334,7 @@ function renderSprite(sprite, aboveBlocks) {
             R.fillStyle = sprite.color;
             fillRect(x - width / 2, y - height / 2, width, height);
         }
-    }, true);
+    }, sprite.sprite);
 }
 
 function randomSin(offset, halfAmplitude, period) {

@@ -28,13 +28,13 @@ renderMinimap = () => {
                 );
 
                 // TODO remove
-                if (DEBUG) {
-                    wrap(() => {
-                        rotate(enemy.angle);
-                        R.fillStyle = '#fff';
-                        fillRect(0, 0, 20, 1);
-                    });
-                }
+                // if (DEBUG) {
+                //     wrap(() => {
+                //         rotate(enemy.angle);
+                //         R.fillStyle = '#fff';
+                //         fillRect(0, 0, 20, 1);
+                //     });
+                // }
 
                 rotate(P.angle + PI / 2);
 
