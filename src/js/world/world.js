@@ -14,11 +14,11 @@ class World {
         // fire.y = 10.5 * BLOCK_SIZE;
         // // return;
         //
-        const enemy = new Enemy();
-        enemy.x = 10.5 * BLOCK_SIZE;
-        enemy.y = 10.5 * BLOCK_SIZE;
-        enemy.z = 0;
-        return;
+        // const enemy = new Enemy();
+        // enemy.x = 10.5 * BLOCK_SIZE;
+        // enemy.y = 10.5 * BLOCK_SIZE;
+        // enemy.z = 0;
+        // return;
 
         for (let row = 0 ; row < this.matrix.length ; row++) {
             for (let col = 0 ; col < this.matrix[0].length ; col++) {

@@ -41,14 +41,16 @@ class Character {
     }
 
     hurt(source, amount) {
-        this.lastDamage = G.clock;
-        this.health = max(0, this.health - amount);
+        if (this.health) {
+            this.lastDamage = G.clock;
+            this.health = max(0, this.health - amount);
 
-        if (!this.health)  {
-            this.die();
+            if (!this.health)  {
+                this.die();
+            }
+
+            this.emitBloodParticles(!this.health * 30 + 10);
         }
-
-        this.emitBloodParticles(!this.health * 30 + 10);
     }
 
     emitBloodParticles(particleCount) {

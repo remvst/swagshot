@@ -41,15 +41,13 @@ class Enemy extends Character {
         ]);
 
         this.spriteCanvas = createCanvas((matrix[0].length * 2), matrix.length, (ctx, can) => {
-            const half = () => {
-                renderMatrix(matrix, ctx, x => {
-                    if (x == 1) {
-                        return randomizeColor(this.baseBloodColor);
-                    } else {
-                        return randomizeColor(invertColor(this.baseBloodColor));
-                    }
-                });
-            };
+            const half = () => renderMatrix(matrix, ctx, x => {
+                if (x == 1) {
+                    return randomizeColor(this.baseBloodColor);
+                } else {
+                    return randomizeColor(invertColor(this.baseBloodColor));
+                }
+            });
 
             half();
             ctx.translate(can.width, 0);
@@ -58,11 +56,7 @@ class Enemy extends Character {
         });
 
         this.sideCanvas = createCanvas(matrix[0].length * 2, matrix.length, (ctx, can) => {
-            const half = () => {
-                renderMatrix(matrix, ctx, () => {
-                    return randomizeColor(this.baseBloodColor);
-                });
-            };
+            const half = () => renderMatrix(matrix, ctx, () => randomizeColor(this.baseBloodColor));
 
             half();
             ctx.translate(can.width, 0);
@@ -182,16 +176,7 @@ class Enemy extends Character {
 
         dropFire(this.x, this.y, this.z, GREEN_FIRE_FRAMES);
 
-        this.sprite.sprite = createCanvas(this.spriteCanvas.width, this.spriteCanvas.height, (ctx, can) => {
-            ctx.translate(0, can.height);
-            ctx.scale(1, -1);
-
-            ctx.drawImage(this.spriteCanvas, 0, 0);
-
-            ctx.globalCompositeOperation = 'source-atop';
-            ctx.fillStyle = 'rgba(0,0,0,0.8)';
-            ctx.fillRect(0, 0, can.width, can.height);
-        });
+        this.sprite.sprite = tintCanvas(scaleCanvas(this.spriteCanvas, 1, -1), 'rgba(0,0,0,0.8)');
     }
 
     hurt(source, amount) {
