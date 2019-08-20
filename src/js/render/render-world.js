@@ -334,7 +334,7 @@ function renderSprite(sprite, aboveBlocks) {
             R.fillStyle = sprite.color;
             fillRect(x - width / 2, y - height / 2, width, height);
         }
-    }, sprite.sprite);
+    }, sprite.sprite || aboveBlocks);
 }
 
 function randomSin(offset, halfAmplitude, period) {
