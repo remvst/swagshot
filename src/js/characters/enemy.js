@@ -144,8 +144,11 @@ class Enemy extends Character {
 
         if (dist(this, P) < this.width * 1.2 && this.z - P.z < this.height / 2) {
             const angle = angleBetween(this, P);
-            P.x = this.x + cos(angle) * this.width * 1.2;
-            P.y = this.y + sin(angle) * this.width * 1.2;
+
+            const newX = this.x + cos(angle) * this.width * 1.2;
+            const newY = this.y + sin(angle) * this.width * 1.2;
+
+            P.moveBy(newX - P.x, newY - P.y);
         }
 
         const angleToPlayer = angleBetween(this, P);

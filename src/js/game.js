@@ -26,11 +26,12 @@ class Game {
                 translate(rnd(-20, 20), rnd(-20, 20));
             }
 
-            wrap(renderWorld);
-            wrap(renderHud);
-            G.renderMinimap = measure(() => wrap(renderMinimap));
+            G.renderWorld = measure(() => wrap(renderWorld));
 
             if (P.health) {
+                G.renderHud = measure(() => wrap(renderHud));
+                G.renderMinimap = measure(() => wrap(renderMinimap));
+
                 wrap(() => {
                     translate(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
                     rotate(PI / 4);
@@ -85,31 +86,48 @@ class Game {
 
         if (DEBUG) {
             wrap(() => {
-                R.font = '10pt ' + monoFont;
+                R.font = '7pt ' + monoFont;
                 fs('#fff');
+
+                const fpsGauge = [];
+                for (let i = 0 ; i < (G.fps / 60) * 20 ; i++) {
+                    fpsGauge.push('-');
+                }
 
                 const info = [
                     'fps: ' + G.fps,
+                    fpsGauge.join(''),
+                    '',
+                    '--------------------',
                     'sprites: ' + SPRITES.length,
+                    'enemies: ' + ITEMS.length,
+                    'cyclables: ' + CYCLABLES.length,
+                    'enemies: ' + ENEMIES.length,
+                    '--------------------',
+                    'renderWorld: ' + G.renderWorld,
+                    'castTime: ' + G.castTime,
                     'casts: ' + G.casts,
                     'interpolations: ' + G.interpolations,
                     'cast+interp: ' + (G.casts + G.interpolations),
-                    'castTime: ' + G.castTime,
+                    'castIterations: ' + G.castIterations,
+                    '--------------------',
                     'renderWalls: ' + G.renderWalls,
                     'renderFloor: ' + G.renderFloor,
-                    'castIterations: ' + G.castIterations,
                     'floorTiles: ' + G.floorTiles,
-                    'sortIterations: ' + G.sortIterations,
-                    'sortTime: ' + G.sortTime,
+                    '--------------------',
                     'topSprites: ' + G.topSprites,
                     'bottomSprites: ' + G.bottomSprites,
                     'decorationParticles: ' + G.decorationParticles,
+                    'sortIterations: ' + G.sortIterations,
+                    'sortTime: ' + G.sortTime,
+                    '--------------------',
+                    'renderHud: ' + G.renderHud,
                     'renderMinimap: ' + G.renderMinimap,
                 ];
                 let y = 20;
                 info.forEach(info => {
                     fillText(info, CANVAS_WIDTH - 200, y);
-                    y += 20;
+                    y += 10;
                 });
             });
         }
