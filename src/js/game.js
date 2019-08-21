@@ -15,6 +15,7 @@ class Game {
     }
 
     cycle(e) {
+        e *= !onMenu;
         G.clock += e;
 
         W.cycle(e);

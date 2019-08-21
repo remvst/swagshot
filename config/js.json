@@ -49,6 +49,7 @@
     "src/js/sound/sounds.js",
 
     "src/js/keyboard.js",
+    "src/js/menu.js",
     "src/js/game.js",
     "src/js/main.js"
 ]

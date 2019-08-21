@@ -10,3 +10,5 @@ const CYCLABLES = [];
 const ENEMIES = [];
 const ITEMS = [];
 const MINIMAP_ELEMENTS = [];
+
+let onMenu = true;

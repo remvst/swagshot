@@ -1,6 +1,8 @@
 onload = () => {
     onresize(); // trigger initial sizing pass
 
+    setupMenu();
+
     const can = document.querySelector('canvas');
     can.width = CANVAS_WIDTH;
     can.height = CANVAS_HEIGHT;
@@ -50,7 +52,7 @@ onload = () => {
 
 onmousemove = e => {
     // TODO check caniuse
-    if (P.health) {
+    if (!onMenu && P.health) {
         P.angle += e.movementX / document.body.clientWidth * 2 * Math.PI;
         P.verticalAngle += e.movementY / document.body.clientHeight * 2 * Math.PI;
     }
@@ -64,4 +66,6 @@ onmouseup = () => {
     P.weapon.releaseTrigger();
 };
 
-onclick = () => document.body.requestPointerLock();
+onclick = () => {
+    !onMenu && document.body.requestPointerLock();
+};
