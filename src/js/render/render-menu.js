@@ -12,8 +12,8 @@ renderMenu = () => {
     fillText('[TO HELL AND BACK]', CANVAS_WIDTH / 2, CANVAS_HEIGHT * 0.25);
 
     // Subtitle
-    R.font = '18pt Courier';
-    fillText(nomangle('WE THOUGHT MARS WAS SAFE'), CANVAS_WIDTH / 2, CANVAS_HEIGHT * 0.35);
+    R.font = '14pt Courier';
+    fillText(nomangle('WE THOUGHT MARS WAS SAFE... IT WASN\'T'), CANVAS_WIDTH / 2, CANVAS_HEIGHT * 0.35);
 
     // Button
     wrap(() => {
