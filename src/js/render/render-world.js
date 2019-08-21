@@ -87,7 +87,7 @@ function castWindow(indexStart, indexEnd) {
 }
 
 function renderWalls() {
-    R.fillStyle = '#250000';
+    R.fillStyle = FOG_COLOR;
 
     for (let i = 0 ; i < SLICE_COUNT ; i++) {
         const distance = dist(CASTED_RAYS[i], P);
@@ -230,10 +230,10 @@ function renderWorld() {
 
     const middleY = lookupOffset() + CANVAS_HEIGHT / 2;
 
-    R.fillStyle = '#a02e00';
+    R.fillStyle = SKY_COLOR;
     fillRect(0, 0, CANVAS_WIDTH, middleY);
 
-    R.fillStyle = '#250000';
+    R.fillStyle = FOG_COLOR;
     fillRect(0, middleY, CANVAS_WIDTH, CANVAS_HEIGHT - middleY);
 
     wrap(() => {
@@ -292,7 +292,7 @@ for (let i = 0 ; i < 200 ; i++) {
         'offsetY': randomSin(random() * REPEAT, rnd(5, 20), rnd(20, 40)),
         'offsetZ': randomSin(rnd(-BLOCK_SIZE / 2, BLOCK_SIZE / 2), rnd(5, 20), rnd(20, 40)),
         'render': (x, y, width, height, alpha) => {
-            R.fillStyle = '#f80';
+            R.fillStyle = DECORATION_PARTICLE_COLOR;
             R.globalAlpha = alpha * 0.4;
             fillRect(x - width / 2, y - height / 2, width, height);
         }

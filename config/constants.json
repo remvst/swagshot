@@ -6,6 +6,11 @@
     "CANVAS_WIDTH": 800,
     "CANVAS_HEIGHT": 600,
 
+    "MOUNTAIN_COLOR": "'#610'",
+    "FOG_COLOR": "'#250000'",
+    "SKY_COLOR": "'#a02e00'",
+    "DECORATION_PARTICLE_COLOR": "'#f80'",
+
     "SLICE_WIDTH": 2,
     "FIELD_OF_VIEW": 1,
     "BLOCK_SIZE": 100,

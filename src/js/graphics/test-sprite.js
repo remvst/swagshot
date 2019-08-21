@@ -239,7 +239,7 @@ const ROCKET_LAUNCHER = pixelate(createCanvas(120, 200, (ctx, can) => {
 
 const MOUNTAINS = createCanvasPattern(80, 40, (ctx, can) => {
     ctx.imageSmoothingEnabled = false;
-    ctx.fillStyle = '#610';
+    ctx.fillStyle = MOUNTAIN_COLOR;
     ctx.beginPath();
     ctx.moveTo(0, can.height);
 
