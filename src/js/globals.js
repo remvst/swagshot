@@ -11,4 +11,8 @@ const ENEMIES = [];
 const ITEMS = [];
 const MINIMAP_ELEMENTS = [];
 
-let onMenu = true;
+let onMenu = true,
+    isMouseDown;
+
+let MOUSE_SENSITIVITY = 0.5;
+let POINTER_LOCKED;

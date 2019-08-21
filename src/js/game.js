@@ -83,7 +83,9 @@ class Game {
             }
         });
 
-        // drawImage(MOUNTAINS, 0, 0);
+        if (onMenu) {
+            wrap(renderMenu);
+        }
 
         if (DEBUG) {
             wrap(() => {

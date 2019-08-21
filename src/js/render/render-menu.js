@@ -1,0 +1,18 @@
+renderMenu = () => {
+    R.globalAlpha = 0.5;
+    R.fillStyle = '#000';
+    fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+
+    R.globalAlpha = 1;
+    R.font = '40pt Helvetica';
+    R.textAlign = 'center';
+    R.textBaseline = 'middle';
+    R.fillStyle = '#fff';
+    fillText('[WORKING TITLE]', CANVAS_WIDTH / 2, CANVAS_HEIGHT * 0.25);
+
+    // Sensitivity track
+    R.font = '14pt Helvetica';
+    fillText(nomangle('MOUSE SENSITIVITY'), CANVAS_WIDTH / 2, SENSITIVITY_SLIDER_Y - 30);
+    fillRect((CANVAS_WIDTH - SENSITIVITY_SLIDER_WIDTH) / 2, SENSITIVITY_SLIDER_Y - SENSITIVITY_SLIDER_TRACK_THICKNESS / 2, SENSITIVITY_SLIDER_WIDTH, SENSITIVITY_SLIDER_TRACK_THICKNESS);
+    fillRect((CANVAS_WIDTH - SENSITIVITY_SLIDER_WIDTH) / 2 + MOUSE_SENSITIVITY * SENSITIVITY_SLIDER_WIDTH - SENSITIVITY_SLIDER_THUMB_SIZE / 2, SENSITIVITY_SLIDER_Y - SENSITIVITY_SLIDER_THUMB_SIZE / 2, SENSITIVITY_SLIDER_THUMB_SIZE, SENSITIVITY_SLIDER_THUMB_SIZE);
+};

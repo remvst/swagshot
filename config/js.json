@@ -6,6 +6,7 @@
     "src/js/render/render-world.js",
     "src/js/render/render-hud.js",
     "src/js/render/render-minimap.js",
+    "src/js/render/render-menu.js",
 
     "src/js/world/world.js",
     "src/js/world/generate.js",
