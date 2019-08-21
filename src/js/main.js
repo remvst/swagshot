@@ -62,6 +62,7 @@ onload = () => {
 
         if (between(0, xRatioOnSlider, 1) && between(0, yRatioOnSlider, 1)) {
             MOUSE_SENSITIVITY = xRatioOnSlider;
+            localStorage[1] = MOUSE_SENSITIVITY;
         }
     };
 
