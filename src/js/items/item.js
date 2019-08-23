@@ -44,5 +44,7 @@ class Item {
         remove(MINIMAP_ELEMENTS, this);
         remove(SPRITES, this.sprite);
         remove(SPRITES, this.shadowSprite);
+
+        itemSound();
     }
 }

@@ -4,6 +4,11 @@ const compiler = require('./js13k-compiler/src/compiler');
 
 const JS_FILES = require('./config/js');
 const CONSTANTS = require('./config/constants');
+const PISTOL_INSTRUMENT = require('./config/pistol-instrument');
+const DAMAGE_INSTRUMENT = require('./config/damage-instrument');
+const ITEM_INSTRUMENT = require('./config/item-instrument');
+const ROCKET_INSTRUMENT = require('./config/rocket-instrument');
+const EXPLOSION_INSTRUMENT = require('./config/explosion-instrument');
 const SONG = require('./config/song-tiny.json');
 const MANGLE_SETTINGS = require('./config/mangle');
 
@@ -22,7 +27,13 @@ compiler.run((tasks) => {
             tasks.loadFiles(JS_FILES),
             tasks.concat(),
             tasks.constants(constants),
-            tasks.constants({'SONG': JSON.stringify(SONG)}),
+            tasks.constants({
+                'PISTOL_INSTRUMENT': JSON.stringify(PISTOL_INSTRUMENT),
+                'DAMAGE_INSTRUMENT': JSON.stringify(DAMAGE_INSTRUMENT),
+                'ITEM_INSTRUMENT': JSON.stringify(ITEM_INSTRUMENT),
+                'ROCKET_INSTRUMENT': JSON.stringify(ROCKET_INSTRUMENT),
+                'EXPLOSION_INSTRUMENT': JSON.stringify(EXPLOSION_INSTRUMENT),
+            }),
             tasks.macro('evaluate'),
             tasks.macro('nomangle')
         ];

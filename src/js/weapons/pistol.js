@@ -6,6 +6,6 @@ class Pistol extends Weapon {
         this.sprite = PISTOL;
         this.bulletSpeed = BLOCK_SIZE * 30;
         this.ammoPerShot = 0;
-        // this.sound = stepSound;
+        this.sound = pistolSound;
     }
 }

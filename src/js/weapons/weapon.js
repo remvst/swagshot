@@ -24,9 +24,9 @@ class Weapon {
             this.lastShot = G.clock;
             this.shoot();
 
-            // if (this.sound) {
-            //     this.sound();
-            // }
+            if (this.sound) {
+                this.sound();
+            }
         }
     }
 

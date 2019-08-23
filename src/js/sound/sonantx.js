@@ -311,6 +311,17 @@ class SoundGenerator {
             ag.getAudioBuffer(callBack);
         });
     }
+
+    getAudioGenerator(n, callBack) {
+        var bufferSize = (this.attack + this.sustain + this.release - 1) + (32 * this.rowLen);
+        var self = this;
+        genBuffer(bufferSize, buffer => {
+            self.genSound(n, buffer, 0);
+            applyDelay(buffer, bufferSize, self.instr, self.rowLen, function() {
+                callBack(new AudioGenerator(buffer));
+            });
+        });
+    }
 }
 
 class MusicGenerator {

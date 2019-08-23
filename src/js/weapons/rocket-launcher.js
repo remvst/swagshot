@@ -6,6 +6,6 @@ class RocketLauncher extends Weapon {
         this.sprite = ROCKET_LAUNCHER;
         this.bulletSpeed = BLOCK_SIZE * 20;
         this.explodes = true;
-        // this.sound = rocketSound;
+        this.sound = rocketSound;
     }
 }

@@ -5,18 +5,15 @@ class Enemy extends Character {
         const settings = pick([
             {
                 'sprites': ROBOT_1,
-                'z': -BLOCK_SIZE / 2,
-                'weaponType': EnemyBurstWeapon
+                'z': -BLOCK_SIZE / 2
             },
             {
                 'sprites': ROBOT_3,
-                'z': rnd(1.5, 2.5) * BLOCK_SIZE,
-                'weaponType': EnemyFireWeapon
+                'z': rnd(1.5, 2.5) * BLOCK_SIZE
             },
             {
                 'sprites': ROBOT_2,
-                'z': -BLOCK_SIZE / 2,
-                'weaponType': EnemySpreadWeapon
+                'z': -BLOCK_SIZE / 2
             }
         ]);
 
@@ -53,11 +50,14 @@ class Enemy extends Character {
         this.enemies = [P];
 
         this.nextTrajectory = 0;
-        this.nextShot = 0;
 
         this.radius = this.width * 0.6;
 
-        this.setWeapon(new settings.weaponType(this));
+        this.setWeapon(new (pick([
+            EnemyFireWeapon,
+            EnemyBurstWeapon,
+            EnemySpreadWeapon
+        ]))(this));
     }
 
     bloodParticleColor() {
@@ -73,6 +73,11 @@ class Enemy extends Character {
         super.cycle(e);
 
         if (G.clock >= this.nextTrajectory || dist(this, this.target) < 10) {
+            if (!this.aggressive) {
+                // Delay the first shot when becoming aggressive
+                this.weapon.lastShot = rnd(1, 2);
+            }
+
             this.aggressive = dist(P, this) < BLOCK_SIZE * 5 && P.health;
 
             const referencePoint = this.aggressive ? P : this;
@@ -134,6 +139,7 @@ class Enemy extends Character {
     hurt(source, amount) {
         super.hurt(source, amount);
         P.lastHit = G.clock;
+        this.aggressive = true;
     }
 
     shootAngle() {
