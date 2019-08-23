@@ -2,7 +2,6 @@ class Character {
     constructor() {
         this.x = this.y = this.z = 0;
 
-        this.baseBloodColor = [0xf, 0, 0];
         this.lastDamage = -1;
         this.health = 1;
 
@@ -37,7 +36,7 @@ class Character {
     }
 
     bloodParticleColor() {
-        return toColor(multiply(this.baseBloodColor, rnd(0.3, 1)));
+        return '#f00';
     }
 
     hurt(source, amount) {
@@ -62,8 +61,8 @@ class Character {
             const size = BLOCK_SIZE * rnd(0.01, 0.05);
 
             const particle = {
-                'x': this.x + rnd(-1, 1) * this.width / 2,
-                'y': this.y + rnd(-1, 1) * this.width / 2,
+                'x': this.x + rnd(-1, 1) * this.radius / 2,
+                'y': this.y + rnd(-1, 1) * this.radius / 2,
                 'alpha': 1,
                 'width': size,
                 'height': size,
@@ -72,32 +71,14 @@ class Character {
             SPRITES.push(particle);
             interp(particle, 'x', particle.x, particle.x + rnd(-30, 30), duration);
             interp(particle, 'y', particle.y, particle.y + rnd(-30, 30), duration);
-            interp(particle, 'z', this.z + rnd(-1, 1) * this.height / 2, -BLOCK_SIZE / 2, duration, 0, easeOutBounce);
+            interp(particle, 'z', this.z + rnd(-1, 1) * this.radius / 2, -BLOCK_SIZE / 2, duration, 0, easeOutBounce);
             interp(particle, 'f', 0, 0, duration + 0.5, 0, null, () => remove(SPRITES, particle));
+
+            console.log(particle);
         }
     }
 
-    // shoot() {
-    //     // TODO use a weapon
-    //     for (let i = 0 ; i < 1 ; i++) {
-    //         new Bullet(
-    //             this.x,
-    //             this.y,
-    //             this.eyeZ() - 10,
-    //             this.angle + rnd(-1, 1) * PI / 128,
-    //             this.verticalAngle + rnd(-1, 1) * PI / 128,
-    //             ENEMIES,
-    //             10,
-    //             10
-    //         );
-    //     }
-    //     this.lastShot = G.clock;
-    //
-    //     // explosion(this.x + cos(this.angle) * BLOCK_SIZE * 4, this.y + sin(this.angle) * BLOCK_SIZE * 4, this.z, BLOCK_SIZE / 2);
-    // }
-
     die() {
-
     }
 
     eyeZ() {

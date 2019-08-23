@@ -2,78 +2,6 @@ class Enemy extends Character {
     constructor() {
         super();
 
-        this.baseBloodColor = multiply(randomBrightColor(), 0.5);
-        this.baseBloodColor = randomGrayColor();
-
-        // const matrix = pick([
-        //     // [
-        //     //     [0, 0, 1, 1, 0],
-        //     //     [0, 1, 1, 1, 1],
-        //     //     [1, 1, 1, 1, 1],
-        //     //     [1, 2, 2, 1, 1],
-        //     //     [1, 1, 1, 1, 1],
-        //     //     [0, 1, 1, 1, 1],
-        //     //     [0, 1, 0, 0, 0],
-        //     //     [0, 1, 1, 0, 0]
-        //     // ],
-        //     // [
-        //     //     [0, 0, 0, 0, 1],
-        //     //     [0, 0, 0, 1, 1],
-        //     //     [0, 0, 1, 1, 1],
-        //     //     [0, 1, 1, 2, 1],
-        //     //     [0, 1, 1, 1, 1],
-        //     //     [0, 0, 1, 0, 1],
-        //     //     [0, 1, 0, 0, 0],
-        //     //     [0, 0, 1, 0, 0]
-        //     // ],
-        //     // [
-        //     //     [0, 0, 0, 0, 1],
-        //     //     [0, 0, 0, 1, 1],
-        //     //     [0, 0, 1, 1, 1],
-        //     //     [0, 1, 1, 1, 1],
-        //     //     [1, 1, 2, 2, 1],
-        //     //     [1, 1, 1, 1, 1],
-        //     //     [0, 0, 1, 1, 1],
-        //     //     [0, 0, 1, 1, 1],
-        //     //     [0, 1, 1, 1, 1],
-        //     //     [0, 1, 1, 1, 1],
-        //     //     [0, 0, 1, 1, 0]
-        //     // ],
-        //     [
-        //         [0, 0, 0, 0, 1, 1],
-        //         [0, 0, 0, 1, 1, 1],
-        //         [0, 0, 1, 1, 1, 1],
-        //         [0, 0, 1, 1, 2, 1],
-        //         [1, 1, 1, 1, 1, 1],
-        //         [0, 1, 1, 1, 1, 1],
-        //         [0, 0, 1, 0, 0, 1]
-        //     ]
-        // ]);
-
-        // this.spriteCanvas = createCanvas((matrix[0].length * 2), matrix.length, (ctx, can) => {
-        //     const half = () => renderMatrix(matrix, ctx, x => {
-        //         if (x == 1) {
-        //             return this.baseBloodColor;
-        //         } else {
-        //             return randomizeColor([0xf, 0, 0]);
-        //         }
-        //     });
-        //
-        //     half();
-        //     ctx.translate(can.width, 0);
-        //     ctx.scale(-1, 1);
-        //     half();
-        // });
-        //
-        // this.sideCanvas = createCanvas(matrix[0].length * 2, matrix.length, (ctx, can) => {
-        //     const half = () => renderMatrix(matrix, ctx, () => randomizeColor(this.baseBloodColor));
-        //
-        //     half();
-        //     ctx.translate(can.width, 0);
-        //     ctx.scale(-1, 1);
-        //     half();
-        // });
-
         const settings = pick([
             {
                 'sprites': ROBOT_1,
@@ -130,6 +58,10 @@ class Enemy extends Character {
         this.radius = this.width * 0.6;
 
         this.setWeapon(new settings.weaponType(this));
+    }
+
+    bloodParticleColor() {
+        return pick(['#111', '#333', '#222', '#ff0', '#f80']);
     }
 
     setWeapon(weapon) {

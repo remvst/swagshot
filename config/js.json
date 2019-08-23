@@ -44,9 +44,12 @@
     "src/js/graphics/create-canvas.js",
     "src/js/graphics/create-pattern.js",
     "src/js/graphics/assets.js",
-    "src/js/graphics/test-sprite.js",
     "src/js/graphics/enemy-sprites.js",
     "src/js/graphics/textures.js",
+    "src/js/graphics/environment-sprites.js",
+    "src/js/graphics/fire-sprites.js",
+    "src/js/graphics/item-sprites.js",
+    "src/js/graphics/weapon-sprites.js",
 
     "src/js/sound/sonantx.js",
     "src/js/sound/song.js",
