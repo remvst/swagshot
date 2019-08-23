@@ -1,4 +1,4 @@
-createRobot1 = eyeColor => addNoise(pixelate(createCanvas(100, 200, (ctx, can) => {
+createRobot1 = eyeColor => createCanvas(100, 200, (ctx, can) => {
     const headRadius = 40;
     const wheelHeight = 30;
     const wheelRadius = 15;
@@ -30,7 +30,7 @@ createRobot1 = eyeColor => addNoise(pixelate(createCanvas(100, 200, (ctx, can) =
     ctx.fillStyle = eyeColor;
     ctx.fillRect(can.width / 2 - 20, 15, 10, 10);
     ctx.fillRect(can.width / 2 + 20, 15, -10, 10);
-}), 5), 5, () => 'rgba(255,255,255, ' + (random() * 0.05) + ')');
+});
 
 createRobot2 = eyeColor => createCanvas(100, 110, (ctx, can) => {
     const cornerRadius = 20;
@@ -61,12 +61,16 @@ createRobot2 = eyeColor => createCanvas(100, 110, (ctx, can) => {
     ctx.fillRect(can.width - 25, 90, -10, 10);
     ctx.strokeRect(can.width - 25, 90, -10, 10);
 
+    ctx.fillStyle = '#111';
+    ctx.fillRect(can.width / 2 - 25, 25, 20, 20);
+    ctx.fillRect(can.width / 2 + 25, 25, -20, 20);
+
     ctx.fillStyle = eyeColor;
     ctx.fillRect(can.width / 2 - 20, 30, 10, 10);
     ctx.fillRect(can.width / 2 + 20, 30, -10, 10);
 });
 
-createRobot3 = eyeColor => addNoise(pixelate(createCanvas(200, 200, (ctx, can) => {
+createRobot3 = eyeColor => createCanvas(200, 200, (ctx, can) => {
     ctx.fillStyle = '#111';
     ctx.beginPath();
     ctx.arc(can.width / 2, can.height / 2, can.width / 2, 0, TWO_PI);
@@ -86,10 +90,10 @@ createRobot3 = eyeColor => addNoise(pixelate(createCanvas(200, 200, (ctx, can) =
     ctx.beginPath();
     ctx.arc(can.width / 2, can.height / 2, 20, 0, TWO_PI);
     ctx.fill();
-}), 5), 5, () => 'rgba(255,255,255, ' + (random() * 0.05) + ')');
+});
 
 createRobotSprites = spriteFunc => {
-    const postProcess = sprite => addNoise(pixelate(sprite, 10), 10, () => 'rgba(255,255,255, ' + (random() * 0.05) + ')');
+    const postProcess = sprite => addNoise(pixelate(sprite, 5), 5, () => 'rgba(255,255,255, ' + (random() * 0.05) + ')');
     return [
         postProcess(spriteFunc(IDLE_EYE_COLOR)),
         postProcess(spriteFunc(AGGRESSIVE_EYE_COLOR)),
@@ -107,4 +111,4 @@ const SHADOW_CIRCLE = pixelate(createCanvas(200, 200, (ctx, can) => {
     ctx.beginPath();
     ctx.arc(100, 100, 100, 0, TWO_PI);
     ctx.fill();
-}), 5);
+}), 10);

@@ -59,7 +59,7 @@ generateWorld = () => {
     ctx.putImageData(imageData, 0, 0);
 
     ctx.globalCompositeOperation = nomangle('source-atop');
-    ctx.fillStyle = '#006E3F';
+    ctx.fillStyle = '#004584';
     ctx.fillRect(0, 0, can.width, can.height);
 
     return {'matrix': grid, 'can': can};
