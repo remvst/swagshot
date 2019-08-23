@@ -1,56 +1,47 @@
-createRobot1 = eyeColor => createCanvas(100, 200, (ctx, can) => {
-    const headRadius = 40;
-    const wheelHeight = 30;
-    const wheelRadius = 15;
-
+createRobot1 = eyeColor => createCanvas(ROBOT_1_WIDTH, ROBOT_1_HEIGHT, ctx => {
     ctx.strokeStyle = '#000';
     ctx.lineWidth = 5;
 
-    ctx.fillStyle = '#333';
+    ctx.fs('#333');
     ctx.beginPath();
-    ctx.arc(can.width / 2, headRadius, headRadius, PI, 0);
+    ctx.arc(evaluate(ROBOT_1_WIDTH / 2), ROBOT_1_HEAD_RADIUS, ROBOT_1_HEAD_RADIUS, PI, 0);
     ctx.fill();
     ctx.stroke();
 
-    ctx.fillStyle = '#111';
+    ctx.fs('#111');
     ctx.beginPath();
-    ctx.moveTo(0, headRadius);
-    ctx.lineTo(can.width, headRadius);
-    ctx.lineTo(can.width - 20, can.height - wheelHeight);
-    ctx.lineTo(20, can.height - wheelHeight);
+    ctx.moveTo(0, ROBOT_1_HEAD_RADIUS);
+    ctx.lineTo(ROBOT_1_WIDTH, ROBOT_1_HEAD_RADIUS);
+    ctx.lineTo(evaluate(ROBOT_1_WIDTH - 20), evaluate(ROBOT_1_HEIGHT - ROBOT_1_WHEEL_HEIGHT));
+    ctx.lineTo(20, evaluate(ROBOT_1_HEIGHT - ROBOT_1_WHEEL_HEIGHT));
     ctx.closePath();
     ctx.fill();
     ctx.stroke();
 
-    ctx.fillStyle = '#333';
-    // ctx.beginPath();
-    ctx.fillRect(can.width / 2 - wheelRadius, can.height - wheelHeight, wheelRadius * 2, wheelHeight);
-    ctx.strokeRect(can.width / 2 - wheelRadius, can.height - wheelHeight, wheelRadius * 2, wheelHeight);
+    ctx.fs('#333');
+    ctx.fillRect(evaluate(ROBOT_1_WIDTH / 2 - ROBOT_1_WHEEL_RADIUS), evaluate(ROBOT_1_HEIGHT - ROBOT_1_WHEEL_HEIGHT), evaluate(ROBOT_1_WHEEL_RADIUS * 2), evaluate(ROBOT_1_WHEEL_HEIGHT));
+    ctx.strokeRect(evaluate(ROBOT_1_WIDTH / 2 - ROBOT_1_WHEEL_RADIUS), evaluate(ROBOT_1_HEIGHT - ROBOT_1_WHEEL_HEIGHT), evaluate(ROBOT_1_WHEEL_RADIUS * 2), evaluate(ROBOT_1_WHEEL_HEIGHT));
 
-    ctx.fillStyle = eyeColor;
-    ctx.fillRect(can.width / 2 - 20, 15, 10, 10);
-    ctx.fillRect(can.width / 2 + 20, 15, -10, 10);
+    ctx.fs(eyeColor);
+    ctx.fillRect(evaluate(ROBOT_1_WIDTH / 2 - 20), 15, 10, 10);
+    ctx.fillRect(evaluate(ROBOT_1_WIDTH / 2 + 20), 15, -10, 10);
 });
 
-createRobot2 = eyeColor => createCanvas(100, 110, (ctx, can) => {
-    const cornerRadius = 20;
-    const innerRectanglePadding = 10;
-    const legLength = 20;
-
-    ctx.fillStyle = '#111';
+createRobot2 = eyeColor => createCanvas(ROBOT_2_WIDTH, ROBOT_2_HEIGHT, ctx => {
+    ctx.fs('#111');
     ctx.beginPath();
-    ctx.arc(cornerRadius, cornerRadius, cornerRadius, PI, -PI / 2);
-    ctx.arc(can.width - cornerRadius, cornerRadius, cornerRadius, -PI / 2, 0);
-    ctx.arc(can.width - cornerRadius, can.height - legLength - cornerRadius, cornerRadius, 0, PI / 2);
-    ctx.arc(cornerRadius, can.height - legLength - cornerRadius, cornerRadius, PI / 2, PI);
+    ctx.arc(ROBOT_2_CORNER_RADIUS, ROBOT_2_CORNER_RADIUS, ROBOT_2_CORNER_RADIUS, PI, -PI / 2);
+    ctx.arc(evaluate(ROBOT_2_WIDTH - ROBOT_2_CORNER_RADIUS), ROBOT_2_CORNER_RADIUS, ROBOT_2_CORNER_RADIUS, -PI / 2, 0);
+    ctx.arc(evaluate(ROBOT_2_WIDTH - ROBOT_2_CORNER_RADIUS), evaluate(ROBOT_2_HEIGHT - ROBOT_2_LEG_LENGTH - ROBOT_2_CORNER_RADIUS), ROBOT_2_CORNER_RADIUS, 0, PI / 2);
+    ctx.arc(ROBOT_2_CORNER_RADIUS, evaluate(ROBOT_2_HEIGHT - ROBOT_2_LEG_LENGTH - ROBOT_2_CORNER_RADIUS), ROBOT_2_CORNER_RADIUS, PI / 2, PI);
     ctx.fill();
 
-    ctx.fillStyle = '#333';
+    ctx.fs('#333');
     ctx.beginPath();
-    ctx.arc(cornerRadius + innerRectanglePadding, cornerRadius + innerRectanglePadding, cornerRadius, PI, -PI / 2);
-    ctx.arc(can.width - cornerRadius - innerRectanglePadding, cornerRadius + innerRectanglePadding, cornerRadius, -PI / 2, 0);
-    ctx.arc(can.width - cornerRadius - innerRectanglePadding, can.height - legLength - cornerRadius - innerRectanglePadding, cornerRadius, 0, PI / 2);
-    ctx.arc(cornerRadius + innerRectanglePadding, can.height - legLength - cornerRadius - innerRectanglePadding, cornerRadius, PI / 2, PI);
+    ctx.arc(evaluate(ROBOT_2_CORNER_RADIUS + ROBOT_2_INNER_PADDING), evaluate(ROBOT_2_CORNER_RADIUS + ROBOT_2_INNER_PADDING), ROBOT_2_CORNER_RADIUS, PI, -PI / 2);
+    ctx.arc(evaluate(ROBOT_2_WIDTH - ROBOT_2_CORNER_RADIUS - ROBOT_2_INNER_PADDING), evaluate(ROBOT_2_CORNER_RADIUS + ROBOT_2_INNER_PADDING), ROBOT_2_CORNER_RADIUS, -PI / 2, 0);
+    ctx.arc(evaluate(ROBOT_2_WIDTH - ROBOT_2_CORNER_RADIUS - ROBOT_2_INNER_PADDING), evaluate(ROBOT_2_HEIGHT - ROBOT_2_LEG_LENGTH - ROBOT_2_CORNER_RADIUS - ROBOT_2_INNER_PADDING), ROBOT_2_CORNER_RADIUS, 0, PI / 2);
+    ctx.arc(evaluate(ROBOT_2_CORNER_RADIUS + ROBOT_2_INNER_PADDING), evaluate(ROBOT_2_HEIGHT - ROBOT_2_LEG_LENGTH - ROBOT_2_CORNER_RADIUS - ROBOT_2_INNER_PADDING), ROBOT_2_CORNER_RADIUS, PI / 2, PI);
     ctx.fill();
 
     ctx.strokeStyle = '#111';
@@ -58,37 +49,37 @@ createRobot2 = eyeColor => createCanvas(100, 110, (ctx, can) => {
 
     ctx.fillRect(25, 90, 10, 10);
     ctx.strokeRect(25, 90, 10, 10);
-    ctx.fillRect(can.width - 25, 90, -10, 10);
-    ctx.strokeRect(can.width - 25, 90, -10, 10);
+    ctx.fillRect(evaluate(ROBOT_2_WIDTH - 25), 90, -10, 10);
+    ctx.strokeRect(evaluate(ROBOT_2_WIDTH - 25), 90, -10, 10);
 
-    ctx.fillStyle = '#111';
-    ctx.fillRect(can.width / 2 - 25, 25, 20, 20);
-    ctx.fillRect(can.width / 2 + 25, 25, -20, 20);
+    ctx.fs('#111');
+    ctx.fillRect(evaluate(ROBOT_2_WIDTH / 2 - 25), 25, 20, 20);
+    ctx.fillRect(evaluate(ROBOT_2_WIDTH / 2 + 25), 25, -20, 20);
 
-    ctx.fillStyle = eyeColor;
-    ctx.fillRect(can.width / 2 - 20, 30, 10, 10);
-    ctx.fillRect(can.width / 2 + 20, 30, -10, 10);
+    ctx.fs(eyeColor);
+    ctx.fillRect(evaluate(ROBOT_2_WIDTH / 2 - 20), 30, 10, 10);
+    ctx.fillRect(evaluate(ROBOT_2_WIDTH / 2 + 20), 30, -10, 10);
 });
 
-createRobot3 = eyeColor => createCanvas(200, 200, (ctx, can) => {
-    ctx.fillStyle = '#111';
+createRobot3 = eyeColor => createCanvas(ROBOT_3_WIDTH, ROBOT_3_HEIGHT, ctx => {
+    ctx.fs('#111');
     ctx.beginPath();
-    ctx.arc(can.width / 2, can.height / 2, can.width / 2, 0, TWO_PI);
+    ctx.arc(evaluate(ROBOT_3_WIDTH / 2), evaluate(ROBOT_3_HEIGHT / 2), evaluate(ROBOT_3_WIDTH / 2), 0, TWO_PI);
     ctx.fill();
 
-    ctx.fillStyle = '#333';
+    ctx.fs('#333');
     ctx.beginPath();
-    ctx.arc(can.width / 2, can.height / 2, can.width / 2 - 20, 0, TWO_PI);
+    ctx.arc(evaluate(ROBOT_3_WIDTH / 2), evaluate(ROBOT_3_HEIGHT / 2), evaluate(ROBOT_3_WIDTH / 2 - 20), 0, TWO_PI);
     ctx.fill();
 
-    ctx.fillStyle = '#111';
+    ctx.fs('#111');
     ctx.beginPath();
-    ctx.arc(can.width / 2, can.height / 2, 40, 0, TWO_PI);
+    ctx.arc(evaluate(ROBOT_3_WIDTH / 2), evaluate(ROBOT_3_HEIGHT / 2), 40, 0, TWO_PI);
     ctx.fill();
 
-    ctx.fillStyle = eyeColor;
+    ctx.fs(eyeColor);
     ctx.beginPath();
-    ctx.arc(can.width / 2, can.height / 2, 20, 0, TWO_PI);
+    ctx.arc(evaluate(ROBOT_3_WIDTH / 2), evaluate(ROBOT_3_HEIGHT / 2), 20, 0, TWO_PI);
     ctx.fill();
 });
 
@@ -105,8 +96,8 @@ const ROBOT_1 = createRobotSprites(createRobot1);
 const ROBOT_2 = createRobotSprites(createRobot2);
 const ROBOT_3 = createRobotSprites(createRobot3);
 
-const SHADOW_CIRCLE = pixelate(createCanvas(200, 200, (ctx, can) => {
-    ctx.fillStyle = '#000';
+SHADOW_CIRCLE = pixelate(createCanvas(200, 200, ctx => {
+    ctx.fs('#000');
     ctx.globalAlpha = 0.5;
     ctx.beginPath();
     ctx.arc(100, 100, 100, 0, TWO_PI);
@@ -114,18 +105,7 @@ const SHADOW_CIRCLE = pixelate(createCanvas(200, 200, (ctx, can) => {
 }), 10);
 
 HALO = pixelate(createCanvas(20, 20, ctx => {
-    // const grad = ctx.createRadialGradient(10, 10, 0, 10, 10, 10);
-    // grad.addColorStop(0.5, '#fff');
-    // grad.addColorStop(1, 'rgba(255,255,255,0)');
-    //
-    // ctx.fillStyle = grad;
-    // ctx.fillRect(0, 0, 20, 20);
-    //
-    // ctx.globalCompositeOperation = 'source-atop';
-    // ctx.fillStyle = 'red';
-    // ctx.fillRect(0, 0, 20, 20);
-
-    ctx.fillStyle = '#fff';
+    ctx.fs('#fff');
     ctx.beginPath();
     ctx.arc(5, 5, 5, 0, TWO_PI);
     ctx.fill();

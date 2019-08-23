@@ -1,6 +1,6 @@
 renderMenu = () => {
     R.globalAlpha = 0.5;
-    R.fillStyle = '#000';
+    R.fs('#000');
     fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
     // Title
@@ -8,7 +8,7 @@ renderMenu = () => {
     R.font = '36pt Courier';
     R.textAlign = 'center';
     R.textBaseline = 'middle';
-    R.fillStyle = '#fff';
+    R.fs('#fff');
     fillText('[TO HELL AND BACK]', CANVAS_WIDTH / 2, CANVAS_HEIGHT * 0.25);
 
     // Subtitle
@@ -17,11 +17,11 @@ renderMenu = () => {
 
     // Button
     wrap(() => {
-        R.fillStyle = '#A02E00';
+        R.fs('#A02E00');
         fillRect((CANVAS_WIDTH - PLAY_BUTTON_WIDTH) / 2, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
 
         R.font = '24pt Courier';
-        R.fillStyle = '#fff';
+        R.fs('#fff');
         fillText(nomangle('PLAY'), CANVAS_WIDTH / 2, PLAY_BUTTON_Y + PLAY_BUTTON_HEIGHT / 2);
     });
 

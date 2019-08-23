@@ -4,13 +4,13 @@ function renderGauge(gaugeColor, value, renderIcon) {
     transform(1, -0.15, 0, 1, 0, 0); // shear the context
 
     R.globalAlpha = 0.5;
-    R.fillStyle = '#000';
+    R.fs('#000');
     fillRect(0, 0, HUD_ICON_SIZE * 1.25 + HUD_GAUGE_PADDING * 2 + HUD_GAUGE_LENGTH, HUD_ICON_SIZE + HUD_GAUGE_PADDING * 2);
 
     translate(HUD_GAUGE_PADDING, HUD_GAUGE_PADDING);
 
     // Track
-    R.fillStyle = gaugeColor;
+    R.fs(gaugeColor);
     fillRect(HUD_ICON_SIZE * 1.25, 0, HUD_GAUGE_LENGTH, HUD_ICON_SIZE);
 
     R.globalAlpha = 1;

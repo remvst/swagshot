@@ -87,7 +87,7 @@ function castWindow(indexStart, indexEnd) {
 }
 
 function renderWalls() {
-    R.fillStyle = FOG_COLOR;
+    R.fs(FOG_COLOR);
 
     for (let i = 0 ; i < SLICE_COUNT ; i++) {
         const distance = dist(CASTED_RAYS[i], P);
@@ -219,7 +219,7 @@ function lookupOffset() {
 }
 
 function renderWorld() {
-    // R.fillStyle = '#000';
+    // R.fs('#000');
     // fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     //
     translate(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
@@ -228,17 +228,17 @@ function renderWorld() {
     //
     // wrap(() => {
     //     const offset = -(P.angle / FIELD_OF_VIEW * CANVAS_WIDTH);
-    //     R.fillStyle = STARRY_BACKGROUND;
+    //     R.fs(STARRY_BACKGROUND);
     //     translate(offset, lookupOffset());
     //     fillRect(-offset, -lookupOffset(), CANVAS_WIDTH, lookupOffset() + CANVAS_HEIGHT / 2);
     // });
 
     const middleY = lookupOffset() + CANVAS_HEIGHT / 2;
 
-    R.fillStyle = SKY_COLOR;
+    R.fs(SKY_COLOR);
     fillRect(0, 0, CANVAS_WIDTH, middleY);
 
-    R.fillStyle = FOG_COLOR;
+    R.fs(FOG_COLOR);
     fillRect(0, middleY, CANVAS_WIDTH, CANVAS_HEIGHT - middleY);
 
     wrap(() => {
@@ -249,7 +249,7 @@ function renderWorld() {
         translate(offset, middleY - 20 * patternScale);
         scale(patternScale, patternScale);
 
-        R.fillStyle = MOUNTAINS;
+        R.fs(MOUNTAINS);
         fillRect(-offset / patternScale, 0, CANVAS_WIDTH / patternScale, 20);
     });
 
@@ -297,7 +297,7 @@ for (let i = 0 ; i < 200 ; i++) {
         'offsetY': randomSin(random() * REPEAT, rnd(5, 20), rnd(20, 40)),
         'offsetZ': randomSin(rnd(-BLOCK_SIZE / 2, BLOCK_SIZE / 2), rnd(5, 20), rnd(20, 40)),
         'render': (x, y, width, height, alpha) => {
-            R.fillStyle = DECORATION_PARTICLE_COLOR;
+            R.fs(DECORATION_PARTICLE_COLOR);
             R.globalAlpha = alpha * 0.4;
             fillRect(x - width / 2, y - height / 2, width, height);
         }
@@ -336,7 +336,7 @@ function renderSprite(sprite, aboveBlocks) {
 
             }
         } else {
-            R.fillStyle = sprite.color;
+            R.fs(sprite.color);
 
             translate(x, y);
             scale(width / HALO.width, height / HALO.width);

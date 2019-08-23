@@ -1,7 +1,7 @@
 renderMinimap = () => {
     translate(20, 20);
 
-    R.fillStyle = '#49564c';
+    R.fs('#49564c');
     R.globalAlpha = 0.5;
     beginPath();
     rect(0, 0, MINIMAP_SIZE, MINIMAP_SIZE);
@@ -31,7 +31,7 @@ renderMinimap = () => {
                 // if (DEBUG) {
                 //     wrap(() => {
                 //         rotate(enemy.angle);
-                //         R.fillStyle = '#fff';
+                //         R.fs('#fff');
                 //         fillRect(0, 0, 20, 1);
                 //     });
                 // }
@@ -47,7 +47,7 @@ renderMinimap = () => {
 
         scale(1 / MINIMAP_SCALE, 1 / MINIMAP_SCALE);
 
-        R.fillStyle = MINIMAP_GRID;
+        R.fs(MINIMAP_GRID);
         fillRect(0, 0, W.can.width * MINIMAP_SCALE, W.can.height * MINIMAP_SCALE);
     });
 
@@ -55,7 +55,7 @@ renderMinimap = () => {
     gradient.addColorStop(0, '#fff');
     gradient.addColorStop(1, 'rgba(255,255,255, 0)');
 
-    R.fillStyle = gradient;
+    R.fs(gradient);
     R.globalAlpha = 0.5;
     beginPath();
     moveTo(0, 0);

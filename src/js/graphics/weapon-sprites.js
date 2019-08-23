@@ -4,7 +4,7 @@ const ROCKET_LAUNCHER = pixelate(createCanvas(120, 200, (ctx, can) => {
     grad.addColorStop(0.5, '#6a7163');
     grad.addColorStop(0.8, '#41403a');
 
-    ctx.fillStyle = grad;
+    ctx.fs(grad);
 
     const bigBarrelRadius = 40;
     const smallBarrelTopY = bigBarrelRadius + 20;
@@ -15,12 +15,12 @@ const ROCKET_LAUNCHER = pixelate(createCanvas(120, 200, (ctx, can) => {
     ctx.arc(can.width / 2, smallBarrelTopY, bigBarrelRadius, 0, PI, false);
     ctx.fill();
 
-    ctx.fillStyle = '#22241b';
+    ctx.fs('#22241b');
     ctx.beginPath();
     ctx.arc(can.width / 2, smallBarrelTopY, bigBarrelRadius, 0, TWO_PI, false);
     ctx.fill();
 
-    ctx.fillStyle = grad;
+    ctx.fs(grad);
 
     ctx.beginPath();
     ctx.arc(can.width / 2, smallBarrelTopY, smallBarrelRadius, PI, 0, false);
@@ -39,7 +39,7 @@ const PISTOL = pixelate(createCanvas(70, 150, (ctx, can) => {
     const barrelRadius = 20;
     const bottomBarrelRadius = 35;
 
-    ctx.fillStyle = grad;
+    ctx.fs(grad);
     ctx.beginPath();
     ctx.arc(can.width / 2, barrelRadius + 5, barrelRadius, PI, 0);
     ctx.arc(can.width / 2, 80, bottomBarrelRadius, 0, PI, true);
@@ -47,7 +47,7 @@ const PISTOL = pixelate(createCanvas(70, 150, (ctx, can) => {
     // ctx.lineTo(can.width / 2 - barrelRadius - 20, can.height);
     ctx.fill();
 
-    ctx.fillStyle = '#000';
+    ctx.fs('#000');
 
     ctx.fillRect(can.width / 2 - 3, 40, -10, -5);
     ctx.fillRect(can.width / 2 + 3, 40, 10, -5);
@@ -59,10 +59,10 @@ const PISTOL = pixelate(createCanvas(70, 150, (ctx, can) => {
     ctx.lineTo(can.width / 2 - bottomBarrelRadius, can.height);
     ctx.fill();
 
-    ctx.fillStyle = '#222';
+    ctx.fs('#222');
     ctx.fillRect(can.width / 2 - 5, 60, 10, 16);
 
-    ctx.fillStyle = '#111';
+    ctx.fs('#111');
     ctx.fillRect(0, 80, 5, 100);
     ctx.fillRect(can.width - 5, 80, 5, 100);
 }), 5);
@@ -75,14 +75,14 @@ const MACHINE_GUN = pixelate(createCanvas(100, 150, (ctx, can) => {
 
     const barrelRadius = 20;
 
-    ctx.fillStyle = grad;
+    ctx.fs(grad);
     ctx.beginPath();
     ctx.arc(can.width / 2, barrelRadius + 10, barrelRadius, PI, 0);
     ctx.lineTo(can.width / 2 + barrelRadius + 20, can.height);
     ctx.lineTo(can.width / 2 - barrelRadius - 20, can.height);
     ctx.fill();
 
-    ctx.fillStyle = '#000';
+    ctx.fs('#000');
     ctx.fillRect(can.width / 2 - 4, 0, 8, 20);
 }), 5);
 
@@ -101,7 +101,7 @@ const SHOTGUN = pixelate(createCanvas(165, 150, (ctx, can) => {
         ctx.fill();
     };
 
-    ctx.fillStyle = grad;
+    ctx.fs(grad);
     barrel();
 
     ctx.translate(can.width, 0);
@@ -116,7 +116,7 @@ const MUZZLEFLASH = pixelate(createCanvas(160, 160, (ctx, can) => {
     grad.addColorStop(0.6, '#ff0');
     grad.addColorStop(1, '#ff0');
 
-    ctx.fillStyle = grad;
+    ctx.fs(grad);
     for (let i = 0 ; i < 3 ; i++) {
         // ctx.rotate(PI / 3);
         ctx.beginPath();

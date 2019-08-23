@@ -1,21 +1,21 @@
 function renderDebug() {
-    R.fillStyle = '#fff';
+    R.fs('#fff');
     R.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
     // Cells
     for(var row = 0 ; row < W.matrix.length ; row++){
         for(var col = 0 ; col < W.matrix[row].length ; col++){
             if (W.matrix[row][col]) {
-                R.fillStyle = '#888';
+                R.fs('#888');
             } else {
-                R.fillStyle = '#fff';
+                R.fs('#fff');
             }
             R.fillRect(col * BLOCK_SIZE, row * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
         }
     }
 
     // Grid
-    R.fillStyle = '#000';
+    R.fs('#000');
     for(var x = 0 ; x < CANVAS_WIDTH ; x += BLOCK_SIZE){
         R.fillRect(x, 0, 1, CANVAS_HEIGHT);
     }
@@ -24,7 +24,7 @@ function renderDebug() {
     }
 
     // Player position
-    R.fillStyle = 'red';
+    R.fs('red');
     R.beginPath();
     R.arc(P.x, P.y, 5, 0, Math.PI * 2, true);
     R.fill();

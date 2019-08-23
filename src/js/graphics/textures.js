@@ -1,11 +1,11 @@
 const BASE_LIGHT_WALL = createCanvas(40, 40, ctx => {
-    ctx.fillStyle = '#3F1F0C';
+    ctx.fs('#3F1F0C');
     ctx.fillRect(0, 0, 40, 40);
 
-    ctx.fillStyle = '#926D59';
+    ctx.fs('#926D59');
     ctx.fillRect(0, 20, 40, 1);
 
-    ctx.fillStyle = '#59341F';
+    ctx.fs('#59341F');
     ctx.fillRect(2, 2, 16, 16);
     ctx.fillRect(21, 2, 16, 16);
 
@@ -13,11 +13,11 @@ const BASE_LIGHT_WALL = createCanvas(40, 40, ctx => {
 });
 
 const BASE_DARK_WALL = createCanvas(40, 40, ctx => {
-    ctx.fillStyle = '#000';
+    ctx.fs('#000');
     ctx.fillRect(0, 0, 40, 40);
 
     ctx.globalAlpha = 0.05;
-    ctx.fillStyle = '#fff';
+    ctx.fs('#fff');
     ctx.fillRect(0, 0, 40, 1);
     ctx.fillRect(19, 0, 2, 40);
     ctx.fillRect(0, 19, 40, 2);
@@ -82,7 +82,7 @@ const FLOOR_SPRITE = createCanvas(40, 40, (ctx, can) => {
     }
 
     ctx.globalAlpha = 0.1;
-    ctx.fillStyle = '#fff';
+    ctx.fs('#fff');
     ctx.fillRect(0, 0, 40, 1);
     ctx.fillRect(0, 19, 40, 2);
     ctx.fillRect(19, 0, 2, 40);
@@ -99,13 +99,13 @@ const FLOOR_SPRITE_LIGHT = createCanvas(40, 40, (ctx, can) => {
         }
     }
 
-    ctx.fillStyle = 'black';
+    ctx.fs('black');
     for (let y = 0 ; y < can.height ; y += 2) {
         ctx.fillRect(0, y, can.width, 1);
     }
 
     ctx.globalAlpha = 0.1;
-    ctx.fillStyle = '#fff';
+    ctx.fs('#fff');
     ctx.fillRect(0, 0, 40, 1);
     ctx.fillRect(0, 19, 40, 2);
     ctx.fillRect(19, 0, 2, 40);

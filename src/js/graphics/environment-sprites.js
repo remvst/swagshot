@@ -1,6 +1,6 @@
 const MOUNTAINS = createCanvasPattern(80, 40, (ctx, can) => {
     ctx.imageSmoothingEnabled = false;
-    ctx.fillStyle = MOUNTAIN_COLOR;
+    ctx.fs(MOUNTAIN_COLOR);
     ctx.beginPath();
     ctx.moveTo(0, can.height);
 
@@ -23,7 +23,7 @@ const MOUNTAINS = createCanvasPattern(80, 40, (ctx, can) => {
 });
 
 const MINIMAP_GRID = createCanvasPattern(MINIMAP_SCALE * 10, MINIMAP_SCALE * 10, (ctx, can) => {
-    ctx.fillStyle = '#fff';
+    ctx.fs('#fff');
     ctx.globalAlpha = 0.1;
     for (let i = 0 ; i < can.width ; i+=MINIMAP_SCALE) {
         ctx.fillRect(i, 0, 1, can.height);

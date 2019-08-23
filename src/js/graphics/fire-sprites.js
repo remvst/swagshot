@@ -13,7 +13,7 @@ const FIRE_1 = pixelate(createCanvas(80, 120, (ctx, can) => {
             points.push({'x': waveCenterX + ratio / 2, 'y': ratio});
         }
 
-        ctx.fillStyle = grad;
+        ctx.fs(grad);
         ctx.strokeStyle = '#ff0';
         ctx.lineWidth = 5;
         ctx.beginPath();
@@ -32,7 +32,7 @@ const EXPLOSION_CIRCLE = pixelate(createCanvas(200, 200, (ctx, can) => {
     grad.addColorStop(0.5, '#ff0');
     grad.addColorStop(1, '#f80');
 
-    ctx.fillStyle = grad;
+    ctx.fs(grad);
     ctx.beginPath();
     ctx.arc(100, 100, 100, 0, TWO_PI);
     ctx.fill();

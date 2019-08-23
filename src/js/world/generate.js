@@ -1,6 +1,6 @@
 generateWorld = () => {
     const can = createCanvas(50, 50, (ctx, can) => {
-        ctx.fillStyle = '#fff';
+        ctx.fs('#fff');
 
         function clearPath(x1, y1, x2, y2) {
             const distance = distP(x1, y1, x2, y2);
@@ -59,7 +59,7 @@ generateWorld = () => {
     ctx.putImageData(imageData, 0, 0);
 
     ctx.globalCompositeOperation = nomangle('source-atop');
-    ctx.fillStyle = '#004584';
+    ctx.fs('#004584');
     ctx.fillRect(0, 0, can.width, can.height);
 
     return {'matrix': grid, 'can': can};

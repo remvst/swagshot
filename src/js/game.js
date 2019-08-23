@@ -41,7 +41,7 @@ class Game {
 
                     R.globalAlpha = 1 - min(1, (G.clock - P.lastHit - 0.1) / 0.15);
 
-                    R.fillStyle = '#f00';
+                    R.fs('#f00');
                     for (let i = 0 ; i < 4 ; i++) {
                         rotate(PI / 2);
                         fillRect(5, -1, 6, 2);
@@ -49,7 +49,7 @@ class Game {
                 });
 
                 // Crosshair
-                R.fillStyle = '#fff';
+                R.fs('#fff');
                 fillRect(CANVAS_WIDTH / 2 - 5, CANVAS_HEIGHT / 2 - 1, 10, 2);
                 fillRect(CANVAS_WIDTH / 2 - 1, CANVAS_HEIGHT / 2 - 5, 2, 10);
 
