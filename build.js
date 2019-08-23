@@ -4,6 +4,7 @@ const compiler = require('./js13k-compiler/src/compiler');
 
 const JS_FILES = require('./config/js');
 const CONSTANTS = require('./config/constants');
+const SONG = require('./config/song-tiny.json');
 const MANGLE_SETTINGS = require('./config/mangle');
 
 function copy(obj){
@@ -21,6 +22,7 @@ compiler.run((tasks) => {
             tasks.loadFiles(JS_FILES),
             tasks.concat(),
             tasks.constants(constants),
+            tasks.constants({'SONG': JSON.stringify(SONG)}),
             tasks.macro('evaluate'),
             tasks.macro('nomangle')
         ];

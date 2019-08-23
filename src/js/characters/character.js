@@ -50,6 +50,8 @@ class Character {
             }
 
             this.emitBloodParticles(!this.health * 30 + 10);
+
+            // hurtSound();
         }
     }
 

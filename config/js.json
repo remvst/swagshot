@@ -46,8 +46,8 @@
     "src/js/graphics/assets.js",
     "src/js/graphics/test-sprite.js",
 
-    "src/js/sound/jsfxr.js",
-    "src/js/sound/sounds.js",
+    "src/js/sound/sonantx.js",
+    "src/js/sound/song.js",
 
     "src/js/keyboard.js",
     "src/js/menu.js",

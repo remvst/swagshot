@@ -31,7 +31,7 @@ class World {
                     (this.matrix[row][col - 1]  ? 1 : 0)+
                     (this.matrix[row][col + 1]? 1 : 0);
 
-                if ((neighborCount == 2 || neighborCount == 3) && random() < ITEM_DENSITY) {
+                if ((neighborCount == 2 || neighborCount == 3) && (random() < ITEM_DENSITY || true)) {
                     const item = new (pick([
                         WeaponItem,
                         HealthItem

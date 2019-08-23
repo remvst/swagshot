@@ -31,6 +31,7 @@ class Item {
         this.shadowSprite.y = this.y + sin(P.angle);
 
         if (dist(this, P) < ITEM_RADIUS) {
+            // itemSound();
             this.pickup();
             this.remove();
             P.lastPickup = G.clock;

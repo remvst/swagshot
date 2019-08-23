@@ -12,6 +12,8 @@ class Game {
         G.healthIconScale = 1;
 
         G.healthGaugeColor = '#fff';
+
+        G.lastStepSound = 0;
     }
 
     cycle(e) {
@@ -134,6 +136,11 @@ class Game {
                 });
             });
         }
+
+        // if (P.movingClock - G.lastStepSound > 0.05) {
+        //     G.lastStepSound = G.clock;
+        //     stepSound();
+        // }
     }
 
     setupNewGame() {

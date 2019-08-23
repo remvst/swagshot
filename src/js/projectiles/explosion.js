@@ -48,4 +48,6 @@ explosion = (x, y, z, radius) => {
         interp(particle, 'y', particle.y, particle.y + sin(angle) * finalDistance * cos(verticalAngle), duration);
         interp(particle, 'z', particle.z, particle.z + sin(verticalAngle) * finalDistance, duration);
     }
+
+    // explosionSound();
 };

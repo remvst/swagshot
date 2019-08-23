@@ -23,6 +23,10 @@ class Weapon {
         if (G.clock - this.lastShot > this.shotInterval && this.character.health > 0) {
             this.lastShot = G.clock;
             this.shoot();
+
+            // if (this.sound) {
+            //     this.sound();
+            // }
         }
     }
 
