@@ -35,7 +35,6 @@
 
     "src/js/util/resizer.js",
     "src/js/util/interp.js",
-    "src/js/util/once.js",
     "src/js/util/raycasting.js",
     "src/js/util/array-utils.js",
 
