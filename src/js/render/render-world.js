@@ -92,8 +92,8 @@ function renderWalls() {
     for (let i = 0 ; i < SLICE_COUNT ; i++) {
         const distance = dist(CASTED_RAYS[i], P);
         const x = CANVAS_WIDTH * i / SLICE_COUNT;
-        const height = Math.round(heightOnScreen(CASTED_RAYS[i], BLOCK_SIZE));
-        const yTop = Math.round(CANVAS_HEIGHT / 2 - (1 - P.eyeZ() / (BLOCK_SIZE / 2)) * height / 2);
+        const height = ~~heightOnScreen(CASTED_RAYS[i], BLOCK_SIZE);
+        const yTop = CANVAS_HEIGHT / 2 - (1 - P.eyeZ() / (BLOCK_SIZE / 2)) * height / 2;
 
         const roundedX = Math.round(CASTED_RAYS[i].x / BLOCK_SIZE) * BLOCK_SIZE;
         const roundedY = Math.round(CASTED_RAYS[i].y / BLOCK_SIZE) * BLOCK_SIZE;
