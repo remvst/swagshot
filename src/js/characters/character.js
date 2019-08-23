@@ -73,8 +73,6 @@ class Character {
             interp(particle, 'y', particle.y, particle.y + rnd(-30, 30), duration);
             interp(particle, 'z', this.z + rnd(-1, 1) * this.radius / 2, -BLOCK_SIZE / 2, duration, 0, easeOutBounce);
             interp(particle, 'f', 0, 0, duration + 0.5, 0, null, () => remove(SPRITES, particle));
-
-            console.log(particle);
         }
     }
 
