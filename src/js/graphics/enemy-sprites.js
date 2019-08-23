@@ -102,9 +102,9 @@ const ROBOT_2 = createRobotSprites(createRobot2);
 const ROBOT_3 = createRobotSprites(createRobot3);
 
 const SHADOW_CIRCLE = pixelate(createCanvas(200, 200, (ctx, can) => {
-    ctx.fillStyle = '#250000';
+    ctx.fillStyle = '#000';
     ctx.globalAlpha = 0.5;
     ctx.beginPath();
     ctx.arc(100, 100, 100, 0, TWO_PI);
     ctx.fill();
-}), 10);
+}), 5);
