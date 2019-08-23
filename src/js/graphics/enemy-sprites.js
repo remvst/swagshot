@@ -112,3 +112,27 @@ const SHADOW_CIRCLE = pixelate(createCanvas(200, 200, (ctx, can) => {
     ctx.arc(100, 100, 100, 0, TWO_PI);
     ctx.fill();
 }), 10);
+
+HALO = pixelate(createCanvas(20, 20, ctx => {
+    // const grad = ctx.createRadialGradient(10, 10, 0, 10, 10, 10);
+    // grad.addColorStop(0.5, '#fff');
+    // grad.addColorStop(1, 'rgba(255,255,255,0)');
+    //
+    // ctx.fillStyle = grad;
+    // ctx.fillRect(0, 0, 20, 20);
+    //
+    // ctx.globalCompositeOperation = 'source-atop';
+    // ctx.fillStyle = 'red';
+    // ctx.fillRect(0, 0, 20, 20);
+
+    ctx.fillStyle = '#fff';
+    ctx.beginPath();
+    ctx.arc(5, 5, 5, 0, TWO_PI);
+    ctx.fill();
+}), 2);
+
+HALO_CACHE = {};
+halo = color => {
+    HALO_CACHE[color] = HALO_CACHE[color] || tintCanvas(HALO, color);
+    return HALO_CACHE[color];
+};

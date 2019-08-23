@@ -90,3 +90,30 @@ const FLOOR_SPRITE = createCanvas(40, 40, (ctx, can) => {
     ctx.fillRect(39, 0, 1, 40);
     ctx.fillRect(0, 0, 1, 40);
 });
+
+const FLOOR_SPRITE_LIGHT = createCanvas(40, 40, (ctx, can) => {
+    for (let x = 0 ; x < 40 ; x++) {
+        for (let y = 0 ; y < 40 ; y++) {
+            ctx.fillStyle = pick(['#1d1c23', '#262228']);
+            ctx.fillRect(x * 1, y * 1, 1, 1);
+        }
+    }
+
+    ctx.fillStyle = 'black';
+    for (let y = 0 ; y < can.height ; y += 2) {
+        ctx.fillRect(0, y, can.width, 1);
+    }
+
+    ctx.globalAlpha = 0.1;
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, 40, 1);
+    ctx.fillRect(0, 19, 40, 2);
+    ctx.fillRect(19, 0, 2, 40);
+    ctx.fillRect(0, 39, 40, 1);
+    ctx.fillRect(39, 0, 1, 40);
+    ctx.fillRect(0, 0, 1, 40);
+});
+
+// const FLOOR_SPRITE_LIGHT = tintCanvas(FLOOR_SPRITE, 'rgba(255,255,255,0.1)');
+
+const FLOOR_TEXTURES = [FLOOR_SPRITE, FLOOR_SPRITE_LIGHT];

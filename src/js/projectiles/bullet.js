@@ -27,7 +27,7 @@ class Bullet {
         let iterations = 0;
         let remaining = e;
         while (remaining > 0) {
-            const removed = min(remaining, (BLOCK_SIZE / 2) / this.speed);
+            const removed = min(remaining, (BLOCK_SIZE / 5) / this.speed);
             remaining -= removed;
             this.actualCycle(removed);
             iterations++;

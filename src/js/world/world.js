@@ -31,7 +31,7 @@ class World {
                     (this.matrix[row][col - 1]  ? 1 : 0)+
                     (this.matrix[row][col + 1]? 1 : 0);
 
-                if ((neighborCount == 2 || neighborCount == 3) && (random() < ITEM_DENSITY || true)) {
+                if ((neighborCount == 2 || neighborCount == 3) && random() < ITEM_DENSITY) {
                     const item = new (pick([
                         WeaponItem,
                         HealthItem
@@ -44,7 +44,6 @@ class World {
                     const enemy = new Enemy();
                     enemy.x = (col + 0.5) * BLOCK_SIZE;
                     enemy.y = (row + 0.5) * BLOCK_SIZE;
-                    // enemy.z = rnd(-0.35, 2) * BLOCK_SIZE;
                 }
             }
         }

@@ -151,7 +151,7 @@ function positionOnScreen(x, y, z) {
     };
 }
 
-function renderFloor(z, maxDistance, texture) {
+function renderFloor(z, maxDistance) {
     // const maxDistance = BLOCK_SIZE * 4;
     const size = BLOCK_SIZE / 4;
 
@@ -159,6 +159,11 @@ function renderFloor(z, maxDistance, texture) {
 
     for (let x = ~~((P.x - maxDistance) / BLOCK_SIZE) * BLOCK_SIZE ; x < P.x + maxDistance ; x += size) {
         for (let y = ~~((P.y - maxDistance) / BLOCK_SIZE) * BLOCK_SIZE ; y < P.y + maxDistance ; y += size) {
+
+            const blockCol = ~~(x / BLOCK_SIZE);
+            const blockRow = ~~(y / BLOCK_SIZE);
+
+            const texture = (blockCol % 3) || (blockRow % 3) ? FLOOR_SPRITE : FLOOR_SPRITE_LIGHT;
 
             const offsetXRatio = (x % BLOCK_SIZE) / BLOCK_SIZE;
             const offsetYRatio = (y % BLOCK_SIZE) / BLOCK_SIZE;
@@ -261,7 +266,7 @@ function renderWorld() {
 
     G.topSprites = measure(() => SPRITES.forEach(sprite => renderSprite(sprite, true)));
 
-    G.renderFloor = measure(() => renderFloor(-BLOCK_SIZE / 2, BLOCK_SIZE * 4, FLOOR_SPRITE));
+    G.renderFloor = measure(() => renderFloor(-BLOCK_SIZE / 2, BLOCK_SIZE * 4));
     // G.renderCeiling = measure(() => renderFloor(BLOCK_SIZE / 2, BLOCK_SIZE * 2, FLOOR_SPRITE));
     G.renderWalls = measure(() => renderWalls());
 
@@ -332,7 +337,12 @@ function renderSprite(sprite, aboveBlocks) {
             }
         } else {
             R.fillStyle = sprite.color;
-            fillRect(x - width / 2, y - height / 2, width, height);
+
+            translate(x, y);
+            scale(width / HALO.width, height / HALO.width);
+            drawImage(halo(sprite.color), 0, 0);
+
+            // fillRect(x - width / 2, y - height / 2, width, height);
         }
     }, sprite.sprite || aboveBlocks);
 }
