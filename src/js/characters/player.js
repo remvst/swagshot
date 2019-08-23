@@ -35,8 +35,8 @@ class Player extends Character {
         this.angle = normalize(this.angle);
         this.verticalAngle = limit(-Math.PI / 4, this.verticalAngle, Math.PI / 4);
 
-        const x = !!w.down[KEYBOARD_W] - !!w.down[KEYBOARD_S],
-            y = !!w.down[KEYBOARD_D] - !!w.down[KEYBOARD_A];
+        const x = !!w.down[KEYBOARD_W] + !!w.down[KEYBOARD_UP] - !!w.down[KEYBOARD_S] - !!w.down[KEYBOARD_DOWN],
+            y = !!w.down[KEYBOARD_D] + !!w.down[KEYBOARD_RIGHT] - !!w.down[KEYBOARD_A] - !!w.down[KEYBOARD_LEFT];
 
         if (x || y) {
             const maxSpeed = PLAYER_SPEED * (!!this.z * JUMP_SPEED_BOOST + 1);
