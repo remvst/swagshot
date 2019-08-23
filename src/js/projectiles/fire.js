@@ -26,7 +26,7 @@ class Fire {
         }
 
         if (dist(this, P) < P.radius && abs(this.z - (P.z - BLOCK_SIZE / 4)) < BLOCK_SIZE / 2) {
-            P.hurt(this, e * 0.1);
+            P.hurt(this, e * 0.05);
         }
     }
 

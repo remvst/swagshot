@@ -31,7 +31,7 @@ class Game {
 
             G.renderWorld = measure(() => wrap(renderWorld));
 
-            if (P.health) {
+            if (P.health && !onMenu) {
                 G.renderHud = measure(() => wrap(renderHud));
                 G.renderMinimap = measure(() => wrap(renderMinimap));
 

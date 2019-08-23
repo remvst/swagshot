@@ -70,8 +70,8 @@ onload = () => {
         // TODO check caniuse
         if (!onMenu) {
             if (P.health) {
-                P.angle += e.movementX / (500 * max(1 - MOUSE_SENSITIVITY, 0.1));
-                P.verticalAngle += e.movementY / (500 * max(1 - MOUSE_SENSITIVITY, 0.1));
+                P.angle += e.movementX / (1000 * max(1 - MOUSE_SENSITIVITY, 0.01));
+                P.verticalAngle += e.movementY / (1000 * max(1 - MOUSE_SENSITIVITY, 0.01));
             }
         }
 
