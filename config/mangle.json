@@ -73,7 +73,6 @@
         "removeNode",
         "attach",
         "detach",
-        "start",
         "event",
         "listener",
         "label",
