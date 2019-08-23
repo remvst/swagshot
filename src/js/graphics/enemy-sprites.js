@@ -19,12 +19,12 @@ createRobot1 = eyeColor => createCanvas(ROBOT_1_WIDTH, ROBOT_1_HEIGHT, ctx => {
     ctx.stroke();
 
     ctx.fs('#333');
-    ctx.fillRect(evaluate(ROBOT_1_WIDTH / 2 - ROBOT_1_WHEEL_RADIUS), evaluate(ROBOT_1_HEIGHT - ROBOT_1_WHEEL_HEIGHT), evaluate(ROBOT_1_WHEEL_RADIUS * 2), evaluate(ROBOT_1_WHEEL_HEIGHT));
+    ctx.fr(evaluate(ROBOT_1_WIDTH / 2 - ROBOT_1_WHEEL_RADIUS), evaluate(ROBOT_1_HEIGHT - ROBOT_1_WHEEL_HEIGHT), evaluate(ROBOT_1_WHEEL_RADIUS * 2), evaluate(ROBOT_1_WHEEL_HEIGHT));
     ctx.strokeRect(evaluate(ROBOT_1_WIDTH / 2 - ROBOT_1_WHEEL_RADIUS), evaluate(ROBOT_1_HEIGHT - ROBOT_1_WHEEL_HEIGHT), evaluate(ROBOT_1_WHEEL_RADIUS * 2), evaluate(ROBOT_1_WHEEL_HEIGHT));
 
     ctx.fs(eyeColor);
-    ctx.fillRect(evaluate(ROBOT_1_WIDTH / 2 - 20), 15, 10, 10);
-    ctx.fillRect(evaluate(ROBOT_1_WIDTH / 2 + 20), 15, -10, 10);
+    ctx.fr(evaluate(ROBOT_1_WIDTH / 2 - 20), 15, 10, 10);
+    ctx.fr(evaluate(ROBOT_1_WIDTH / 2 + 20), 15, -10, 10);
 });
 
 createRobot2 = eyeColor => createCanvas(ROBOT_2_WIDTH, ROBOT_2_HEIGHT, ctx => {
@@ -47,18 +47,18 @@ createRobot2 = eyeColor => createCanvas(ROBOT_2_WIDTH, ROBOT_2_HEIGHT, ctx => {
     ctx.strokeStyle = '#111';
     ctx.lineWidth = 10;
 
-    ctx.fillRect(25, 90, 10, 10);
+    ctx.fr(25, 90, 10, 10);
     ctx.strokeRect(25, 90, 10, 10);
-    ctx.fillRect(evaluate(ROBOT_2_WIDTH - 25), 90, -10, 10);
+    ctx.fr(evaluate(ROBOT_2_WIDTH - 25), 90, -10, 10);
     ctx.strokeRect(evaluate(ROBOT_2_WIDTH - 25), 90, -10, 10);
 
     ctx.fs('#111');
-    ctx.fillRect(evaluate(ROBOT_2_WIDTH / 2 - 25), 25, 20, 20);
-    ctx.fillRect(evaluate(ROBOT_2_WIDTH / 2 + 25), 25, -20, 20);
+    ctx.fr(evaluate(ROBOT_2_WIDTH / 2 - 25), 25, 20, 20);
+    ctx.fr(evaluate(ROBOT_2_WIDTH / 2 + 25), 25, -20, 20);
 
     ctx.fs(eyeColor);
-    ctx.fillRect(evaluate(ROBOT_2_WIDTH / 2 - 20), 30, 10, 10);
-    ctx.fillRect(evaluate(ROBOT_2_WIDTH / 2 + 20), 30, -10, 10);
+    ctx.fr(evaluate(ROBOT_2_WIDTH / 2 - 20), 30, 10, 10);
+    ctx.fr(evaluate(ROBOT_2_WIDTH / 2 + 20), 30, -10, 10);
 });
 
 createRobot3 = eyeColor => createCanvas(ROBOT_3_WIDTH, ROBOT_3_HEIGHT, ctx => {

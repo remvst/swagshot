@@ -24,7 +24,7 @@ generateWorld = () => {
             }
         }
 
-        ctx.fillRect(0, 0, can.width, can.height);
+        ctx.fr(0, 0, can.width, can.height);
 
         ctx.clearRect(4, 4, 3, 3);
 
@@ -34,10 +34,10 @@ generateWorld = () => {
         }
 
         // Close the arena
-        ctx.fillRect(0, 0, can.width, 1);
-        ctx.fillRect(0, 0, 1, can.height);
-        ctx.fillRect(0, can.height - 1, can.width, 1);
-        ctx.fillRect(can.width - 1, 0, 1, can.height);
+        ctx.fr(0, 0, can.width, 1);
+        ctx.fr(0, 0, 1, can.height);
+        ctx.fr(0, can.height - 1, can.width, 1);
+        ctx.fr(can.width - 1, 0, 1, can.height);
     });
 
     const grid = [];
@@ -60,7 +60,7 @@ generateWorld = () => {
 
     ctx.globalCompositeOperation = nomangle('source-atop');
     ctx.fs('#004584');
-    ctx.fillRect(0, 0, can.width, can.height);
+    ctx.fr(0, 0, can.width, can.height);
 
     return {'matrix': grid, 'can': can};
 };

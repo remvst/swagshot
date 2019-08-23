@@ -120,7 +120,7 @@ function renderWalls() {
 
         wrap(() => {
             R.globalAlpha = distance / DRAW_DISTANCE;
-            fillRect(x, yTop, SLICE_WIDTH, height);
+            fr(x, yTop, SLICE_WIDTH, height);
         });
     }
 }
@@ -220,7 +220,7 @@ function lookupOffset() {
 
 function renderWorld() {
     // R.fs('#000');
-    // fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    // fr(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     //
     translate(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
     rotate(P.headTilt);
@@ -230,16 +230,16 @@ function renderWorld() {
     //     const offset = -(P.angle / FIELD_OF_VIEW * CANVAS_WIDTH);
     //     R.fs(STARRY_BACKGROUND);
     //     translate(offset, lookupOffset());
-    //     fillRect(-offset, -lookupOffset(), CANVAS_WIDTH, lookupOffset() + CANVAS_HEIGHT / 2);
+    //     fr(-offset, -lookupOffset(), CANVAS_WIDTH, lookupOffset() + CANVAS_HEIGHT / 2);
     // });
 
     const middleY = lookupOffset() + CANVAS_HEIGHT / 2;
 
     R.fs(SKY_COLOR);
-    fillRect(0, 0, CANVAS_WIDTH, middleY);
+    fr(0, 0, CANVAS_WIDTH, middleY);
 
     R.fs(FOG_COLOR);
-    fillRect(0, middleY, CANVAS_WIDTH, CANVAS_HEIGHT - middleY);
+    fr(0, middleY, CANVAS_WIDTH, CANVAS_HEIGHT - middleY);
 
     wrap(() => {
         const fieldOfViews = TWO_PI / FIELD_OF_VIEW;
@@ -250,7 +250,7 @@ function renderWorld() {
         scale(patternScale, patternScale);
 
         R.fs(MOUNTAINS);
-        fillRect(-offset / patternScale, 0, CANVAS_WIDTH / patternScale, 20);
+        fr(-offset / patternScale, 0, CANVAS_WIDTH / patternScale, 20);
     });
 
     translate(0, lookupOffset());
@@ -299,7 +299,7 @@ for (let i = 0 ; i < 200 ; i++) {
         'render': (x, y, width, height, alpha) => {
             R.fs(DECORATION_PARTICLE_COLOR);
             R.globalAlpha = alpha * 0.4;
-            fillRect(x - width / 2, y - height / 2, width, height);
+            fr(x - width / 2, y - height / 2, width, height);
         }
     });
 }
@@ -342,7 +342,7 @@ function renderSprite(sprite, aboveBlocks) {
             scale(width / HALO.width, height / HALO.width);
             drawImage(halo(sprite.color), 0, 0);
 
-            // fillRect(x - width / 2, y - height / 2, width, height);
+            // fr(x - width / 2, y - height / 2, width, height);
         }
     }, sprite.sprite || aboveBlocks);
 }

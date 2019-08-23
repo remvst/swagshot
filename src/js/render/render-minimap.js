@@ -27,15 +27,6 @@ renderMinimap = () => {
                     enemy.y / BLOCK_SIZE * MINIMAP_SCALE
                 );
 
-                // TODO remove
-                // if (DEBUG) {
-                //     wrap(() => {
-                //         rotate(enemy.angle);
-                //         R.fs('#fff');
-                //         fillRect(0, 0, 20, 1);
-                //     });
-                // }
-
                 rotate(P.angle + PI / 2);
 
                 const sprite = enemy.sprite.sprite;
@@ -48,7 +39,7 @@ renderMinimap = () => {
         scale(1 / MINIMAP_SCALE, 1 / MINIMAP_SCALE);
 
         R.fs(MINIMAP_GRID);
-        fillRect(0, 0, W.can.width * MINIMAP_SCALE, W.can.height * MINIMAP_SCALE);
+        fr(0, 0, W.can.width * MINIMAP_SCALE, W.can.height * MINIMAP_SCALE);
     });
 
     const gradient = createRadialGradient(0, 0, 0, 0, 0, 80);

@@ -15,7 +15,7 @@ tintCanvas = (can, color) => {
         ctx.drawImage(can, 0, 0);
         ctx.globalCompositeOperation = nomangle('source-atop');
         ctx.fs(color);
-        ctx.fillRect(0, 0, can.width, can.height);
+        ctx.fr(0, 0, can.width, can.height);
     });
 };
 
@@ -27,7 +27,7 @@ addNoise = (can, pixelSize, color) => {
         for (let x = 0 ; x < can.width ; x += pixelSize) {
             for (let y = 0 ; y < can.height ; y += pixelSize) {
                 ctx.fs(color());
-                ctx.fillRect(x, y, pixelSize, pixelSize);
+                ctx.fr(x, y, pixelSize, pixelSize);
             }
         }
     });

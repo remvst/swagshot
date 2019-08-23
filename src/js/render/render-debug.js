@@ -1,6 +1,6 @@
 function renderDebug() {
     R.fs('#fff');
-    R.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    R.fr(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
     // Cells
     for(var row = 0 ; row < W.matrix.length ; row++){
@@ -10,17 +10,17 @@ function renderDebug() {
             } else {
                 R.fs('#fff');
             }
-            R.fillRect(col * BLOCK_SIZE, row * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+            R.fr(col * BLOCK_SIZE, row * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
         }
     }
 
     // Grid
     R.fs('#000');
     for(var x = 0 ; x < CANVAS_WIDTH ; x += BLOCK_SIZE){
-        R.fillRect(x, 0, 1, CANVAS_HEIGHT);
+        R.fr(x, 0, 1, CANVAS_HEIGHT);
     }
     for(var y = 0 ; y < CANVAS_WIDTH ; y += BLOCK_SIZE){
-        R.fillRect(0, y, CANVAS_WIDTH, 1);
+        R.fr(0, y, CANVAS_WIDTH, 1);
     }
 
     // Player position

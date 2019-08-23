@@ -49,9 +49,9 @@ const PISTOL = pixelate(createCanvas(70, 150, (ctx, can) => {
 
     ctx.fs('#000');
 
-    ctx.fillRect(can.width / 2 - 3, 40, -10, -5);
-    ctx.fillRect(can.width / 2 + 3, 40, 10, -5);
-    ctx.fillRect(can.width / 2 - 3, 0, 6, 10);
+    ctx.fr(can.width / 2 - 3, 40, -10, -5);
+    ctx.fr(can.width / 2 + 3, 40, 10, -5);
+    ctx.fr(can.width / 2 - 3, 0, 6, 10);
 
     ctx.beginPath();
     ctx.arc(can.width / 2, 80, bottomBarrelRadius, PI, 0);
@@ -60,11 +60,11 @@ const PISTOL = pixelate(createCanvas(70, 150, (ctx, can) => {
     ctx.fill();
 
     ctx.fs('#222');
-    ctx.fillRect(can.width / 2 - 5, 60, 10, 16);
+    ctx.fr(can.width / 2 - 5, 60, 10, 16);
 
     ctx.fs('#111');
-    ctx.fillRect(0, 80, 5, 100);
-    ctx.fillRect(can.width - 5, 80, 5, 100);
+    ctx.fr(0, 80, 5, 100);
+    ctx.fr(can.width - 5, 80, 5, 100);
 }), 5);
 
 const MACHINE_GUN = pixelate(createCanvas(100, 150, (ctx, can) => {
@@ -83,7 +83,7 @@ const MACHINE_GUN = pixelate(createCanvas(100, 150, (ctx, can) => {
     ctx.fill();
 
     ctx.fs('#000');
-    ctx.fillRect(can.width / 2 - 4, 0, 8, 20);
+    ctx.fr(can.width / 2 - 4, 0, 8, 20);
 }), 5);
 
 const SHOTGUN = pixelate(createCanvas(165, 150, (ctx, can) => {

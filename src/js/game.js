@@ -44,14 +44,14 @@ class Game {
                     R.fs('#f00');
                     for (let i = 0 ; i < 4 ; i++) {
                         rotate(PI / 2);
-                        fillRect(5, -1, 6, 2);
+                        fr(5, -1, 6, 2);
                     }
                 });
 
                 // Crosshair
                 R.fs('#fff');
-                fillRect(CANVAS_WIDTH / 2 - 5, CANVAS_HEIGHT / 2 - 1, 10, 2);
-                fillRect(CANVAS_WIDTH / 2 - 1, CANVAS_HEIGHT / 2 - 5, 2, 10);
+                fr(CANVAS_WIDTH / 2 - 5, CANVAS_HEIGHT / 2 - 1, 10, 2);
+                fr(CANVAS_WIDTH / 2 - 1, CANVAS_HEIGHT / 2 - 5, 2, 10);
 
                 const weaponOffsetX = sin(P.movingClock * PI * 2) * 10;
                 const weaponOffsetY = cos(P.movingClock * PI * 4) * 10 +
@@ -80,7 +80,7 @@ class Game {
                 wrap(() => {
                     R.globalAlpha = 0.2;
                     R.fillStyle = P.lastDamage > P.lastPickup ? '#f00' : '#fff';
-                    fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+                    fr(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
                 });
             }
         });

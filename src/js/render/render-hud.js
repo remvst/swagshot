@@ -5,19 +5,19 @@ function renderGauge(gaugeColor, value, renderIcon) {
 
     R.globalAlpha = 0.5;
     R.fs('#000');
-    fillRect(0, 0, HUD_ICON_SIZE * 1.25 + HUD_GAUGE_PADDING * 2 + HUD_GAUGE_LENGTH, HUD_ICON_SIZE + HUD_GAUGE_PADDING * 2);
+    fr(0, 0, HUD_ICON_SIZE * 1.25 + HUD_GAUGE_PADDING * 2 + HUD_GAUGE_LENGTH, HUD_ICON_SIZE + HUD_GAUGE_PADDING * 2);
 
     translate(HUD_GAUGE_PADDING, HUD_GAUGE_PADDING);
 
     // Track
     R.fs(gaugeColor);
-    fillRect(HUD_ICON_SIZE * 1.25, 0, HUD_GAUGE_LENGTH, HUD_ICON_SIZE);
+    fr(HUD_ICON_SIZE * 1.25, 0, HUD_GAUGE_LENGTH, HUD_ICON_SIZE);
 
     R.globalAlpha = 1;
     renderIcon();
 
     // Gauge
-    fillRect(HUD_ICON_SIZE * 1.25, 0, HUD_GAUGE_LENGTH * value, HUD_ICON_SIZE);
+    fr(HUD_ICON_SIZE * 1.25, 0, HUD_GAUGE_LENGTH * value, HUD_ICON_SIZE);
 }
 
 function renderHud() {
@@ -27,8 +27,8 @@ function renderHud() {
         renderGauge('#0be', P.health, () => {
             const thickness = ~~(HUD_ICON_SIZE / 3);
 
-            fillRect((HUD_ICON_SIZE - thickness) / 2, 0, thickness, HUD_ICON_SIZE);
-            fillRect(0, (HUD_ICON_SIZE - thickness) / 2, HUD_ICON_SIZE, thickness);
+            fr((HUD_ICON_SIZE - thickness) / 2, 0, thickness, HUD_ICON_SIZE);
+            fr(0, (HUD_ICON_SIZE - thickness) / 2, HUD_ICON_SIZE, thickness);
         });
     });
 
@@ -37,9 +37,9 @@ function renderHud() {
         translate(CANVAS_WIDTH - 20, CANVAS_HEIGHT - HUD_ICON_SIZE - HUD_GAUGE_PADDING * 2 - 20);
         scale(-1, 1);
         renderGauge('#e50', P.weapon.ammo, () => {
-            fillRect(0, 0, HUD_ICON_SIZE / 5, HUD_ICON_SIZE);
-            fillRect(HUD_ICON_SIZE * 2 / 5, 0, HUD_ICON_SIZE / 5, HUD_ICON_SIZE);
-            fillRect(HUD_ICON_SIZE * 4 / 5, 0, HUD_ICON_SIZE / 5, HUD_ICON_SIZE);
+            fr(0, 0, HUD_ICON_SIZE / 5, HUD_ICON_SIZE);
+            fr(HUD_ICON_SIZE * 2 / 5, 0, HUD_ICON_SIZE / 5, HUD_ICON_SIZE);
+            fr(HUD_ICON_SIZE * 4 / 5, 0, HUD_ICON_SIZE / 5, HUD_ICON_SIZE);
         });
     });
 }

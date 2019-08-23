@@ -1,44 +1,42 @@
-const WEAPON_BOX = pixelate(createCanvas(100, 100, (ctx, can) => {
+WEAPON_BOX = pixelate(createCanvas(100, 100, ctx => {
     ctx.fs('#816951');
     ctx.beginPath();
-    ctx.moveTo(0, can.height / 6);
-    ctx.lineTo(can.width / 2, can.height / 6);
-    ctx.lineTo(can.width / 2, can.height);
-    ctx.lineTo(0, can.height * 5 / 6);
+    ctx.moveTo(0, WEAPON_BOX_HEIGHT / 6);
+    ctx.lineTo(WEAPON_BOX_WIDTH / 2, WEAPON_BOX_HEIGHT / 6);
+    ctx.lineTo(WEAPON_BOX_WIDTH / 2, WEAPON_BOX_HEIGHT);
+    ctx.lineTo(0, WEAPON_BOX_HEIGHT * 5 / 6);
     ctx.fill();
 
     ctx.fs('#b09370');
     ctx.beginPath();
-    ctx.moveTo(can.width / 2, can.height / 3);
-    ctx.lineTo(can.width, can.height / 6);
-    ctx.lineTo(can.width, can.height * 5 / 6);
-    ctx.lineTo(can.width / 2, can.height);
+    ctx.moveTo(WEAPON_BOX_WIDTH / 2, WEAPON_BOX_HEIGHT / 3);
+    ctx.lineTo(WEAPON_BOX_WIDTH, WEAPON_BOX_HEIGHT / 6);
+    ctx.lineTo(WEAPON_BOX_WIDTH, WEAPON_BOX_HEIGHT * 5 / 6);
+    ctx.lineTo(WEAPON_BOX_WIDTH / 2, WEAPON_BOX_HEIGHT);
     ctx.fill();
 
     ctx.fs('#5e503a');
     ctx.beginPath();
-    ctx.moveTo(can.width / 2, 0);
-    ctx.lineTo(can.width, can.height / 6);
-    ctx.lineTo(can.width / 2, can.height / 3);
-    ctx.lineTo(0, can.height / 6);
+    ctx.moveTo(WEAPON_BOX_WIDTH / 2, 0);
+    ctx.lineTo(WEAPON_BOX_WIDTH, WEAPON_BOX_HEIGHT / 6);
+    ctx.lineTo(WEAPON_BOX_WIDTH / 2, WEAPON_BOX_HEIGHT / 3);
+    ctx.lineTo(0, WEAPON_BOX_HEIGHT / 6);
     ctx.fill();
 }), 5);
 
-const HEALTH_ITEM = pixelate(createCanvas(100, 60, (ctx, can) => {
+HEALTH_ITEM = pixelate(createCanvas(HEALTH_ITEM_WIDTH, HEALTH_ITEM_HEIGHT, ctx => {
     ctx.fs('#ccc');
-    ctx.fillRect(0, can.height * 0.2, can.width, 60);
+    ctx.fr(0, HEALTH_ITEM_HEIGHT * 0.2, HEALTH_ITEM_WIDTH, 60);
 
     ctx.fs('#888');
     ctx.beginPath();
-    ctx.moveTo(0, can.height * 0.2);
-    ctx.lineTo(can.width, can.height * 0.2);
-    ctx.lineTo(can.width * 0.8, 0);
-    ctx.lineTo(can.width * 0.2, 0);
+    ctx.moveTo(0, HEALTH_ITEM_HEIGHT * 0.2);
+    ctx.lineTo(HEALTH_ITEM_WIDTH, HEALTH_ITEM_HEIGHT * 0.2);
+    ctx.lineTo(HEALTH_ITEM_WIDTH * 0.8, 0);
+    ctx.lineTo(HEALTH_ITEM_WIDTH * 0.2, 0);
     ctx.fill();
 
-    const crossLength = 30;
-    const crossThickness = 10;
     ctx.fs('#900');
-    ctx.fillRect(can.width / 2 - crossThickness / 2, can.height * 0.2 + (can.height * 0.8 - crossLength) / 2, crossThickness, crossLength);
-    ctx.fillRect((can.width - crossLength) / 2, can.height * 0.2 + (can.height * 0.8 - crossThickness) / 2, crossLength, crossThickness);
+    ctx.fr(HEALTH_ITEM_WIDTH / 2 - HEALTH_ITEM_CROSS_THICKNESS / 2, HEALTH_ITEM_HEIGHT * 0.2 + (HEALTH_ITEM_HEIGHT * 0.8 - HEALTH_ITEM_CROSS_LENGTH) / 2, HEALTH_ITEM_CROSS_THICKNESS, HEALTH_ITEM_CROSS_LENGTH);
+    ctx.fr((HEALTH_ITEM_WIDTH - HEALTH_ITEM_CROSS_LENGTH) / 2, HEALTH_ITEM_HEIGHT * 0.2 + (HEALTH_ITEM_HEIGHT * 0.8 - HEALTH_ITEM_CROSS_THICKNESS) / 2, HEALTH_ITEM_CROSS_LENGTH, HEALTH_ITEM_CROSS_THICKNESS);
 }), 5);

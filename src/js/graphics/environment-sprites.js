@@ -26,7 +26,7 @@ const MINIMAP_GRID = createCanvasPattern(MINIMAP_SCALE * 10, MINIMAP_SCALE * 10,
     ctx.fs('#fff');
     ctx.globalAlpha = 0.1;
     for (let i = 0 ; i < can.width ; i+=MINIMAP_SCALE) {
-        ctx.fillRect(i, 0, 1, can.height);
-        ctx.fillRect(0, i, can.width, 1);
+        ctx.fr(i, 0, 1, can.height);
+        ctx.fr(0, i, can.width, 1);
     }
 });
