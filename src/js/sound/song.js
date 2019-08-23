@@ -102,25 +102,6 @@ const HIHAT = {
     "lfo_freq": 5,
     "lfo_amt": 187,
     "lfo_waveform": 0,
-    "p": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1
-    ],
     "c": [BEAT_PATTERN]
 };
 
@@ -226,13 +207,13 @@ const ELECTRO = {
 HIHAT.p     = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 DRUM.p      = [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 SNARE.p     = [0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0];
-ELECTRO.p   = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0];
+ELECTRO.p   = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0];
 
 new MusicGenerator({
     "rowLen": 5513,
     "endPattern": HIHAT.p.length,
     "songData": [HIHAT, DRUM, SNARE, ELECTRO],
-    "songLen": 50
+    "songLen": (HIHAT.p.length - 1) * 4
 }).createAudioBuffer(buffer => {
     const source = audioCtx.createBufferSource();
     source.buffer = buffer;
