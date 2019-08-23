@@ -2,7 +2,7 @@ class EnemyFireWeapon extends Weapon {
     constructor(character) {
         super(character);
         this.angleRandomFactor = PI / 512;
-        this.trailColor = '#0f0';
+        this.trailColor = '#f00';
         this.shotInterval = 3;
         this.trailSize = 10;
         this.bulletSpeed = BLOCK_SIZE * 8;

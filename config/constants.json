@@ -6,10 +6,13 @@
     "CANVAS_WIDTH": 800,
     "CANVAS_HEIGHT": 600,
 
-    "MOUNTAIN_COLOR": "'#610'",
-    "FOG_COLOR": "'#250000'",
-    "SKY_COLOR": "'#a02e00'",
-    "DECORATION_PARTICLE_COLOR": "'#f80'",
+    "MOUNTAIN_COLOR": "'#002a50'",
+    "FOG_COLOR": "'#000'",
+    "SKY_COLOR": "'#000010'",
+    "DECORATION_PARTICLE_COLOR": "'#fff'",
+
+    "AGGRESSIVE_EYE_COLOR": "'red'",
+    "IDLE_EYE_COLOR": "'#0f0'",
 
     "SLICE_WIDTH": 2,
     "FIELD_OF_VIEW": 1,

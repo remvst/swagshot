@@ -45,6 +45,7 @@
     "src/js/graphics/create-pattern.js",
     "src/js/graphics/assets.js",
     "src/js/graphics/test-sprite.js",
+    "src/js/graphics/enemy-sprites.js",
 
     "src/js/sound/sonantx.js",
     "src/js/sound/song.js",

@@ -4,7 +4,7 @@ class EnemySpreadWeapon extends Weapon {
 
         this.bulletCount = 5;
         this.angleRandomFactor = PI / 64;
-        this.trailColor = '#0f0';
+        this.trailColor = '#f00';
         this.shotInterval = 3;
         this.trailSize = 2;
         this.bulletSpeed = BLOCK_SIZE * 8;

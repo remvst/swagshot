@@ -19,3 +19,9 @@ toColor = components => {
 multiply = (components, factor) => {
     return components.map(x => x * factor);
 };
+
+
+randomGrayColor = () => {
+    const component = pick([0x6, 0x3]);
+    return [component, component, component];
+};

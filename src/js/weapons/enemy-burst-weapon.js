@@ -3,7 +3,7 @@ class EnemyBurstWeapon extends Weapon {
         super(character);
         this.angleRandomFactor = PI / 512;
         this.angleRandomFactor = 0;
-        this.trailColor = '#0f0';
+        this.trailColor = '#f00';
         this.shotInterval = 0.1;
         this.trailSize = 2;
         this.bulletSpeed = BLOCK_SIZE * 8;

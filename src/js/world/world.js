@@ -44,7 +44,7 @@ class World {
                     const enemy = new Enemy();
                     enemy.x = (col + 0.5) * BLOCK_SIZE;
                     enemy.y = (row + 0.5) * BLOCK_SIZE;
-                    enemy.z = rnd(-0.35, 2) * BLOCK_SIZE;
+                    // enemy.z = rnd(-0.35, 2) * BLOCK_SIZE;
                 }
             }
         }
