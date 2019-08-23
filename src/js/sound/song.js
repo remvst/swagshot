@@ -116,6 +116,9 @@ const HIHAT = {
         1,
         1,
         1,
+        1,
+        1,
+        1,
         1
     ],
     "c": [BEAT_PATTERN]
@@ -151,22 +154,6 @@ const DRUM = {
     "lfo_freq": 0,
     "lfo_amt": 0,
     "lfo_waveform": 0,
-    "p": [
-        0,
-        0,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        0,
-        0
-    ],
     "c": [BEAT_PATTERN]
 };
 
@@ -200,22 +187,6 @@ const SNARE = {
     "lfo_freq": 0,
     "lfo_amt": 0,
     "lfo_waveform": 0,
-    "p": [
-        0,
-        0,
-        0,
-        0,
-        1,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-    ],
     "c": [AGGRESSIVE_PATTERN]
 };
 
@@ -249,55 +220,26 @@ const ELECTRO = {
     "lfo_freq": 7,
     "lfo_amt": 106,
     "lfo_waveform": 0,
-    "p": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        1,
-        0,
-        0,
-        0,
-        0
-
-    ],
     "c": [BEAT_PATTERN]
 };
 
+HIHAT.p     = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+DRUM.p      = [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+SNARE.p     = [0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0];
+ELECTRO.p   = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0];
 
-const SONG_BASE = {
+new MusicGenerator({
     "rowLen": 5513,
-    "endPattern": 14,
+    "endPattern": HIHAT.p.length,
     "songData": [HIHAT, DRUM, SNARE, ELECTRO],
     "songLen": 50
-};
-
-
-
-
-// songGen.getAudioGenerator(function(audioGenerator) {
-//     var audio = audioGenerator.getAudio();
-//     audio.loop = true;
-//     audio.play();
-//
-//     audio.onend = () => {
-//         console.log('end audio');
-//     };
-// });
-
-const songGen = new MusicGenerator(SONG_BASE);
-songGen.createAudioBuffer(buffer => {
+}).createAudioBuffer(buffer => {
     const source = audioCtx.createBufferSource();
     source.buffer = buffer;
     source.loop = true;
 
     const gainNode = audioCtx.createGain();
-    // gainNode.gain.value = 0.1;
+    // gainNode.gain.value = 0;
     gainNode.connect(audioCtx.destination);
 
     source.connect(gainNode);
