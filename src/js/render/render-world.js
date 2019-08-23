@@ -108,9 +108,9 @@ function renderWalls() {
         }
 
         if (distance < DRAW_DISTANCE) {
-            const consoleTexture = CONSOLE_SPRITES[~~(G.clock * 3 + CASTED_RAYS[i].blockId * 185.346) % CONSOLE_SPRITES.length];
-            const textures = [consoleTexture, TEST_SPRITE_1];
-            const texture = textures[~~((CASTED_RAYS[i].blockId || 0) * 185.346) % textures.length];
+            const textureSet = WALL_TEXTURES[~~((CASTED_RAYS[i].blockId || 0) * 185.346) % WALL_TEXTURES.length];
+            const texture = textureSet[~~(G.clock * 3 + CASTED_RAYS[i].blockId * 238.489) % textureSet.length];
+
             drawImage(
                 texture,
                 ~~(textureOffsetRatio * texture.width), 0, 1, texture.height,

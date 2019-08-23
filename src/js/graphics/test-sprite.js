@@ -1,131 +1,3 @@
-const TEST_SPRITE_1 = createCanvas(20, 20, ctx => {
-    ctx.fillStyle = '#3F1F0C';
-    ctx.fillRect(0, 0, 20, 20);
-
-    ctx.fillStyle = '#926D59';
-    ctx.fillRect(0, 10, 20, 1);
-
-    ctx.fillStyle = '#59341F';
-    ctx.fillRect(1, 1, 8, 8);
-    ctx.fillRect(11, 1, 8, 8);
-
-    ctx.fillRect(1, 12, 18, 7);
-
-    ctx.fillStyle = '#000';
-    // for (let y = 0 ; y < 6 ; y += 2) {
-    //     ctx.fillRect(0, y, 20, 1);
-    // }
-
-    for (let x = 0 ; x < 20 ; x++) {
-        for (let y = 0 ; y < 20 ; y++) {
-            ctx.globalAlpha = rnd(0.05, 0.1);
-            ctx.fillStyle = '#fff';
-            ctx.fillRect(x * 1, y * 1, 1, 1);
-        }
-    }
-});
-
-function consoleSprite() {
-    return createCanvas(40, 40, (ctx, can) => {
-        ctx.fillStyle = '#01020a';
-        ctx.fillRect(0, 0, 40, 40);
-
-        ctx.globalAlpha = 0.05;
-        ctx.fillStyle = '#fff';
-        ctx.fillRect(0, 0, 40, 1);
-        ctx.fillRect(19, 0, 2, 40);
-        ctx.fillRect(0, 19, 40, 2);
-        ctx.fillRect(0, 39, 40, 1);
-        ctx.fillRect(39, 0, 1, 40);
-        ctx.fillRect(0, 0, 1, 40);
-
-        const generator = createNumberGenerator(1);
-        for (let x = 0 ; x < 40 ; x++) {
-            for (let y = 0 ; y < 40 ; y++) {
-                ctx.globalAlpha = generator() * 0.03 + 0.05;
-                ctx.fillStyle = '#fff';
-                ctx.fillRect(x * 1, y * 1, 1, 1);
-            }
-        }
-
-        ctx.globalAlpha = 1;
-
-        function buttonPanel() {
-            for (let x = 3 ; x < 20 - 3 ; x += 3) {
-                for (let y = 3 ; y < 20 - 3 ; y += 3) {
-                    ctx.fillStyle = random() < 0.5 ? '#426026' : '#d5f6b2';
-                    ctx.fillRect(x, y, 2, 1);
-                }
-            }
-        }
-
-        buttonPanel();
-        ctx.translate(20, 0);
-        buttonPanel();
-        ctx.translate(-20, 20);
-        buttonPanel();
-        ctx.translate(20, 0);
-        buttonPanel();
-    });
-}
-
-const CONSOLE_SPRITES = [consoleSprite(), consoleSprite(), consoleSprite()];
-
-const FLOOR_SPRITE = createCanvas(40, 40, (ctx, can) => {
-    for (let x = 0 ; x < 40 ; x++) {
-        for (let y = 0 ; y < 40 ; y++) {
-            ctx.fillStyle = pick(['#1d1c23', '#262228']);
-            ctx.fillRect(x * 1, y * 1, 1, 1);
-        }
-    }
-
-    ctx.globalAlpha = 0.1;
-    ctx.fillStyle = '#fff';
-    ctx.fillRect(0, 0, 40, 1);
-    ctx.fillRect(0, 19, 40, 2);
-    ctx.fillRect(19, 0, 2, 40);
-    ctx.fillRect(0, 39, 40, 1);
-    ctx.fillRect(39, 0, 1, 40);
-    ctx.fillRect(0, 0, 1, 40);
-});
-
-const BACKGROUND_SPRITE = createCanvasPattern(1, CANVAS_HEIGHT / 2, (ctx, can) => {
-    const grad = ctx.createLinearGradient(0, 0, 0, can.height);
-    grad.addColorStop(0, '#000');
-    grad.addColorStop(1, '#1d1c23');
-
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, 1, can.height);
-
-});
-
-const STARRY_BACKGROUND = createCanvasPattern(400, 400, (ctx, can) => {
-    ctx.fillStyle = '#0e0409';
-    ctx.fillRect(0, 0, 400, 400);
-
-    const starGradient = ctx.createRadialGradient(0, 0, 0, 0, 0, 1);
-    starGradient.addColorStop(0, 'rgba(255,255,200,1)');
-    starGradient.addColorStop(0.3, 'rgba(255,255,200,0.1)');
-    starGradient.addColorStop(1, 'rgba(255,255,200,0)');
-
-    ctx.fillStyle = starGradient;
-
-    for (let i = 0 ; i < 0 ; i++) {
-        ctx.beginPath();
-        ctx.arc(
-            random() * 400,
-            random() * 400,
-            1,
-            0,
-            TWO_PI
-        );
-        ctx.fill();
-
-        ctx.fillStyle = '#fff';
-        // ctx.fillRect(random() * 200, random() * 200, 1, 1);
-    }
-});
-
 const SHOTGUN = pixelate(createCanvas(165, 150, (ctx, can) => {
     const grad = ctx.createLinearGradient(0, 0, can.width / 2, 10);
     grad.addColorStop(0, '#765');
@@ -352,14 +224,13 @@ const HEALTH_ITEM = pixelate(createCanvas(100, 60, (ctx, can) => {
     ctx.fillRect((can.width - crossLength) / 2, can.height * 0.2 + (can.height * 0.8 - crossThickness) / 2, crossLength, crossThickness);
 }), 5);
 
-fireTexture = (outsideColor, insideColor) => {
-    return pixelate(createCanvas(80, 120, (ctx, can) => {
+const FIRE_1 = pixelate(createCanvas(80, 120, (ctx, can) => {
         const grad = ctx.createRadialGradient(
             can.width / 2, can.height * 0.7, 0,
             can.width / 2, can.height * 0.7, can.width / 2
         );
-        grad.addColorStop(0, insideColor);
-        grad.addColorStop(1, outsideColor);
+        grad.addColorStop(0, '#ff0');
+        grad.addColorStop(1, '#f00');
 
         const points = [];
         for (let ratio = 0 ; ratio <= 1 ; ratio += 0.1) {
@@ -369,7 +240,7 @@ fireTexture = (outsideColor, insideColor) => {
         }
 
         ctx.fillStyle = grad;
-        ctx.strokeStyle = insideColor;
+        ctx.strokeStyle = '#ff0';
         ctx.lineWidth = 5;
         ctx.beginPath();
         points.forEach(pt => {
@@ -377,13 +248,6 @@ fireTexture = (outsideColor, insideColor) => {
         });
         ctx.stroke();
         ctx.fill();
-    }), 10);
-};
+}), 10);
 
-const FIRE_1 = fireTexture('#f00', '#ff0');
-const FIRE_2 = scaleCanvas(FIRE_1, -1, 1);
-const FIRE_FRAMES = [FIRE_1, FIRE_2];
-
-const GREEN_FIRE_1 = fireTexture('#080', '#0f0');
-const GREEN_FIRE_2 = scaleCanvas(GREEN_FIRE_1, -1, 1);
-const GREEN_FIRE_FRAMES = [GREEN_FIRE_1, GREEN_FIRE_2];
+const FIRE_FRAMES = [FIRE_1, scaleCanvas(FIRE_1, -1, 1)];

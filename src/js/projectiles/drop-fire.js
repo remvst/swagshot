@@ -1,4 +1,4 @@
-dropFire = (x, y, z, frames) => {
+dropFire = (x, y, z) => {
     for (let i = 0 ; i < 5 ; i++) {
         const fire = new Fire();
         fire.x = x + rnd(-1, 1) * BLOCK_SIZE / 2;

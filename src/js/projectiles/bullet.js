@@ -84,7 +84,7 @@ class Bullet {
         if (this.explodes) {
             // Drop some fire
             const isEnemyGenerated = this.targets[0] == P;
-            dropFire(beforeX, beforeY, this.z, isEnemyGenerated ? GREEN_FIRE_FRAMES : FIRE_FRAMES);
+            dropFire(beforeX, beforeY, this.z);
 
             if (!isEnemyGenerated) {
                 explosion(beforeX, beforeY, this.z, BLOCK_SIZE / 2);

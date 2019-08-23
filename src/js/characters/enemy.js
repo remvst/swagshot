@@ -194,7 +194,7 @@ class Enemy extends Character {
             remove(SPRITES, this.sprite);
         });
 
-        dropFire(this.x, this.y, this.z, GREEN_FIRE_FRAMES);
+        dropFire(this.x, this.y, this.z);
 
         this.sprite.sprite = this.hurtCanvas;
     }
