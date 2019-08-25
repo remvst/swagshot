@@ -79,7 +79,7 @@ class Game {
             if (G.clock - max(P.lastDamage, P.lastPickup) < 0.35 || !P.health) {
                 wrap(() => {
                     R.globalAlpha = 0.2;
-                    R.fillStyle = P.lastDamage > P.lastPickup ? '#f00' : '#fff';
+                    fs(P.lastDamage > P.lastPickup ? '#f00' : '#fff');
                     fr(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
                 });
             }
@@ -87,11 +87,21 @@ class Game {
 
         if (onMenu) {
             wrap(renderMenu);
+        } else {
+            if (G.clock < G.messageEnd) {
+                fs('#fff');
+                R.font = '16pt Courier';
+                R.textAlign = 'center';
+                G.message.forEach((m, i) => {
+                    fillText(m, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 3 + i * 25);
+                });
+            }
         }
 
         if (DEBUG) {
             wrap(() => {
                 R.font = '7pt ' + monoFont;
+                R.textAlign = 'left';
                 fs('#fff');
 
                 const fpsGauge = [];
@@ -148,6 +158,17 @@ class Game {
         P.setWeapon(new Pistol(P));
 
         W = new World();
+
+        G.showMessage([
+            nomangle('Move: arrow keys/WASD'),
+            nomangle('Shoot/look: mouse'),
+            nomangle('Jump: [SPACE]'),
+        ]);
+    }
+
+    showMessage(message) {
+        G.message = message;
+        G.messageEnd = G.clock + 3;
     }
 
 }
