@@ -1,6 +1,5 @@
 class Item {
     constructor(sprite) {
-        sprite = KEYCARD_ITEM;
         this.width = ITEM_RADIUS;
 
         this.z = -BLOCK_SIZE / 4;
