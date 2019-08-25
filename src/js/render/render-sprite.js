@@ -24,7 +24,7 @@ function renderSprite(sprite, aboveBlocks) {
                     drawImage(
                         sprite.sprite,
                         (ratio * sprite.sprite.width), 0, (ratioNext - ratio) * sprite.sprite.width, sprite.sprite.height,
-                        xSlice - SLICE_WIDTH / 2, y - height / 2, SLICE_WIDTH, height
+                        xSlice, y - height / 2, SLICE_WIDTH, height
                     );
                 }
 
