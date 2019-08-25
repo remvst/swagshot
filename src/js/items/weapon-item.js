@@ -8,6 +8,6 @@ class WeaponItem extends Item {
             RocketLauncher,
             Shotgun,
             MachineGun
-        ]))(P));
+        ].filter(x => P.weapon.constructor != x)))(P));
     }
 }

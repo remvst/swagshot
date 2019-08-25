@@ -2,6 +2,8 @@ class Item {
     constructor(sprite) {
         this.width = ITEM_RADIUS;
 
+        this.z = -BLOCK_SIZE / 4;
+
         SPRITES.push(this.sprite = {
             'z': -BLOCK_SIZE / 4,
             'width': ITEM_RADIUS / 2,
@@ -25,7 +27,7 @@ class Item {
     cycle() {
         this.sprite.x = this.x;
         this.sprite.y = this.y;
-        this.sprite.z = sin(G.clock * PI * 2 / 2) * 2 - BLOCK_SIZE / 4;
+        this.sprite.z = this.z + sin(G.clock * PI * 2 / 2) * 2;
 
         this.shadowSprite.x = this.x + cos(P.angle);
         this.shadowSprite.y = this.y + sin(P.angle);

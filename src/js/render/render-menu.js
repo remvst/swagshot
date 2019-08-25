@@ -9,7 +9,7 @@ renderMenu = () => {
     R.textAlign = 'center';
     R.textBaseline = 'middle';
     R.fs('#fff');
-    fillText('[TO HELL AND BACK]', CANVAS_WIDTH / 2, CANVAS_HEIGHT * 0.25);
+    fillText('[TAKING THE STATION BACK]', CANVAS_WIDTH / 2, CANVAS_HEIGHT * 0.25);
 
     // Subtitle
     R.font = '14pt Courier';

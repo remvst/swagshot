@@ -22,6 +22,8 @@ class Player extends Character {
 
         this.radius = BLOCK_SIZE * 0.5;
         this.collisionRadius = BLOCK_SIZE * 0.1;
+
+        this.collectedScrap = 0;
     }
 
     cycle(e) {
