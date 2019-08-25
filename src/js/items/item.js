@@ -1,5 +1,6 @@
 class Item {
     constructor(sprite) {
+        sprite = KEYCARD_ITEM;
         this.width = ITEM_RADIUS;
 
         SPRITES.push(this.sprite = {

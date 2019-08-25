@@ -3,7 +3,12 @@
     "src/js/math.js",
     "src/js/canvas-additions.js",
 
+    "src/js/render/render-world-utils.js",
+    "src/js/render/render-world-globals.js",
     "src/js/render/render-world.js",
+    "src/js/render/render-sprite.js",
+    "src/js/render/render-walls.js",
+    "src/js/render/render-floor.js",
     "src/js/render/render-hud.js",
     "src/js/render/render-minimap.js",
     "src/js/render/render-menu.js",
