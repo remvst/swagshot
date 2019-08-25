@@ -76,7 +76,7 @@ function drawTriangle(
     moveTo(x0, y0);
     lineTo(x1, y1);
     lineTo(x2, y2);
-    closePath();
+    // closePath();
     // stroke();
     clip();
 

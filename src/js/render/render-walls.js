@@ -1,4 +1,6 @@
 function renderWalls() {
+    fs('#000');
+
     for (let i = 0 ; i < SLICE_COUNT ; i++) {
         const cast = CASTED_RAYS[i];
 
