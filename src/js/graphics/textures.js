@@ -91,13 +91,8 @@ const FLOOR_SPRITE = createCanvas(40, 40, (ctx, can) => {
     ctx.fr(0, 0, 1, 40);
 });
 
-const FLOOR_SPRITE_LIGHT = createCanvas(40, 40, (ctx, can) => {
-    for (let x = 0 ; x < 40 ; x++) {
-        for (let y = 0 ; y < 40 ; y++) {
-            ctx.fillStyle = pick(['#1d1c23', '#262228']);
-            ctx.fr(x * 1, y * 1, 1, 1);
-        }
-    }
+const FLOOR_SPRITE_GRID = createCanvas(40, 40, (ctx, can) => {
+    ctx.drawImage(FLOOR_SPRITE, 0, 0);
 
     ctx.fs('black');
     for (let y = 0 ; y < can.height ; y += 2) {

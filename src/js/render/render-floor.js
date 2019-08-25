@@ -9,7 +9,7 @@ function renderFloor(z, maxDistance) {
             const blockCol = ~~(x / BLOCK_SIZE);
             const blockRow = ~~(y / BLOCK_SIZE);
 
-            const texture = (blockCol % 3) || (blockRow % 3) ? FLOOR_SPRITE : FLOOR_SPRITE_LIGHT;
+            const texture = (blockCol % 3) || (blockRow % 3) ? FLOOR_SPRITE : FLOOR_SPRITE_GRID;
 
             const offsetXRatio = (x % BLOCK_SIZE) / BLOCK_SIZE;
             const offsetYRatio = (y % BLOCK_SIZE) / BLOCK_SIZE;
