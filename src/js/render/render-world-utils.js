@@ -1,5 +1,3 @@
-
-
 function positionOnScreen(x, y, z) {
     const point = {'x': x, 'y': y, 'z': isNaN(z) ? -BLOCK_SIZE / 2 : z};
     const angle = angleBetween(P, point);
