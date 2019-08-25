@@ -42,4 +42,21 @@ function renderHud() {
             fr(HUD_ICON_SIZE * 4 / 5, 0, HUD_ICON_SIZE / 5, HUD_ICON_SIZE);
         });
     });
+
+    // Damage indicators
+    DAMAGE_ANGLES.forEach(angle => {
+        wrap(() => {
+            R.globalAlpha = angle.alpha;
+            translate(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
+            rotate(angle.angle - P.angle + PI - PI / 2);
+            translate(100, 0);
+
+            fs('#f00');
+            beginPath();
+            moveTo(0, -20);
+            lineTo(20, 0);
+            lineTo(0, 20);
+            fill();
+        });
+    });
 }

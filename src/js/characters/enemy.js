@@ -136,8 +136,8 @@ class Enemy extends Character {
         this.sprite.sprite = this.hurtCanvas;
     }
 
-    hurt(source, amount) {
-        super.hurt(source, amount);
+    hurt(source, amount, angle) {
+        super.hurt(source, amount, angle);
         P.lastHit = G.clock;
         this.aggressive = true;
     }

@@ -57,7 +57,7 @@ class Bullet {
         this.targets.forEach(target => {
             if (dist(target, this) < target.radius && abs(target.z - this.z) < target.radius) {
                 this.remove(beforeX, beforeY, target);
-                target.hurt(this, target === P ? 0.05 : 0.2);
+                target.hurt(this, target === P ? 0.05 : 0.2, this.angle);
             }
         });
 

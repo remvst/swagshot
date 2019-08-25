@@ -16,6 +16,7 @@ class Player extends Character {
         this.lastLanding = -1;
         this.lastHit = -1;
         this.lastPickup = -1;
+        this.lastFireDamage = -1;
 
         this.enemies = ENEMIES;
 
@@ -117,5 +118,13 @@ class Player extends Character {
         this.verticalAngle = 0;
         this.headTilt = 0;
         // TODO trigger game over
+    }
+
+    hurt(source, amount, angle) {
+        super.hurt(source, amount, angle);
+
+        const damageAngle = {'angle': angle, 'alpha': 1};
+        DAMAGE_ANGLES.push(damageAngle);
+        interp(damageAngle, 'alpha', 1, 0, 1, 0, null, () => remove(DAMAGE_ANGLES, damageAngle));
     }
 }

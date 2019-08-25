@@ -3,7 +3,7 @@ explosion = (x, y, z, radius) => {
         const dist = distP(character.x, character.y, x, y);
         const damage = (1 - min(1, dist / (BLOCK_SIZE * 2))) * 0.8;
         if (damage > 0 && abs(z - character.z) < radius) {
-            character.hurt({'x': x, 'y': y, 'z': z}, damage);
+            character.hurt({'x': x, 'y': y, 'z': z}, damage, atan2(character.y - y, character.x - x));
         }
     });
 

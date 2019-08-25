@@ -25,8 +25,13 @@ class Fire {
             this.remove();
         }
 
-        if (dist(this, P) < P.radius && abs(this.z - (P.z - BLOCK_SIZE / 4)) < BLOCK_SIZE / 2) {
-            P.hurt(this, e * 0.05);
+        if (dist(this, P) < P.radius && abs(this.z - (P.z - BLOCK_SIZE / 4)) < BLOCK_SIZE / 2 && G.clock - P.lastFireDamage > 0.1) {
+            const damage = (G.clock - P.lastFireDamage > 0.1) * e * 0.1;
+            P.hurt(this, damage, angleBetween(this, P));
+
+            if (damage) {
+                P.lastFireDamage = G.clock;
+            }
         }
     }
 
