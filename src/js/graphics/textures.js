@@ -108,7 +108,3 @@ const FLOOR_SPRITE_GRID = createCanvas(40, 40, (ctx, can) => {
     ctx.fr(39, 0, 1, 40);
     ctx.fr(0, 0, 1, 40);
 });
-
-// const FLOOR_SPRITE_LIGHT = tintCanvas(FLOOR_SPRITE, 'rgba(255,255,255,0.1)');
-
-const FLOOR_TEXTURES = [FLOOR_SPRITE, FLOOR_SPRITE_LIGHT];
