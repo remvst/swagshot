@@ -9,17 +9,6 @@ class World {
         ITEMS.splice(0, ITEMS.length);
         ENEMIES.splice(0, ENEMIES.length);
 
-        // const fire = new Fire();
-        // fire.x = 10.5 * BLOCK_SIZE;
-        // fire.y = 10.5 * BLOCK_SIZE;
-        // // return;
-        //
-        // const enemy = new Enemy();
-        // enemy.x = 10.5 * BLOCK_SIZE;
-        // enemy.y = 10.5 * BLOCK_SIZE;
-        // enemy.z = 0;
-        // return;
-
         for (let row = 10 ; row < this.matrix.length ; row++) {
             for (let col = 10 ; col < this.matrix[0].length ; col++) {
                 if (this.matrix[row][col]) {
@@ -44,6 +33,7 @@ class World {
                     const enemy = new Enemy();
                     enemy.x = (col + 0.5) * BLOCK_SIZE;
                     enemy.y = (row + 0.5) * BLOCK_SIZE;
+                    enemy.dropScrap = enemy.z < BLOCK_SIZE / 2;
                 }
             }
         }

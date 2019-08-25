@@ -135,10 +135,12 @@ class Enemy extends Character {
 
         this.sprite.sprite = this.hurtCanvas;
 
-        const scrap = new ScrapItem();
-        scrap.x = this.x;
-        scrap.y = this.y;
-        interp(scrap, 'z', this.z, -BLOCK_SIZE / 4, duration / 2);
+        if (this.dropScrap || !hasBlock(this.x, this.y, this.radius)) {
+            const scrap = new ScrapItem();
+            scrap.x = this.x;
+            scrap.y = this.y;
+            interp(scrap, 'z', this.z, -BLOCK_SIZE / 4, duration / 2);
+        }
     }
 
     hurt(source, amount, angle) {
