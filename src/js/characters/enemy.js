@@ -147,6 +147,6 @@ class Enemy extends Character {
     }
 
     shootVerticalAngle() {
-        return atan2(-(P.z - this.z), P.x - this.x);
+        return atan2(-(P.z - this.z), dist(this, P));
     }
 }
