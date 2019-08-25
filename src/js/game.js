@@ -4,16 +4,9 @@ class Game {
         G = this;
         G.clock = 0;
 
+        G.messages = [];
+
         G.setupNewGame();
-
-        G.resourceIconOffsetY = 0;
-        G.resourceIconScale = 1;
-        G.resourceIconAlpha = 1;
-        G.healthIconScale = 1;
-
-        G.healthGaugeColor = '#fff';
-
-        G.lastStepSound = 0;
     }
 
     cycle(e) {
@@ -88,14 +81,20 @@ class Game {
         if (onMenu) {
             wrap(renderMenu);
         } else {
-            if (G.clock < G.messageEnd) {
+            R.font = '12pt Courier';
+            R.textAlign = 'center';
+            G.messages.forEach((m, i) => wrap(() => {
+                R.globalAlpha = 1 - abs(m.offset);
+                translate(m.offset * 100, CANVAS_HEIGHT / 2 + 30 + i * 25);
+
+                R.textAlign = 'right';
                 fs('#fff');
-                R.font = '16pt Courier';
-                R.textAlign = 'center';
-                G.message.forEach((m, i) => {
-                    fillText(m, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 3 + i * 25);
-                });
-            }
+                fillText(m.primary, CANVAS_WIDTH / 2 - 10, 0);
+
+                R.textAlign = 'left';
+                fs('#ff0');
+                fillText(m.secondary, CANVAS_WIDTH / 2 + 10, 0);
+            }));
         }
 
         if (DEBUG) {
@@ -154,16 +153,22 @@ class Game {
 
         W = new World();
 
-        G.showMessage([
-            nomangle('Move: arrow keys/WASD'),
-            nomangle('Shoot/look: mouse'),
-            nomangle('Jump: [SPACE]'),
-        ]);
+        G.showMessage('AIM/SHOOT', 'MOUSE', 5);
+        G.showMessage('MOVE', 'WASD/ARROW KEYS', 5);
     }
 
-    showMessage(message) {
-        G.message = message;
-        G.messageEnd = G.clock + 3;
+    showMessage(primary, secondary, duration = 1) {
+        const messageObject = {
+            'primary': primary,
+            'secondary': secondary
+        };
+        G.messages.unshift(messageObject);
+
+        interp(messageObject, 'offset', -1, 0, 0.3, 0, null, () => {
+            setTimeout(() => {
+                interp(messageObject, 'offset', 0, duration, 0.3, 0, null, () => remove(G.messages, messageObject));
+            }, 2000);
+        });
     }
 
 }

@@ -135,14 +135,16 @@ class Enemy extends Character {
 
         this.sprite.sprite = this.hurtCanvas;
 
+        G.showMessage(nomangle('ROBOT PWNED'), nomangle('+10'));
+
         if (ENEMIES.length < 5) {
             const enemiesWithinReach = ENEMIES.filter(e => dist(e, P) < DRAW_DISTANCE * 1.5).length;
             if (!enemiesWithinReach) {
-                G.showMessage([nomangle('Area cleared')]);
+                G.showMessage(nomangle('Area cleared'));
                 G.levelCleared = true;
 
                 setTimeout(() => {
-                    G.showMessage([nomangle('Proceeding to the next area')]);
+                    G.showMessage(nomangle('Proceeding to the next area'));
                 }, 3000);
 
                 setTimeout(() => {
