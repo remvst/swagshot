@@ -33,7 +33,6 @@ class World {
                     const enemy = new Enemy();
                     enemy.x = (col + 0.5) * BLOCK_SIZE;
                     enemy.y = (row + 0.5) * BLOCK_SIZE;
-                    enemy.dropScrap = enemy.z < BLOCK_SIZE / 2;
                 }
             }
         }

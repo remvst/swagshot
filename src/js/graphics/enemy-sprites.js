@@ -23,8 +23,8 @@ createRobot1 = eyeColor => createCanvas(ROBOT_1_WIDTH, ROBOT_1_HEIGHT, ctx => {
     ctx.strokeRect(evaluate(ROBOT_1_WIDTH / 2 - ROBOT_1_WHEEL_RADIUS), evaluate(ROBOT_1_HEIGHT - ROBOT_1_WHEEL_HEIGHT), evaluate(ROBOT_1_WHEEL_RADIUS * 2), evaluate(ROBOT_1_WHEEL_HEIGHT));
 
     ctx.fs(eyeColor);
-    ctx.fr(evaluate(ROBOT_1_WIDTH / 2 - 20), 15, 10, 10);
-    ctx.fr(evaluate(ROBOT_1_WIDTH / 2 + 20), 15, -10, 10);
+    ctx.fr(evaluate(ROBOT_1_WIDTH / 2 - 10), 15, 20, 10);
+    // ctx.fr(evaluate(ROBOT_1_WIDTH / 2 + 20), 15, -10, 10);
 });
 
 createRobot2 = eyeColor => createCanvas(ROBOT_2_WIDTH, ROBOT_2_HEIGHT, ctx => {

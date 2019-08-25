@@ -23,7 +23,7 @@ class Player extends Character {
         this.radius = BLOCK_SIZE * 0.5;
         this.collisionRadius = BLOCK_SIZE * 0.1;
 
-        this.collectedScrap = 0;
+        this.power = 0;
     }
 
     cycle(e) {
@@ -41,7 +41,7 @@ class Player extends Character {
         const x = !!w.down[KEYBOARD_W] + !!w.down[KEYBOARD_UP] - !!w.down[KEYBOARD_S] - !!w.down[KEYBOARD_DOWN],
             y = !!w.down[KEYBOARD_D] + !!w.down[KEYBOARD_RIGHT] - !!w.down[KEYBOARD_A] - !!w.down[KEYBOARD_LEFT];
 
-        if (x || y) {
+        if ((x || y) && !G.levelCleared) {
             const maxSpeed = PLAYER_SPEED * (!!this.z * JUMP_SPEED_BOOST + 1);
             const targetAngle = atan2(y, x) + this.angle;
 
@@ -123,7 +123,7 @@ class Player extends Character {
     }
 
     hurt(source, amount, angle) {
-        super.hurt(source, amount * 0.1, angle);
+        super.hurt(source, amount * 0.25, angle);
 
         const damageAngle = {'angle': angle, 'alpha': 1};
         DAMAGE_ANGLES.push(damageAngle);

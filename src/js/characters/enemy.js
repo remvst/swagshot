@@ -135,11 +135,20 @@ class Enemy extends Character {
 
         this.sprite.sprite = this.hurtCanvas;
 
-        if (this.dropScrap || !hasBlock(this.x, this.y, this.radius)) {
-            const scrap = new ScrapItem();
-            scrap.x = this.x;
-            scrap.y = this.y;
-            interp(scrap, 'z', this.z, -BLOCK_SIZE / 4, duration / 2);
+        if (ENEMIES.length < 5) {
+            const enemiesWithinReach = ENEMIES.filter(e => dist(e, P) < DRAW_DISTANCE * 1.5).length;
+            if (!enemiesWithinReach) {
+                G.showMessage([nomangle('Area cleared')]);
+                G.levelCleared = true;
+
+                setTimeout(() => {
+                    G.showMessage([nomangle('Proceeding to the next area')]);
+                }, 3000);
+
+                setTimeout(() => {
+                    G.start();
+                }, 6000);
+            }
         }
     }
 

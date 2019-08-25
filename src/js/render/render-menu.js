@@ -1,4 +1,5 @@
 renderMenu = () => {
+    R.imageSmoothingEnabled = true;
     R.globalAlpha = 0.5;
     R.fs('#000');
     fr(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -9,11 +10,11 @@ renderMenu = () => {
     R.textAlign = 'center';
     R.textBaseline = 'middle';
     R.fs('#fff');
-    fillText('[TAKING THE STATION BACK]', CANVAS_WIDTH / 2, CANVAS_HEIGHT * 0.25);
+    fillText('[SWAGSHOT]', CANVAS_WIDTH / 2, CANVAS_HEIGHT * 0.25);
 
     // Subtitle
     R.font = '14pt Courier';
-    fillText(nomangle('WE THOUGHT MARS WAS SAFE... IT WASN\'T'), CANVAS_WIDTH / 2, CANVAS_HEIGHT * 0.35);
+    fillText(nomangle('TAKE THE STATION BACK... WITH SWAG'), CANVAS_WIDTH / 2, CANVAS_HEIGHT * 0.35);
 
     // Button
     wrap(() => {

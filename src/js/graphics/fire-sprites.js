@@ -35,3 +35,9 @@ EXPLOSION_CIRCLE = pixelate(createCanvas(200, 200, ctx => {
     ctx.arc(100, 100, 100, 0, TWO_PI);
     ctx.fill();
 }), 10);
+
+FIRE_HUD = tintCanvas(createCanvas(HUD_ICON_SIZE, HUD_ICON_SIZE, ctx => {
+    const scale = HUD_ICON_SIZE / 120;
+    ctx.scale(scale, scale);
+    ctx.drawImage(FIRE_1, 0, 0);
+}), '#f00');
