@@ -6,10 +6,6 @@ let R, // canvas context
     isTouch,
     mobile = navigator.userAgent.match(nomangle(/andro|ipho|ipa|ipo|windows ph/i));
 
-const CYCLABLES = [];
-const ENEMIES = [];
-const ITEMS = [];
-const MINIMAP_ELEMENTS = [];
 
 let onMenu = true,
     isMouseDown;
