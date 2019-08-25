@@ -5,7 +5,6 @@ function measure(fn) {
     return after - before;
 }
 
-
 function renderWorld() {
     // Prerender calculations
     G.castIterations = 0;
@@ -47,7 +46,6 @@ function renderWorld() {
     G.topSprites = measure(() => SPRITES.forEach(sprite => renderSprite(sprite, true)));
 
     G.renderFloor = measure(() => renderFloor(-BLOCK_SIZE / 2, BLOCK_SIZE * 4));
-    // G.renderCeiling = measure(() => renderFloor(BLOCK_SIZE / 2, BLOCK_SIZE * 2, FLOOR_SPRITE));
     G.renderWalls = measure(() => renderWalls());
 
     G.sortIterations = 0;
