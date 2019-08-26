@@ -69,12 +69,12 @@ class Game {
                 });
             }
 
-            if (!P.health) {
+            if (!P.health && !onMenu) {
                 R.font = '48pt Courier';
                 R.textAlign = 'center';
                 fs('#fff');
                 fillText(nomangle('FINAL SCORE: '), evaluate(CANVAS_WIDTH / 2), evaluate(CANVAS_HEIGHT / 2 - 50));
-                fillText(G.scoreKeeper.score, evaluate(CANVAS_WIDTH / 2), evaluate(CANVAS_HEIGHT / 2 - +0));
+                fillText(G.scoreKeeper.score, evaluate(CANVAS_WIDTH / 2), evaluate(CANVAS_HEIGHT / 2 - +50));
             }
 
             if (G.clock - max(P.lastDamage, P.lastPickup) < 0.35 || !P.health) {

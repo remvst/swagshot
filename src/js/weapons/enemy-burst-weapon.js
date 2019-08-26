@@ -1,20 +1,12 @@
-class EnemyBurstWeapon extends Weapon {
+class EnemyBurstWeapon extends EnemyWeapon {
     constructor(character) {
         super(character);
         this.angleRandomFactor = PI / 512;
         this.angleRandomFactor = 0;
-        this.trailColor = '#f00';
         this.shotInterval = 0.1;
         this.trailSize = 2;
         this.bulletSpeed = BLOCK_SIZE * 8;
         this.shotCount = 0;
-    }
-
-    cycle(e) {
-        super.cycle(e);
-        if (this.character.aggressive) {
-            this.maybeShoot();
-        }
     }
 
     shoot() {

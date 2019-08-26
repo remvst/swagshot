@@ -122,6 +122,7 @@ class Player extends Character {
         this.verticalAngle = 0;
         this.headTilt = 0;
         // TODO trigger game over
+        setTimeout(() => onMenu = true);
     }
 
     hurt(source, amount, angle) {

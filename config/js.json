@@ -26,6 +26,7 @@
     "src/js/weapons/shotgun.js",
     "src/js/weapons/machine-gun.js",
     "src/js/weapons/pistol.js",
+    "src/js/weapons/enemy-weapon.js",
     "src/js/weapons/enemy-spread-weapon.js",
     "src/js/weapons/enemy-burst-weapon.js",
     "src/js/weapons/enemy-fire-weapon.js",

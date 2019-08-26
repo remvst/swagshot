@@ -83,8 +83,6 @@ onload = () => {
         const canvasRect = document.querySelector('canvas').getBoundingClientRect();
         const y = (e.clientY - canvasRect.top) / canvasRect.height * CANVAS_HEIGHT;
 
-        console.log(y);
-
         isMouseDown = true;
         if (!onMenu) {
             P.weapon.holdTrigger();

@@ -50,7 +50,7 @@ class Bullet {
         if (
             hasBlock(this.x, this.y, 0) && this.z < BLOCK_SIZE / 2 ||
             this.z < -BLOCK_SIZE / 2 ||
-            G.clock - this.created > 1
+            G.clock - this.created > 1.5
         ) {
             this.remove(beforeX, beforeY);
         }
@@ -100,10 +100,6 @@ class Bullet {
         }
 
         if (!isEnemyGenerated) {
-            if (hitTarget && G.clock - this.created > 0.8) {
-                G.scoreKeeper.bonus(nomangle('LONG SHOT'), 10);
-            }
-
             if (this.jumpShot && hurtEnemies) {
                 G.scoreKeeper.bonus(nomangle('JUMPSHOT'), 10);
             }
