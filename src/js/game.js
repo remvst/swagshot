@@ -152,6 +152,7 @@ class Game {
         W = new World();
 
         G.showMessage(nomangle('PAUSE'), nomangle('ESC'), 5);
+        G.showMessage(nomangle('JUMP'), nomangle('SPACE'), 5);
         G.showMessage(nomangle('AIM/SHOOT'), nomangle('MOUSE'), 5);
         G.showMessage(nomangle('MOVE'), nomangle('WASD/ARROW KEYS'), 5);
     }

@@ -1,4 +1,4 @@
-function renderGauge(gaugeColor, value, renderIcon) {
+renderGauge = (gaugeColor, value, renderIcon) => {
     R.imageSmoothingEnabled = true;
 
     transform(1, -0.15, 0, 1, 0, 0); // shear the context
@@ -20,7 +20,7 @@ function renderGauge(gaugeColor, value, renderIcon) {
     fr(HUD_ICON_SIZE * 1.25, 0, HUD_GAUGE_LENGTH * value, HUD_ICON_SIZE);
 }
 
-function renderHud() {
+renderHud = () => {
     // Health
     wrap(() => {
         translate(20, CANVAS_HEIGHT - HUD_ICON_SIZE - HUD_GAUGE_PADDING * 2 - 20);
@@ -80,4 +80,34 @@ function renderHud() {
         fs('#ff0');
         fillText(m.secondary, CANVAS_WIDTH / 2 + 10, 0);
     }));
-}
+
+    function renderJoystick(x, y, angle, force) {
+        wrap(() => {
+            fs('#fff');
+            R.strokeStyle = '#fff';
+            R.lineWidth = 2;
+            R.globalAlpha = force ? 1 : 0.5;
+
+            translate(x, y);
+            rotate(angle - PI / 2);
+
+            beginPath();
+            arc(0, 0, JOYSTICK_RADIUS, 0, TWO_PI);
+            stroke();
+
+            beginPath();
+            arc(force * JOYSTICK_RADIUS, 0, 20, 0, TWO_PI);
+            fill();
+        });
+    }
+
+    if (isTouch || true) {
+        renderJoystick(LEFT_JOYSTICK_X, JOYSTICK_Y, MOVEMENT_CONTROL.angle, MOVEMENT_CONTROL.force);
+        renderJoystick(RIGHT_JOYSTICK_X, JOYSTICK_Y, AIM_CONTROL.angle, AIM_CONTROL.force);
+
+        beginPath();
+        arc(CANVAS_WIDTH - 70, CANVAS_HEIGHT - 280, 40, 0, TWO_PI);
+        fill();
+
+    }
+};

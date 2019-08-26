@@ -2,20 +2,27 @@ class Enemy extends Character {
     constructor() {
         super();
 
-        const settings = pick([
+        const availableSettings = [
             {
                 'sprites': ROBOT_1,
                 'z': -BLOCK_SIZE / 2
             },
             {
-                'sprites': ROBOT_3,
-                'z': rnd(1.5, 2.5) * BLOCK_SIZE
-            },
-            {
                 'sprites': ROBOT_2,
                 'z': -BLOCK_SIZE / 2
+            },
+            {
+                'sprites': ROBOT_3,
+                'z': rnd(1.5, 2.5) * BLOCK_SIZE
             }
-        ]);
+        ];
+
+        // Disable aerial enemies on mobile
+        if (mobile) {
+            availableSettings.splice(2, 1);
+        }
+
+        const settings = pick(availableSettings);
 
         this.idleCanvas = settings.sprites[0];
         this.aggressiveCanvas = settings.sprites[1];

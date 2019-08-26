@@ -14,3 +14,5 @@ let MOUSE_SENSITIVITY = parseFloat(localStorage[1]) || 0.5;
 let POINTER_LOCKED;
 
 const DAMAGE_ANGLES = [];
+const MOVEMENT_CONTROL = {'angle': 0, 'force': 0};
+const AIM_CONTROL = {'angle': 0, 'force': 0};
