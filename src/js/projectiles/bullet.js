@@ -93,7 +93,7 @@ class Bullet {
             if (!isEnemyGenerated) {
                 const hurtInExplosion = explosion(beforeX, beforeY, this.z, BLOCK_SIZE / 2);
                 if (hurtInExplosion > 1) {
-                    G.scoreKeeper.bonus(nomangle('EXPLOSTION COMBO x') + hurtEnemies, G.scoreKeeper.hitComboCount * 50);
+                    G.scoreKeeper.bonus(nomangle('EXPLOSTION COMBO x') + hurtInExplosion, hurtInExplosion * 50);
                 }
                 hurtEnemies = hurtEnemies || hurtInExplosion;
             }

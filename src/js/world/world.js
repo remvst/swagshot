@@ -8,6 +8,7 @@ class World {
         SPRITES.splice(0, SPRITES.length);
         ITEMS.splice(0, ITEMS.length);
         ENEMIES.splice(0, ENEMIES.length);
+        MINIMAP_ELEMENTS.splice(0, ENEMIES.length);
 
         for (let row = 10 ; row < this.matrix.length ; row++) {
             for (let col = 10 ; col < this.matrix[0].length ; col++) {
