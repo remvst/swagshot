@@ -67,4 +67,25 @@ function renderHud() {
             fill();
         });
     });
+
+    //Score
+    R.textAlign = 'center';
+    R.font = '24pt Courier';
+    fs('#fff');
+    fillText(G.scoreKeeper.score, CANVAS_WIDTH / 2, 50);
+
+    // Messages
+    R.font = '12pt Courier';
+    G.messages.forEach((m, i) => wrap(() => {
+        R.globalAlpha = 1 - abs(m.offset);
+        translate(m.offset * 100, CANVAS_HEIGHT / 2 + 30 + i * 25);
+
+        R.textAlign = 'right';
+        fs('#fff');
+        fillText(m.primary, CANVAS_WIDTH / 2 - 10, 0);
+
+        R.textAlign = 'left';
+        fs('#ff0');
+        fillText(m.secondary, CANVAS_WIDTH / 2 + 10, 0);
+    }));
 }

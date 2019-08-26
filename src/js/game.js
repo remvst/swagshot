@@ -69,6 +69,14 @@ class Game {
                 });
             }
 
+            if (!P.health) {
+                R.font = '48pt Courier';
+                R.textAlign = 'center';
+                fs('#fff');
+                fillText(nomangle('FINAL SCORE: '), evaluate(CANVAS_WIDTH / 2), evaluate(CANVAS_HEIGHT / 2 - 50));
+                fillText(G.scoreKeeper.score, evaluate(CANVAS_WIDTH / 2), evaluate(CANVAS_HEIGHT / 2 - +0));
+            }
+
             if (G.clock - max(P.lastDamage, P.lastPickup) < 0.35 || !P.health) {
                 wrap(() => {
                     R.globalAlpha = 0.2;
@@ -80,21 +88,6 @@ class Game {
 
         if (onMenu) {
             wrap(renderMenu);
-        } else {
-            R.font = '12pt Courier';
-            R.textAlign = 'center';
-            G.messages.forEach((m, i) => wrap(() => {
-                R.globalAlpha = 1 - abs(m.offset);
-                translate(m.offset * 100, CANVAS_HEIGHT / 2 + 30 + i * 25);
-
-                R.textAlign = 'right';
-                fs('#fff');
-                fillText(m.primary, CANVAS_WIDTH / 2 - 10, 0);
-
-                R.textAlign = 'left';
-                fs('#ff0');
-                fillText(m.secondary, CANVAS_WIDTH / 2 + 10, 0);
-            }));
         }
 
         if (DEBUG) {
