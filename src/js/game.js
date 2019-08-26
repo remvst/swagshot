@@ -140,6 +140,13 @@ class Game {
         }
     }
 
+    resume() {
+        if (!P.health) {
+            G.setupNewGame();
+        }
+        onMenu = false;
+    }
+
     setupNewGame() {
         this.scoreKeeper = new ScoreKeeper();
         this.nextArea();

@@ -5,11 +5,6 @@ touchEvent = (e, isTouchStart) => {
 
     const canvasRect = document.querySelector('canvas').getBoundingClientRect();
 
-    w.down[32] = false;
-    w.down[37] = false;
-    w.down[38] = false;
-    w.down[39] = false;
-
     MOVEMENT_CONTROL.force = 0;
     AIM_CONTROL.force = 0;
 
