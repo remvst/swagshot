@@ -60,9 +60,7 @@ function castOneRay(rayAngle, rayIndex) {
 function heightOnScreen(point, realHeight) {
     const angle = atan2(point.y - P.y, point.x - P.x);
     const correctedDistance = cos(angle - P.angle) * dist(point, P);
-    let height = realHeight * (1 - min(1000, correctedDistance) / 1000);
-    height = (realHeight / correctedDistance) * PROJECTION_PLANE_DISTANCE;
-    return height;
+    return (realHeight / correctedDistance) * PROJECTION_PLANE_DISTANCE;
 }
 
 function interpolateValue(fromValue, toValue, ratio) {
