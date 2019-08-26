@@ -10,6 +10,14 @@ function renderWorld() {
     G.castIterations = 0;
     G.castTime = measure(() => castWindow(-1, SLICE_COUNT + 1));
 
+    G.sortIterations = 0;
+    G.sortTime = measure(() => SPRITES.sort((a, b) => {
+        if (DEBUG) {
+            G.sortIterations++;
+        }
+        return dist(b, P) - dist(a, P);
+    }));
+
     // Rotate the view based on head tilt
     translate(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
     rotate(P.headTilt);
@@ -42,19 +50,10 @@ function renderWorld() {
         G.casts = 0;
         G.floorTiles = 0;
     }
-
     G.topSprites = measure(() => SPRITES.forEach(sprite => renderSprite(sprite, true)));
 
     G.renderFloor = measure(() => renderFloor(-BLOCK_SIZE / 2, BLOCK_SIZE * 4));
     G.renderWalls = measure(() => renderWalls());
-
-    G.sortIterations = 0;
-    G.sortTime = measure(() => SPRITES.sort((a, b) => {
-        if (DEBUG) {
-            G.sortIterations++;
-        }
-        return dist(b, P) - dist(a, P);
-    }));
 
     G.bottomSprites = measure(() => SPRITES.forEach(sprite => renderSprite(sprite)));
 
