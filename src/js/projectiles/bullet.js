@@ -11,6 +11,7 @@ class Bullet {
         this.explodes = explodes;
         this.trailColor = trailColor;
         this.created = G.clock;
+        this.jumpShot = P.z;
 
         SPRITES.push(this.sprite = {
             'x': this.x,
@@ -26,7 +27,7 @@ class Bullet {
     cycle(e) {
         let iterations = 0;
         let remaining = e;
-        while (remaining > 0) {
+        while (remaining > 0 && !this.removed) {
             const removed = min(remaining, (BLOCK_SIZE / 5) / this.speed);
             remaining -= removed;
             this.actualCycle(removed);
@@ -49,7 +50,7 @@ class Bullet {
         if (
             hasBlock(this.x, this.y, 0) && this.z < BLOCK_SIZE / 2 ||
             this.z < -BLOCK_SIZE / 2 ||
-            G.clock - this.created > 2
+            G.clock - this.created > 1
         ) {
             this.remove(beforeX, beforeY);
         }
@@ -81,13 +82,30 @@ class Bullet {
         remove(CYCLABLES, this);
         remove(SPRITES, this.sprite);
 
+        const isEnemyGenerated = this.targets[0] == P;
+
+        let hurtEnemies = hitTarget && hitTarget != P;
+
         if (this.explodes) {
             // Drop some fire
-            const isEnemyGenerated = this.targets[0] == P;
             dropFire(beforeX, beforeY, this.z);
 
             if (!isEnemyGenerated) {
-                explosion(beforeX, beforeY, this.z, BLOCK_SIZE / 2);
+                const hurtInExplosion = explosion(beforeX, beforeY, this.z, BLOCK_SIZE / 2);
+                if (hurtInExplosion > 1) {
+                    G.scoreKeeper.bonus(nomangle('EXPLOSTION COMBO x') + hurtEnemies, G.scoreKeeper.hitComboCount * 50);
+                }
+                hurtEnemies = hurtEnemies || hurtInExplosion;
+            }
+        }
+
+        if (!isEnemyGenerated) {
+            if (hitTarget && G.clock - this.created > 0.8) {
+                G.scoreKeeper.bonus(nomangle('LONG SHOT'), 10);
+            }
+
+            if (this.jumpShot && hurtEnemies) {
+                G.scoreKeeper.bonus(nomangle('JUMPSHOT'), 10);
             }
         }
 
@@ -112,5 +130,7 @@ class Bullet {
             interp(particle, 'z', this.z, this.z + rnd(-10, 10), duration);
             interp(particle, 'alpha', 1, 0, duration, 0, null, () => remove(SPRITES, particle));
         }
+
+        this.removed = true;
     }
 }

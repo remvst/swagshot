@@ -135,22 +135,26 @@ class Enemy extends Character {
 
         this.sprite.sprite = this.hurtCanvas;
 
-        G.showMessage(nomangle('ROBOT PWNED'), nomangle('+10'));
+        G.scoreKeeper.bonus(nomangle('ROBOT PWNED'), 10);
 
-        if (ENEMIES.length < 5) {
-            const enemiesWithinReach = ENEMIES.filter(e => dist(e, P) < DRAW_DISTANCE * 1.5).length;
-            if (!enemiesWithinReach) {
-                G.showMessage(nomangle('Area cleared'));
-                G.levelCleared = true;
+        if (++G.scoreKeeper.enemyKillsWithNoDamageCount > 1) {
+            G.scoreKeeper.bonus(nomangle('NO DAMAGE COMBO x') + G.scoreKeeper.enemyKillsWithNoDamageCount, G.scoreKeeper.enemyKillsWithNoDamageCount * 10);
+        }
 
-                setTimeout(() => {
-                    G.showMessage(nomangle('Proceeding to the next area'));
-                }, 3000);
+        if (P.health < 0.3) {
+            G.scoreKeeper.bonus(nomangle('NEAR DEATH'), 50);
+        }
 
-                setTimeout(() => {
-                    G.start();
-                }, 6000);
-            }
+        if (G.clock - this.firstDamage < 0.3) {
+            G.scoreKeeper.bonus(nomangle('QUICK KILL'), 50);
+        }
+
+        if (ENEMIES.length < 5 && !ENEMIES.filter(e => dist(e, P) < DRAW_DISTANCE * 1.5)) {
+            G.scoreKeeper.bonus(nomangle('AREA CLEARED'), 500);
+
+            setTimeout(() => {
+                G.nextArea();
+            }, 3000);
         }
     }
 
@@ -158,6 +162,8 @@ class Enemy extends Character {
         super.hurt(source, amount, angle);
         P.lastHit = G.clock;
         this.aggressive = true;
+
+        this.firstDamage = this.firstDamage || G.clock;
     }
 
     shootAngle() {

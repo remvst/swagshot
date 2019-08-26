@@ -148,13 +148,19 @@ class Game {
     }
 
     setupNewGame() {
+        this.scoreKeeper = new ScoreKeeper();
+        this.nextArea();
+    }
+
+    nextArea() {
         P = new Player();
         P.setWeapon(new Pistol(P));
 
         W = new World();
 
-        G.showMessage('AIM/SHOOT', 'MOUSE', 5);
-        G.showMessage('MOVE', 'WASD/ARROW KEYS', 5);
+        G.showMessage(nomangle('PAUSE'), nomangle('ESC'), 5);
+        G.showMessage(nomangle('AIM/SHOOT'), nomangle('MOUSE'), 5);
+        G.showMessage(nomangle('MOVE'), nomangle('WASD/ARROW KEYS'), 5);
     }
 
     showMessage(primary, secondary, duration = 1) {
@@ -166,8 +172,8 @@ class Game {
 
         interp(messageObject, 'offset', -1, 0, 0.3, 0, null, () => {
             setTimeout(() => {
-                interp(messageObject, 'offset', 0, duration, 0.3, 0, null, () => remove(G.messages, messageObject));
-            }, 2000);
+                interp(messageObject, 'offset', 0, 1, 0.3, 0, null, () => remove(G.messages, messageObject));
+            }, duration * 1000);
         });
     }
 

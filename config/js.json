@@ -57,6 +57,7 @@
     "src/js/sound/song.js",
     "src/js/sound/sounds.js",
 
+    "src/js/score-keeper.js",
     "src/js/keyboard.js",
     "src/js/menu.js",
     "src/js/game.js",
