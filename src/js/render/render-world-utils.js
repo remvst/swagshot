@@ -3,13 +3,13 @@ function positionOnScreen(x, y, z) {
     const angle = angleBetween(P, point);
     const angleDiff = normalize(angle - P.angle);
 
-    const xOnScreen = CANVAS_WIDTH / 2 + CANVAS_WIDTH / 2 * angleDiff / (FIELD_OF_VIEW / 2);
+    const xOnScreen = evaluate(CANVAS_WIDTH / 2) + evaluate(CANVAS_WIDTH / 2) * angleDiff / evaluate(FIELD_OF_VIEW / 2);
     const wallHeight = heightOnScreen(point, BLOCK_SIZE);
 
-    const yTopWall = CANVAS_HEIGHT / 2 - (1 - P.eyeZ() / (BLOCK_SIZE / 2)) * wallHeight / 2;
+    const yTopWall = evaluate(CANVAS_HEIGHT / 2) - (1 - P.eyeZ() / evaluate(BLOCK_SIZE / 2)) * wallHeight / 2;
     const yBottomWall = yTopWall + wallHeight;
 
-    const yTop = (BLOCK_SIZE / 2 - point.z) / BLOCK_SIZE * (yBottomWall - yTopWall) + yTopWall - 0 / 2;
+    const yTop = (evaluate(BLOCK_SIZE / 2) - point.z) / BLOCK_SIZE * (yBottomWall - yTopWall) + yTopWall;
 
     const cast = CASTED_RAYS[~~(xOnScreen / SLICE_WIDTH)];
     const visible = !cast || dist(cast, P) + 1 > dist(point, P);
@@ -37,26 +37,16 @@ function renderPoint(point, realWidth, realHeight, fadeStartDistance, fadeEndDis
         return;
     }
 
-    const xOnScreen = CANVAS_WIDTH / 2 + CANVAS_WIDTH / 2 * angleDiff / (FIELD_OF_VIEW / 2);
+    const posOnScreen = positionOnScreen(point.x, point.y, point.z);
+    if (!posOnScreen.renderable && !ignoreWalls) {
+        return;
+    }
 
     const width = heightOnScreen(point, realWidth);
     const height = heightOnScreen(point, realHeight);
-    const wallHeight = heightOnScreen(point, BLOCK_SIZE);
-
-    if (!ignoreWalls) {
-        const cast = CASTED_RAYS[~~(xOnScreen / SLICE_WIDTH)];
-        if (!cast || dist(cast, P) < distanceToPoint) {
-            return;
-        }
-    }
-
-    const yTopWall = CANVAS_HEIGHT / 2 - (1 - P.eyeZ() / (BLOCK_SIZE / 2)) * wallHeight / 2;
-    const yBottomWall = yTopWall + wallHeight;
-
-    const yTop = (BLOCK_SIZE / 2 - point.z) / BLOCK_SIZE * (yBottomWall - yTopWall) + yTopWall - height / 2;
 
     const alpha = 1 - limit(0, (distanceToPoint - fadeStartDistance) / (fadeEndDistance - fadeStartDistance), 1);
-    wrap(() => render(xOnScreen, yTop + height / 2, width, height, alpha));
+    wrap(() => render(posOnScreen.x, posOnScreen.y, width, height, alpha));
 }
 
 function castOneRay(rayAngle, rayIndex) {
