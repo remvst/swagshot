@@ -220,14 +220,11 @@ new MusicGenerator({
     source.loop = true;
 
     const gainNode = audioCtx.createGain();
-    gainNode.gain.value = 0;
+    if (DEBUG) {
+        gainNode.gain.value = 0;
+    }
     gainNode.connect(audioCtx.destination);
 
     source.connect(gainNode);
-
     source.start();
-
-    source.onended = function() {
-        console.log('end');
-    };
 });

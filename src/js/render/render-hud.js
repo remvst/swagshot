@@ -32,14 +32,6 @@ function renderHud() {
         });
     });
 
-    // Power
-    wrap(() => {
-        translate(20, CANVAS_HEIGHT - 120);
-        renderGauge('#f00', P.health, () => {
-            drawImage(FIRE_HUD, 0, 0);
-        });
-    });
-
     // Ammo
     wrap(() => {
         translate(CANVAS_WIDTH - 20, CANVAS_HEIGHT - HUD_ICON_SIZE - HUD_GAUGE_PADDING * 2 - 20);
