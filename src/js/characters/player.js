@@ -123,6 +123,7 @@ class Player extends Character {
         this.headTilt = 0;
         // TODO trigger game over
         setTimeout(() => onMenu = true, 5000);
+        document.exitPointerLock();
     }
 
     hurt(source, amount, angle) {
