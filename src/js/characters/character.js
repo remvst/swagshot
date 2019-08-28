@@ -48,31 +48,9 @@ class Character {
                 this.die();
             }
 
-            this.emitBloodParticles(!this.health * 30 + 10);
+            W.emitBloodParticles(this.x + rnd(-1, 1) * this.radius / 2, this.y + rnd(-1, 1) * this.radius / 2, this.z, !this.health * 30 + 10, () => this.bloodParticleColor());
 
             damageSound();
-        }
-    }
-
-    emitBloodParticles(particleCount) {
-        for (let i = 0 ; i < particleCount ; i++) {
-            const duration = max(0.2, (0.5 + this.z / BLOCK_SIZE) / rnd(0.4, 0.7));
-
-            const size = BLOCK_SIZE * rnd(0.01, 0.05);
-
-            const particle = {
-                'x': this.x + rnd(-1, 1) * this.radius / 2,
-                'y': this.y + rnd(-1, 1) * this.radius / 2,
-                'alpha': 1,
-                'worldWidth': size,
-                'worldHeight': size,
-                'color': this.bloodParticleColor()
-            };
-            SPRITES.push(particle);
-            interp(particle, 'x', particle.x, particle.x + rnd(-30, 30), duration);
-            interp(particle, 'y', particle.y, particle.y + rnd(-30, 30), duration);
-            interp(particle, 'z', this.z + rnd(-1, 1) * this.radius / 2, -BLOCK_SIZE / 2, duration, 0, easeOutBounce);
-            interp(particle, 'f', 0, 0, duration + 0.5, 0, null, () => remove(SPRITES, particle));
         }
     }
 

@@ -100,7 +100,7 @@ onload = () => {
 
     document.onpointerlockchange = () => {
         const newLock = document.pointerLockElement;
-        if (POINTER_LOCKED && !newLock) {
+        if (POINTER_LOCKED && !newLock && P.health) {
             toggleMenu();
         }
 

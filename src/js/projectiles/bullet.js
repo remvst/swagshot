@@ -109,26 +109,8 @@ class Bullet {
             }
         }
 
-        // Add some particles
-        for (let i = 0 ; i < 5 ; i++) {
-            const x = beforeX + -Math.cos(this.angle) * 10;
-            const y = beforeY + -Math.sin(this.angle) * 10;
-            const duration = rnd(0.1, 0.3);
-
-            const particle = {
-                'x': x,
-                'y': y,
-                'z': this.z,
-                'alpha': 1,
-                'worldWidth': BLOCK_SIZE / 40,
-                'worldHeight': BLOCK_SIZE / 40,
-                'color': hitTarget ? hitTarget.bloodParticleColor() : '#ff0'
-            };
-            SPRITES.push(particle);
-            interp(particle, 'x', x, x + rnd(-10, 10), duration);
-            interp(particle, 'y', y, y + rnd(-10, 10), duration);
-            interp(particle, 'z', this.z, this.z + rnd(-10, 10), duration);
-            interp(particle, 'alpha', 1, 0, duration, 0, null, () => remove(SPRITES, particle));
+        if (!hitTarget) {
+            W.emitBloodParticles(beforeX, beforeY, this.z, 2, () => '#ff0');
         }
 
         this.removed = true;

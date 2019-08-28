@@ -37,7 +37,7 @@ explosion = (x, y, z, radius) => {
 
         const duration = rnd(0.2, 0.6);
 
-        const size = rnd(2, 4);
+        const size = rnd(10, 20);
 
         const particle = {
             'x': x + cos(angle) * initialDistance * cos(verticalAngle),

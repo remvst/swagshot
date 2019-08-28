@@ -57,7 +57,7 @@
     "PLAY_BUTTON_Y": 300,
 
     "ITEM_RADIUS": 60,
-    "ITEM_DENSITY": 0.2,
+    "ITEM_DENSITY": 0.4,
 
     "ENEMY_DENSITY": 0.05,
 
