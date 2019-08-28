@@ -39,7 +39,7 @@ function renderWorld() {
         translate(offset, middleY - 20 * patternScale);
         scale(patternScale, patternScale);
 
-        R.fs(MOUNTAINS);
+        fs(MOUNTAINS);
         fr(-offset / patternScale, 0, CANVAS_WIDTH / patternScale, 20);
     });
 
