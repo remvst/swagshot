@@ -12,10 +12,7 @@ const MOUNTAINS = createCanvasPattern(80, 40, (ctx, can) => {
     ];
 
     for (let x = 0 ; x <= can.width ; x += 2) {
-        const y = sins.reduce((acc, sin) => {
-            return acc + sin(x);
-        }, can.height / 4);
-        ctx.lineTo(x, y);
+        ctx.lineTo(x, sins.reduce((acc, sin) => acc + sin(x), can.height / 4));
     }
 
     ctx.lineTo(can.width, can.height);
