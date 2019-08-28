@@ -17,8 +17,8 @@ class Bullet {
             'x': this.x,
             'y': this.y,
             'z': this.z,
-            'width': projectileSize,
-            'height': projectileSize,
+            'worldWidth': projectileSize,
+            'worldHeight': projectileSize,
             'color': '#fff'
         });
         CYCLABLES.push(this);
@@ -67,8 +67,8 @@ class Bullet {
             'y': this.y,
             'z': this.z,
             'alpha': 1,
-            'width': this.trailSize,
-            'height': this.trailSize,
+            'worldWidth': this.trailSize,
+            'worldHeight': this.trailSize,
             'color': this.trailColor
         };
         SPRITES.push(trail);
@@ -120,8 +120,8 @@ class Bullet {
                 'y': y,
                 'z': this.z,
                 'alpha': 1,
-                'width': BLOCK_SIZE / 40,
-                'height': BLOCK_SIZE / 40,
+                'worldWidth': BLOCK_SIZE / 40,
+                'worldHeight': BLOCK_SIZE / 40,
                 'color': hitTarget ? hitTarget.bloodParticleColor() : '#ff0'
             };
             SPRITES.push(particle);

@@ -30,8 +30,8 @@ class Enemy extends Character {
             'x': this.x,
             'y': this.y,
             'z': this.z,
-            'width': this.width,
-            'height': this.height,
+            'worldWidth': this.width,
+            'worldHeight': this.height,
             'sprite': this.spriteCanvas
         });
         CYCLABLES.push(this);
@@ -42,8 +42,8 @@ class Enemy extends Character {
             'x': this.x,
             'y': this.y,
             'z': -BLOCK_SIZE / 2,
-            'width': this.width / 2,
-            'height': this.height / 8,
+            'worldWidth': this.width / 2,
+            'worldHeight': this.height / 8,
             'sprite': SHADOW_CIRCLE
         });
 

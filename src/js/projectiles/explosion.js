@@ -25,8 +25,8 @@ explosion = (x, y, z, radius) => {
         };
         SPRITES.push(circleParticle);
         interp(circleParticle, 'alpha', 1, 0, 0.2, duration - 0.2, null, () => remove(SPRITES, circleParticle));
-        interp(circleParticle, 'width', 0, radius * 2, duration);
-        interp(circleParticle, 'height', 0, radius * 2, duration);
+        interp(circleParticle, 'worldWidth', 0, radius * 2, duration);
+        interp(circleParticle, 'worldHeight', 0, radius * 2, duration);
     }
 
     for (let i = 0 ; i < 50 ; i++) {
@@ -44,8 +44,8 @@ explosion = (x, y, z, radius) => {
             'y': y + sin(angle) * initialDistance * cos(verticalAngle),
             'z': z + sin(verticalAngle) * initialDistance,
             'alpha': 1,
-            'width': size,
-            'height': size,
+            'worldWidth': size,
+            'worldHeight': size,
             'color': pick(['#ff0', '#f00', '#f80'])
         };
         SPRITES.push(particle);

@@ -64,8 +64,8 @@ class Character {
                 'x': this.x + rnd(-1, 1) * this.radius / 2,
                 'y': this.y + rnd(-1, 1) * this.radius / 2,
                 'alpha': 1,
-                'width': size,
-                'height': size,
+                'worldWidth': size,
+                'worldHeight': size,
                 'color': this.bloodParticleColor()
             };
             SPRITES.push(particle);

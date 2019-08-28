@@ -6,8 +6,8 @@ class Item {
 
         SPRITES.push(this.sprite = {
             'z': -BLOCK_SIZE / 4,
-            'width': ITEM_RADIUS / 2,
-            'height': sprite.height / sprite.width * ITEM_RADIUS / 2,
+            'worldWidth': ITEM_RADIUS / 2,
+            'worldHeight': sprite.height / sprite.width * ITEM_RADIUS / 2,
             'sprite': sprite
         });
         CYCLABLES.push(this);
@@ -18,8 +18,8 @@ class Item {
             'x': this.x,
             'y': this.y,
             'z': -BLOCK_SIZE / 2,
-            'width': 30,
-            'height': 8,
+            'worldWidth': 30,
+            'worldHeight': 8,
             'sprite': SHADOW_CIRCLE
         });
     }

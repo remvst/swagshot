@@ -8,8 +8,8 @@ class Fire {
         CYCLABLES.push(this);
         MINIMAP_ELEMENTS.push(this);
         SPRITES.push(this.sprite = {
-            'width': 12,
-            'height': 20,
+            'worldWidth': 12,
+            'worldHeight': 20,
             'sprite': FIRE_FRAMES[0]
         });
     }
