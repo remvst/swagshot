@@ -100,14 +100,4 @@ renderHud = () => {
             fill();
         });
     }
-
-    if (isTouch) {
-        renderJoystick(LEFT_JOYSTICK_X, JOYSTICK_Y, MOVEMENT_CONTROL.angle, MOVEMENT_CONTROL.force);
-        renderJoystick(RIGHT_JOYSTICK_X, JOYSTICK_Y, AIM_CONTROL.angle, AIM_CONTROL.force);
-
-        beginPath();
-        arc(evaluate(CANVAS_WIDTH - 70), evaluate(CANVAS_HEIGHT - 300), 40, 0, TWO_PI);
-        fill();
-
-    }
 };

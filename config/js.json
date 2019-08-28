@@ -60,7 +60,6 @@
 
     "src/js/score-keeper.js",
     "src/js/keyboard.js",
-    "src/js/touch.js",
     "src/js/menu.js",
     "src/js/game.js",
     "src/js/main.js"

@@ -38,9 +38,12 @@ class Player extends Character {
         this.angle = normalize(this.angle);
         this.verticalAngle = limit(-Math.PI / 4, this.verticalAngle, Math.PI / 4);
 
-        if (MOVEMENT_CONTROL.force && !G.levelCleared) {
+        const x = !!w.down[KEYBOARD_W] + !!w.down[KEYBOARD_UP] - !!w.down[KEYBOARD_S] - !!w.down[KEYBOARD_DOWN],
+            y = !!w.down[KEYBOARD_D] + !!w.down[KEYBOARD_RIGHT] - !!w.down[KEYBOARD_A] - !!w.down[KEYBOARD_LEFT];
+
+        if ((x || y) && !G.levelCleared) {
             const maxSpeed = PLAYER_SPEED * (!!this.z * JUMP_SPEED_BOOST + 1);
-            const targetAngle = MOVEMENT_CONTROL.angle + this.angle;
+            const targetAngle = atan2(y, x) + this.angle;
 
             const targetVX = maxSpeed * cos(targetAngle);
             const targetVY = maxSpeed * sin(targetAngle);
@@ -82,11 +85,6 @@ class Player extends Character {
 
         const targetTilt = (!!w.down[KEYBOARD_A] - !!w.down[KEYBOARD_D]) * PI / 100;
         this.headTilt = this.headTilt + limit(-e * PI / 8, targetTilt - this.headTilt, e * PI / 8);
-
-        if (AIM_CONTROL.force) {
-            this.angle += sin(AIM_CONTROL.angle) * AIM_CONTROL.force * e * PI / 2;
-            this.verticalAngle -= cos(AIM_CONTROL.angle) * AIM_CONTROL.force * e * PI / 8;
-        }
     }
 
     jump() {
