@@ -24,7 +24,7 @@ function renderWorld() {
     translate(-CANVAS_WIDTH / 2, -CANVAS_HEIGHT / 2);
 
     // Background
-    const middleY = lookupOffset() + CANVAS_HEIGHT / 2;
+    const middleY = ~~(lookupOffset() + CANVAS_HEIGHT / 2);
     fs(SKY_COLOR);
     fr(0, 0, CANVAS_WIDTH, middleY);
     fs(FOG_COLOR);
@@ -36,7 +36,7 @@ function renderWorld() {
         const patternScale = fieldOfViews * 2;
 
         const offset = -((normalize(P.angle) + TWO_PI) / FIELD_OF_VIEW * CANVAS_WIDTH);
-        translate(offset, middleY - 20 * patternScale);
+        translate(offset, middleY - ~~(20 * patternScale));
         scale(patternScale, patternScale);
 
         fs(MOUNTAINS);
