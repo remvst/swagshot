@@ -1,4 +1,4 @@
-const BASE_LIGHT_WALL = createCanvas(40, 40, ctx => {
+BASE_LIGHT_WALL = addNoise(createCanvas(40, 40, ctx => {
     ctx.fs('#3F1F0C');
     ctx.fr(0, 0, 40, 40);
 
@@ -10,9 +10,9 @@ const BASE_LIGHT_WALL = createCanvas(40, 40, ctx => {
     ctx.fr(21, 2, 16, 16);
 
     ctx.fr(2, 22, 36, 17);
-});
+}), 1, () => 'rgba(255,255,255,' + rnd(0.05, 0.1) + ')');
 
-const BASE_DARK_WALL = createCanvas(40, 40, ctx => {
+BASE_DARK_WALL = addNoise(createCanvas(40, 40, ctx => {
     ctx.fs('#000');
     ctx.fr(0, 0, 40, 40);
 
@@ -24,22 +24,11 @@ const BASE_DARK_WALL = createCanvas(40, 40, ctx => {
     ctx.fr(0, 39, 40, 1);
     ctx.fr(39, 0, 1, 40);
     ctx.fr(0, 0, 1, 40);
-});
-
-wiredWall = (baseSprite, top, bottom) => addNoise(createCanvas(40, 40, ctx => {
-    ctx.drawImage(baseSprite, 0, 0);
-
-    ctx.fillStyle = 'rgba(255,255,255,' + rnd(0.05, 0.1) + ')';
-    for (let y = 2 ; y < 10 ; y += 2) {
-        top && ctx.fr(0, y, 40, 1);
-        bottom && ctx.fr(0, 40 - y, 40, 1);
-    }
 }), 1, () => 'rgba(255,255,255,' + rnd(0.05, 0.1) + ')');
 
-const consoleBase = wiredWall(BASE_DARK_WALL);
 function consoleSprite() {
     return createCanvas(40, 40, ctx => {
-        ctx.drawImage(consoleBase, 0, 0);
+        ctx.drawImage(BASE_DARK_WALL, 0, 0);
 
         function buttonPanel() {
             for (let x = 3 ; x < 20 - 3 ; x += 3) {
@@ -60,18 +49,9 @@ function consoleSprite() {
     });
 }
 
-const WALL_TEXTURES = [
-    [wiredWall(BASE_LIGHT_WALL)],
-    [wiredWall(BASE_LIGHT_WALL, true)],
-    [wiredWall(BASE_LIGHT_WALL, false, true)],
-    [wiredWall(BASE_LIGHT_WALL)],
-    [wiredWall(BASE_LIGHT_WALL, true)],
-    [wiredWall(BASE_LIGHT_WALL, false, true)],
-    [wiredWall(BASE_DARK_WALL)],
-    [wiredWall(BASE_DARK_WALL, true)],
-    [wiredWall(BASE_DARK_WALL, false, true)],
-    [consoleSprite(), consoleSprite(), consoleSprite()]
-];
+WALL_TEXTURES = [...Array(11)].map((x, i) => {
+    return i < 6 ? [BASE_LIGHT_WALL] : (i < 10 ? [BASE_DARK_WALL] : [consoleSprite(), consoleSprite(), consoleSprite()])
+});
 
 const FLOOR_SPRITE = createCanvas(40, 40, (ctx, can) => {
     for (let x = 0 ; x < 40 ; x++) {
