@@ -2,8 +2,8 @@ onload = () => {
     onresize(); // trigger initial sizing pass
 
     const can = document.querySelector('canvas');
-    can.width = CANVAS_WIDTH;
-    can.height = CANVAS_HEIGHT;
+    can.width = CANVAS_WIDTH * CANVAS_SCALE;
+    can.height = CANVAS_HEIGHT * CANVAS_SCALE;
 
     R = can.getContext('2d', { 'alpha': false });
     R.imageSmoothingEnabled = false;
@@ -15,18 +15,7 @@ onload = () => {
         }
     });
 
-    // Detect available fonts
-    R.font = nomangle('99pt f'); // Setting a font that obviously doesn't exist
-    const reference = measureText(w.title).width;
-
-    for (let fontName of [nomangle('Mono'), nomangle('Courier')]) {
-        R.font = '99pt ' + fontName;
-        if (measureText(w.title).width != reference) {
-            monoFont = fontName;
-            break;
-        }
-    }
-
+    R.scale(CANVAS_SCALE, CANVAS_SCALE);
     new Game();
 
     // Start cycle()

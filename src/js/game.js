@@ -92,7 +92,7 @@ class Game {
 
         if (DEBUG) {
             wrap(() => {
-                R.font = '7pt ' + monoFont;
+                R.font = '7pt Courier';
                 R.textAlign = 'left';
                 fs('#fff');
 

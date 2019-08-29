@@ -5,6 +5,7 @@
 
     "CANVAS_WIDTH": 800,
     "CANVAS_HEIGHT": 600,
+    "CANVAS_SCALE": 1,
 
     "MOUNTAIN_COLOR": "'#002a50'",
     "FOG_COLOR": "'#000'",
