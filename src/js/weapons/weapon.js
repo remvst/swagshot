@@ -60,8 +60,6 @@ class Weapon {
                 this.explodes,
                 this.trailColor
             );
-
-
         }
     }
 }
