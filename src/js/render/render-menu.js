@@ -9,6 +9,10 @@ renderMenu = () => {
     fs('#fff');
     fillText('[SWAGSHOT]', evaluate(CANVAS_WIDTH / 2), evaluate(CANVAS_HEIGHT * 0.3));
 
+    // Subtitle
+    R.font = '14pt Courier';
+    fillText(nomangle('TAKE THE STATION BACK... WITH SWAG'), CANVAS_WIDTH / 2, CANVAS_HEIGHT * 0.4);
+
     // Button
     R.font = '14pt Courier';
     R.textAlign = 'center';
