@@ -88,7 +88,7 @@ class Player extends Character {
     }
 
     jump() {
-        if (this.z == 0) {
+        if (this.z == 0 && !onMenu) {
             this.zSpeed = JUMP_FORCE;
             this.vX *= evaluate(1 + JUMP_SPEED_BOOST);
             this.vY *= evaluate(1 + JUMP_SPEED_BOOST);
@@ -104,7 +104,7 @@ class Player extends Character {
             // Landing animation
             this.landingProgress() * 10 +
             // Bobbing animation
-            !this.z * ~~(sin(this.movingClock * PI * 2 * 2) * 5);
+            !this.z * (sin(this.movingClock * PI * 2 * 2) * 5);
     }
 
     landingProgress() {
@@ -120,8 +120,10 @@ class Player extends Character {
         this.verticalAngle = 0;
         this.headTilt = 0;
         // TODO trigger game over
-        setTimeout(() => G.setupForMenu(), 5000);
-        document.exitPointerLock();
+        setTimeout(() => {
+            G.setupForMenu();
+            document.exitPointerLock()
+        }, 5000);
     }
 
     hurt(source, amount, angle) {
