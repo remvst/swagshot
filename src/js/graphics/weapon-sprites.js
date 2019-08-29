@@ -132,21 +132,20 @@ const RAIL_GUN = pixelate(createCanvas(80, 160, (ctx, can) => {
     grad.addColorStop(1, '#76f');
 
     const purpleGrad = ctx.createLinearGradient(0, 0, can.width, 0);
-    purpleGrad.addColorStop(0, '#f8f');
-    purpleGrad.addColorStop(0.7, '#f0f');
-    purpleGrad.addColorStop(1, '#f8f');
+    purpleGrad.addColorStop(0, '#f00');
+    purpleGrad.addColorStop(0.5, '#c0f');
+    purpleGrad.addColorStop(1, '#f00');
 
     ctx.fs(grad);
 
     ctx.beginPath();
-    // ctx.moveTo(40, 20);
     ctx.arc(40, 20, 20, PI, 0);
     ctx.lineTo(80, 160);
     ctx.lineTo(0, 160);
     ctx.fill();
 
     ctx.beginPath();
-    ctx.fs('purple');
+    ctx.fs(purpleGrad);
     ctx.arc(40, 60, 18, PI, 0);
     ctx.arc(40, 120, 25, 0, PI, true);
     ctx.fill();
