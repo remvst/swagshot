@@ -7,7 +7,7 @@ renderMenu = () => {
     R.textAlign = 'center';
     R.textBaseline = 'middle';
     fs('#fff');
-    fillText('[SWAGSHOT]', evaluate(CANVAS_WIDTH / 2), evaluate(CANVAS_HEIGHT * 0.25));
+    fillText('[SWAGSHOT]', evaluate(CANVAS_WIDTH / 2), evaluate(CANVAS_HEIGHT * 0.3));
 
     // Button
     R.font = '14pt Courier';
