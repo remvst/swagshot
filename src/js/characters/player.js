@@ -104,7 +104,7 @@ class Player extends Character {
             // Landing animation
             this.landingProgress() * 10 +
             // Bobbing animation
-            !this.z * (sin(this.movingClock * PI * 2 * 2) * 5);
+            !this.z * (sin(this.movingClock * PI * 2 * 2) * 3);
     }
 
     landingProgress() {
