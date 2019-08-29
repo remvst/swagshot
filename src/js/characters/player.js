@@ -21,7 +21,7 @@ class Player extends Character {
         this.enemies = ENEMIES;
 
         this.radius = BLOCK_SIZE * 0.5;
-        this.collisionRadius = BLOCK_SIZE * 0.1;
+        this.collisionRadius = BLOCK_SIZE * 0.2;
 
         this.power = 0;
     }
