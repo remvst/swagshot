@@ -3,7 +3,6 @@ class Game {
     constructor() {
         G = this;
         G.clock = 0;
-        G.totalClock = 0;
 
         G.messages = [];
 
@@ -11,17 +10,17 @@ class Game {
     }
 
     cycle(e) {
-        G.totalClock += e;
         e *= G.onMainMenu ? 0.3 : !onMenu;
         G.clock += e;
 
         W.cycle(e);
 
         if (G.onMainMenu) {
-            const angle = G.totalClock / 3;
+            const angle = G.clock / 3;
             P.x = evaluate(BLOCK_SIZE * 25) + cos(angle) * evaluate(BLOCK_SIZE * 2);
             P.y = evaluate(BLOCK_SIZE * 25) + sin(angle) * evaluate(BLOCK_SIZE * 2);
             P.angle = angle + PI;
+            P.movingClock = P.headTilt = 0;
         }
 
         INTERPOLATIONS.slice().forEach(i => i.cycle(e));
