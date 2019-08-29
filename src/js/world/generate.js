@@ -1,8 +1,6 @@
 generateFromCanvas = can => {
     const grid = [];
 
-    console.log(can);
-
     const ctx = can.getContext('2d');
     const imageData = ctx.getImageData(0, 0, can.width, can.height);
 
