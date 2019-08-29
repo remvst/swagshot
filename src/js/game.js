@@ -164,6 +164,7 @@ class Game {
     }
 
     setupForMenu() {
+        onMenu = true;
         this.scoreKeeper = new ScoreKeeper();
 
         P = new Player();
@@ -172,7 +173,7 @@ class Game {
 
         G.onMainMenu = true;
 
-        for (let i = 0 ; i < 20 ; i++) {
+        for (let i = 0 ; i < 10 ; i++) {
             const angle = random() * TWO_PI;
             const distance = rnd(BLOCK_SIZE * 2, BLOCK_SIZE * 4);
             const enemy = new Enemy();

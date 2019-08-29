@@ -8,6 +8,7 @@ class World {
         ITEMS.splice(0, ITEMS.length);
         ENEMIES.splice(0, ENEMIES.length);
         MINIMAP_ELEMENTS.splice(0, MINIMAP_ELEMENTS.length);
+        DAMAGE_ANGLES.splice(0, DAMAGE_ANGLES.length);
     }
 
     cycle(e) {

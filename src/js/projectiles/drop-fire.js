@@ -7,6 +7,6 @@ dropFire = (x, y, z, duration = 3) => {
         );
 
         const targetZ = max(-BLOCK_SIZE / 2, min(z, hasBlock(fire.x, fire.y) ? BLOCK_SIZE / 2 : -BLOCK_SIZE / 2));
-        interp(fire, 'z', z, targetZ, abs(targetZ - z) / (BLOCK_SIZE * rnd(2, 2.5)));
+        interp(fire, 'z', z, targetZ, (abs(targetZ - z) / (BLOCK_SIZE * rnd(2, 2.5))) || 0.1);
     }
 };
