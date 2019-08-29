@@ -145,7 +145,7 @@ class Enemy extends Character {
             G.scoreKeeper.bonus(nomangle('NEAR DEATH'), 50);
         }
 
-        if (G.clock - this.firstDamage < 0.7) {
+        if (between(0.1, G.clock - this.firstDamage, 0.7)) {
             G.scoreKeeper.bonus(nomangle('QUICK KILL'), 50);
         }
 

@@ -7,7 +7,8 @@ class WeaponItem extends Item {
         P.setWeapon(new (pick([
             RocketLauncher,
             Shotgun,
-            MachineGun
+            MachineGun,
+            RailGun
         ].filter(x => P.weapon.constructor != x)))(P));
     }
 }
