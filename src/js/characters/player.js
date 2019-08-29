@@ -120,7 +120,7 @@ class Player extends Character {
         this.verticalAngle = 0;
         this.headTilt = 0;
         // TODO trigger game over
-        setTimeout(() => onMenu = true, 5000);
+        setTimeout(() => G.setupForMenu(), 5000);
         document.exitPointerLock();
     }
 

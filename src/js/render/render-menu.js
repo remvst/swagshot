@@ -1,24 +1,21 @@
 renderMenu = () => {
     R.imageSmoothingEnabled = true;
-    R.globalAlpha = 0.5;
-    R.fs('#000');
-    fr(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
     // Title
     R.globalAlpha = 1;
-    R.font = '36pt Courier';
+    R.font = '72pt Impact';
     R.textAlign = 'center';
     R.textBaseline = 'middle';
-    R.fs('#fff');
-    fillText('[SWAGSHOT]', CANVAS_WIDTH / 2, CANVAS_HEIGHT * 0.25);
-
-    // Subtitle
-    R.font = '14pt Courier';
-    fillText(nomangle('TAKE THE STATION BACK... WITH SWAG'), CANVAS_WIDTH / 2, CANVAS_HEIGHT * 0.35);
+    fs('#fff');
+    fillText('[SWAGSHOT]', evaluate(CANVAS_WIDTH / 2), evaluate(CANVAS_HEIGHT * 0.25));
 
     // Button
+    R.font = '14pt Courier';
+    R.textAlign = 'center';
+    R.textBaseline = 'middle';
     wrap(() => {
-        R.fs('#A02E00');
+        R.globalAlpha = 1 - ON_PLAY_BUTTON * 0.2;
+        fs('#A20');
         fr((CANVAS_WIDTH - PLAY_BUTTON_WIDTH) / 2, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
 
         R.font = '24pt Courier';

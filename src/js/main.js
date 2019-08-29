@@ -62,6 +62,8 @@ onload = () => {
                 P.angle += e.movementX / (1000 * max(1 - MOUSE_SENSITIVITY, 0.01));
                 P.verticalAngle += e.movementY / (1000 * max(1 - MOUSE_SENSITIVITY, 0.01));
             }
+        } else {
+            ON_PLAY_BUTTON = isOnPlayButton(e);
         }
 
         maybeUpdateSensitivity(e);
@@ -74,15 +76,15 @@ onload = () => {
 
         isMouseDown = true;
         if (!onMenu) {
-            P.weapon.holdTrigger();
-        } else if (between(PLAY_BUTTON_Y, y, evaluate(PLAY_BUTTON_Y + PLAY_BUTTON_HEIGHT))) {
+            P.weapon && P.weapon.holdTrigger();
+        } else if (isOnPlayButton(e)) {
             G.resume();
         }
 
         maybeUpdateSensitivity(e);
     };
     onmouseup = () => {
-        P.weapon.releaseTrigger();
+        P.weapon && P.weapon.releaseTrigger();
         isMouseDown = false;
     };
     onclick = () => !onMenu && document.body.requestPointerLock();
@@ -95,4 +97,20 @@ onload = () => {
 
         POINTER_LOCKED = newLock;
     };
+
+    isOnPlayButton = e => {
+        const canvasRect = document.querySelector('canvas').getBoundingClientRect();
+        const x = (e.clientX - canvasRect.left) / canvasRect.width * CANVAS_WIDTH;
+        const y = (e.clientY - canvasRect.top) / canvasRect.height * CANVAS_HEIGHT;
+
+        return between(
+            PLAY_BUTTON_Y,
+            y,
+            evaluate(PLAY_BUTTON_Y + PLAY_BUTTON_HEIGHT)
+        ) && between(
+            evaluate(CANVAS_WIDTH / 2 - PLAY_BUTTON_WIDTH / 2),
+            x,
+            evaluate(CANVAS_WIDTH / 2 + PLAY_BUTTON_WIDTH / 2)
+        );
+    }
 };

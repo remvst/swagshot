@@ -1,7 +1,7 @@
 class Weapon {
     constructor(character) {
         this.character = character;
-        this.lastShot = -1;
+        this.lastShot = -9;
         this.shotInterval = 0.1;
         this.bulletCount = 1;
         this.angleRandomFactor = 0;

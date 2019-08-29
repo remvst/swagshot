@@ -10,5 +10,6 @@ let onMenu = true,
 
 let MOUSE_SENSITIVITY = parseFloat(localStorage[1]) || 0.5;
 let POINTER_LOCKED;
+let ON_PLAY_BUTTON;
 
 const DAMAGE_ANGLES = [];

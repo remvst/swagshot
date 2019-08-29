@@ -40,7 +40,7 @@ class Character {
     }
 
     hurt(source, amount) {
-        if (this.health && amount > 0) {
+        if (this.health && amount > 0 && !G.onMainMenu) {
             this.lastDamage = (amount > 0) * G.clock;
             this.health = max(0, this.health - amount);
 

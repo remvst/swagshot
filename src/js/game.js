@@ -3,17 +3,26 @@ class Game {
     constructor() {
         G = this;
         G.clock = 0;
+        G.totalClock = 0;
 
         G.messages = [];
 
-        G.setupNewGame();
+        G.setupForMenu();
     }
 
     cycle(e) {
-        e *= !onMenu;
+        G.totalClock += e;
+        e *= G.onMainMenu ? 0.3 : !onMenu;
         G.clock += e;
 
         W.cycle(e);
+
+        if (G.onMainMenu) {
+            const angle = G.totalClock / 3;
+            P.x = evaluate(BLOCK_SIZE * 25) + cos(angle) * evaluate(BLOCK_SIZE * 2);
+            P.y = evaluate(BLOCK_SIZE * 25) + sin(angle) * evaluate(BLOCK_SIZE * 2);
+            P.angle = angle + PI;
+        }
 
         INTERPOLATIONS.slice().forEach(i => i.cycle(e));
 
@@ -141,7 +150,7 @@ class Game {
     }
 
     resume() {
-        if (!P.health) {
+        if (G.onMainMenu) {
             G.setupNewGame();
         }
         onMenu = false;
@@ -150,18 +159,68 @@ class Game {
     setupNewGame() {
         this.scoreKeeper = new ScoreKeeper();
         this.nextArea();
+
+        G.onMainMenu = null;
+    }
+
+    setupForMenu() {
+        this.scoreKeeper = new ScoreKeeper();
+
+        P = new Player();
+
+        W = new World(generateMenuWorld());
+
+        G.onMainMenu = true;
+
+        for (let i = 0 ; i < 20 ; i++) {
+            const angle = random() * TWO_PI;
+            const distance = rnd(BLOCK_SIZE * 2, BLOCK_SIZE * 4);
+            const enemy = new Enemy();
+            enemy.x = 25 * BLOCK_SIZE + cos(angle) * distance;
+            enemy.y = 25 * BLOCK_SIZE + sin(angle) * distance;
+            enemy.sprite.sprite = enemy.aggressiveCanvas;
+            enemy.weapon.maybeShoot();
+        }
     }
 
     nextArea() {
         P = new Player();
         P.setWeapon(new Pistol(P));
 
-        W = new World();
+        W = new World(generateWorld());
 
         G.showMessage(nomangle('PAUSE'), nomangle('ESC'), 5);
         G.showMessage(nomangle('JUMP'), nomangle('SPACE'), 5);
         G.showMessage(nomangle('AIM/SHOOT'), nomangle('MOUSE'), 5);
         G.showMessage(nomangle('MOVE'), nomangle('WASD/ARROW KEYS'), 5);
+
+        for (let row = 10 ; row < W.matrix.length ; row++) {
+            for (let col = 10 ; col < W.matrix[0].length ; col++) {
+                if (W.matrix[row][col]) {
+                    continue;
+                }
+
+                const neighborCount = (W.matrix[row - 1][col] ? 1 : 0) +
+                    (W.matrix[row + 1][col]  ? 1 : 0)+
+                    (W.matrix[row][col - 1]  ? 1 : 0)+
+                    (W.matrix[row][col + 1]? 1 : 0);
+
+                if ((neighborCount == 2 || neighborCount == 3) && random() < ITEM_DENSITY) {
+                    const item = new (pick([
+                        WeaponItem,
+                        HealthItem
+                    ]))();
+                    item.x = (col + 0.5) * BLOCK_SIZE;
+                    item.y = (row + 0.5) * BLOCK_SIZE;
+                }
+
+                if (random() < ENEMY_DENSITY) {
+                    const enemy = new Enemy();
+                    enemy.x = (col + 0.5) * BLOCK_SIZE;
+                    enemy.y = (row + 0.5) * BLOCK_SIZE;
+                }
+            }
+        }
     }
 
     showMessage(primary, secondary, duration = 1) {

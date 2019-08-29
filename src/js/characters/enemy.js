@@ -75,7 +75,7 @@ class Enemy extends Character {
         if (G.clock >= this.nextTrajectory || dist(this, this.target) < 10) {
             if (!this.aggressive) {
                 // Delay the first shot when becoming aggressive
-                this.weapon.lastShot = rnd(1, 2);
+                this.weapon.lastShot = G.clock + rnd(1, 2);
             }
 
             this.aggressive = dist(P, this) < BLOCK_SIZE * 5 && P.health;

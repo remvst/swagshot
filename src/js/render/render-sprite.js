@@ -1,5 +1,5 @@
 function renderSprite(sprite, aboveBlocks) {
-    if (aboveBlocks && sprite.z < BLOCK_SIZE / 2) {
+    if (aboveBlocks && sprite.z < evaluate(BLOCK_SIZE / 2)) {
         return;
     }
 

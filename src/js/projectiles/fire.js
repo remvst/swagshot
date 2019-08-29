@@ -21,7 +21,7 @@ class Fire {
         this.sprite.y = this.y;
         this.sprite.z = this.z + 10;
 
-        this.sprite.sprite = FIRE_FRAMES[~~((G.clock + this.created) % 0.5 / 0.25)];
+        this.sprite.sprite = FIRE_FRAMES[~~((G.clock + this.death) % 0.5 / 0.25)];
 
         if (G.clock > this.death) {
             this.remove();
