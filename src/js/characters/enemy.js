@@ -131,7 +131,7 @@ class Enemy extends Character {
             remove(SPRITES, this.sprite);
         });
 
-        dropFire(this.x, this.y, this.z, 0.2);
+        dropFire(this.x, this.y, this.z, 0.5);
 
         this.sprite.sprite = this.hurtCanvas;
 
@@ -145,7 +145,7 @@ class Enemy extends Character {
             G.scoreKeeper.bonus(nomangle('NEAR DEATH'), 50);
         }
 
-        if (G.clock - this.firstDamage < 0.3) {
+        if (G.clock - this.firstDamage < 0.7) {
             G.scoreKeeper.bonus(nomangle('QUICK KILL'), 50);
         }
 

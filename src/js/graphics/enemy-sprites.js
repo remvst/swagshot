@@ -89,7 +89,10 @@ createRobotSprites = spriteFunc => {
         postProcess(spriteFunc(IDLE_EYE_COLOR)),
         postProcess(spriteFunc(AGGRESSIVE_EYE_COLOR)),
         tintCanvas(postProcess(spriteFunc(AGGRESSIVE_EYE_COLOR)), 'rgba(255,255,255,0.5)')
-    ];
+    ].map(x => {
+        document.body.appendChild(x);
+        return x;
+    });
 };
 
 const ROBOT_1 = createRobotSprites(createRobot1);
