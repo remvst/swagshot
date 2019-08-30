@@ -96,8 +96,10 @@
     "KEYBOARD_G": 71,
     "KEYBOARD_N": 78,
     "KEYBOARD_P": 80,
+    "KEYBOARD_Q": 81,
     "KEYBOARD_S": 83,
     "KEYBOARD_W": 87,
     "KEYBOARD_X": 88,
-    "KEYBOARD_Y": 89
+    "KEYBOARD_Y": 89,
+    "KEYBOARD_Z": 90
 }
