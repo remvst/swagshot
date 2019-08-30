@@ -67,7 +67,7 @@ onload = () => {
         }
 
         maybeUpdateSensitivity(e);
-        can.style.cursor = onMenu ? 'default' : 'none';
+        can.style.cursor = onMenu || !P.health ? 'default' : 'none';
     };
 
     onmousedown = e => {
@@ -87,7 +87,7 @@ onload = () => {
         P.weapon && P.weapon.releaseTrigger();
         isMouseDown = false;
     };
-    onclick = () => !onMenu && document.body.requestPointerLock();
+    onclick = () => !onMenu && P.health && document.body.requestPointerLock();
 
     document.onpointerlockchange = () => {
         const newLock = document.pointerLockElement;
