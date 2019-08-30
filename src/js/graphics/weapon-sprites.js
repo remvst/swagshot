@@ -150,5 +150,3 @@ const RAIL_GUN = pixelate(createCanvas(80, 160, (ctx, can) => {
     ctx.arc(40, 120, 25, 0, PI, true);
     ctx.fill();
 }), 5);
-
-document.body.appendChild(RAIL_GUN);
