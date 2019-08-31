@@ -119,7 +119,7 @@ class Game {
                     '',
                     '--------------------',
                     'sprites: ' + SPRITES.length,
-                    'enemies: ' + ITEMS.length,
+                    'items: ' + ITEMS.length,
                     'cyclables: ' + CYCLABLES.length,
                     'enemies: ' + ENEMIES.length,
                     '--------------------',
