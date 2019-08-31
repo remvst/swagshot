@@ -52,6 +52,7 @@ class Enemy extends Character {
         this.nextTrajectory = 0;
 
         this.radius = this.width * 0.6;
+        this.collisionRadius = BLOCK_SIZE / 4;
 
         this.setWeapon(new (pick([
             EnemyFireWeapon,
@@ -105,11 +106,11 @@ class Enemy extends Character {
         this.shadowSprite.x = this.x + cos(P.angle);
         this.shadowSprite.y = this.y + sin(P.angle);
 
-        if (dist(this, P) < this.width * 1.2 && this.z - P.z < this.height / 2 && P.health) {
+        if (dist(this, P) < this.collisionRadius + P.collisionRadius && this.z - P.z < this.height / 2 && P.health) {
             const angle = angleBetween(this, P);
 
-            const newX = this.x + cos(angle) * this.width * 1.2;
-            const newY = this.y + sin(angle) * this.width * 1.2;
+            const newX = this.x + cos(angle) * (this.collisionRadius + P.collisionRadius);
+            const newY = this.y + sin(angle) * (this.collisionRadius + P.collisionRadius);
 
             P.moveBy(newX - P.x, newY - P.y);
         }
