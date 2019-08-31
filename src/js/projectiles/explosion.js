@@ -13,6 +13,13 @@ explosion = (x, y, z, radius) => {
         }
     });
 
+    explosionEffect(x, y, z, radius);
+    explosionSound();
+
+    return hurtEnemies;
+};
+
+explosionEffect = (x, y, z, radius) => {
     for (let i = 0 ; i < 3 ; i++) {
         const duration = rnd(0.2, 0.4);
 
@@ -54,8 +61,4 @@ explosion = (x, y, z, radius) => {
         interp(particle, 'y', particle.y, particle.y + sin(angle) * finalDistance * cos(verticalAngle), duration);
         interp(particle, 'z', particle.z, particle.z + sin(verticalAngle) * finalDistance, duration);
     }
-
-    explosionSound();
-
-    return hurtEnemies;
-};
+}

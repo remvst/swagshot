@@ -82,7 +82,7 @@ class Game {
             }
 
             if (!P.health && !onMenu) {
-                R.font = '48pt Courier';
+                R.font = '48pt Impact';
                 R.textAlign = 'center';
                 fs('#fff');
                 fillText(nomangle('FINAL SCORE: '), evaluate(CANVAS_WIDTH / 2), evaluate(CANVAS_HEIGHT / 2 - 50));
@@ -211,26 +211,29 @@ class Game {
                     continue;
                 }
 
+                const x = (col + 0.5) * BLOCK_SIZE;
+                const y = (row + 0.5) * BLOCK_SIZE;
+
                 const neighborCount = (W.matrix[row - 1][col] ? 1 : 0) +
                     (W.matrix[row + 1][col]  ? 1 : 0)+
                     (W.matrix[row][col - 1]  ? 1 : 0)+
                     (W.matrix[row][col + 1]? 1 : 0);
 
-                if ((neighborCount == 2 || neighborCount == 3) && random() < ITEM_DENSITY) {
+                if (neighborCount > 1 && random() < ITEM_DENSITY && !ITEMS.filter(i => i.x == x && i.y == y).length) {
                     const item = new (pick([
                         WeaponItem,
                         HealthItem
                     ]))();
-                    item.x = (col + 0.5) * BLOCK_SIZE;
-                    item.y = (row + 0.5) * BLOCK_SIZE;
-
-                    // TODO particles
+                    item.x = x;
+                    item.y = y;
                 }
 
-                if (random() < ENEMY_DENSITY) {
+                if (random() < INITIAL_ENEMY_DENSITY + ENEMY_DENSITY_INCREMENT * G.waveCount) {
                     const enemy = new Enemy();
                     enemy.x = (col + 0.5) * BLOCK_SIZE;
                     enemy.y = (row + 0.5) * BLOCK_SIZE;
+
+                    explosionEffect(x, y, enemy.z, BLOCK_SIZE / 2);
                 }
             }
         }
