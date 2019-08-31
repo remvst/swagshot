@@ -4,8 +4,8 @@ class EnemyBurstWeapon extends EnemyWeapon {
         this.angleRandomFactor = PI / 512;
         this.angleRandomFactor = 0;
         this.shotInterval = 0.1;
-        this.trailSize = 2;
-        this.bulletSpeed = BLOCK_SIZE * 8;
+        this.trailSize = 4;
+        this.bulletSpeed = BLOCK_SIZE * 5;
         this.shotCount = 0;
     }
 
