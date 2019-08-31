@@ -13,6 +13,10 @@ class Game {
         e *= G.onMainMenu ? 0.3 : !onMenu;
         G.clock += e;
 
+        if (P.health && G.clock > G.nextWave) {
+            G.setupNextWave();
+        }
+
         W.cycle(e);
 
         if (G.onMainMenu) {
@@ -157,9 +161,20 @@ class Game {
 
     setupNewGame() {
         this.scoreKeeper = new ScoreKeeper();
-        this.nextArea();
-
         G.onMainMenu = null;
+
+        P = new Player();
+        P.setWeapon(new Pistol(P));
+
+        W = new World(generateWorld());
+
+        G.showMessage(nomangle('PAUSE'), nomangle('ESC'), 5);
+        G.showMessage(nomangle('JUMP'), nomangle('SPACE'), 5);
+        G.showMessage(nomangle('AIM/SHOOT'), nomangle('MOUSE'), 5);
+        G.showMessage(nomangle('MOVE'), nomangle('WASD/ARROW KEYS'), 5);
+
+        G.nextWave = G.clock + 5;
+        G.waveCount = 0;
     }
 
     setupForMenu() {
@@ -183,16 +198,12 @@ class Game {
         }
     }
 
-    nextArea() {
-        P = new Player();
-        P.setWeapon(new Pistol(P));
+    setupNextWave() {
+        G.nextWave = G.clock + 60;
 
-        W = new World(generateWorld());
-
-        G.showMessage(nomangle('PAUSE'), nomangle('ESC'), 5);
-        G.showMessage(nomangle('JUMP'), nomangle('SPACE'), 5);
-        G.showMessage(nomangle('AIM/SHOOT'), nomangle('MOUSE'), 5);
-        G.showMessage(nomangle('MOVE'), nomangle('WASD/ARROW KEYS'), 5);
+        if (G.waveCount++) {
+            G.scoreKeeper.bonus(nomangle('SURVIVED WAVE'), 500);
+        }
 
         for (let row = 10 ; row < W.matrix.length ; row++) {
             for (let col = 10 ; col < W.matrix[0].length ; col++) {
@@ -212,6 +223,8 @@ class Game {
                     ]))();
                     item.x = (col + 0.5) * BLOCK_SIZE;
                     item.y = (row + 0.5) * BLOCK_SIZE;
+
+                    // TODO particles
                 }
 
                 if (random() < ENEMY_DENSITY) {

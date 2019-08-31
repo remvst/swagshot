@@ -149,14 +149,6 @@ class Enemy extends Character {
         if (between(0.1, G.clock - this.firstDamage, 0.7)) {
             G.scoreKeeper.bonus(nomangle('QUICK KILL'), 50);
         }
-
-        if (ENEMIES.length < 5 && !ENEMIES.filter(e => dist(e, P) < DRAW_DISTANCE * 1.5).length) {
-            G.scoreKeeper.bonus(nomangle('AREA CLEARED'), 500);
-
-            setTimeout(() => {
-                G.nextArea();
-            }, 3000);
-        }
     }
 
     hurt(source, amount, angle) {

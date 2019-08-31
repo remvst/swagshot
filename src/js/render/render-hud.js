@@ -62,15 +62,27 @@ renderHud = () => {
 
     //Score
     R.textAlign = 'center';
-    R.font = '24pt Courier';
+    R.font = '24pt Impact';
     fs('#fff');
     fillText(G.scoreKeeper.score, CANVAS_WIDTH / 2, 50);
+
+    // Next wave timer
+    R.font = '12pt Impact';
+    R.textBaseline = 'bottom';
+    fillText(nomangle('Next wave'), CANVAS_WIDTH - 100, 35);
+
+    R.font = '24pt Impact';
+    let timeUntilNextWave = round((G.nextWave - G.clock) * 10) / 10;
+    if (!(timeUntilNextWave % 1)) {
+        timeUntilNextWave += '.0';
+    }
+    fillText(timeUntilNextWave, CANVAS_WIDTH - 100, 75);
 
     // Messages
     R.font = '12pt Courier';
     G.messages.forEach((m, i) => wrap(() => {
         R.globalAlpha = 1 - abs(m.offset);
-        translate(m.offset * 100, CANVAS_HEIGHT / 2 + 30 + i * 25);
+        translate(m.offset * 100, CANVAS_HEIGHT / 2 + 40 + i * 25);
 
         R.textAlign = 'right';
         fs('#fff');
