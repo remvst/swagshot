@@ -5,14 +5,12 @@ class Weapon {
         this.shotInterval = 0.1;
         this.bulletCount = 1;
         this.angleRandomFactor = 0;
-        this.projectileSize = 1;
         this.trailSize = 1;
         this.bulletSpeed = 1600;
         this.ammoPerShot = 1 / 30;
         this.ammo = 1;
         this.created = G.clock;
         this.explodes = false;
-        this.trailColor = '#fff';
     }
 
     cycle(e) {
@@ -55,10 +53,8 @@ class Weapon {
                 this.character.shootAngle() + rnd(-1, 1) * this.angleRandomFactor,
                 this.character.shootVerticalAngle() + rnd(-1, 1) * this.angleRandomFactor,
                 this.character.enemies,
-                this.projectileSize,
                 this.trailSize,
-                this.explodes,
-                this.trailColor
+                this.explodes
             );
         }
     }

@@ -1,5 +1,5 @@
 class Bullet {
-    constructor(x, y, z, speed, angle, verticalAngle, targets, projectileSize, trailSize, explodes, trailColor) {
+    constructor(x, y, z, speed, angle, verticalAngle, targets, trailSize, explodes, color) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -9,7 +9,6 @@ class Bullet {
         this.targets = targets;
         this.trailSize = trailSize;
         this.explodes = explodes;
-        this.trailColor = trailColor;
         this.created = G.clock;
         this.jumpShot = P.z;
 
@@ -17,9 +16,9 @@ class Bullet {
             'x': this.x,
             'y': this.y,
             'z': this.z,
-            'worldWidth': projectileSize,
-            'worldHeight': projectileSize,
-            'color': '#fff'
+            'worldWidth': this.trailSize,
+            'worldHeight': this.trailSize,
+            'color': targets[0] == P ? '#ff0' : '#ff0'
         });
         CYCLABLES.push(this);
     }
@@ -50,7 +49,7 @@ class Bullet {
         if (
             hasBlock(this.x, this.y, 0) && this.z < BLOCK_SIZE / 2 ||
             this.z < -BLOCK_SIZE / 2 ||
-            G.clock - this.created > 1.5
+            G.clock - this.created > 3
         ) {
             this.remove(beforeX, beforeY);
         }
@@ -62,20 +61,22 @@ class Bullet {
             }
         });
 
-        const trail = {
-            'x': this.x,
-            'y': this.y,
-            'z': this.z,
-            'alpha': 1,
-            'worldWidth': this.trailSize,
-            'worldHeight': this.trailSize,
-            'color': this.trailColor
-        };
-        SPRITES.push(trail);
-        interp(trail, 'alpha', 1, 0, 0.8, 0, null, () => remove(SPRITES, trail));
-        interp(trail, 'x', trail.x, trail.x + rnd(-5, 5), 0.8);
-        interp(trail, 'y', trail.y, trail.y + rnd(-5, 5), 0.8);
-        interp(trail, 'z', trail.z, trail.z + rnd(-5, 5), 0.8);
+        if (dist(this, P) < DRAW_DISTANCE) {
+            const trail = {
+                'x': this.x,
+                'y': this.y,
+                'z': this.z,
+                'alpha': 1,
+                'worldWidth': this.trailSize,
+                'worldHeight': this.trailSize,
+                'color': this.targets[0] == P ? '#f00' : '#fff'
+            };
+            SPRITES.push(trail);
+            interp(trail, 'alpha', 1, 0, 0.8, 0, null, () => remove(SPRITES, trail));
+            interp(trail, 'x', trail.x, trail.x + rnd(-5, 5), 0.8);
+            interp(trail, 'y', trail.y, trail.y + rnd(-5, 5), 0.8);
+            interp(trail, 'z', trail.z, trail.z + rnd(-5, 5), 0.8);
+        }
     }
 
     remove(beforeX, beforeY, hitTarget) {
