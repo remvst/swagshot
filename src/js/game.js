@@ -174,7 +174,7 @@ class Game {
 
         for (let i = 0 ; i < 10 ; i++) {
             const angle = random() * TWO_PI;
-            const distance = rnd(BLOCK_SIZE * 2, BLOCK_SIZE * 4);
+            const distance = rnd(BLOCK_SIZE * 2, BLOCK_SIZE * 3.5);
             const enemy = new Enemy();
             enemy.x = 25 * BLOCK_SIZE + cos(angle) * distance;
             enemy.y = 25 * BLOCK_SIZE + sin(angle) * distance;

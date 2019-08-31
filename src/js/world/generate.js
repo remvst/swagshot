@@ -71,6 +71,6 @@ generateMenuWorld = () => generateFromCanvas(createCanvas(50, 50, ctx => {
     ctx.drawImage(generateRandomWorld(), 0, 0);
 
     ctx.beginPath();
-    ctx.arc(25, 25, 3, 0, TWO_PI);
+    ctx.arc(25, 25, 4, 0, TWO_PI);
     ctx.fill();
 }));
