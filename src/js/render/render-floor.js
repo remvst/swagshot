@@ -70,31 +70,29 @@ function drawTriangle(
     u1, v1,
     u2, v2
 ) {
-    // clip triangle
-    save();
-    beginPath();
-    moveTo(x0, y0);
-    lineTo(x1, y1);
-    lineTo(x2, y2);
-    // closePath();
-    // stroke();
-    clip();
+    wrap(() => {
+        // clip triangle
+        beginPath();
+        moveTo(x0, y0);
+        lineTo(x1, y1);
+        lineTo(x2, y2);
+        // closePath();
+        // stroke();
+        clip();
 
-    // calculate transformation matrix
-    x1 -= x0; y1 -= y0; x2 -= x0; y2 -= y0;
-    u1 -= u0; v1 -= v0; u2 -= u0; v2 -= v0;
-    const id = 1.0 / (u1 * v2 - u2 * v1);
-    const a = id * (v2 * x1 - v1 * x2);
-    const b = id * (v2 * y1 - v1 * y2);
-    const c = id * (u1 * x2 - u2 * x1);
-    const d = id * (u1 * y2 - u2 * y1);
-    const e = x0 - a*u0 - c*v0;
-    const f = y0 - b*u0 - d*v0;
+        // calculate transformation matrix
+        x1 -= x0; y1 -= y0; x2 -= x0; y2 -= y0;
+        u1 -= u0; v1 -= v0; u2 -= u0; v2 -= v0;
+        const id = 1.0 / (u1 * v2 - u2 * v1);
+        const a = id * (v2 * x1 - v1 * x2);
+        const b = id * (v2 * y1 - v1 * y2);
+        const c = id * (u1 * x2 - u2 * x1);
+        const d = id * (u1 * y2 - u2 * y1);
+        const e = x0 - a*u0 - c*v0;
+        const f = y0 - b*u0 - d*v0;
 
-    // draw image
-    transform(a, b, c, d, e, f);
-    drawImage(image, 0, 0);
-
-    // restore previous state
-    restore();
+        // draw image
+        transform(a, b, c, d, e, f);
+        drawImage(image, 0, 0);
+    });
 }
