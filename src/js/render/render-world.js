@@ -1,8 +1,11 @@
-function measure(fn) {
-    const before = performance.now();
-    fn();
-    const after = performance.now();
-    return after - before;
+measure = x => {
+    if (DEBUG) {
+        var before = performance.now(); // not using scoped var on purpose
+    }
+    x();
+    if (DEBUG) {
+        return performance.now() - before;
+    }
 }
 
 function renderWorld() {
