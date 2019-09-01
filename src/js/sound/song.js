@@ -1,4 +1,4 @@
-const BEAT_PATTERN = {
+BEAT_PATTERN = {
     "n": [
         137,
         0,
@@ -35,7 +35,7 @@ const BEAT_PATTERN = {
     ]
 };
 
-const AGGRESSIVE_PATTERN = {
+AGGRESSIVE_PATTERN = {
     "n": [
         137,
         139,
@@ -72,7 +72,7 @@ const AGGRESSIVE_PATTERN = {
     ]
 };
 
-const HIHAT = {
+HIHAT = {
     "osc1_oct": 8,
     "osc1_det": 0,
     "osc1_detune": 0,
@@ -105,7 +105,7 @@ const HIHAT = {
     "c": [BEAT_PATTERN]
 };
 
-const DRUM = {
+DRUM = {
     "osc1_oct": 7,
     "osc1_det": 0,
     "osc1_detune": 0,
@@ -138,7 +138,7 @@ const DRUM = {
     "c": [BEAT_PATTERN]
 };
 
-const SNARE = {
+SNARE = {
     "osc1_oct": 8,
     "osc1_det": 0,
     "osc1_detune": 0,
@@ -171,7 +171,7 @@ const SNARE = {
     "c": [AGGRESSIVE_PATTERN]
 };
 
-const ELECTRO = {
+ELECTRO = {
     "osc1_oct": 6,
     "osc1_det": 0,
     "osc1_detune": 0,
