@@ -36,7 +36,7 @@ function renderWallSlice(i, cast, texture) {
     if (distance < DRAW_DISTANCE) {
         drawImage(
             texture,
-            ~~(textureOffsetRatio * texture.width), 0, 1, texture.wallHeightOnScreen,
+            ~~(textureOffsetRatio * texture.width), 0, 1, texture.height,
             x, yTop, SLICE_WIDTH, wallHeightOnScreen
         );
     }
