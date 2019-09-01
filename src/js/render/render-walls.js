@@ -18,8 +18,8 @@ function renderWallSlice(i, cast, texture) {
 
     const distance = dist(cast, P);
     const x = CANVAS_WIDTH * i / SLICE_COUNT;
-    const height = ~~heightOnScreen(cast, BLOCK_SIZE);
-    const yTop = CANVAS_HEIGHT / 2 - (1 - P.eyeZ() / (BLOCK_SIZE / 2)) * height / 2;
+    const wallHeightOnScreen = ~~heightOnScreen(cast, BLOCK_SIZE);
+    const yTop = CANVAS_HEIGHT / 2 - (1 - P.eyeZ() / (BLOCK_SIZE / 2)) * wallHeightOnScreen / 2;
 
     const roundedX = round(cast.x / BLOCK_SIZE) * BLOCK_SIZE;
     const roundedY = round(cast.y / BLOCK_SIZE) * BLOCK_SIZE;
@@ -36,13 +36,13 @@ function renderWallSlice(i, cast, texture) {
     if (distance < DRAW_DISTANCE) {
         drawImage(
             texture,
-            ~~(textureOffsetRatio * texture.width), 0, 1, texture.height,
-            x, yTop, SLICE_WIDTH, height
+            ~~(textureOffsetRatio * texture.width), 0, 1, texture.wallHeightOnScreen,
+            x, yTop, SLICE_WIDTH, wallHeightOnScreen
         );
     }
 
     wrap(() => {
         R.globalAlpha = distance / DRAW_DISTANCE;
-        fr(x, yTop, SLICE_WIDTH, height);
+        fr(x, yTop, SLICE_WIDTH, wallHeightOnScreen);
     });
 }
