@@ -38,9 +38,7 @@ class Weapon {
     }
 
     shoot() {
-        this.ammo = max(0, this.ammo - this.ammoPerShot);
-
-        if (this.ammo === 0) {
+        if (!(this.ammo = max(0, this.ammo - this.ammoPerShot))) {
             this.character.setWeapon(new Pistol(this.character));
         }
 

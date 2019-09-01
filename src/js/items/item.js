@@ -1,12 +1,10 @@
 class Item {
     constructor(sprite) {
-        this.width = ITEM_RADIUS;
-
-        this.z = -BLOCK_SIZE / 4;
+        this.z = evaluate(-BLOCK_SIZE / 4);
 
         SPRITES.push(this.sprite = {
-            'z': -BLOCK_SIZE / 4,
-            'worldWidth': ITEM_RADIUS / 2,
+            'z': evaluate(-BLOCK_SIZE / 4),
+            'worldWidth': evaluate(ITEM_RADIUS / 2),
             'worldHeight': sprite.height / sprite.width * ITEM_RADIUS / 2,
             'sprite': sprite
         });

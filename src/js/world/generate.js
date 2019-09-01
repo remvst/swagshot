@@ -18,7 +18,7 @@ generateFromCanvas = can => {
     ctx.putImageData(imageData, 0, 0);
 
     ctx.globalCompositeOperation = nomangle('source-atop');
-    ctx.fs('#004584');
+    ctx.fs('#048');
     ctx.fr(0, 0, can.width, can.height);
 
     return {'matrix': grid, 'can': can};
