@@ -42,9 +42,9 @@ class Bullet {
         const beforeX = this.x;
         const beforeY = this.y;
 
-        this.x += Math.cos(this.angle) * this.speed * e;
-        this.y += Math.sin(this.angle) * this.speed * e;
-        this.z -= Math.sin(this.verticalAngle) * this.speed * e;
+        this.x += cos(this.angle) * this.speed * e;
+        this.y += sin(this.angle) * this.speed * e;
+        this.z -= sin(this.verticalAngle) * this.speed * e;
 
         if (
             hasBlock(this.x, this.y, 0) && this.z < BLOCK_SIZE / 2 ||

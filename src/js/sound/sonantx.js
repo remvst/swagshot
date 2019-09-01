@@ -261,14 +261,14 @@ class SoundGenerator {
             rsample += this.osc2(c2) * this.instr.osc2_vol;
 
             // Noise oscillator
-            if(this.instr.noise_fader) rsample += (2*Math.random()-1) * this.instr.noise_fader * e;
+            if(this.instr.noise_fader) rsample += (2*random()-1) * this.instr.noise_fader * e;
 
             rsample *= e / 255;
 
             // State variable filter
             var f = this.instr.fx_freq;
             if(this.instr.lfo_fx_freq) f *= lfor;
-            f = 1.5 * Math.sin(f * 3.141592 / WAVE_SPS);
+            f = 1.5 * sin(f * 3.141592 / WAVE_SPS);
             low += f * band;
             var high = q * (rsample - band) - low;
             band += f * high;

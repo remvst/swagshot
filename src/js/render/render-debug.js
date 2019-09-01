@@ -26,7 +26,7 @@ function renderDebug() {
     // Player position
     R.fs('red');
     R.beginPath();
-    R.arc(P.x, P.y, 5, 0, Math.PI * 2, true);
+    R.arc(P.x, P.y, 5, 0, TWO_PI, true);
     R.fill();
 
     const angleStart = P.angle - FIELD_OF_VIEW / 2;

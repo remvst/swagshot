@@ -21,11 +21,11 @@ function renderWallSlice(i, cast, texture) {
     const height = ~~heightOnScreen(cast, BLOCK_SIZE);
     const yTop = CANVAS_HEIGHT / 2 - (1 - P.eyeZ() / (BLOCK_SIZE / 2)) * height / 2;
 
-    const roundedX = Math.round(cast.x / BLOCK_SIZE) * BLOCK_SIZE;
-    const roundedY = Math.round(cast.y / BLOCK_SIZE) * BLOCK_SIZE;
+    const roundedX = round(cast.x / BLOCK_SIZE) * BLOCK_SIZE;
+    const roundedY = round(cast.y / BLOCK_SIZE) * BLOCK_SIZE;
 
     let textureOffsetRatio;
-    if(Math.abs(roundedX - cast.x) > Math.abs(roundedY - cast.y)){
+    if(abs(roundedX - cast.x) > abs(roundedY - cast.y)){
         // It's on an Horizontal line
         textureOffsetRatio = (cast.x % BLOCK_SIZE) / BLOCK_SIZE;
     }else{
