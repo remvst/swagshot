@@ -122,9 +122,7 @@ class Player extends Character {
 
         document.exitPointerLock();
 
-        setTimeout(() => {
-            G.setupForMenu();
-        }, 5000);
+        setTimeout(() => G.setupForMenu(), 5000);
     }
 
     hurt(source, amount, angle) {
@@ -133,7 +131,5 @@ class Player extends Character {
         const damageAngle = {'angle': angle, 'alpha': 1};
         DAMAGE_ANGLES.push(damageAngle);
         interp(damageAngle, 'alpha', 1, 0, 1, 0, null, () => remove(DAMAGE_ANGLES, damageAngle));
-
-        G.scoreKeeper.enemyKillsWithNoDamageCount = 0;
     }
 }

@@ -20,6 +20,10 @@ explosion = (x, y, z, radius) => {
 };
 
 explosionEffect = (x, y, z, radius) => {
+    if (distP(x, y, P.x, P.y) > DRAW_DISTANCE) {
+        return;
+    }
+
     for (let i = 0 ; i < 3 ; i++) {
         const duration = rnd(0.2, 0.4);
 

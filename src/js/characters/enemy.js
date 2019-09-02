@@ -138,8 +138,10 @@ class Enemy extends Character {
 
         G.scoreKeeper.bonus(nomangle('ROBOT PWNED'), 10);
 
-        if (++G.scoreKeeper.enemyKillsWithNoDamageCount > 1) {
-            G.scoreKeeper.bonus(nomangle('NO DAMAGE COMBO x') + G.scoreKeeper.enemyKillsWithNoDamageCount, G.scoreKeeper.enemyKillsWithNoDamageCount * 10);
+        if (G.clock - G.scoreKeeper.lastKill < 5 && ++G.scoreKeeper.comboKillCount) {
+            G.scoreKeeper.bonus(nomangle('COMBO X') + G.scoreKeeper.comboKillCount, G.scoreKeeper.comboKillCount * 50);
+        } else {
+            G.scoreKeeper.comboKillCount = 0;
         }
 
         if (P.health < 0.3) {

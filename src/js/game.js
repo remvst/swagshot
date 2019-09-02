@@ -30,7 +30,7 @@ class Game {
         INTERPOLATIONS.slice().forEach(i => i.cycle(e));
 
         wrap(() => {
-            if (G.clock - P.lastDamage < 0.2) {
+            if (G.clock - P.lastDamage < 0.2 && !onMenu) {
                 translate(rnd(-20, 20), rnd(-20, 20));
             }
 
@@ -173,8 +173,10 @@ class Game {
         G.showMessage(nomangle('AIM/SHOOT'), nomangle('MOUSE'), 5);
         G.showMessage(nomangle('MOVE'), nomangle('WASD/ARROW KEYS'), 5);
 
-        G.nextWave = G.clock + 5;
         G.waveCount = 0;
+        G.setupNextWave();
+
+        G.nextWave = G.clock + 10;
     }
 
     setupForMenu() {
@@ -199,11 +201,7 @@ class Game {
     }
 
     setupNextWave() {
-        G.nextWave = G.clock + 60;
-
-        if (G.waveCount++) {
-            G.scoreKeeper.bonus(nomangle('SURVIVED WAVE'), 500);
-        }
+        G.nextWave = G.clock + WAVE_INTERVAL;
 
         for (let row = 10 ; row < W.matrix.length ; row++) {
             for (let col = 10 ; col < W.matrix[0].length ; col++) {
@@ -226,20 +224,26 @@ class Game {
                     ]))();
                     item.x = x;
                     item.y = y;
+
+                    explosionEffect(x, y, evaluate(-BLOCK_SIZE / 2), evaluate(BLOCK_SIZE / 2));
                 }
 
-                if (random() < INITIAL_ENEMY_DENSITY + ENEMY_DENSITY_INCREMENT * G.waveCount) {
+                if (G.waveCount && random() < INITIAL_ENEMY_DENSITY + ENEMY_DENSITY_INCREMENT * G.waveCount) {
                     const enemy = new Enemy();
                     enemy.x = (col + 0.5) * BLOCK_SIZE;
                     enemy.y = (row + 0.5) * BLOCK_SIZE;
 
-                    explosionEffect(x, y, enemy.z, BLOCK_SIZE / 2);
+                    explosionEffect(x, y, enemy.z, evaluate(BLOCK_SIZE / 2));
                 }
             }
         }
+
+        if (G.waveCount++) {
+            G.scoreKeeper.bonus(nomangle('SURVIVED WAVE'), 500);
+        }
     }
 
-    showMessage(primary, secondary, duration = 1) {
+    showMessage(primary, secondary, duration = 2) {
         const messageObject = {
             'primary': primary,
             'secondary': secondary

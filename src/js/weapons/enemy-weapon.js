@@ -10,4 +10,13 @@ class EnemyWeapon extends Weapon {
             this.maybeShoot();
         }
     }
+
+    shoot() {
+        if (abs(normalize(P.angle - angleBetween(this.character, P))) < PI / 2 || random() < 0.5) {
+            super.shoot();
+        } else {
+            // Enemies behind shoot the player less
+            this.lastShot = G.clock;
+        }
+    }
 }
