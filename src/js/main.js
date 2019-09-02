@@ -100,9 +100,9 @@ onload = () => {
     };
 
     isOnPlayButton = e => {
-        const canvasRect = document.querySelector('canvas').getBoundingClientRect();
-        const x = (e.clientX - canvasRect.left) / canvasRect.width * CANVAS_WIDTH;
-        const y = (e.clientY - canvasRect.top) / canvasRect.height * CANVAS_HEIGHT;
+        const can = document.querySelector('canvas').getBoundingClientRect();
+        const x = (e.clientX - can.left) / can.width * CANVAS_WIDTH;
+        const y = (e.clientY - can.top) / can.height * CANVAS_HEIGHT;
 
         return between(
             PLAY_BUTTON_Y,
