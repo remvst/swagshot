@@ -6,7 +6,8 @@
         "px",
         "movementX",
         "movementY",
-        "imageSmoothingEnabled"
+        "imageSmoothingEnabled",
+        "cursor"
     ],
     "force": [
         "alpha",
