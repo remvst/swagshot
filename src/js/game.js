@@ -203,8 +203,8 @@ class Game {
     setupNextWave() {
         G.nextWave = G.clock + WAVE_INTERVAL;
 
-        for (let row = 10 ; row < W.matrix.length ; row++) {
-            for (let col = 10 ; col < W.matrix[0].length ; col++) {
+        for (let row = 1 ; row < W.matrix.length ; row++) {
+            for (let col = 1 ; col < W.matrix[0].length ; col++) {
                 if (W.matrix[row][col]) {
                     continue;
                 }
@@ -238,7 +238,7 @@ class Game {
             }
         }
 
-        if (G.waveCount++) {
+        if (++G.waveCount > 2) {
             G.scoreKeeper.bonus(nomangle('SURVIVED WAVE'), 500);
         }
     }

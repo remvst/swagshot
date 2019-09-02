@@ -22,17 +22,16 @@ renderMinimap = () => {
         wrap(() => {
             scale(1 / MINIMAP_SCALE, 1 / MINIMAP_SCALE);
             MINIMAP_ELEMENTS.forEach(element => wrap(() => {
-                translate(
-                    element.x / BLOCK_SIZE * MINIMAP_SCALE,
-                    element.y / BLOCK_SIZE * MINIMAP_SCALE
-                );
-
-                rotate(P.angle + PI / 2);
-
                 const sprite = element.sprite.sprite;
-                scale(MINIMAP_SCALE / sprite.width, MINIMAP_SCALE / sprite.width);
-
-                drawImage(sprite, -sprite.width / 2, -sprite.height / 2);
+                if (sprite) {
+                    translate(
+                        element.x / BLOCK_SIZE * MINIMAP_SCALE,
+                        element.y / BLOCK_SIZE * MINIMAP_SCALE
+                    );
+                    rotate(P.angle + PI / 2);
+                    scale(MINIMAP_SCALE / sprite.width, MINIMAP_SCALE / sprite.width);
+                    drawImage(sprite, -sprite.width / 2, -sprite.height / 2);
+                }
             }));
         });
 
