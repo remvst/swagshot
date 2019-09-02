@@ -2,20 +2,20 @@ MOUNTAINS = createCanvasPattern(80, 40, (ctx, can) => {
     ctx.imageSmoothingEnabled = false;
     ctx.fs(MOUNTAIN_COLOR);
     ctx.beginPath();
-    ctx.moveTo(0, can.height);
+    ctx.moveTo(0, 40);
 
     const sins = [
-        x => sin(x * TWO_PI / (can.width)) * can.height / 8,
-        x => sin(x * TWO_PI / (can.width / 2)) * can.height / 16,
-        x => sin(x * TWO_PI / (can.width / 4)) * can.height / 32,
-        x => sin(x * TWO_PI / (can.width / 8)) * can.height / 64
+        x => sin(x * TWO_PI / 80) * 40 / 8,
+        x => sin(x * TWO_PI / 40) * 40 / 16,
+        x => sin(x * TWO_PI / 20) * 40 / 32,
+        // x => sin(x * TWO_PI / 10) * 40 / 64
     ];
 
-    for (let x = 0 ; x <= can.width ; x += 2) {
-        ctx.lineTo(x, sins.reduce((acc, sin) => acc + sin(x), can.height / 4));
+    for (let x = 0 ; x <= 80 ; x += 2) {
+        ctx.lineTo(x, sins.reduce((acc, sin) => acc + sin(x), 40 / 4));
     }
 
-    ctx.lineTo(can.width, can.height);
+    ctx.lineTo(80, 40);
     ctx.fill();
 });
 
