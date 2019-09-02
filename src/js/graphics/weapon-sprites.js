@@ -1,8 +1,8 @@
 const ROCKET_LAUNCHER = pixelate(createCanvas(120, 200, (ctx, can) => {
     const grad = ctx.createLinearGradient(0, 0, can.width, 0);
-    grad.addColorStop(0.2, '#41403a');
-    grad.addColorStop(0.5, '#6a7163');
-    grad.addColorStop(0.8, '#41403a');
+    grad.addColorStop(0.2, '#443');
+    grad.addColorStop(0.5, '#676');
+    grad.addColorStop(0.8, '#443');
 
     ctx.fs(grad);
 
@@ -15,7 +15,7 @@ const ROCKET_LAUNCHER = pixelate(createCanvas(120, 200, (ctx, can) => {
     ctx.arc(can.width / 2, smallBarrelTopY, bigBarrelRadius, 0, PI, false);
     ctx.fill();
 
-    ctx.fs('#22241b');
+    ctx.fs('#221');
     ctx.beginPath();
     ctx.arc(can.width / 2, smallBarrelTopY, bigBarrelRadius, 0, TWO_PI, false);
     ctx.fill();
