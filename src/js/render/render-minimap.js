@@ -41,11 +41,7 @@ renderMinimap = () => {
         fr(0, 0, W.can.width * MINIMAP_SCALE, W.can.height * MINIMAP_SCALE);
     });
 
-    const gradient = createRadialGradient(0, 0, 0, 0, 0, 80);
-    gradient.addColorStop(0, '#fff');
-    gradient.addColorStop(1, 'rgba(255,255,255, 0)');
-
-    R.fs(gradient);
+    fs(MINIMAP_GRADIENT);
     R.globalAlpha = 0.5;
     beginPath();
     moveTo(0, 0);
