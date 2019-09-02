@@ -13,7 +13,7 @@ class Game {
         e *= G.onMainMenu ? 0.3 : !onMenu;
         G.clock += e;
 
-        if (P.health && G.clock > G.nextWave) {
+        if (P.health && G.clock > G.nextWave && !onMenu) {
             G.setupNextWave();
         }
 
@@ -217,7 +217,7 @@ class Game {
                     (W.matrix[row][col - 1]  ? 1 : 0)+
                     (W.matrix[row][col + 1]? 1 : 0);
 
-                if (neighborCount > 1 && random() < ITEM_DENSITY && !ITEMS.filter(i => i.x == x && i.y == y).length) {
+                if (G.waveCount != 1 && neighborCount > 1 && random() < ITEM_DENSITY && !ITEMS.filter(i => i.x == x && i.y == y).length) {
                     const item = new (pick([
                         WeaponItem,
                         HealthItem
