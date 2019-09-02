@@ -56,6 +56,8 @@ onload = () => {
     };
 
     onmousemove = e => {
+        can.style.cursor = onMenu || !P.health ? 'default' : 'none';
+
         // TODO check caniuse
         if (!onMenu) {
             if (P.health) {
@@ -63,11 +65,10 @@ onload = () => {
                 P.verticalAngle += e.movementY / (1000 * max(1 - MOUSE_SENSITIVITY, 0.01));
             }
         } else {
-            ON_PLAY_BUTTON = isOnPlayButton(e);
+            if (ON_PLAY_BUTTON = isOnPlayButton(e)) {
+                can.style.cursor = 'pointer';
+            }
         }
-
-        maybeUpdateSensitivity(e);
-        can.style.cursor = onMenu || !P.health ? 'default' : 'none';
     };
 
     onmousedown = e => {
