@@ -54,7 +54,7 @@ const PISTOL = pixelate(createCanvas(70, 150, (ctx, can) => {
     ctx.fr(can.width / 2 - 3, 0, 6, 10);
 
     ctx.beginPath();
-    ctx.arc(can.width / 2, 80, bottomBarrelRadius, PI, 0);
+    ctx.arc(can.width / 2, 79, bottomBarrelRadius, PI, 0);
     ctx.lineTo(can.width / 2 + bottomBarrelRadius, can.height);
     ctx.lineTo(can.width / 2 - bottomBarrelRadius, can.height);
     ctx.fill();
