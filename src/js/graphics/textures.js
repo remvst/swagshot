@@ -1,11 +1,11 @@
 BASE_LIGHT_WALL = addNoise(createCanvas(40, 40, ctx => {
-    ctx.fs('#3F1F0C');
+    ctx.fs('#310');
     ctx.fr(0, 0, 40, 40);
 
-    ctx.fs('#926D59');
+    ctx.fs('#965');
     ctx.fr(0, 20, 40, 1);
 
-    ctx.fs('#59341F');
+    ctx.fs('#531');
     ctx.fr(2, 2, 16, 16);
     ctx.fr(21, 2, 16, 16);
 
@@ -70,7 +70,7 @@ const FLOOR_SPRITE = addNoise(createCanvas(40, 40, (ctx, can) => {
 const FLOOR_SPRITE_GRID = createCanvas(40, 40, (ctx, can) => {
     ctx.drawImage(FLOOR_SPRITE, 0, 0);
 
-    ctx.fs('black');
+    ctx.fs('#000');
     for (let y = 0 ; y < can.height ; y += 2) {
         ctx.fr(0, y, can.width, 1);
     }
