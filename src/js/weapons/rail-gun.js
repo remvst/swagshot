@@ -10,7 +10,7 @@ class RailGun extends Weapon {
                 pistolSound();
             }
         };
-        this.ammoPerShot = 0.21;
+        this.ammoPerShot = 0.15;
         this.trailColor = '#f0f';
     }
 }
