@@ -4,8 +4,8 @@ class Player extends Character {
 
         this.vX = this.vY = 0;
 
-        this.x = BLOCK_SIZE * 5.5;
-        this.y = BLOCK_SIZE * 5.5;
+        this.x = evaluate(BLOCK_SIZE * 5.5);
+        this.y = evaluate(BLOCK_SIZE * 5.5);
 
         this.zSpeed = 0;
 
@@ -20,8 +20,8 @@ class Player extends Character {
 
         this.enemies = ENEMIES;
 
-        this.radius = BLOCK_SIZE * 0.5;
-        this.collisionRadius = BLOCK_SIZE * 0.2;
+        this.radius = evaluate(BLOCK_SIZE * 0.5);
+        this.collisionRadius = evaluate(BLOCK_SIZE * 0.2);
 
         this.power = 0;
     }

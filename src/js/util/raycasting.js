@@ -1,4 +1,4 @@
-function castRay(x, y, angle, maxDistance) {
+castRay = (x, y, angle, maxDistance) => {
     const castHorizontal = castAgainstHorizontal(x, y, angle, maxDistance);
     const castVertical = castAgainstVertical(x, y, angle, maxDistance);
 
@@ -8,8 +8,8 @@ function castRay(x, y, angle, maxDistance) {
     } else if(!castVertical) {
         cast = castHorizontal;
     } else {
-        var dHorizontal = distP(x, y, castHorizontal.x, castHorizontal.y);
-        var dVertical = distP(x, y, castVertical.x, castVertical.y);
+        const dHorizontal = distP(x, y, castHorizontal.x, castHorizontal.y);
+        const dVertical = distP(x, y, castVertical.x, castVertical.y);
         cast = dHorizontal < dVertical ? castHorizontal : castVertical;
     }
 
@@ -20,7 +20,7 @@ function castRay(x, y, angle, maxDistance) {
     return cast;
 }
 
-function castAgainstHorizontal(startX, startY, angle, maxDistance){
+castAgainstHorizontal = (startX, startY, angle, maxDistance) => {
     var pointingDown = sin(angle) > 0;
 
     var y = ~~(startY / BLOCK_SIZE) * BLOCK_SIZE + (pointingDown ? BLOCK_SIZE : -0.0001);
@@ -32,7 +32,7 @@ function castAgainstHorizontal(startX, startY, angle, maxDistance){
     return doCast(x, y, xStep, yStep, 1, maxDistance);
 }
 
-function castAgainstVertical(startX, startY, angle, maxDistance){
+castAgainstVertical = (startX, startY, angle, maxDistance) => {
     var pointingRight = cos(angle) > 0;
 
     var x = ~~(startX / BLOCK_SIZE) * BLOCK_SIZE + (pointingRight ? BLOCK_SIZE : -0.0001);
@@ -44,12 +44,14 @@ function castAgainstVertical(startX, startY, angle, maxDistance){
     return doCast(x, y, xStep, yStep, 0, maxDistance);
 }
 
-function doCast(startX, startY, xStep, yStep, castType, maxDistance) {
+doCast = (startX, startY, xStep, yStep, castType, maxDistance) => {
     let x = startX,
         y = startY;
 
     for (let i = 0 ; distP(x, y, startX, startY) < maxDistance ; i++) {
-        G.castIterations++;
+        if (DEBUG) {
+            G.castIterations++;
+        }
         if (internalHasBlock(x, y)) {
             // Got a block!
             const blockId = ~~(x / BLOCK_SIZE) + ~~(y / BLOCK_SIZE) * W.matrix.length;
@@ -75,7 +77,7 @@ function doCast(startX, startY, xStep, yStep, castType, maxDistance) {
     };
 }
 
-function hasBlock(x, y, radius = 0) {
+hasBlock = (x, y, radius = 0) => {
     return internalHasBlock(x, y) ||
         internalHasBlock(x + radius, y) ||
         internalHasBlock(x - radius, y) ||
@@ -83,7 +85,7 @@ function hasBlock(x, y, radius = 0) {
         internalHasBlock(x, y + radius);
 }
 
-function internalHasBlock(x, y) {
+internalHasBlock = (x, y) => {
     if (isOut(x, y)) {
         return false;
     }
@@ -94,7 +96,7 @@ function internalHasBlock(x, y) {
     return W.matrix[row][col];
 }
 
-function isOut(x, y) {
+isOut = (x, y) => {
     return !between(0, x, W.matrix[0].length * BLOCK_SIZE - 1) ||
         !between(0, y, W.matrix.length * BLOCK_SIZE - 1);
 }
