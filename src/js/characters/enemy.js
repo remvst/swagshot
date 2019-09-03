@@ -127,12 +127,12 @@ class Enemy extends Character {
         remove(MINIMAP_ELEMENTS, this);
 
         const duration = abs(-BLOCK_SIZE / 4 - this.z) / BLOCK_SIZE;
-        interp(this.sprite, 'z', this.z, -BLOCK_SIZE / 2 + this.idleCanvas.height * 0.3 / 2, duration);
+        interp(this.sprite, 'z', this.z, evaluate(-BLOCK_SIZE / 2) + this.idleCanvas.height * 0.3 / 2, duration);
         interp(this.sprite, 'f', 0, 0, 0, duration + 0.5, null, () => {
             remove(SPRITES, this.sprite);
+            explosionEffect(this.x, this.y, evaluate(-BLOCK_SIZE / 2), evaluate(BLOCK_SIZE / 2));
+            dropFire(this.x, this.y, evaluate(-BLOCK_SIZE / 2), 0.5);
         });
-
-        dropFire(this.x, this.y, this.z, 0.5);
 
         this.sprite.sprite = this.hurtCanvas;
 
