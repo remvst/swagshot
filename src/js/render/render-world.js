@@ -55,7 +55,7 @@ renderWorld = () => {
     }
     G.topSprites = measure(() => SPRITES.forEach(sprite => renderSprite(sprite, true)));
 
-    G.renderFloor = measure(() => renderFloor(-BLOCK_SIZE / 2, BLOCK_SIZE * 4));
+    G.renderFloor = measure(() => renderFloor(-BLOCK_SIZE / 2, BLOCK_SIZE * 5));
     G.renderWalls = measure(() => renderWalls());
     G.bottomSprites = measure(() => SPRITES.forEach(sprite => renderSprite(sprite)));
 

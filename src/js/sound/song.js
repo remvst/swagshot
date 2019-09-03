@@ -219,12 +219,14 @@ new MusicGenerator({
     source.buffer = buffer;
     source.loop = true;
 
-    const gainNode = audioCtx.createGain();
     if (DEBUG) {
+        const gainNode = audioCtx.createGain();
         gainNode.gain.value = 0;
+        gainNode.connect(audioCtx.destination);
+        source.connect(gainNode);
+    } else {
+        source.connect(audioCtx.destination);
     }
-    gainNode.connect(audioCtx.destination);
 
-    source.connect(gainNode);
     source.start();
 });

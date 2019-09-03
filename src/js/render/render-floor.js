@@ -1,4 +1,4 @@
-function renderFloor(z, maxDistance) {
+renderFloor = (z, maxDistance) => {
     const size = BLOCK_SIZE / 4;
 
     const sizeRatio = (size / BLOCK_SIZE);
