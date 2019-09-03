@@ -42,7 +42,8 @@ function renderWallSlice(i, cast, texture) {
     }
 
     wrap(() => {
-        R.globalAlpha = distance / DRAW_DISTANCE;
+        R.globalAlpha = easeInCubic(distance / DRAW_DISTANCE, 0, 1, 1);
+        // R.globalAlpha = distance / DRAW_DISTANCE;
         fr(x, yTop, SLICE_WIDTH, wallHeightOnScreen);
     });
 }

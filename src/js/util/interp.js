@@ -15,6 +15,10 @@ easeOutBounce = (t, b, c, d) => {
     return c * (7.5625 * (t -= (2.625 / 2.75)) * t + 0.984375) + b;
 };
 
+easeInCubic = (t, b, c, d) => {
+    return c*(t/=d)*t*t + b;
+};
+
 interp = (o, p, a, b, d, l, f, e) => {
     var i = {
         o: o, // object
