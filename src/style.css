@@ -21,13 +21,6 @@ body, html, #t, canvas{
     height: 100%;
     image-rendering: optimizeSpeed;
     background: #000;
-    margin: 0;
-
-    -webkit-touch-callout: none;
-    user-select: none;
-    -webkit-user-select: none;
-
-    font-family: Helvetica;
 }
 
 canvas{
