@@ -37,9 +37,6 @@ class Game {
             G.renderWorld = measure(() => wrap(renderWorld));
 
             if (P.health && !onMenu) {
-                G.renderHud = measure(() => wrap(renderHud));
-                G.renderMinimap = measure(() => wrap(renderMinimap));
-
                 wrap(() => {
                     translate(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
                     rotate(PI / 4);
@@ -79,6 +76,9 @@ class Game {
                     translate(weaponOffsetX, weaponOffsetY);
                     drawImage(P.weapon.sprite, (CANVAS_WIDTH - P.weapon.sprite.width) / 2, CANVAS_HEIGHT - P.weapon.sprite.height);
                 });
+
+                G.renderHud = measure(() => wrap(renderHud));
+                G.renderMinimap = measure(() => wrap(renderMinimap));
             }
 
             if (!P.health && !onMenu) {
