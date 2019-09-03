@@ -1,4 +1,4 @@
-const ROCKET_LAUNCHER = pixelate(createCanvas(ROCKET_LAUNCHER_WIDTH, ROCKET_LAUNCHER_HEIGHT, ctx => {
+ROCKET_LAUNCHER = pixelate(createCanvas(ROCKET_LAUNCHER_WIDTH, ROCKET_LAUNCHER_HEIGHT, ctx => {
     const grad = ctx.createLinearGradient(0, 0, ROCKET_LAUNCHER_WIDTH, 0);
     grad.addColorStop(0.2, '#443');
     grad.addColorStop(0.5, '#676');
@@ -26,7 +26,7 @@ const ROCKET_LAUNCHER = pixelate(createCanvas(ROCKET_LAUNCHER_WIDTH, ROCKET_LAUN
     ctx.fill();
 }), 5);
 
-const PISTOL = pixelate(createCanvas(PISTOL_WIDTH, PISTOL_HEIGHT, ctx => {
+PISTOL = pixelate(createCanvas(PISTOL_WIDTH, PISTOL_HEIGHT, ctx => {
     const grad = ctx.createLinearGradient(0, 0, PISTOL_WIDTH, 0);
     grad.addColorStop(0.2, '#000');
     grad.addColorStop(0.5, '#222');
@@ -58,7 +58,7 @@ const PISTOL = pixelate(createCanvas(PISTOL_WIDTH, PISTOL_HEIGHT, ctx => {
     ctx.fr(evaluate(PISTOL_WIDTH - 5), 80, 5, 100);
 }), 5);
 
-const MACHINE_GUN = pixelate(createCanvas(MACHINE_GUN_WIDTH, MACHINE_GUN_HEIGHT, ctx => {
+MACHINE_GUN = pixelate(createCanvas(MACHINE_GUN_WIDTH, MACHINE_GUN_HEIGHT, ctx => {
     const grad = ctx.createLinearGradient(0, 0, MACHINE_GUN_WIDTH, 0);
     grad.addColorStop(0.2, '#000');
     grad.addColorStop(0.5, '#222');
@@ -75,7 +75,7 @@ const MACHINE_GUN = pixelate(createCanvas(MACHINE_GUN_WIDTH, MACHINE_GUN_HEIGHT,
     ctx.fr(evaluate(MACHINE_GUN_WIDTH / 2 - 4), 0, 8, 20);
 }), 5);
 
-const SHOTGUN = pixelate(createCanvas(SHOTGUN_WIDTH, SHOTGUN_HEIGHT, (ctx, can) => {
+SHOTGUN = pixelate(createCanvas(SHOTGUN_WIDTH, SHOTGUN_HEIGHT, (ctx, can) => {
     const grad = ctx.createLinearGradient(0, 0, evaluate(SHOTGUN_WIDTH / 2), 10);
     grad.addColorStop(0, '#765');
     grad.addColorStop(0.7, '#ddd');
@@ -98,7 +98,7 @@ const SHOTGUN = pixelate(createCanvas(SHOTGUN_WIDTH, SHOTGUN_HEIGHT, (ctx, can) 
     barrel();
 }), 5);
 
-const MUZZLEFLASH = pixelate(createCanvas(MUZZLEFLASH_SIZE, MUZZLEFLASH_SIZE, ctx => {
+MUZZLEFLASH = pixelate(createCanvas(MUZZLEFLASH_SIZE, MUZZLEFLASH_SIZE, ctx => {
     const grad = ctx.createRadialGradient(evaluate(MUZZLEFLASH_SIZE / 2), evaluate(MUZZLEFLASH_SIZE / 2), 0, evaluate(MUZZLEFLASH_SIZE / 2), evaluate(MUZZLEFLASH_SIZE / 2), evaluate(MUZZLEFLASH_SIZE / 2));
     grad.addColorStop(0, '#fff');
     grad.addColorStop(0.4, '#fff');
@@ -113,7 +113,7 @@ const MUZZLEFLASH = pixelate(createCanvas(MUZZLEFLASH_SIZE, MUZZLEFLASH_SIZE, ct
     }
 }), 5);
 
-const RAIL_GUN = pixelate(createCanvas(RAIL_GUN_WIDTH, RAIL_GUN_HEIGHT, ctx => {
+RAIL_GUN = pixelate(createCanvas(RAIL_GUN_WIDTH, RAIL_GUN_HEIGHT, ctx => {
     const grad = ctx.createLinearGradient(0, 0, RAIL_GUN_WIDTH, 0);
     grad.addColorStop(0, '#76f');
     grad.addColorStop(0.5, '#ddf');
