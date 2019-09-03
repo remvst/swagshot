@@ -1,5 +1,5 @@
 backgroundAnimation = color => {
-    document.body.style.backgroundColor = color;
+    document.body.style.backgroundColor = !onMenu && color;
     document.body.style.transition = null;
 
     clearTimeout(RESET_BACKGROUND_TIMEOUT);
