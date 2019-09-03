@@ -22,6 +22,10 @@ class Item {
         });
     }
 
+    enabled() {
+        return true;
+    }
+
     cycle() {
         this.sprite.x = this.x;
         this.sprite.y = this.y;
@@ -30,7 +34,7 @@ class Item {
         this.shadowSprite.x = this.x + cos(P.angle);
         this.shadowSprite.y = this.y + sin(P.angle);
 
-        if (dist(this, P) < ITEM_RADIUS) {
+        if (this.enabled() && dist(this, P) < ITEM_RADIUS) {
             // itemSound();
             this.pickup();
             this.remove();
