@@ -13,9 +13,8 @@ for (let i = -1 ; i <= SLICE_COUNT ; i++) {
 }
 
 const DECORATION_PARTICLES_REPEAT = BLOCK_SIZE * 6;
-const DECORATION_PARTICLES = [];
-for (let i = 0 ; i < 200 ; i++) {
-    DECORATION_PARTICLES.push({
+const DECORATION_PARTICLES = [...Array(200)].map(() => {
+    return {
         'offsetX': randomSin(random() * DECORATION_PARTICLES_REPEAT, rnd(5, 20), rnd(20, 40)),
         'offsetY': randomSin(random() * DECORATION_PARTICLES_REPEAT, rnd(5, 20), rnd(20, 40)),
         'offsetZ': randomSin(rnd(evaluate(-BLOCK_SIZE / 2), evaluate(BLOCK_SIZE / 2)), rnd(5, 20), rnd(20, 40)),
@@ -24,5 +23,5 @@ for (let i = 0 ; i < 200 ; i++) {
             R.globalAlpha = alpha * 0.4;
             fr(x - width / 2, y - height / 2, width, height);
         }
-    });
-}
+    };
+});
