@@ -92,9 +92,9 @@ createRobotSprites = spriteFunc => {
     ];
 };
 
-const ROBOT_1 = createRobotSprites(createRobot1);
-const ROBOT_2 = createRobotSprites(createRobot2);
-const ROBOT_3 = createRobotSprites(createRobot3);
+ROBOT_1 = createRobotSprites(createRobot1);
+ROBOT_2 = createRobotSprites(createRobot2);
+ROBOT_3 = createRobotSprites(createRobot3);
 
 SHADOW_CIRCLE = pixelate(createCanvas(200, 200, ctx => {
     ctx.fs('#000');

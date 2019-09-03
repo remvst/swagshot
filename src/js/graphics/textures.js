@@ -26,34 +26,32 @@ BASE_DARK_WALL = addNoise(createCanvas(40, 40, ctx => {
     ctx.fr(0, 0, 1, 40);
 }), 1, () => 'rgba(255,255,255,' + rnd(0.05, 0.1) + ')');
 
-function consoleSprite() {
-    return createCanvas(40, 40, ctx => {
-        ctx.drawImage(BASE_DARK_WALL, 0, 0);
+consoleSprite = () => createCanvas(40, 40, ctx => {
+    ctx.drawImage(BASE_DARK_WALL, 0, 0);
 
-        function buttonPanel() {
-            for (let x = 3 ; x < 20 - 3 ; x += 3) {
-                for (let y = 3 ; y < 20 - 3 ; y += 3) {
-                    ctx.fillStyle = random() < 0.5 ? '#462' : '#dfb';
-                    ctx.fr(x, y, 2, 1);
-                }
+    function buttonPanel() {
+        for (let x = 3 ; x < 20 - 3 ; x += 3) {
+            for (let y = 3 ; y < 20 - 3 ; y += 3) {
+                ctx.fillStyle = random() < 0.5 ? '#462' : '#dfb';
+                ctx.fr(x, y, 2, 1);
             }
         }
+    }
 
-        buttonPanel();
-        ctx.translate(20, 0);
-        buttonPanel();
-        ctx.translate(-20, 20);
-        buttonPanel();
-        ctx.translate(20, 0);
-        buttonPanel();
-    });
-}
+    buttonPanel();
+    ctx.translate(20, 0);
+    buttonPanel();
+    ctx.translate(-20, 20);
+    buttonPanel();
+    ctx.translate(20, 0);
+    buttonPanel();
+});
 
 WALL_TEXTURES = [...Array(11)].map((x, i) => {
     return i < 6 ? [BASE_LIGHT_WALL] : (i < 10 ? [BASE_DARK_WALL] : [consoleSprite(), consoleSprite(), consoleSprite()])
 });
 
-const FLOOR_SPRITE = addNoise(createCanvas(40, 40, (ctx, can) => {
+FLOOR_SPRITE = addNoise(createCanvas(40, 40, (ctx, can) => {
     ctx.fs('#000');
     ctx.fr(0, 0, 40, 40);
 
@@ -67,7 +65,7 @@ const FLOOR_SPRITE = addNoise(createCanvas(40, 40, (ctx, can) => {
     ctx.fr(0, 0, 1, 40);
 }), 1, () => 'rgba(255,255,255,' + rnd(0.05, 0.1) + ')');
 
-const FLOOR_SPRITE_GRID = createCanvas(40, 40, (ctx, can) => {
+FLOOR_SPRITE_GRID = createCanvas(40, 40, (ctx, can) => {
     ctx.drawImage(FLOOR_SPRITE, 0, 0);
 
     ctx.fs('#000');
