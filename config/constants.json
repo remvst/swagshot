@@ -2,6 +2,7 @@
     "true": 1,
     "false": 0,
     "const": "let",
+    "null": 0,
 
     "CANVAS_WIDTH": 800,
     "CANVAS_HEIGHT": 600,
