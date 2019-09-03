@@ -18,9 +18,9 @@ for (let i = 0 ; i < 200 ; i++) {
     DECORATION_PARTICLES.push({
         'offsetX': randomSin(random() * DECORATION_PARTICLES_REPEAT, rnd(5, 20), rnd(20, 40)),
         'offsetY': randomSin(random() * DECORATION_PARTICLES_REPEAT, rnd(5, 20), rnd(20, 40)),
-        'offsetZ': randomSin(rnd(-BLOCK_SIZE / 2, BLOCK_SIZE / 2), rnd(5, 20), rnd(20, 40)),
+        'offsetZ': randomSin(rnd(evaluate(-BLOCK_SIZE / 2), evaluate(BLOCK_SIZE / 2)), rnd(5, 20), rnd(20, 40)),
         'render': (x, y, width, height, alpha) => {
-            R.fs(DECORATION_PARTICLE_COLOR);
+            fs(DECORATION_PARTICLE_COLOR);
             R.globalAlpha = alpha * 0.4;
             fr(x - width / 2, y - height / 2, width, height);
         }
