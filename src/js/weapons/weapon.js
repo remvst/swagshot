@@ -55,5 +55,9 @@ class Weapon {
                 this.explodes
             );
         }
+
+        if (this.character == P) {
+            backgroundAnimation('#444');
+        }
     }
 }

@@ -6,7 +6,7 @@ onresize = () => {
         br = CANVAS_WIDTH / CANVAS_HEIGHT, // base ratio
         w,
         h,
-        s = document.querySelector('#cc').style;
+        s = nomangle(t).style;
 
     if (ar <= br) {
         w = mw;

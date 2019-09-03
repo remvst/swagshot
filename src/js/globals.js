@@ -15,3 +15,5 @@ let ON_PLAY_BUTTON;
 let CANVAS = nomangle(g);
 
 const DAMAGE_ANGLES = [];
+
+let RESET_BACKGROUND_TIMEOUT;

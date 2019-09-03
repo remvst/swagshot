@@ -131,5 +131,7 @@ class Player extends Character {
         const damageAngle = {'angle': angle, 'alpha': 1};
         DAMAGE_ANGLES.push(damageAngle);
         interp(damageAngle, 'alpha', 1, 0, 1, 0, null, () => remove(DAMAGE_ANGLES, damageAngle));
+
+        backgroundAnimation('#400');
     }
 }

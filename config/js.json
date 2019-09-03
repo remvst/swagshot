@@ -52,6 +52,7 @@
     "src/js/score-keeper.js",
     "src/js/keyboard.js",
     "src/js/menu.js",
+    "src/js/background-animation.js",
     "src/js/game.js",
     "src/js/main.js",
 

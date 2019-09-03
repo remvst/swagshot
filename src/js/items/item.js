@@ -35,6 +35,7 @@ class Item {
             this.pickup();
             this.remove();
             P.lastPickup = G.clock;
+            backgroundAnimation('#440');
         }
     }
 

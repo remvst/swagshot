@@ -85,7 +85,7 @@ class Game {
                 R.font = '48pt Impact';
                 R.textAlign = 'center';
                 fs('#fff');
-                fillText(nomangle('FINAL SCORE: '), evaluate(CANVAS_WIDTH / 2), evaluate(CANVAS_HEIGHT / 2 - 50));
+                fillText(nomangle('FINAL SCORE'), evaluate(CANVAS_WIDTH / 2), evaluate(CANVAS_HEIGHT / 2 - 50));
                 fillText(G.scoreKeeper.score, evaluate(CANVAS_WIDTH / 2), evaluate(CANVAS_HEIGHT / 2 + 50));
             }
 
