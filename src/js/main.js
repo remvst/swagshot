@@ -1,11 +1,10 @@
 onload = () => {
     onresize(); // trigger initial sizing pass
 
-    const can = document.querySelector('canvas');
-    can.width = CANVAS_WIDTH * CANVAS_SCALE;
-    can.height = CANVAS_HEIGHT * CANVAS_SCALE;
+    CANVAS.width = CANVAS_WIDTH * CANVAS_SCALE;
+    CANVAS.height = CANVAS_HEIGHT * CANVAS_SCALE;
 
-    R = can.getContext('2d', { 'alpha': false });
+    R = CANVAS.getContext('2d', { 'alpha': false });
     R.imageSmoothingEnabled = false;
 
     // Shortcut for all canvas methods to the main canvas
@@ -41,7 +40,7 @@ onload = () => {
             return;
         }
 
-        const canvasRect = can.getBoundingClientRect();
+        const canvasRect = CANVAS.getBoundingClientRect();
 
         const x = (e.clientX - canvasRect.left) / canvasRect.width * CANVAS_WIDTH;
         const y = (e.clientY - canvasRect.top) / canvasRect.height * CANVAS_HEIGHT;
@@ -56,7 +55,7 @@ onload = () => {
     };
 
     onmousemove = e => {
-        can.style.cursor = onMenu || !P.health ? 'default' : 'none';
+        CANVAS.style.cursor = onMenu || !P.health ? 'default' : 'none';
 
         // TODO check caniuse
         if (!onMenu) {
@@ -66,13 +65,13 @@ onload = () => {
             }
         } else {
             if (ON_PLAY_BUTTON = isOnPlayButton(e)) {
-                can.style.cursor = 'pointer';
+                CANVAS.style.cursor = 'pointer';
             }
         }
     };
 
     onmousedown = e => {
-        const canvasRect = document.querySelector('canvas').getBoundingClientRect();
+        const canvasRect = CANVAS.getBoundingClientRect();
         const y = (e.clientY - canvasRect.top) / canvasRect.height * CANVAS_HEIGHT;
 
         isMouseDown = true;
@@ -100,9 +99,9 @@ onload = () => {
     };
 
     isOnPlayButton = e => {
-        const can = document.querySelector('canvas').getBoundingClientRect();
-        const x = (e.clientX - can.left) / can.width * CANVAS_WIDTH;
-        const y = (e.clientY - can.top) / can.height * CANVAS_HEIGHT;
+        const canvasRect = CANVAS.getBoundingClientRect();
+        const x = (e.clientX - canvasRect.left) / canvasRect.width * CANVAS_WIDTH;
+        const y = (e.clientY - canvasRect.top) / canvasRect.height * CANVAS_HEIGHT;
 
         return between(
             PLAY_BUTTON_Y,
