@@ -14,7 +14,6 @@ renderMenu = () => {
     fillText(nomangle('TAKE THE STATION BACK... WITH SWAG'), CANVAS_WIDTH / 2, CANVAS_HEIGHT * 0.4);
 
     // Button
-    R.font = '14pt Courier';
     R.textAlign = 'center';
     R.textBaseline = 'middle';
     wrap(() => {

@@ -131,8 +131,9 @@ class Enemy extends Character {
         interp(this.sprite, 'f', 0, 0, 0, duration + 0.5, null, () => {
             remove(SPRITES, this.sprite);
             explosionEffect(this.x, this.y, evaluate(-BLOCK_SIZE / 2), evaluate(BLOCK_SIZE / 2));
-            dropFire(this.x, this.y, evaluate(-BLOCK_SIZE / 2), 0.5);
         });
+
+        dropFire(this.x, this.y, evaluate(-BLOCK_SIZE / 2), 0.5);
 
         this.sprite.sprite = this.hurtCanvas;
 
