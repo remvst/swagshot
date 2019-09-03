@@ -5,7 +5,7 @@ class MachineGun extends Weapon {
         this.angleRandomFactor = PI / 256;
 
         this.sprite = MACHINE_GUN;
-        this.bulletSpeed = BLOCK_SIZE * 30;
+        this.bulletSpeed = evaluate(BLOCK_SIZE * 30);
         this.ammoPerShot = 0.02;
         this.sound = pistolSound;
     }

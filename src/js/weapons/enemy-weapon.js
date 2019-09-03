@@ -2,6 +2,8 @@ class EnemyWeapon extends Weapon {
     constructor(character) {
         super(character);
         this.trailColor = '#f00';
+        this.ammoPerShot = 0;
+        this.bulletSpeed = evaluate(BLOCK_SIZE * 5);
     }
 
     cycle(e) {

@@ -6,6 +6,5 @@ class EnemySpreadWeapon extends EnemyWeapon {
         this.angleRandomFactor = PI / 64;
         this.shotInterval = 3;
         this.trailSize = 4;
-        this.bulletSpeed = BLOCK_SIZE * 5;
     }
 }

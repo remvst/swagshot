@@ -4,7 +4,7 @@ class RailGun extends Weapon {
         this.shotInterval = 1;
         this.bulletCount = 7;
         this.sprite = RAIL_GUN;
-        this.bulletSpeed = BLOCK_SIZE * 50;
+        this.bulletSpeed = evaluate(BLOCK_SIZE * 50);
         this.sound = () => {
             for (let i = 0 ; i < 5 ; i++) {
                 pistolSound();
