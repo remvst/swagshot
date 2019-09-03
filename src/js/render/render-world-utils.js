@@ -1,4 +1,4 @@
-function positionOnScreen(x, y, z) {
+positionOnScreen = (x, y, z) => {
     const point = {'x': x, 'y': y, 'z': isNaN(z) ? -BLOCK_SIZE / 2 : z};
     const angle = angleBetween(P, point);
     const angleDiff = normalize(angle - P.angle);
@@ -24,11 +24,11 @@ function positionOnScreen(x, y, z) {
     };
 }
 
-function lookupOffset() {
+lookupOffset = () => {
     return -~~(P.verticalAngle / (PI * 0.28) * CANVAS_HEIGHT);
 }
 
-function renderPoint(point, realWidth, realHeight, fadeStartDistance, fadeEndDistance, render, ignoreWalls) {
+renderPoint = (point, realWidth, realHeight, fadeStartDistance, fadeEndDistance, render, ignoreWalls) => {
     const distanceToPoint = dist(point, P);
     const angle = angleBetween(P, point);
     const angleDiff = normalize(angle - P.angle);
@@ -49,7 +49,7 @@ function renderPoint(point, realWidth, realHeight, fadeStartDistance, fadeEndDis
     wrap(() => render(posOnScreen.x, posOnScreen.y, width, height, alpha));
 }
 
-function castOneRay(rayAngle, rayIndex) {
+castOneRay = (rayAngle, rayIndex) => {
     CASTED_RAYS[rayIndex] = castRay(P.x, P.y, rayAngle, DRAW_DISTANCE);
 
     if (DEBUG) {
@@ -57,17 +57,17 @@ function castOneRay(rayAngle, rayIndex) {
     }
 }
 
-function heightOnScreen(point, realHeight) {
+heightOnScreen = (point, realHeight) => {
     const angle = atan2(point.y - P.y, point.x - P.x);
-    const correctedDistance = cos(angle - P.angle) * dist(point, P);
-    return (realHeight / correctedDistance) * PROJECTION_PLANE_DISTANCE;
+    // const correctedDistance = cos(angle - P.angle) * dist(point, P);
+    return (realHeight / (cos(angle - P.angle) * dist(point, P))) * PROJECTION_PLANE_DISTANCE;
 }
 
-function interpolateValue(fromValue, toValue, ratio) {
+interpolateValue = (fromValue, toValue, ratio) => {
     return fromValue + ratio * (toValue - fromValue);
 }
 
-function castWindow(indexStart, indexEnd) {
+castWindow = (indexStart, indexEnd) => {
     if (indexStart > indexEnd) {
         return;
     }

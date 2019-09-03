@@ -8,7 +8,7 @@ measure = x => {
     }
 }
 
-function renderWorld() {
+renderWorld = () => {
     // Prerender calculations
     G.castIterations = 0;
     G.castTime = measure(() => castWindow(-1, SLICE_COUNT + 1));
@@ -66,9 +66,4 @@ function renderWorld() {
 
         renderPoint(particle, 1, 1, 0, DECORATION_PARTICLES_REPEAT, particle.render);
     }));
-}
-
-function randomSin(offset, halfAmplitude, period) {
-    const phase = random();
-    return () => offset + sin((phase + G.clock * PI * 2) / period) * halfAmplitude;
 }
