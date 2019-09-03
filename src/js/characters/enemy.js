@@ -141,7 +141,7 @@ class Enemy extends Character {
 
         G.scoreKeeper.bonus(nomangle('ROBOT PWNED'), 10);
 
-        if (G.clock - G.scoreKeeper.lastKill < 5 && ++G.scoreKeeper.comboKillCount > 1) {
+        if (G.clock - G.scoreKeeper.lastKill < 4 && ++G.scoreKeeper.comboKillCount > 1) {
             G.scoreKeeper.bonus(nomangle('COMBO X') + G.scoreKeeper.comboKillCount, G.scoreKeeper.comboKillCount * 50);
         } else {
             G.scoreKeeper.comboKillCount = 1;
