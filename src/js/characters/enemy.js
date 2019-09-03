@@ -17,6 +17,8 @@ class Enemy extends Character {
             }
         ]);
 
+        this.hurtBy = new Set();
+
         this.idleCanvas = settings.sprites[0];
         this.aggressiveCanvas = settings.sprites[1];
         this.hurtCanvas = settings.sprites[2];

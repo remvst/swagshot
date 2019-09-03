@@ -1,5 +1,5 @@
 class Bullet {
-    constructor(x, y, z, speed, angle, verticalAngle, targets, trailSize, explodes, color) {
+    constructor(x, y, z, speed, angle, verticalAngle, targets, trailSize, explodes) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -105,8 +105,9 @@ class Bullet {
         }
 
         if (!isEnemyGenerated) {
-            if (this.jumpShot && hurtEnemies) {
+            if (this.jumpShot && hitTarget && !hitTarget.hurtBy.has(this.created)) {
                 G.scoreKeeper.bonus(nomangle('JUMPSHOT'), 10);
+                hitTarget.hurtBy.add(this.created);
             }
         }
 
