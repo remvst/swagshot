@@ -86,14 +86,7 @@ hasBlock = (x, y, radius = 0) => {
 }
 
 internalHasBlock = (x, y) => {
-    if (isOut(x, y)) {
-        return false;
-    }
-
-    const row = ~~(y / BLOCK_SIZE);
-    const col = ~~(x / BLOCK_SIZE);
-
-    return W.matrix[row][col];
+    return !isOut(x, y) && W.matrix[~~(y / BLOCK_SIZE)][~~(x / BLOCK_SIZE)];
 }
 
 isOut = (x, y) => {

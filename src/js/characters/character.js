@@ -18,19 +18,16 @@ class Character {
     }
 
     moveBy(x, y) {
-        const beforeX = this.x;
-        const beforeY = this.y;
-
         // Ugly collision handling
         this.x += x;
         if (hasBlock(this.x, this.y, this.collisionRadius || this.radius) && this.z < BLOCK_SIZE / 2) {
-            this.x = beforeX;
+            this.x -= x;
             this.vX = 0;
         }
 
         this.y += y;
         if (hasBlock(this.x, this.y, this.collisionRadius || this.radius) && this.z < BLOCK_SIZE / 2) {
-            this.y = beforeY;
+            this.y -= y;
             this.vY = 0;
         }
     }

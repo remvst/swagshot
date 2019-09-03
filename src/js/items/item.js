@@ -15,7 +15,7 @@ class Item {
         SPRITES.push(this.shadowSprite = {
             'x': this.x,
             'y': this.y,
-            'z': -BLOCK_SIZE / 2,
+            'z': evaluate(-BLOCK_SIZE / 2),
             'worldWidth': 30,
             'worldHeight': 8,
             'sprite': SHADOW_CIRCLE
@@ -35,7 +35,6 @@ class Item {
         this.shadowSprite.y = this.y + sin(P.angle);
 
         if (this.enabled() && dist(this, P) < ITEM_RADIUS) {
-            // itemSound();
             this.pickup();
             this.remove();
             P.lastPickup = G.clock;

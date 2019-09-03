@@ -88,7 +88,7 @@ class Player extends Character {
     }
 
     jump() {
-        if (this.z == 0 && !onMenu) {
+        if (!this.z && !onMenu) {
             this.zSpeed = JUMP_FORCE;
             this.vX *= evaluate(1 + JUMP_SPEED_BOOST);
             this.vY *= evaluate(1 + JUMP_SPEED_BOOST);
@@ -97,7 +97,7 @@ class Player extends Character {
 
     eyeZ() {
         if (!this.health) {
-            return -BLOCK_SIZE / 4;
+            return evaluate(-BLOCK_SIZE / 4);
         }
 
         return this.z +
@@ -122,7 +122,7 @@ class Player extends Character {
 
         document.exitPointerLock();
 
-        setTimeout(() => G.setupForMenu(), 5000);
+        setTimeout(G.setupForMenu, 5000);
     }
 
     hurt(source, amount, angle) {

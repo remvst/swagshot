@@ -160,7 +160,7 @@ class Game {
     }
 
     setupNewGame() {
-        this.scoreKeeper = new ScoreKeeper();
+        G.scoreKeeper = new ScoreKeeper();
         G.onMainMenu = null;
 
         P = new Player();
@@ -181,7 +181,7 @@ class Game {
 
     setupForMenu() {
         onMenu = true;
-        this.scoreKeeper = new ScoreKeeper();
+        G.scoreKeeper = new ScoreKeeper();
 
         P = new Player();
 

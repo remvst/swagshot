@@ -8,9 +8,9 @@ onload = () => {
     R.imageSmoothingEnabled = false;
 
     // Shortcut for all canvas methods to the main canvas
-    Object.getOwnPropertyNames(p).forEach(n => {
-        if (R[n] && R[n].call) {
-            w[n] = p[n].bind(R);
+    Object.getOwnPropertyNames(canvasProto).forEach(n => {
+        if (R[n].call) {
+            w[n] = canvasProto[n].bind(R);
         }
     });
 
