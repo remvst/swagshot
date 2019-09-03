@@ -25,8 +25,8 @@ renderMinimap = () => {
                 const sprite = element.sprite.sprite;
                 if (sprite) {
                     translate(
-                        element.x / BLOCK_SIZE * MINIMAP_SCALE,
-                        element.y / BLOCK_SIZE * MINIMAP_SCALE
+                        element.x * evaluate(MINIMAP_SCALE / BLOCK_SIZE),
+                        element.y * evaluate(MINIMAP_SCALE / BLOCK_SIZE)
                     );
                     rotate(P.angle + PI / 2);
                     scale(MINIMAP_SCALE / sprite.width, MINIMAP_SCALE / sprite.width);
