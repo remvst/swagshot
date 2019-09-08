@@ -1,4 +1,4 @@
-function renderWalls() {
+renderWalls = () => {
     fs('#000');
 
     for (let i = 0 ; i < SLICE_COUNT ; i++) {
@@ -9,9 +9,9 @@ function renderWalls() {
 
         renderWallSlice(i, cast, texture);
     }
-}
+};
 
-function renderWallSlice(i, cast, texture) {
+renderWallSlice = (i, cast, texture) => {
     if (!cast) {
         return;
     }
@@ -19,16 +19,16 @@ function renderWallSlice(i, cast, texture) {
     const distance = dist(cast, P);
     const x = CANVAS_WIDTH * i / SLICE_COUNT;
     const wallHeightOnScreen = ~~heightOnScreen(cast, BLOCK_SIZE);
-    const yTop = CANVAS_HEIGHT / 2 - (1 - P.eyeZ() / (BLOCK_SIZE / 2)) * wallHeightOnScreen / 2;
+    const yTop = evaluate(CANVAS_HEIGHT / 2) - (1 - P.eyeZ() / evaluate(BLOCK_SIZE / 2)) * wallHeightOnScreen / 2;
 
     const roundedX = round(cast.x / BLOCK_SIZE) * BLOCK_SIZE;
     const roundedY = round(cast.y / BLOCK_SIZE) * BLOCK_SIZE;
 
     let textureOffsetRatio;
-    if(abs(roundedX - cast.x) > abs(roundedY - cast.y)){
+    if (abs(roundedX - cast.x) > abs(roundedY - cast.y)) {
         // It's on an Horizontal line
         textureOffsetRatio = (cast.x % BLOCK_SIZE) / BLOCK_SIZE;
-    }else{
+    } else {
         // It's on a vertical line
         textureOffsetRatio = (cast.y % BLOCK_SIZE) / BLOCK_SIZE;
     }
