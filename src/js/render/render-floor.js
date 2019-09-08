@@ -81,7 +81,7 @@ drawTriangle = (
         // calculate transformation matrix
         x1 -= x0; y1 -= y0; x2 -= x0; y2 -= y0;
         u1 -= u0; v1 -= v0; u2 -= u0; v2 -= v0;
-        const id = 1.0 / (u1 * v2 - u2 * v1);
+        const id = 1 / (u1 * v2 - u2 * v1);
         const a = id * (v2 * x1 - v1 * x2);
         const b = id * (v2 * y1 - v1 * y2);
         const c = id * (u1 * x2 - u2 * x1);
