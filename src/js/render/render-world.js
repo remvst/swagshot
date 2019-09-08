@@ -1,12 +1,12 @@
 measure = x => {
     if (DEBUG) {
-        var before = performance.now(); // not using scoped var on purpose
-    }
-    x();
-    if (DEBUG) {
+        const before = performance.now(); // not using scoped var on purpose
+        x();
         return performance.now() - before;
+    } else {
+        x();
     }
-}
+};
 
 renderWorld = () => {
     // Prerender calculations
@@ -58,7 +58,7 @@ renderWorld = () => {
         },
         () => translate(0, lookupOffset()),
         () => SPRITES.forEach(sprite => renderSprite(sprite, true)),
-        () => renderFloor(-BLOCK_SIZE / 2, BLOCK_SIZE * 5),
+        renderFloor,
         renderWalls,
         renderFlare,
         () => SPRITES.forEach(sprite => renderSprite(sprite)),

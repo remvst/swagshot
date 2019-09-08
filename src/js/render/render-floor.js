@@ -1,10 +1,8 @@
-renderFloor = (z, maxDistance) => {
-    const size = BLOCK_SIZE / 4;
+renderFloor = () => {
+    const sizeRatio = (evaluate(BLOCK_SIZE / 4) / BLOCK_SIZE);
 
-    const sizeRatio = (size / BLOCK_SIZE);
-
-    for (let x = ~~((P.x - maxDistance) / BLOCK_SIZE) * BLOCK_SIZE ; x < P.x + maxDistance ; x += size) {
-        for (let y = ~~((P.y - maxDistance) / BLOCK_SIZE) * BLOCK_SIZE ; y < P.y + maxDistance ; y += size) {
+    for (let x = ~~((P.x - FLOOR_DRAW_DISTANCE) / BLOCK_SIZE) * BLOCK_SIZE ; x < P.x + FLOOR_DRAW_DISTANCE ; x += evaluate(BLOCK_SIZE / 4)) {
+        for (let y = ~~((P.y - FLOOR_DRAW_DISTANCE) / BLOCK_SIZE) * BLOCK_SIZE ; y < P.y + FLOOR_DRAW_DISTANCE ; y += evaluate(BLOCK_SIZE / 4)) {
 
             const blockCol = ~~(x / BLOCK_SIZE);
             const blockRow = ~~(y / BLOCK_SIZE);
@@ -14,17 +12,17 @@ renderFloor = (z, maxDistance) => {
             const offsetXRatio = (x % BLOCK_SIZE) / BLOCK_SIZE;
             const offsetYRatio = (y % BLOCK_SIZE) / BLOCK_SIZE;
 
-            const topLeft = positionOnScreen(x, y, z);
-            const bottomLeft = positionOnScreen(x, y + size, z);
-            const topRight = positionOnScreen(x + size, y, z);
-            const bottomRight = positionOnScreen(x + size, y + size, z);
+            const topLeft = positionOnScreen(x, y, evaluate(-BLOCK_SIZE / 2));
+            const bottomLeft = positionOnScreen(x, y + evaluate(BLOCK_SIZE / 4), evaluate(-BLOCK_SIZE / 2));
+            const topRight = positionOnScreen(x + evaluate(BLOCK_SIZE / 4), y, evaluate(-BLOCK_SIZE / 2));
+            const bottomRight = positionOnScreen(x + evaluate(BLOCK_SIZE / 4), y + evaluate(BLOCK_SIZE / 4), evaluate(-BLOCK_SIZE / 2));
 
             if (topLeft.renderable || topRight.renderable || bottomLeft.renderable) {
                 if (DEBUG) {
                     G.floorTiles++;
                 }
 
-                R.globalAlpha = 1 - limit(0, distP(P.x, P.y, x, y) / maxDistance, 1);
+                R.globalAlpha = 1 - limit(0, distP(P.x, P.y, x, y) / FLOOR_DRAW_DISTANCE, 1);
                 drawTriangle(
                     texture,
                     topLeft.x, topLeft.y,
@@ -42,7 +40,7 @@ renderFloor = (z, maxDistance) => {
                     G.floorTiles++;
                 }
 
-                R.globalAlpha = 1 - limit(0, distP(P.x, P.y, x, y) / maxDistance, 1);
+                R.globalAlpha = 1 - limit(0, distP(P.x, P.y, x, y) / FLOOR_DRAW_DISTANCE, 1);
                 drawTriangle(
                     texture,
                     bottomRight.x, bottomRight.y,
@@ -58,9 +56,9 @@ renderFloor = (z, maxDistance) => {
     }
 
     R.globalAlpha = 1;
-}
+};
 
-function drawTriangle(
+drawTriangle = (
     image,
     x0, y0,
     x1, y1,
@@ -69,7 +67,7 @@ function drawTriangle(
     u0, v0,
     u1, v1,
     u2, v2
-) {
+) => {
     wrap(() => {
         // clip triangle
         beginPath();
@@ -95,4 +93,4 @@ function drawTriangle(
         transform(a, b, c, d, e, f);
         drawImage(image, 0, 0);
     });
-}
+};
