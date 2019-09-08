@@ -6,5 +6,5 @@ backgroundAnimation = color => {
     RESET_BACKGROUND_TIMEOUT = setTimeout(() => {
         document.body.style.transition = nomangle('background 0.1s');
         document.body.style.backgroundColor = null;
-    }, 0);
+    }, 50);
 }
