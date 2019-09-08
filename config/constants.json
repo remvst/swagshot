@@ -8,7 +8,7 @@
     "CANVAS_HEIGHT": 600,
     "CANVAS_SCALE": 1,
 
-    "STAR_Y": -50,
+    "STAR_Y": 50,
 
     "MOUNTAIN_COLOR": "'#002a50'",
     "FOG_COLOR": "'#000'",
