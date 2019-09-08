@@ -104,7 +104,7 @@ SHADOW_CIRCLE = pixelate(createCanvas(200, 200, ctx => {
     ctx.fill();
 }), 10);
 
-HALO = pixelate(createCanvas(20, 20, ctx => {
+HALO = pixelate(createCanvas(10, 10, ctx => {
     ctx.fs('#fff');
     ctx.beginPath();
     ctx.arc(5, 5, 5, 0, TWO_PI);

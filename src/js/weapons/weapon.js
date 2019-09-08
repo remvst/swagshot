@@ -5,7 +5,7 @@ class Weapon {
         this.shotInterval = 0.1;
         this.bulletCount = 1;
         this.angleRandomFactor = 0;
-        this.trailSize = 1;
+        this.trailSize = 0.5;
         this.bulletSpeed = 1600;
         this.ammoPerShot = 1 / 30;
         this.ammo = 1;

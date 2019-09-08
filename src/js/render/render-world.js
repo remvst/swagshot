@@ -57,6 +57,7 @@ renderWorld = () => {
 
     G.renderFloor = measure(() => renderFloor(-BLOCK_SIZE / 2, BLOCK_SIZE * 5));
     G.renderWalls = measure(() => renderWalls());
+    G.renderFlare = measure(() => renderFlare());
     G.bottomSprites = measure(() => SPRITES.forEach(sprite => renderSprite(sprite)));
 
     G.decorationParticles = measure(() => DECORATION_PARTICLES.forEach(particle => {

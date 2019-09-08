@@ -61,6 +61,7 @@
     "src/js/render/render-world.js",
     "src/js/render/render-sprite.js",
     "src/js/render/render-walls.js",
+    "src/js/render/render-flare.js",
     "src/js/render/render-floor.js",
     "src/js/render/render-hud.js",
     "src/js/render/render-minimap.js",
