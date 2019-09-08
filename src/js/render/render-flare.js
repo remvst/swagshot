@@ -4,7 +4,7 @@ renderFlare = () => {
 
     if (
         cast &&
-        (STAR_Y < -lookupOffset() || STAR_Y > CANVAS_HEIGHT / 2 - heightOnScreen(cast, BLOCK_SIZE) / 2)
+        STAR_Y > -lookupOffset() && STAR_Y < CANVAS_HEIGHT / 2 - heightOnScreen(cast, BLOCK_SIZE) / 2
     ) {
         const starX = castIndex * CANVAS_WIDTH / SLICE_COUNT;
         const distFromCenterX = evaluate(CANVAS_WIDTH / 2) - starX;
