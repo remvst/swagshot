@@ -92,7 +92,7 @@ class Bullet {
             dropFire(beforeX, beforeY, this.z);
 
             if (!isEnemyGenerated) {
-                const hurtInExplosion = explosion(beforeX, beforeY, this.z, BLOCK_SIZE / 2);
+                const hurtInExplosion = explosion(beforeX, beforeY, this.z, evaluate(BLOCK_SIZE / 2));
                 if (hurtInExplosion > 1) {
                     G.scoreKeeper.bonus(nomangle('EXPLOSION COMBO X') + hurtInExplosion, hurtInExplosion * 50);
                 }
@@ -104,11 +104,9 @@ class Bullet {
             }
         }
 
-        if (!isEnemyGenerated) {
-            if (this.jumpShot && hitTarget && !hitTarget.hurtBy.has(this.created)) {
-                G.scoreKeeper.bonus(nomangle('JUMPSHOT'), 10);
-                hitTarget.hurtBy.add(this.created);
-            }
+        if (!isEnemyGenerated && this.jumpShot && hitTarget && !hitTarget.hurtBy.has(this.created)) {
+            G.scoreKeeper.bonus(nomangle('JUMPSHOT'), 10);
+            hitTarget.hurtBy.add(this.created);
         }
 
         if (!hitTarget) {
