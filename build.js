@@ -35,7 +35,8 @@ compiler.run((tasks) => {
                 'EXPLOSION_INSTRUMENT': JSON.stringify(EXPLOSION_INSTRUMENT),
             }),
             tasks.macro('evaluate'),
-            tasks.macro('nomangle')
+            tasks.macro('nomangle'),
+            tasks.macro('instrument')
         ];
 
         if(mangle){

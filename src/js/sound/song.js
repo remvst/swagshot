@@ -72,7 +72,7 @@ AGGRESSIVE_PATTERN = {
     ]
 };
 
-HIHAT = {
+HIHAT = instrument({
     "osc1_oct": 8,
     "osc1_det": 0,
     "osc1_detune": 0,
@@ -101,11 +101,10 @@ HIHAT = {
     "lfo_fx_freq": 0,
     "lfo_freq": 5,
     "lfo_amt": 187,
-    "lfo_waveform": 0,
-    "c": [BEAT_PATTERN]
-};
+    "lfo_waveform": 0
+});
 
-DRUM = {
+DRUM = instrument({
     "osc1_oct": 7,
     "osc1_det": 0,
     "osc1_detune": 0,
@@ -134,11 +133,10 @@ DRUM = {
     "lfo_fx_freq": 0,
     "lfo_freq": 0,
     "lfo_amt": 0,
-    "lfo_waveform": 0,
-    "c": [BEAT_PATTERN]
-};
+    "lfo_waveform": 0
+});
 
-SNARE = {
+SNARE = instrument({
     "osc1_oct": 8,
     "osc1_det": 0,
     "osc1_detune": 0,
@@ -167,11 +165,10 @@ SNARE = {
     "lfo_fx_freq": 0,
     "lfo_freq": 0,
     "lfo_amt": 0,
-    "lfo_waveform": 0,
-    "c": [AGGRESSIVE_PATTERN]
-};
+    "lfo_waveform": 0
+});
 
-ELECTRO = {
+ELECTRO = instrument({
     "osc1_oct": 6,
     "osc1_det": 0,
     "osc1_detune": 0,
@@ -200,9 +197,11 @@ ELECTRO = {
     "lfo_fx_freq": 1,
     "lfo_freq": 7,
     "lfo_amt": 106,
-    "lfo_waveform": 0,
-    "c": [BEAT_PATTERN]
-};
+    "lfo_waveform": 0
+});
+
+HIHAT.c = DRUM.c = ELECTRO.c = [BEAT_PATTERN];
+SNARE.c = [AGGRESSIVE_PATTERN];
 
 HIHAT.p     = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 DRUM.p      = [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];

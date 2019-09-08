@@ -22,8 +22,8 @@ prepareSound = (instrument, note) => {
     };
 };
 
-const pistolSound = soundPool(PISTOL_INSTRUMENT, 151, 10),
-    damageSound = soundPool(DAMAGE_INSTRUMENT, 99, 5),
-    itemSound = soundPool(ITEM_INSTRUMENT, 159, 2),
-    explosionSound = soundPool(EXPLOSION_INSTRUMENT, 187, 2),
-    rocketSound = soundPool(ROCKET_INSTRUMENT, 183, 2);
+const pistolSound = soundPool(instrument(PISTOL_INSTRUMENT), 151, 10),
+    damageSound = soundPool(instrument(DAMAGE_INSTRUMENT), 99, 5),
+    itemSound = soundPool(instrument(ITEM_INSTRUMENT), 159, 2),
+    explosionSound = soundPool(instrument(EXPLOSION_INSTRUMENT), 187, 2),
+    rocketSound = soundPool(instrument(ROCKET_INSTRUMENT), 183, 2);
