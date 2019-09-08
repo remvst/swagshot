@@ -10,10 +10,13 @@ measure = x => {
 
 renderWorld = () => {
     // Prerender calculations
-    G.castIterations = 0;
+    if (DEBUG) {
+        G.castIterations = 0;
+        G.sortIterations = 0;
+    }
+
     G.castTime = measure(() => castWindow(-1, SLICE_COUNT + 1));
 
-    G.sortIterations = 0;
     G.sortTime = measure(() => SPRITES.sort((a, b) => {
         if (DEBUG) {
             G.sortIterations++;
@@ -33,38 +36,38 @@ renderWorld = () => {
     fs(FOG_COLOR);
     fr(0, middleY, CANVAS_WIDTH, CANVAS_HEIGHT - middleY);
 
-    // Mountains
-    wrap(() => {
-        const fieldOfViews = TWO_PI / FIELD_OF_VIEW;
-        const patternScale = fieldOfViews * 2;
-
-        const offset = -((normalize(P.angle) + TWO_PI) / FIELD_OF_VIEW * CANVAS_WIDTH);
-        translate(offset, middleY - ~~(20 * patternScale));
-        scale(patternScale, patternScale);
-
-        fs(MOUNTAINS);
-        fr(-offset / patternScale, 0, CANVAS_WIDTH / patternScale, 20);
-    });
-
-    translate(0, lookupOffset());
-
     if (DEBUG) {
         G.interpolations = 0;
         G.casts = 0;
         G.floorTiles = 0;
     }
-    G.topSprites = measure(() => SPRITES.forEach(sprite => renderSprite(sprite, true)));
 
-    G.renderFloor = measure(() => renderFloor(-BLOCK_SIZE / 2, BLOCK_SIZE * 5));
-    G.renderWalls = measure(() => renderWalls());
-    G.renderFlare = measure(() => renderFlare());
-    G.bottomSprites = measure(() => SPRITES.forEach(sprite => renderSprite(sprite)));
+    [
+        () => {
+            wrap(() => {
+                const fieldOfViews = TWO_PI / FIELD_OF_VIEW;
+                const patternScale = fieldOfViews * 2;
 
-    G.decorationParticles = measure(() => DECORATION_PARTICLES.forEach(particle => {
-        particle.x = round((P.x - particle.offsetX()) / DECORATION_PARTICLES_REPEAT) * DECORATION_PARTICLES_REPEAT + particle.offsetX();
-        particle.y = round((P.y - particle.offsetY()) / DECORATION_PARTICLES_REPEAT) * DECORATION_PARTICLES_REPEAT + particle.offsetY();
-        particle.z = particle.offsetZ();
+                const offset = -((normalize(P.angle) + TWO_PI) / FIELD_OF_VIEW * CANVAS_WIDTH);
+                translate(offset, middleY - ~~(20 * patternScale));
+                scale(patternScale, patternScale);
 
-        renderPoint(particle, 1, 1, 0, DECORATION_PARTICLES_REPEAT, particle.render);
-    }));
-}
+                fs(MOUNTAINS);
+                fr(-offset / patternScale, 0, CANVAS_WIDTH / patternScale, 20);
+            });
+        },
+        () => translate(0, lookupOffset()),
+        () => SPRITES.forEach(sprite => renderSprite(sprite, true)),
+        () => renderFloor(-BLOCK_SIZE / 2, BLOCK_SIZE * 5),
+        renderWalls,
+        renderFlare,
+        () => SPRITES.forEach(sprite => renderSprite(sprite)),
+        () => DECORATION_PARTICLES.forEach(particle => {
+            particle.x = round((P.x - particle.offsetX()) / DECORATION_PARTICLES_REPEAT) * DECORATION_PARTICLES_REPEAT + particle.offsetX();
+            particle.y = round((P.y - particle.offsetY()) / DECORATION_PARTICLES_REPEAT) * DECORATION_PARTICLES_REPEAT + particle.offsetY();
+            particle.z = particle.offsetZ();
+
+            renderPoint(particle, 1, 1, 0, DECORATION_PARTICLES_REPEAT, particle.render);
+        })
+    ].forEach(x => x());
+};

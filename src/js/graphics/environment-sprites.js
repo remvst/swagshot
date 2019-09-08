@@ -12,7 +12,7 @@ MOUNTAINS = createCanvasPattern(80, 40, (ctx, can) => {
     ];
 
     for (let x = 0 ; x <= 80 ; x += 2) {
-        ctx.lineTo(x, sins.reduce((acc, sin) => acc + sin(x), 40 / 4));
+        ctx.lineTo(x, sins.reduce((acc, sin) => acc + sin(x), 10));
     }
 
     ctx.lineTo(80, 40);
