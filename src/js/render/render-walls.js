@@ -46,4 +46,4 @@ renderWallSlice = (i, cast, texture) => {
         // R.globalAlpha = distance / DRAW_DISTANCE;
         fr(x, yTop, SLICE_WIDTH, wallHeightOnScreen);
     });
-}
+};

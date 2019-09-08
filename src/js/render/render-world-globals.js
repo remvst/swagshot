@@ -4,7 +4,7 @@ ITEMS = [];
 MINIMAP_ELEMENTS = [];
 SPRITES = [];
 
-PROJECTION_PLANE_DISTANCE = (CANVAS_WIDTH / 2) / tan(FIELD_OF_VIEW / 2);
+PROJECTION_PLANE_DISTANCE = evaluate(CANVAS_WIDTH / 2) / tan(evaluate(FIELD_OF_VIEW / 2));
 SLICE_COUNT = CANVAS_WIDTH / SLICE_WIDTH;
 
 CASTED_RAYS = [];
@@ -15,7 +15,7 @@ for (let i = -1 ; i <= SLICE_COUNT ; i++) {
 randomSin = (offset, halfAmplitude, period) => {
     const phase = random();
     return () => offset + sin((phase + G.clock * PI * 2) / period) * halfAmplitude;
-}
+};
 
 DECORATION_PARTICLES = [...Array(200)].map(() => {
     return {

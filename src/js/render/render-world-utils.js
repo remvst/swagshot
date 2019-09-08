@@ -22,18 +22,16 @@ positionOnScreen = (x, y, z) => {
             between(0, xOnScreen, CANVAS_WIDTH) &&
             between(0, yTop + lookupOffset(), CANVAS_HEIGHT)
     };
-}
+};
 
-lookupOffset = () => {
-    return -~~(P.verticalAngle / (PI * 0.28) * CANVAS_HEIGHT);
-}
+lookupOffset = () => -~~(P.verticalAngle / (PI * 0.28) * CANVAS_HEIGHT);
 
 renderPoint = (point, realWidth, realHeight, fadeStartDistance, fadeEndDistance, render, ignoreWalls) => {
     const distanceToPoint = dist(point, P);
     const angle = angleBetween(P, point);
     const angleDiff = normalize(angle - P.angle);
 
-    if (distanceToPoint > fadeEndDistance || abs(angleDiff) > 1.1 * FIELD_OF_VIEW / 2) {
+    if (distanceToPoint > fadeEndDistance || abs(angleDiff) > 1.1 * evaluate(FIELD_OF_VIEW / 2)) {
         return;
     }
 
@@ -47,7 +45,7 @@ renderPoint = (point, realWidth, realHeight, fadeStartDistance, fadeEndDistance,
 
     const alpha = 1 - limit(0, (distanceToPoint - fadeStartDistance) / (fadeEndDistance - fadeStartDistance), 1);
     wrap(() => render(posOnScreen.x, posOnScreen.y, width, height, alpha));
-}
+};
 
 castOneRay = (rayAngle, rayIndex) => {
     CASTED_RAYS[rayIndex] = castRay(P.x, P.y, rayAngle, DRAW_DISTANCE);
@@ -55,17 +53,17 @@ castOneRay = (rayAngle, rayIndex) => {
     if (DEBUG) {
         G.casts++;
     }
-}
+};
 
 heightOnScreen = (point, realHeight) => {
     const angle = atan2(point.y - P.y, point.x - P.x);
     // const correctedDistance = cos(angle - P.angle) * dist(point, P);
     return (realHeight / (cos(angle - P.angle) * dist(point, P))) * PROJECTION_PLANE_DISTANCE;
-}
+};
 
 interpolateValue = (fromValue, toValue, ratio) => {
     return fromValue + ratio * (toValue - fromValue);
-}
+};
 
 castWindow = (indexStart, indexEnd) => {
     if (indexStart > indexEnd) {
