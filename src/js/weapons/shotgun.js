@@ -7,7 +7,7 @@ class Shotgun extends Weapon {
         this.sprite = SHOTGUN;
         this.bulletSpeed = evaluate(BLOCK_SIZE * 30);
         this.sound = () => {
-            for (let i = 0 ; --i ; ) {
+            for (let i = 5 ; --i ; ) {
                 pistolSound();
             }
         };

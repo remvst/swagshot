@@ -25,7 +25,7 @@ class World {
         for (let i = 0 ; i < particleCount ; i++) {
             const duration = max(0.2, (0.5 + z / BLOCK_SIZE) / rnd(0.4, 0.7));
 
-            const size = BLOCK_SIZE * rnd(0.01, 0.05);
+            const size = BLOCK_SIZE * rnd(0.01, 0.03);
 
             const maxMovement = (z + BLOCK_SIZE / 2) / BLOCK_SIZE * 50;
 

@@ -180,7 +180,7 @@ class Game {
     }
 
     setupForMenu() {
-        this.setupNewGame();
+        G.setupNewGame();
 
         onMenu = true;
         G.onMainMenu = true;
