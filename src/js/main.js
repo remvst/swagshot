@@ -73,12 +73,11 @@ onload = () => {
 
     onmousedown = e => {
         const canvasRect = CANVAS.getBoundingClientRect();
-        const y = (e.clientY - canvasRect.top) / canvasRect.height * CANVAS_HEIGHT;
 
         isMouseDown = true;
         if (!onMenu) {
             P.weapon && P.weapon.holdTrigger();
-        } else if (isOnPlayButton(e)) {
+        } else if (ON_PLAY_BUTTON) {
             G.resume();
         }
 
