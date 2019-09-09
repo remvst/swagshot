@@ -51,7 +51,7 @@ class Game {
                 });
 
                 // Crosshair
-                R.fs('#fff');
+                fs('#fff');
                 fr(CANVAS_WIDTH / 2 - 5, CANVAS_HEIGHT / 2 - 1, 10, 2);
                 fr(CANVAS_WIDTH / 2 - 1, CANVAS_HEIGHT / 2 - 5, 2, 10);
 

@@ -10,7 +10,7 @@ class EnemyBurstWeapon extends EnemyWeapon {
 
     shoot() {
         super.shoot();
-        if ((++this.shotCount % 10) == 0) {
+        if (!(++this.shotCount % 10)) {
             this.lastShot += 4;
         }
     }
