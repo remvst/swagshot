@@ -72,8 +72,6 @@ onload = () => {
     };
 
     onmousedown = e => {
-        const canvasRect = CANVAS.getBoundingClientRect();
-
         isMouseDown = true;
         if (!onMenu) {
             P.weapon && P.weapon.holdTrigger();
