@@ -37,7 +37,7 @@ renderMinimap = () => {
 
         scale(1 / MINIMAP_SCALE, 1 / MINIMAP_SCALE);
 
-        R.fs(MINIMAP_GRID);
+        fs(MINIMAP_GRID);
         fr(0, 0, W.can.width * MINIMAP_SCALE, W.can.height * MINIMAP_SCALE);
     });
 

@@ -5,7 +5,7 @@ function renderSprite(sprite, aboveBlocks) {
 
     const distanceFromPlayer = dist(P, sprite);
 
-    renderPoint(sprite, sprite.worldWidth, sprite.worldHeight, DRAW_DISTANCE - 100, DRAW_DISTANCE, (x, y, renderedWidth, renderedHeight, alpha) => {
+    renderPoint(sprite, sprite.worldWidth, sprite.worldHeight, evaluate(DRAW_DISTANCE - 100), DRAW_DISTANCE, (x, y, renderedWidth, renderedHeight, alpha) => {
         R.globalAlpha = (isNaN(sprite.alpha) ? 1 : sprite.alpha) * alpha;
 
         if (sprite.sprite) {
