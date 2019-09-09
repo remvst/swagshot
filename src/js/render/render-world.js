@@ -59,6 +59,7 @@ renderWorld = () => {
         () => translate(0, lookupOffset()),
         () => SPRITES.forEach(sprite => renderSprite(sprite, true)),
         renderFloor,
+        renderStar,
         renderWalls,
         renderFlare,
         () => SPRITES.forEach(sprite => renderSprite(sprite)),
