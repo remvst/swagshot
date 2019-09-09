@@ -166,7 +166,7 @@ class Game {
         P = new Player();
         P.setWeapon(new Pistol(P));
 
-        W = new World(generateWorld());
+        W = new World(generateRandomWorld());
 
         G.showMessage(nomangle('PAUSE'), nomangle('ESC'), 5);
         G.showMessage(nomangle('JUMP'), nomangle('SPACE'), 5);
@@ -180,14 +180,11 @@ class Game {
     }
 
     setupForMenu() {
+        this.setupNewGame();
+
         onMenu = true;
-        G.scoreKeeper = new ScoreKeeper();
-
-        P = new Player();
-
-        W = new World(generateMenuWorld());
-
         G.onMainMenu = true;
+        G.messages = [];
 
         for (let i = 0 ; i < 10 ; i++) {
             const angle = random() * TWO_PI;

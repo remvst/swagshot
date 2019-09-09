@@ -1,7 +1,6 @@
-generateFromCanvas = can => {
+generateFromCanvas = (can, ctx) => {
     const grid = [];
 
-    const ctx = can.getContext('2d');
     const imageData = ctx.getImageData(0, 0, can.width, can.height);
 
     for (let y = 0 ; y < can.height ; y++) {
@@ -27,7 +26,7 @@ generateFromCanvas = can => {
 generateRandomWorld = () => createCanvas(50, 50, (ctx, can) => {
     ctx.fs('#fff');
 
-    function clearPath(x1, y1, x2, y2) {
+    clearPath = (x1, y1, x2, y2) => {
         const distance = distP(x1, y1, x2, y2);
 
         ctx.strokeStyle = '#000';
@@ -47,7 +46,7 @@ generateRandomWorld = () => createCanvas(50, 50, (ctx, can) => {
             prevX = x;
             prevY = y;
         }
-    }
+    };
 
     ctx.fr(0, 0, can.width, can.height);
 
@@ -63,14 +62,12 @@ generateRandomWorld = () => createCanvas(50, 50, (ctx, can) => {
     ctx.fr(0, 0, 1, can.height);
     ctx.fr(0, can.height - 1, can.width, 1);
     ctx.fr(can.width - 1, 0, 1, can.height);
-});
 
-generateWorld = () => generateFromCanvas(generateRandomWorld());
-
-generateMenuWorld = () => generateFromCanvas(createCanvas(50, 50, ctx => {
-    ctx.drawImage(generateRandomWorld(), 0, 0);
-
+    // Open up the center (for the menu)
+    ctx.fs('#000');
     ctx.beginPath();
     ctx.arc(25, 25, 4, 0, TWO_PI);
     ctx.fill();
-}));
+
+    return generateFromCanvas(can, ctx);
+});

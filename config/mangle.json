@@ -10,6 +10,7 @@
         "cursor"
     ],
     "force": [
+        "key",
         "resume",
         "alpha",
         "button",
