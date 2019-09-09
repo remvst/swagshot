@@ -14,7 +14,7 @@ onload = () => {
         }
     });
 
-    R.scale(CANVAS_SCALE, CANVAS_SCALE);
+    scale(CANVAS_SCALE, CANVAS_SCALE);
     new Game();
 
     // Start cycle()
@@ -45,8 +45,8 @@ onload = () => {
         const x = (e.clientX - canvasRect.left) / canvasRect.width * CANVAS_WIDTH;
         const y = (e.clientY - canvasRect.top) / canvasRect.height * CANVAS_HEIGHT;
 
-        const xRatioOnSlider = (x - (CANVAS_WIDTH - SENSITIVITY_SLIDER_WIDTH) / 2) / SENSITIVITY_SLIDER_WIDTH;
-        const yRatioOnSlider = (y - (SENSITIVITY_SLIDER_Y - SENSITIVITY_SLIDER_THUMB_SIZE / 2)) / SENSITIVITY_SLIDER_THUMB_SIZE;
+        const xRatioOnSlider = (x - evaluate(CANVAS_WIDTH - SENSITIVITY_SLIDER_WIDTH) / 2) / SENSITIVITY_SLIDER_WIDTH;
+        const yRatioOnSlider = (y - evaluate(SENSITIVITY_SLIDER_Y - SENSITIVITY_SLIDER_THUMB_SIZE / 2)) / SENSITIVITY_SLIDER_THUMB_SIZE;
 
         if (between(0, xRatioOnSlider, 1) && between(0, yRatioOnSlider, 1)) {
             MOUSE_SENSITIVITY = xRatioOnSlider;
