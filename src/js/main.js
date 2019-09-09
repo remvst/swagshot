@@ -66,6 +66,8 @@ onload = () => {
             if (ON_PLAY_BUTTON = isOnPlayButton(e)) {
                 CANVAS.style.cursor = 'pointer';
             }
+
+            maybeUpdateSensitivity(e);
         }
     };
 
