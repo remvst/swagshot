@@ -20,7 +20,7 @@ class Game {
         W.cycle(e);
 
         if (G.onMainMenu) {
-            const angle = G.clock / 2;
+            const angle = G.clock / 2 + 2;
             P.x = evaluate(BLOCK_SIZE * 25) + cos(angle) * evaluate(BLOCK_SIZE * 2);
             P.y = evaluate(BLOCK_SIZE * 25) + sin(angle) * evaluate(BLOCK_SIZE * 2);
             P.angle = angle + PI;
