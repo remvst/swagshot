@@ -12,7 +12,7 @@ renderFlare = () => {
         const alphaRatio = 1 - limit(0, distP(0, 0, distFromCenterX, distFromCenterY) / 250, 1);
 
         for (let ratio = 0 ; ratio < 1 ; ratio += 0.15) {
-            const size = ratio ? (ratio * 56 % 1) * 25 : 50;
+            const size = ratio ? (ratio * 56 % 1) * 35 : 50;
             R.globalAlpha = ratio ? alphaRatio * 0.5 : 1;
             drawImage(
                 halo('#ff0'),
