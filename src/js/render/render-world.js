@@ -61,8 +61,8 @@ renderWorld = () => {
         renderFloor,
         renderStar,
         renderWalls,
-        renderFlare,
         () => SPRITES.forEach(sprite => renderSprite(sprite)),
+        renderFlare,
         () => DECORATION_PARTICLES.forEach(particle => {
             particle.x = round((P.x - particle.offsetX()) / DECORATION_PARTICLES_REPEAT) * DECORATION_PARTICLES_REPEAT + particle.offsetX();
             particle.y = round((P.y - particle.offsetY()) / DECORATION_PARTICLES_REPEAT) * DECORATION_PARTICLES_REPEAT + particle.offsetY();

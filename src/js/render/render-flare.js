@@ -23,7 +23,7 @@ renderFlare = () => {
         const starX = castIndex * CANVAS_WIDTH / SLICE_COUNT;
         const distFromCenterX = evaluate(CANVAS_WIDTH / 2) - starX;
         const distFromCenterY = evaluate(CANVAS_HEIGHT / 2 - STAR_Y) - lookupOffset();
-        const alphaRatio = 1 - limit(0, distP(0, 0, distFromCenterX, distFromCenterY) / 300, 1);
+        const alphaRatio = 1 - limit(0, distP(0, 0, distFromCenterX, distFromCenterY) / (G.onMainMenu ? 400 : 250), 1);
 
         for (let ratio = 0 ; ratio < 1 ; ratio += 0.15) {
             const size = (ratio * 56 % 1) * 35;
