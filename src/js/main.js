@@ -1,8 +1,8 @@
 onload = () => {
     onresize(); // trigger initial sizing pass
 
-    CANVAS.width = CANVAS_WIDTH * CANVAS_SCALE;
-    CANVAS.height = CANVAS_HEIGHT * CANVAS_SCALE;
+    CANVAS.width = CANVAS_WIDTH;
+    CANVAS.height = CANVAS_HEIGHT;
 
     R = CANVAS.getContext('2d', { 'alpha': false });
     R.imageSmoothingEnabled = false;
@@ -14,7 +14,6 @@ onload = () => {
         }
     });
 
-    scale(CANVAS_SCALE, CANVAS_SCALE);
     new Game();
 
     // Start cycle()
