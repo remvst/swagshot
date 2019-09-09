@@ -18,7 +18,7 @@ renderGauge = (gaugeColor, value, renderIcon) => {
 
     // Gauge
     fr(HUD_ICON_SIZE * 1.25, 0, HUD_GAUGE_LENGTH * value, HUD_ICON_SIZE);
-}
+};
 
 renderHud = () => {
     // Health
@@ -67,9 +67,10 @@ renderHud = () => {
     fillText(G.scoreKeeper.score, CANVAS_WIDTH / 2, 50);
 
     // Next wave timer
+    fs((G.nextWave - G.clock) < 10 ? '#f00' : '#fff');
     R.font = '12pt Impact';
     R.textBaseline = 'bottom';
-    fillText(nomangle('Next wave'), CANVAS_WIDTH - 100, 35);
+    fillText(nomangle('NEXT WAVE'), CANVAS_WIDTH - 100, 35);
 
     R.font = '24pt Impact';
     let timeUntilNextWave = round((G.nextWave - G.clock) * 10) / 10;
