@@ -1,10 +1,10 @@
 renderStar = () => {
     drawImage(
         halo('#ff0'),
-        normalize(-P.angle) / FIELD_OF_VIEW * CANVAS_WIDTH - 35,
-        STAR_Y - 35,
-        70,
-        70
+        normalize(-P.angle) / FIELD_OF_VIEW * CANVAS_WIDTH - 30,
+        STAR_Y - 30,
+        60,
+        60
     );
 };
 
