@@ -38,7 +38,7 @@ class Game {
 
             if (P.health && !onMenu) {
                 wrap(() => {
-                    translate(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
+                    translate(evaluate(CANVAS_WIDTH / 2), evaluate(CANVAS_HEIGHT / 2));
                     rotate(PI / 4);
 
                     R.globalAlpha = 1 - min(1, (G.clock - P.lastHit - 0.1) / 0.15);
