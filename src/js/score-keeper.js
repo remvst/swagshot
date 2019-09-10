@@ -1,9 +1,7 @@
 class ScoreKeeper {
 
     constructor() {
-        this.score = 0;
-        this.lastKill = 0;
-        this.comboKillCount = 0;
+        this.score = this.lastKill = this.comboKillCount = 0;
     }
 
     bonus(description, value) {

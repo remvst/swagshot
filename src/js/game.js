@@ -10,7 +10,7 @@ class Game {
     }
 
     cycle(e) {
-        e *= G.onMainMenu ? 0.3 : !onMenu;
+        e *= G.onMainMenu ? 0.3 : !onMenu * (P.health < 0.2 && G.clock - P.lastDamage < 1.5 ? 0.4 : 1);
         G.clock += e;
 
         if (P.health && G.clock > G.nextWave && !onMenu) {
@@ -89,10 +89,10 @@ class Game {
                 fillText(G.scoreKeeper.score, evaluate(CANVAS_WIDTH / 2), evaluate(CANVAS_HEIGHT / 2 + 50));
             }
 
-            if (G.clock - max(P.lastDamage, P.lastPickup) < 0.35 || !P.health) {
+            if (G.clock - max(P.lastDamage, P.lastPickup) < 0.35 || P.health < 0.2) {
                 wrap(() => {
                     R.globalAlpha = 0.2;
-                    fs(P.lastDamage > P.lastPickup ? '#f00' : '#fff');
+                    fs(P.health < 0.2 || P.lastDamage > P.lastPickup ? '#f00' : '#fff');
                     fr(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
                 });
             }
