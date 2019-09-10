@@ -93,24 +93,4 @@ renderHud = () => {
         fs('#ff0');
         fillText(m.secondary, CANVAS_WIDTH / 2 + 10, 0);
     }));
-
-    function renderJoystick(x, y, angle, force) {
-        wrap(() => {
-            fs('#fff');
-            R.strokeStyle = '#fff';
-            R.lineWidth = 2;
-            R.globalAlpha = force ? 1 : 0.5;
-
-            translate(x, y);
-            rotate(angle - PI / 2);
-
-            beginPath();
-            arc(0, 0, JOYSTICK_RADIUS, 0, TWO_PI);
-            stroke();
-
-            beginPath();
-            arc(force * JOYSTICK_RADIUS, 0, 20, 0, TWO_PI);
-            fill();
-        });
-    }
 };
