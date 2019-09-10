@@ -2,7 +2,7 @@ MOUNTAINS = createCanvasPattern(80, 40, (ctx, can) => {
     ctx.imageSmoothingEnabled = false;
     ctx.fs(MOUNTAIN_COLOR);
     ctx.beginPath();
-    ctx.moveTo(0, 40);
+    ctx.moveTo(0, 35);
 
     const sins = [
         x => sin(x * TWO_PI / 80) * 40 / 8,
@@ -15,7 +15,7 @@ MOUNTAINS = createCanvasPattern(80, 40, (ctx, can) => {
         ctx.lineTo(x, sins.reduce((acc, sin) => acc + sin(x + 10), 10));
     }
 
-    ctx.lineTo(80, 40);
+    ctx.lineTo(80, 35);
     ctx.fill();
 });
 
