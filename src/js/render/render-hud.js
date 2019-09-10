@@ -82,6 +82,8 @@ renderHud = () => {
     // Messages
     R.font = '12pt Courier';
     G.messages.forEach((m, i) => wrap(() => {
+        if (i > 5) return;
+
         R.globalAlpha = 1 - abs(m.offset);
         translate(m.offset * 100, CANVAS_HEIGHT / 2 + 40 + i * 25);
 
