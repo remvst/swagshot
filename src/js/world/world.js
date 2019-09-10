@@ -3,12 +3,15 @@ class World {
         this.matrix = generated.matrix;
         this.can = generated.can;
 
-        CYCLABLES.splice(0, CYCLABLES.length);
-        SPRITES.splice(0, SPRITES.length);
-        ITEMS.splice(0, ITEMS.length);
-        ENEMIES.splice(0, ENEMIES.length);
-        MINIMAP_ELEMENTS.splice(0, MINIMAP_ELEMENTS.length);
-        DAMAGE_ANGLES.splice(0, DAMAGE_ANGLES.length);
+        // Cleanup
+        [
+            CYCLABLES,
+            SPRITES,
+            ITEMS,
+            ENEMIES,
+            MINIMAP_ELEMENTS,
+            DAMAGE_ANGLES
+        ].forEach(x => x.splice(0, x.length));
     }
 
     cycle(e) {
