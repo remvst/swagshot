@@ -126,7 +126,7 @@ class Player extends Character {
     }
 
     hurt(source, amount, angle) {
-        super.hurt(source, amount * 0.4, angle);
+        super.hurt(source, amount * 0.1, angle);
 
         const damageAngle = {'angle': angle, 'alpha': 1};
         DAMAGE_ANGLES.push(damageAngle);
