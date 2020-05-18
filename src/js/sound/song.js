@@ -218,14 +218,20 @@ new MusicGenerator({
     source.buffer = buffer;
     source.loop = true;
 
-    if (DEBUG) {
-        const gainNode = audioCtx.createGain();
-        gainNode.gain.value = 0;
-        gainNode.connect(audioCtx.destination);
-        source.connect(gainNode);
-    } else {
-        source.connect(audioCtx.destination);
-    }
+    const gainNode = audioCtx.createGain();
+    gainNode.gain.value = 1;
+    gainNode.connect(audioCtx.destination);
+    source.connect(gainNode);
 
-    source.start();
+    let started = false;
+    SOUNDTRACK = source;
+    SOUNDTRACK_GAIN = gainNode;
 });
+
+let started = false;
+startSong = () => {
+    if (!started && window.SOUNDTRACK) {
+        started = true;
+        SOUNDTRACK.start();
+    }
+};

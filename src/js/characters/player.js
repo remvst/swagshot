@@ -122,7 +122,11 @@ class Player extends Character {
 
         document.exitPointerLock();
 
-        setTimeout(G.setupForMenu, 5000);
+        setTimeout(() => {
+            PokiSDK.gameplayStop();
+            showAd();
+            G.setupForMenu();
+        }, 5000);
     }
 
     hurt(source, amount, angle) {

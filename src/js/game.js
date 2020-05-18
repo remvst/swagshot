@@ -10,6 +10,10 @@ class Game {
     }
 
     cycle(e) {
+        if (POKI_PAUSED) {
+            return;
+        }
+
         e *= G.onMainMenu ? 0.3 : !onMenu * (P.health < 0.2 && G.clock - P.lastDamage < 1.5 ? 0.4 : 1);
         G.clock += e;
 
@@ -155,6 +159,10 @@ class Game {
     resume() {
         if (G.onMainMenu) {
             G.setupNewGame();
+
+            showAd();
+
+            PokiSDK.gameplayStart();
         }
         onMenu = false;
     }

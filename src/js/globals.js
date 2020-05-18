@@ -10,4 +10,5 @@ let R, // canvas context
     ON_PLAY_BUTTON,
     CANVAS = nomangle(g),
     DAMAGE_ANGLES = [],
-    RESET_BACKGROUND_TIMEOUT;
+    RESET_BACKGROUND_TIMEOUT,
+    POKI_PAUSED;
